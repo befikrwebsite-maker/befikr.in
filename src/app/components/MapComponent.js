@@ -1,19 +1,28 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
 const position = [28.4937, 77.1458];
 
-export default function MapComponent() {
+export default function Aaldnasikfbhasjkf() {
+  const [isMounted, setIsMounted] = useState(false);
+
   useEffect(() => {
-    // Ensure leaflet icon URLs are set after component mounts
+    // Prevent duplicate map container error
+    const mapContainer = document.querySelector(".leaflet-container");
+    if (mapContainer) {
+      mapContainer._leaflet_id = null;
+    }
+
     delete L.Icon.Default.prototype._getIconUrl;
     L.Icon.Default.mergeOptions({
       iconRetinaUrl: "https://unpkg.com/leaflet@1.9.3/dist/images/marker-icon-2x.png",
       iconUrl: "https://unpkg.com/leaflet@1.9.3/dist/images/marker-icon.png",
       shadowUrl: "https://unpkg.com/leaflet@1.9.3/dist/images/marker-shadow.png",
     });
+
+    setIsMounted(true);
   }, []);
 
   const handleMarkerClick = () => {
@@ -22,24 +31,21 @@ export default function MapComponent() {
     window.open(url, "_blank");
   };
 
-  return (
+  return isMounted ? (
     <MapContainer
-  className="rounded-xl"
-  center={position}
-  zoom={15}
-  style={{
-    height: "30vh", // Default for mobile
-    width: "100%", // Full width
-  }}
->
-  <TileLayer
-    url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
-    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-  />
-  <Marker position={position} eventHandlers={{ click: handleMarkerClick }}>
-    <Popup>Befikr HQ</Popup>
-  </Marker>
-</MapContainer>
-
-  );
+      key={isMounted ? "map-rendered" : "map-pending"}
+      className="rounded-xl"
+      center={position}
+      zoom={15}
+      style={{ height: "100%", width: "100%" }}
+    >
+      <TileLayer
+        url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      />
+      <Marker position={position} eventHandlers={{ click: handleMarkerClick }}>
+        <Popup>Befikr HQ</Popup>
+      </Marker>
+    </MapContainer>
+  ) : null;
 }
