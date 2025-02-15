@@ -6,6 +6,19 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+}
+@font-face {
+  font-family: 'Italiano-Regular';
+  src: url('/fonts/Italianno-Regular.ttf') format('truetype');
+}
 @font-face {
   font-family: 'GeneralSans-Extralight';
   src: url('/fonts/GeneralSans-Extralight.woff2') format('woff2'),

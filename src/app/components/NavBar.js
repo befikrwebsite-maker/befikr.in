@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react";
-import { Menu, X } from "lucide-react"; 
+import { Menu, X } from "lucide-react";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -9,59 +9,28 @@ export default function Navbar() {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
-    <nav className=" bg-white text-black px-4 py-5 font-generalSansMedium">
-      <div className="flex justify-between items-center max-w-8xl mx-auto">
+    <header className="sticky w-full bg-[#f5f5f5] backdrop-blur-md z-50">
+    <nav className="container mx-auto px-6 py-4 flex justify-between items-center rounded-xl">
+      <div className="text-2xl font-bold text-blue-600">
         <img
-          src="/logo.png"
-          alt="Logo"
-          className="max-w-[100px] md:justify-start justify-items-center" 
-        />
-
-        <button
-          onClick={toggleMenu}
-          className="md:hidden focus:outline-none z-20"
-        >
-          {isOpen ? (
-            <X size={28} className="text-black" />
-          ) : (
-            <Menu size={28} className="text-black" />
-          )}
-        </button>
-
-        <ul className="hidden md:flex space-x-8">
-          <li className="transition-color duration-500 hover:text-blue-300">
-            <a href="#">Home</a>
-          </li>
-          <li className="transition-color duration-500 hover:text-blue-300">
-            <a href="#">Who We Are</a>
-          </li>
-          <li className="transition-color duration-500 hover:text-blue-300">
-            <a href="#">What We Do</a>
-          </li>
-          <li className="transition-color duration-500 hover:text-blue-300">
-            <a href="#">Contact Us</a>
-          </li>
-        </ul>
-
-        <ul
-          className={`absolute top-0 left-0 w-full bg-white text-black transform ${
-            isOpen ? "translate-y-0" : "-translate-y-full"
-          } transition-transform duration-300 ease-in-out flex flex-col items-center md:hidden pt-16 space-y-4 z-10`}
-        >
-          <li className="hover:text-blue-400">
-            <a href="#">Home</a>
-          </li>
-          <li className="hover:text-blue-400">
-            <a href="#">About</a>
-          </li>
-          <li className="hover:text-blue-400">
-            <a href="#">Services</a>
-          </li>
-          <li className="hover:text-blue-400">
-            <a href="#">Contact</a>
-          </li>
-        </ul>
+          src="logo.png"
+          className="max-w-[90px] md:justify-start justify-items-center drop-shadow-xl"
+        /></div>
+      <div className="hidden md:flex space-x-8">
+        <a href="#services" className="text-gray-600 hover:text-companyBlue transition-colors">
+          Our Impact
+        </a>
+        <a href="#about" className="text-gray-600 hover:text-companyBlue transition-colors">
+          Who We Are
+        </a>
+        <a href="#testimonials" className="text-gray-600 hover:text-companyBlue transition-colors">
+          What We Do
+        </a>
+        <a href="#contact" className="text-gray-600 hover:text-companyBlue transition-colors">
+          Contact Us
+        </a>
       </div>
     </nav>
+    </header>
   );
 }

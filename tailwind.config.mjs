@@ -1,3 +1,5 @@
+import { Italianno } from 'next/font/google';
+
 /** @type {import('tailwindcss').Config} */
 export default {
     darkMode: ["class"],
@@ -9,6 +11,7 @@ export default {
   theme: {
   	extend: {
   		colors: {
+			companyBlue: '#04B2D9',
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {
@@ -51,6 +54,10 @@ export default {
   			}
   		},
   		fontFamily: {
+			Italianno: [
+				'Italiano-Regular',
+				'Handwriting'
+			],
   			generalSansExtralight: [
   				'GeneralSans-Extralight',
   				'sans-serif'
