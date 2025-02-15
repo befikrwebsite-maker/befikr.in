@@ -1,6 +1,8 @@
+import Image from "next/image";
+
 export default function Card({ title, desc, link }) {
   return (
-    <div className="w-[1200] h-[500] pt- p-4 bg-white border 2xl:h-[900px] 2xl:w-[2000] rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 flex shadow-xl ">
+    <div className="w-[1200px] h-[500px] p-4 bg-white border 2xl:h-[900px] 2xl:w-[2000px] rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 flex shadow-xl ">
       <div className="flex-1 p-5">
           <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
             {title}

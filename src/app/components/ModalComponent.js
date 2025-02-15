@@ -1,12 +1,11 @@
-"use client"; // Ensure it's a client component
+"use client";
+
 import { useState, useEffect } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function JobListings() {
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const jobId = searchParams.get("jobId");
   const [selectedJob, setSelectedJob] = useState(null);
 
   // Dummy job data
@@ -16,24 +15,29 @@ export default function JobListings() {
     { id: 3, title: "Full Stack Developer", company: "InnovateX", description: "Work on both frontend and backend technologies." }
   ];
 
-  // Set selected job when URL changes
+  // Read jobId from URL manually (since useSearchParams() doesn't work in static export)
   useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const jobId = params.get("jobId");
+
     if (jobId) {
       const job = jobs.find((j) => j.id.toString() === jobId);
       setSelectedJob(job || null);
     } else {
       setSelectedJob(null);
     }
-  }, [jobId]);
+  }, []);
 
-  // Open modal & update URL
+  // Open modal & update URL manually
   const openJob = (job) => {
-    router.push(`?jobId=${job.id}`, { scroll: false });
+    window.history.pushState({}, "", `?jobId=${job.id}`);
+    setSelectedJob(job);
   };
 
-  // Close modal & reset URL
+  // Close modal & reset URL manually
   const closeJob = () => {
-    router.push("/admin", { scroll: false });
+    window.history.pushState({}, "", "/admin"); // Removes jobId from the URL
+    setSelectedJob(null);
   };
 
   return (
