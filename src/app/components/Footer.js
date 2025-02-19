@@ -10,12 +10,16 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Company Info */}
           <div>
+            <a
+              href="/"
+            >
             <img 
             src="./logo.png"
             className="max-w-[90px]"
             />
+            </a>
             <p className="mt-2 text-sm">
-              Empowering businesses with expert advice and innovative solutions.
+              Leave it to us and be <strong className="font-generalSansItalic">befikr</strong><span className="inline-block text-companyBlue">.</span>
             </p>
           </div>
           

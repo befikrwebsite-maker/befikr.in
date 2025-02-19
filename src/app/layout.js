@@ -1,5 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
-import Layout from "./components/PageTransition";
+import PageTransition from "./PageTransition";
+import PageFadeOut from "./global";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -13,8 +14,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Befikr",
-  description: "Befikr",
+  title: "Befikr - Experience Freedom",
+  description: "Befikr is a seamless, stress-free platform designed to bring ease and convenience to your life.",
+  keywords: "Befikr, stress-free, seamless experience, convenience, ease",
+  author: "Your Name",
 };
 
 export default function RootLayout({ children }) {
@@ -23,9 +26,8 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Layout>
-        {children}
-        </Layout>
+        <PageFadeOut /> {/* Handles fade-out before navigation */}
+        <PageTransition>{children}</PageTransition> {/* Handles slide-in */}
       </body>
     </html>
   );

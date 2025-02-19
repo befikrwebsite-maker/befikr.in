@@ -12,10 +12,14 @@ export default function Navbar() {
     <header className="sticky w-full bg-[#f5f5f5] backdrop-blur-md z-50">
     <nav className="container mx-auto px-6 py-4 flex justify-between items-center rounded-xl">
       <div className="text-2xl font-bold text-blue-600">
+        <a 
+          href="/"
+        >
         <img
           src="logo.png"
           className="max-w-[90px] md:justify-start justify-items-center drop-shadow-xl"
-        /></div>
+        />
+        </a></div>
       <div className="hidden md:flex space-x-8">
         <a href="#services" className="text-gray-600 hover:text-companyBlue transition-colors">
           Our Impact
