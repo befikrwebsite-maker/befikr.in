@@ -1,7 +1,7 @@
 "use client"
 
-import Navbar from "@/app/components/NavBar";
-import Footer from "@/app/components/Footer";
+import Navbar from "@/components/NavBar";
+import Footer from "@/components/Footer";
 import { useEffect, useState } from "react";
 
 export default function Form() {
