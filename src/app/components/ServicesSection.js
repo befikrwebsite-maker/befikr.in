@@ -2,8 +2,8 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import Card from "@/app/components/ui/Card";
-import StackCards from "@/app/components/ui/StackCards";
+import Card from "./ui/Card";
+import StackCards from "./ui/StackCards";
 
 const services = [
   { title: "Financial Analysis", desc: " voluptas voluptatem non voluptas quia aut modi nihil vel dolor illum At aliquam fugit? Ut voluptatem voluptas nam maxime maxime eum internos suscipit qui ratione possimus qui illo perspiciatis! </p><p>Et nihil autem est delectus autem id incidunt impedit et dolorem culpa sed facere eius ad quam excepturi. Ut mollitia fuga aut pariatur maiores eum quod voluptatum aut tenetur repellendus. In unde atque ut eveniet omnis aut dolor molestias et consectetur accusantium non aperiam quod ut omnis aliquid. ", link: "https://compote.slate.com/images/22ce4663-4205-4345-8489-bc914da1f272.jpeg?crop=1560%2C1040%2Cx0%2Cy0" },
