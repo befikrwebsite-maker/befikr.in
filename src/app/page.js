@@ -1,8 +1,13 @@
 "use client"
 
 import Navbar from "./components/NavBar";
-
-
+import Hero from "./components/HeroSection";
+import ServicesSection from "./components/ServicesSection";
+import CareerSection from "./components/CareersSection";
+import Footer from "./components/Footer";
+import Link from "next/link";
+import Lenis from "@studio-freight/lenis";
+import { useEffect } from "react";
 
 export default function Home() {
 
@@ -30,6 +35,7 @@ export default function Home() {
         <Hero/>
         <div className="bg-[#f5f5f5] pt-10 text-4xl font-generalSansSemibold pl-12 text-gray-900">Our Services</div>
         <ServicesSection/>
+        <br/>
         <CareerSection/>
       </main>
 
