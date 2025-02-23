@@ -16,21 +16,21 @@ export default function Navbar() {
           href="/"
         >
         <img
-          src="logo.png"
+          src="/logo.png"
           className="max-w-[90px] md:justify-start justify-items-center drop-shadow-xl"
         />
         </a></div>
       <div className="hidden md:flex space-x-8">
-        <a href="#services" className="text-gray-600 hover:text-companyBlue transition-colors">
+        <a href="/what-we-have-done" className="text-gray-600 hover:text-companyBlue transition-colors">
           Our Impact
         </a>
-        <a href="#about" className="text-gray-600 hover:text-companyBlue transition-colors">
+        <a href="/who-we-are" className="text-gray-600 hover:text-companyBlue transition-colors">
           Who We Are
         </a>
-        <a href="#testimonials" className="text-gray-600 hover:text-companyBlue transition-colors">
+        <a href="/what-we-do" className="text-gray-600 hover:text-companyBlue transition-colors">
           What We Do
         </a>
-        <a href="#contact" className="text-gray-600 hover:text-companyBlue transition-colors">
+        <a href="/contact-us" className="text-gray-600 hover:text-companyBlue transition-colors">
           Contact Us
         </a>
       </div>

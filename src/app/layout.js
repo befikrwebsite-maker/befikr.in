@@ -17,7 +17,7 @@ export const metadata = {
   title: "Befikr - Experience Freedom",
   description: "Befikr is a seamless, stress-free platform designed to bring ease and convenience to your life.",
   keywords: "Befikr, stress-free, seamless experience, convenience, ease",
-  author: "Your Name",
+  author: "Opera Garcia",
 };
 
 export default function RootLayout({ children }) {

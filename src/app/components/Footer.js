@@ -14,6 +14,7 @@ export default function Footer() {
               href="/"
             >
             <img 
+            alt="CompanyLogo"
             src="./logo.png"
             className="max-w-[90px]"
             />
@@ -27,10 +28,10 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-medium text-companyBlue">Quick Links</h3>
             <ul className="mt-2 space-y-2">
-              <li><Link href="/about" className="hover:text-companyBlue">About Us</Link></li>
-              <li><Link href="/services" className="hover:text-companyBlue">Our Services</Link></li>
-              <li><Link href="/contact" className="hover:text-companyBlue">Contact</Link></li>
-              <li><Link href="/careers" className="hover:text-companyBlue">Careers</Link></li>
+              <li><Link href="/about-befikr" className="hover:text-companyBlue">Who We Are</Link></li>
+              <li><Link href="/what-we-do" className="hover:text-companyBlue">What We Do</Link></li>
+              <li><Link href="/contact" className="hover:text-companyBlue">Contact Us</Link></li>
+              <li><Link href="/career" className="hover:text-companyBlue">Careers</Link></li>
             </ul>
           </div>
           

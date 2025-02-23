@@ -1,8 +1,6 @@
 "use client"
 
-import Navbar from "@/components/NavBar";
-import Footer from "@/components/Footer";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function Form() {
 
@@ -14,7 +12,7 @@ export default function Form() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setMessage("Submitting...")
+    setMessage("Creating Job")
 
     const response = await fetch("https://befikr.in/insert-data.php", {
       method: "POST",
@@ -26,7 +24,7 @@ export default function Form() {
 
     const result = await response.json();
     if (result.success) {
-      setMessage("Data inserted successfully!");
+      setMessage("Job Created Sucessfully");
       setTitle("");
       setDesc("");
       setLocation([]);
@@ -37,46 +35,59 @@ export default function Form() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f5f5f5] font-generalSansMedium" style={{ height: "200vh" }}>
-      <Navbar />
+    <div className="min-h-screen bg-[#f5f5f5] font-generalSansMedium">
+      <header className="sticky w-full bg-[#f5f5f5] backdrop-blur-md z-50 border-black">
+        <nav className="container mx-auto px-6 py-4 flex justify-between items-center rounded-xl">
+          <div className="text-2xl font-bold text-blue-600">
+          </div>
+          <div className="hidden md:flex space-x-8">
+            <a href="/" className="text-gray-600 hover:text-companyBlue transition-colors">
+              Home
+            </a>
+            <a href="/career/jobs" className="text-gray-600 hover:text-companyBlue transition-colors">
+              Jobs
+            </a>
+          </div>
+        </nav>
+      </header>
+      <main className="w-full no-scrollbar bg-[#f5f5f5]">
+        <div className="p-24 pt-12 flex md:flex-row flex-col">
+          <div className="flex-1">
+            <h1 className="relative inline-block font-generalSansSemibold text-2xl before:absolute before:bottom-0 before:left-0 before:w-0 before:h-[2px] before:bg-current before:transition-all before:duration-300 hover:before:w-full">
+              Create a new Job Listing
+            </h1>
+            <form onSubmit={handleSubmit} className="pt-6 max-w-md">
+              <div className="relative z-0 w-full mb-5 group">
+                <input type="text" name="name" id="name" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required value={Title} onChange={(e) => setTitle(e.target.value)} />
+                <label htmlFor="name" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Name</label>
+              </div>
 
-      <main className="w-full no-scrollbar bg-[#f5f5f5] flex flex-col">
-        <div>
-          <div>
-            <form onSubmit={handleSubmit}>
-              <input
-                type="text"
-                placeholder="Name"
-                value={Title}
-                onChange={(e) => setName(e.target.value)}
-                required
-              />
-              <input
-                type="email"
-                placeholder="Email"
-                value={Desc}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-              <input
-                type="text"
-                placeholder="Tags (comma-separated)"
-                onChange={(e) => setTags(e.target.value.split(","))}
-              />
-              <input
-                type="text"
-                placeholder="Locations (comma-separated)"
-                onChange={(e) => setLocations(e.target.value.split(","))}
-              />
-              <button type="submit">Submit</button>
+              <div className="relative z-0 w-full mb-5 group">
+                <input type="text" name="desc" id="desc" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required value={Desc} onChange={(e) => setDesc(e.target.value)} />
+                <label htmlFor="Description" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Description</label>
+              </div>
+
+              <div className="relative z-0 w-full mb-5 group">
+                <input type="text" name="tags" id="tags" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " onChange={(e) => setTags(e.target.value.split(","))} />
+                <label htmlFor="tags" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Tags (comma-separated)</label>
+              </div>
+
+              <div className="relative z-0 w-full mb-5 group">
+                <input type="text" name="locations" id="locations" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " onChange={(e) => setLocation(e.target.value.split(","))} />
+                <label htmlFor="locations" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Locations (comma-separated)</label>
+              </div>
+
+              <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
             </form>
-            <p>{Message}</p>
+            <p className="pt-12">{Message}</p>
+          </div>
+          <div className="flex-1">
+            <div className="w-full h-full bg-black rounded-xl">
+
+            </div>
           </div>
         </div>
       </main>
-
-
-      <Footer />
     </div>
   )
 }

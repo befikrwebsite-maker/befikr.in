@@ -1,41 +1,29 @@
+import Button from "./ui/Button"
 
 export default function CareerSection() {
-    return(
-        <div className="p-10">
-            <h1 className="text-3xl font-bold mb-6">About Us</h1>
-            <div className="flex flex-col md:flex-row">
-                <div className="flex-1">
-                    <p className="text-xl">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    </p>
-            <a
-          href="#"
-          className="mt-3 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-        >
-          Join us and see for yourself
-          <svg
-            className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 14 10"
-          >
-            <path
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M1 5h12m0 0L9 1m4 4L9 9"
-            />
-          </svg>
-        </a>
+  return (
+    <div className="p-10">
+      <h1 className="text-3xl font-bold mb-2">About Us</h1>
+      <div className="flex flex-col md:flex-row">
+        <div className="flex-1">
+          <p className="text-lg mt-2 font-generalSansRegular">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+          <Button
+            link="/career"
+            className="w-42 transition-all delay-100"
+          >Join Us & See For Yourself</Button>
         </div>
         <div className="flex-1 ml-8">
-        <img
-            src="logo.png"
-        />
+          <div className="p-4 bg-[#f5f5f5] shadow-xl rounded-2xl">
+          <img
+            className="rounded-xl"
+            src="/images/IMG-20250220-WA0008.jpg"
+            alt="Text that describes us"
+          />
+          </div>
         </div>
-        </div>
-        </div>
-    )
+      </div>
+    </div>
+  )
 }

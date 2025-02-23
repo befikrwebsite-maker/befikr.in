@@ -12,7 +12,7 @@ export default function Hero() {
                 muted
                 playsInline
             >
-                <source src="/1536350-uhd_3840_2160_30fps.mp4" type="video/mp4" />
+                <source src="/videos/1536350-uhd_3840_2160_30fps.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
             </video>
             <div className="absolute inset-0 bg-black opacity-60 rounded-b-[4rem]"></div>
