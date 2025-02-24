@@ -5,7 +5,7 @@ export default function Footer() {
 
   
   return (
-    <footer className="bg-[#f5f5f5] text-gray-800 py-8">
+    <footer className="bg-[#f5f5f5] text-gray-800 py-8 border-t-2  border-companyBlue">
       <div className="container mx-auto px-6 lg:px-20">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Company Info */}
@@ -28,10 +28,10 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-medium text-companyBlue">Quick Links</h3>
             <ul className="mt-2 space-y-2">
-              <li><Link href="/about-befikr" className="hover:text-companyBlue">Who We Are</Link></li>
               <li><Link href="/what-we-do" className="hover:text-companyBlue">What We Do</Link></li>
-              <li><Link href="/contact" className="hover:text-companyBlue">Contact Us</Link></li>
-              <li><Link href="/career" className="hover:text-companyBlue">Careers</Link></li>
+              <li><Link href="/about-befikr" className="hover:text-companyBlue">Who We Are</Link></li>
+              <li><Link href="/contact" className="hover:text-companyBlue">Work With Us</Link></li>
+              <li><Link href="/career" className="hover:text-companyBlue">Contact Us</Link></li>
             </ul>
           </div>
           

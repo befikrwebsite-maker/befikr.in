@@ -17,11 +17,11 @@ export default function Hero() {
             </video>
             <div className="absolute inset-0 bg-black opacity-60 rounded-b-[4rem]"></div>
             <div className="relative z-10 text-white px-6 md:w-full rounded-b-[4rem]">
-                <h1 className="inline-block text-5xl md:text-7xl font-generalSansSemibold leading-tight transition-all delay-175 text-white hover:inline-block  hover:text-companyBlue hover:bg-white p-2">
-                    Excellence is The Only <div className="inline-block font-generalSansSemiboldItalic">Standard</div>.
+                <h1 className="inline-block text-5xl md:text-7xl font-generalSansMedium leading-tight transition-all delay-175 text-white hover:inline-block  hover:text-companyBlue hover:bg-white p-2">
+                    Excellence is <span className="block">The Only <div className="inline-block font-generalSansMediumItalic">Standard</div></span> at befikr.
                 </h1>
-                <p className="inlin-block p-3 text-xl md:text-2xl mb-8 max-w-3xl">
-                    Enabling global leaders in sustainability to drive impactful and lasting change.
+                <p className="inlin-block p-3 font-generalSansLight text-xl md:text-2xl mb-8 max-w-3xl">
+                    An <span className="font-generalSansMedium">ESG</span> Services Company
                 </p>
                 <a
                     href="#contact"

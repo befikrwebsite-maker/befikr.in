@@ -9,7 +9,7 @@ export default function Navbar() {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
-    <header className="sticky w-full bg-[#f5f5f5] backdrop-blur-md z-50">
+    <header className="sticky w-full h-[80px] bg-[#f5f5f5] backdrop-blur-md z-50">
     <nav className="container mx-auto px-6 py-4 flex justify-between items-center rounded-xl">
       <div className="text-2xl font-bold text-blue-600">
         <a 
@@ -17,18 +17,19 @@ export default function Navbar() {
         >
         <img
           src="/logo.png"
-          className="max-w-[90px] md:justify-start justify-items-center drop-shadow-xl"
+          className="max-w-[120px] md:justify-start justify-items-center drop-shadow-xl"
         />
         </a></div>
+        <p></p>
       <div className="hidden md:flex space-x-8">
-        <a href="/what-we-have-done" className="text-gray-600 hover:text-companyBlue transition-colors">
-          Our Impact
+        <a href="/what-we-do" className="text-gray-600 hover:text-companyBlue transition-colors">
+          What We Do
         </a>
         <a href="/who-we-are" className="text-gray-600 hover:text-companyBlue transition-colors">
           Who We Are
         </a>
-        <a href="/what-we-do" className="text-gray-600 hover:text-companyBlue transition-colors">
-          What We Do
+        <a href="/career" className="text-gray-600 hover:text-companyBlue transition-colors">
+          Work With Us
         </a>
         <a href="/contact-us" className="text-gray-600 hover:text-companyBlue transition-colors">
           Contact Us

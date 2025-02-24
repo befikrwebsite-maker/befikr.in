@@ -12,8 +12,8 @@ export default function Home() {
       <main className="w-[90%] md:w-full justify-self-center no-scrollbar bg-[#f5f5f5] flex flex-col">
         <div className="h-fit text-center flex flex-col justify-center items-center pb-10">
           <img
-            src="/images/IMG-20250220-WA0001.jpg"
-            className="max-h-xl"
+            src="/images/IMG1.jpg"
+            className=""
           />
           <div>
             <h1 className="text-4xl pt-10 md:text-6xl font-generalSansMedium">
@@ -21,7 +21,7 @@ export default function Home() {
             </h1>
             <div className="pt-16 md:pt-24 max-w-4xl text-left">
               <div className="text-2xl max-w-2xl font-generalSansLight">
-                <p className="md:text-4xl font-generalSansRegular"><strong className="font-generalSansItalic text-companyBlue">befikr</strong> is a strategic & execution partner for environment, safety & social IMPACT services.</p>
+                <p className="md:text-4xl font-generalSansRegular"><strong className=" text-companyBlue">befikr</strong> is a strategic & execution partner for environment, safety & social IMPACT services.</p>
                 <p className="pt-4 pb-8">We work with businesses to exhibit Business Responsibility & Sustainability through direct impact ESG services.</p>
                 <div className="items-center h-[0.5px] rounded-full bg-companyBlue"></div>
                 <p className="pt-4 pb-8">Our Environment (E) IMPACT services are Energy audit, Electrical safety audit, Circular economy (Defective inspection, e-waste collection & Reverse logistics management). Today, befikr has also become the last mile partner for brands looking to comply with the Extended Producer Responsibility by managing & embracing the complete circular economy chain efficiently.</p>

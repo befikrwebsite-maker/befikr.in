@@ -1,64 +1,32 @@
 "use client";
 
-import emailjs from "@emailjs/browser";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Form() {
     const [userInput, setUserInput] = useState({
-        name: "",
+        team: "",
         email: "",
-        message: ""
+        message: "",
+        resume: null
     });
 
-    const [userResume, setUserResume] = useState("");
+    useEffect(() =>{
+     console.log(userInput.resume);
+    }, [userInput.resume])
 
-
-
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setUserInput({ ...userInput, [name]: value });
-    };
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        const serviceID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
-        const templateID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
-        const userID = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
-
-        try {
-            const emailParams = {
-                name: userInput.name,
-                email: userInput.email,
-                message: userInput.message
-            };
-
-            const res = await emailjs.send(serviceID, templateID, emailParams, userID);
-
-            if (res.status === 200) {
-                console.log("Message sent successfully!");
-                setUserInput({
-                    name: "",
-                    email: "",
-                    message: ""
-                });
-            }
-        } catch (error) {
-            console.log("Failed to send message. Please try again later.");
-        }
-    }
 
     return (
         <div className="flex-auto">
             <div className="flex w-50 justify-center">
-                <form onSubmit={handleSubmit} className=" text-gray-900 border-2 rounded-xl">
+                <form className=" text-gray-900 border-2 rounded-xl">
                     <div>
                         <label className="text-gray-900">Your Name:</label>
                         <input
                             type="text"
-                            name="name"
+                            name="team"
                             className="text-gray-900 border-2"
                             value={userInput.name}
-                            onChange={handleChange}
+                            onChange={(e) => setUserInput({ ...userInput, team: e.target.value })}
                             required
                         />
                     </div>
@@ -69,7 +37,7 @@ export default function Form() {
                             name="email"
                             className="text-gray-900 boreder-2"
                             value={userInput.email}
-                            onChange={handleChange}
+                            onChange={(e) => setUserInput({ ...userInput, email: e.target.value })}
                             required
                         />
                     </div>
@@ -79,7 +47,7 @@ export default function Form() {
                             name="message"
                             className="text-gray-900 border-2"
                             value={userInput.message}
-                            onChange={handleChange}
+                            onChange={(e) => setUserInput({ ...userInput, message: e.target.value })}
                             required
                         />
                     </div>
@@ -87,13 +55,18 @@ export default function Form() {
                         <label className="text-gray-900">Resume:</label>
                         <input
                             type="file"
+                            accept=".pdf"
                             name="resume"
                             className="text-gray-900"
                             onChange=
                             {
                                 (e) => {
                                     console.log(e.target.files[0]);
-                                    setUserResume([...userResume, e.target.files[0]]);
+                                    setUserInput({ ...userInput, resume: e.target.files[0] });
+                                    console.log(userInput.email);
+                                    console.log(userInput.team);
+                                    console.log(userInput.message);
+                                    console.log(userInput.resume);
                                 }
                             }
                             required

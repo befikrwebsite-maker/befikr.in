@@ -96,7 +96,7 @@ export default function Page() {
   // setting the user input from the search
   const [query, setQuery] = useState([""]);
   const filtered = searchFilter(query);
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   // extracting unique teams positoins and locations /////////////////////////////////////////////////////////////////////
   const uniqueTeams = [...new Set(cards.map(el => el.team))];
@@ -112,7 +112,7 @@ export default function Page() {
 
   const checkboxFilter = (job) =>
     (selectedTeams.length === 0 || selectedTeams.includes(job.team)) &&
-    (selectedPositions.length === 0 || selectedPositions.includes(job.position)) && 
+    (selectedPositions.length === 0 || selectedPositions.includes(job.position)) &&
     (selectedLocations.length === 0 || job.location.some((loc) => selectedLocations.includes(loc)));
 
   // Apply both filters
@@ -127,7 +127,7 @@ export default function Page() {
       return false;
     }).length;
   };
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   // using modalcomponent here ///////////////////////////////////////////////////////////////////////////////////////////
   const router = useRouter();
@@ -154,7 +154,7 @@ export default function Page() {
 
   // Close modal & reset URL manually
   const closeJob = () => {
-    window.history.pushState({}, "", "/careers/job"); // Removes jobId from the URL
+    window.history.pushState({}, "", "/career/job"); // Removes jobId from the URL
     setSelectedJob(null);
     setFormVisible(false);
   };
@@ -235,51 +235,51 @@ export default function Page() {
         ))}
       </div>
 
-      {/* Full-Screen Animated Modal */}
-      <AnimatePresence>
-        {selectedJob && (
-          <motion.div
-            className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
+        {/* Full-Screen Animated Modal */}
+        <AnimatePresence>
+          {selectedJob && (
             <motion.div
-              className="bg-white w-full h-full md:w-3/4 md:h-3/4 rounded-lg shadow-lg p-8 relative flex flex-col"
-              initial={{ y: "100%" }}
-              animate={{ y: 0 }}
-              exit={{ y: "100%" }}
-              transition={{ type: "spring", stiffness: 120 }}
+              className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
             >
-              {/* Close Button */}
-              <button
-                onClick={closeJob}
-                className="absolute top-6 right-6 bg-red-500 text-white px-4 py-2 rounded-full"
+              <motion.div
+                className="bg-white w-full h-full md:w-3/4 md:h-3/4 rounded-lg shadow-lg p-8 relative flex flex-col"
+                initial={{ y: "100%" }}
+                animate={{ y: 0 }}
+                exit={{ y: "100%" }}
+                transition={{ type: "spring", stiffness: 120 }}
               >
-                ✖
-              </button>
-
-              {/* Job Details */}
-              <h2 className="text-3xl font-bold">{selectedJob.position}</h2>
-              <p className="text-gray-600 text-lg">{selectedJob.team}</p>
-              <p className="mt-4 text-gray-800">{selectedJob.location}</p>
-              <p className="mt-4 text-gray-800">{selectedJob.tags}</p>
-              <p className="mt-4 text-gray-800">{selectedJob.id}</p>
-
-              {/* apply with email integration */}
-              {formVisible && (<Form></Form>)}
-
-
-              {/* Apply Button */}
-              <div className="mt-auto">
-                <button onClick={() => setFormVisible(true)} className="mt-6 bg-blue-500 text-white px-6 py-3 rounded-lg w-full">
-                  Apply Now
+                {/* Close Button */}
+                <button
+                  onClick={closeJob}
+                  className="absolute top-6 right-6 bg-red-500 text-white px-4 py-2 rounded-full"
+                >
+                  ✖
                 </button>
-              </div>
+
+                {/* Job Details */}
+                <h2 className="text-3xl font-bold">{selectedJob.position}</h2>
+                <p className="text-gray-600 text-lg">{selectedJob.team}</p>
+                <p className="mt-4 text-gray-800">{selectedJob.location}</p>
+                <p className="mt-4 text-gray-800">{selectedJob.tags}</p>
+                <p className="mt-4 text-gray-800">{selectedJob.id}</p>
+
+                {/* apply with email integration */}
+                {formVisible && (<Form></Form>)}
+
+
+                {/* Apply Button */}
+                <div className="mt-auto">
+                  <button onClick={() => setFormVisible(true)} className="mt-6 bg-blue-500 text-white px-6 py-3 rounded-lg w-full">
+                    Apply Now
+                  </button>
+                </div>
+              </motion.div>
             </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          )}
+        </AnimatePresence>
 
     </div>
     <Footer />
