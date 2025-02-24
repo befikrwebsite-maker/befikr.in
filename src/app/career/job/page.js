@@ -6,16 +6,19 @@ import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import Form from "./form";
 import { Listbox,Transition } from "@headlessui/react";
+import Footer from "@/components/Footer";
 
 export default function Page() {
   const cards = [
     {
       id: 1,
-      team: "team 1",
-      position: "pos 1",
-      location: ["loc 1", "loc 2"],
-      desc: "Lorem Ipsum",
-      tags: ["mac"]
+      team: " Logistics Coordinator ",
+      position: "E-Waste Collection",
+      location: ["Delhi NCR"],
+      desc: "We are seeking a proactive and detail-oriented Logistics Coordinator to manage our e-waste pickup operations from households based out of Delhi NCR.",
+      tags: ["mac"],
+      budget:"INR 17K-20K",
+      jobtype: "fulltime"
     },
     {
       id: 2,
@@ -23,7 +26,9 @@ export default function Page() {
       position: "pos 2",
       location: ["loc 3", "loc 2"],
       desc: "Lorem Ipsum",
-      tags: ["machine"]
+      tags: ["machine"],
+      budget:"INR 17K-20K",
+      jobtype: "fulltime"
     },
     {
       id: 3,
@@ -31,7 +36,9 @@ export default function Page() {
       position: "pos 3",
       location: ["loc 1", "loc 2", "loc 4"],
       desc: "Lorem Ipsum",
-      tags: ["machine", "learning"]
+      tags: ["machine", "learning"],
+      budget:"INR 17K-20K",
+      jobtype: "fulltime"
     },
     {
       id: 4,
@@ -39,7 +46,9 @@ export default function Page() {
       position: "pos 1",
       location: ["loc 5"],
       desc: "Lorem Ipsum",
-      tags: [""]
+      tags: ["learning"],
+      budget:"INR 17K-20K",
+      jobtype: "fulltime"
     },
     {
       id: 5,
@@ -47,7 +56,9 @@ export default function Page() {
       position: "pos 2",
       location: ["loc 5", "loc 2"],
       desc: "Lorem Ipsum",
-      tags: ["work"]
+      tags: ["work"],
+      budget:"INR 17K-20K",
+      jobtype: "fulltime"
     },
     {
       id: 6,
@@ -55,15 +66,19 @@ export default function Page() {
       position: "pos 1",
       location: ["loc 1", "loc 2"],
       desc: "Lorem Ipsum",
-      tags: ["work", "machine", "learning"]
+      tags: ["work", "machine", "learning"],
+      budget:"INR 17K-20K",
+      jobtype: "fulltime"
     },
     {
       id: 7,
       team: "team 2",
       position: "pos 2",
-      location: ["loc 1", "loc 2", "loc 3", "loc 4", "loc 5", "loc 6"],
+      location: ["loc 1", "loc 2", "loc 3", "loc 4"],
       desc: "Lorem Ipsum",
-      tags: ["hello", "Learning", "work"]
+      tags: ["hello", "Learning", "work"],
+      budget:"INR 17K-20K",
+      jobtype: "fulltime"
     }
   ];
 
@@ -146,72 +161,78 @@ export default function Page() {
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   return (
-    <div className="min-h-screen bg-white">
-      <div className="flex-auto">
-        <div className="flex">
-          <a href="/"><img alt="logo" src="../logo.png" className="w-[130px] h-[80px]" /></a>
-        </div>
-      </div>
-      <div className="">
-        <div className="flex px-4 py-3 rounded-full overflow-hidden max-w-xl border-2 mx-auto font-[sans-serif]">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192.904 192.904" width="16px"
-            className="fill-gray-600 mr-3 rotate-90">
-            <path
-              d="m190.707 180.101-47.078-47.077c11.702-14.072 18.752-32.142 18.752-51.831C162.381 36.423 125.959 0 81.191 0 36.422 0 0 36.423 0 81.193c0 44.767 36.422 81.187 81.191 81.187 19.688 0 37.759-7.049 51.831-18.751l47.079 47.078a7.474 7.474 0 0 0 5.303 2.197 7.498 7.498 0 0 0 5.303-12.803zM15 81.193C15 44.694 44.693 15 81.191 15c36.497 0 66.189 29.694 66.189 66.193 0 36.496-29.692 66.187-66.189 66.187C44.693 147.38 15 117.689 15 81.193z">
-            </path>
+    <>
+    <Navbar />
+    <div className="min-h-screen bg-[#f5f5f5] px-10 py-5 flex flex-col items-center">
+      <div className="bg-white px-10 py-5 w-full max-w-7xl rounded-lg shadow-lg mt-8">
+      <div className="text-left text-xl py-5 font-extrabold tracking-wider uppercase text-gray-900">Job Openings</div>
+      <div className="w-full max-w-6xl">
+        <div className="flex px-4 py-2 rounded-md bg-[#f5f5f5] overflow-hidden border-2 w-full font-[sans-serif]">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192.904 192.904" width="20px"
+            className="fill-blue-600 mr-3 rotate-90 font-extrabold ">
+            <path d="m190.707 180.101-47.078-47.077c11.702-14.072 18.752-32.142 18.752-51.831C162.381 36.423 125.959 0 81.191 0 36.422 0 0 36.423 0 81.193c0 44.767 36.422 81.187 81.191 81.187 19.688 0 37.759-7.049 51.831-18.751l47.079 47.078a7.474 7.474 0 0 0 5.303 2.197 7.498 7.498 0 0 0 5.303-12.803zM15 81.193C15 44.694 44.693 15 81.191 15c36.497 0 66.189 29.694 66.189 66.193 0 36.496-29.692 66.187-66.189 66.187C44.693 147.38 15 117.689 15 81.193z"></path>
           </svg>
-          <input type="text" placeholder="Search Keywords" className="w-full outline-none bg-transparent text-gray-600 text-sm"
+          <input type="text" placeholder="Search Keywords" className="w-full outline-none bg-transparent text-gray-600 text-sm "
             onChange={(e) => { setQuery(e.target.value.toLowerCase().split(" ")); }}
           />
         </div>
       </div>
 
       {/* Dropdown Filters */}
-      <div className="flex px-32 py-2 justify-between mx-auto max-w-xl">
+      <div className="w-full max-w-6xl flex flex-wrap justify-center gap-3 px-6 mt-6 xl:gap-[3.5rem] lg:gap-[0.5rem] md:gap-[1.5rem] sm:gap-[1.5rem]">
         <Dropdown
           label="Team"
           options={uniqueTeams}
           selected={selectedTeams}
           setSelected={setSelectedTeams}
-          getFilterCount = {(team) => getFilterCount("team",team)}
+          getFilterCount={(team) => getFilterCount("team", team)}
         />
         <Dropdown
           label="Position"
           options={uniquePositions}
           selected={selectedPositions}
           setSelected={setSelectedPositions}
-          getFilterCount = {(position) => getFilterCount("position",position)}
+          getFilterCount={(position) => getFilterCount("position", position)}
         />
         <Dropdown
           label="Location"
           options={uniqueLocations}
           selected={selectedLocations}
           setSelected={setSelectedLocations}
-          getFilterCount = {(location) => getFilterCount("location",location)}
+          getFilterCount={(location) => getFilterCount("location", location)}
+          
         />
       </div>
 
       {/* Job Count */}
-      <div className="flex text-gray-900 justify-center">
-        <p className="text-gray-900 font-bold">
+      <div className="flex text-gray-900 justify-center mt-4">
+        <p className="text-gray-900 tracking-wide uppercase font-bold">
           Showing {filteredJobs.length} Jobs among the applied filters 
         </p>
       </div>
+      </div>
 
 
-
-      <div className="py-10 px-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-10 justify-items-center ">
+      <div className="py-10 px-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 justify-items-center w-full max-w-7xl">
         {filteredJobs.map((items, index) => (
-          <div key={items.id} onClick={() => openJob(items)} className="w-[350px] h-[150px] sm:w-[290px] sm:h-[300px] md:w-[300px] md:h-[300px] lg:w-[490px] lg:h-[300px] rounded-md flex-auto bg-white shadow-[#B1B1B1_0px_0px_10px_0px] duration-300 ease-in  hover:shadow-[#B1B1B1_0px_0px_0px_0px] hover:border-2">
-            <p className="flex text-gray-900 text-2xl m-3">{items.team}</p>
-            <p className="flex text-gray-900 m-4"></p>
-            <p className="flex text-gray-900 px-4">{items.location}</p>
-            <p className="flex text-gray-900 px-4">{items.position}</p>
-            <p className="flex text-gray-900 px-4">{items.id}</p>
-            <p className="text-gray-900">{items.tags}</p>
-            <button onClick={() => setFormVisible(true)} className="text-gray-900 border-2 m-2">Apply!</button>
+          <div key={items.id} onClick={() => openJob(items)} className="w-full max-w-[450px] h-auto sm:h-[200px] md:h-[210px] lg:h-[220px] rounded-lg bg-white shadow-md p-4 sm:p-5 flex flex-col justify-between transition-shadow duration-300 ease-in hover:shadow-lg border">
+            <div className="flex flex-col items-center">
+              <p className="text-gray-900 text-base sm:text-lg font-bold uppercase text-center">{items.team}</p>
+              <p className="text-gray-700 font-semibold uppercase text-sm sm:text-base text-center">{items.position}</p>
+              <div className="flex flex-wrap gap-1 text-gray-700 text-xs sm:text-sm justify-center mt-2">
+                {Array.isArray(items.location) ? items.location.map((loc, i) => (
+                  <span key={i} className="bg-white-200 px-2 py-1 rounded-md">{loc}</span>
+                )) : null}
+              </div>
+              <div className="flex gap-2 mt-2">
+                <button className="bg-gray-300 px-2 py-1 rounded-md text-xs sm:text-sm cursor-default">{items.budget}</button>
+                <button className="bg-gray-300 px-2 py-1 rounded-md text-xs sm:text-sm cursor-default">{items.jobtype}</button>
+              </div>
+            </div>
+            <button onClick={() => setFormVisible(false)} 
+            className="text-blue-600 font-extrabold tracking-wide uppercase text-l bg-blue-200 px-3 py-2 sm:px-4 sm:py-2 rounded-md mt-2 sm:mt-3 hover:bg-blue-500 hover:text-white ">More Details</button>
           </div>
-        ))};
+        ))}
       </div>
 
       {/* Full-Screen Animated Modal */}
@@ -261,6 +282,8 @@ export default function Page() {
       </AnimatePresence>
 
     </div>
+    <Footer />
+    </>
   );
 };
 
@@ -270,7 +293,7 @@ function Dropdown({ label, options, selected, setSelected, getFilterCount }) {
   return (
     <Listbox value={selected} onChange={setSelected} multiple>
       <div className="relative">
-        <Listbox.Button className="flex text-gray-900 border rounded-full w-32 justify-center py-1">
+        <Listbox.Button className="flex text-gray-900 tracking-wide uppercase font-bold bg-[#f5f5f5] border rounded-md w-80  justify-center py-1 xl:w-[20rem] lg:w-[18rem] md:w-[14rem] sm:w-[12rem] ">
           {label}
         </Listbox.Button>
         <Transition
@@ -281,7 +304,7 @@ function Dropdown({ label, options, selected, setSelected, getFilterCount }) {
           leaveFrom="transform scale-100 opacity-100"
           leaveTo="transform scale-95 opacity-0"
         >
-          <Listbox.Options className="absolute mt-2 w-40 bg-white border rounded-md shadow-lg z-10">
+          <Listbox.Options className="absolute mt-2 w-80 bg-white border rounded-md shadow-lg z-10">
             {options.map((option, index) => (
               <Listbox.Option key={index} value={option} as="div">
                 {({ selected }) => (
