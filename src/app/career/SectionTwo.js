@@ -1,22 +1,57 @@
-import Button from "@/components/ui/Button";
-
 export default function SectionTwo() {
+    const perks = [
+        { title: "A dynamic workplace that balances professionalism with a friendly vibe" },
+        { title: "A team that supports, uplifts, and grows together" },
+        { title: "An environment where learning is continuous and rewarding" },
+        { title: "Opportunities that help you evolve while making an impact" },
+        { title: "A career that’s not just a job, but a journey of fulfillment" }
+    ];
+
+
+    const process = [
+        { link: "", desc: "Screening" },
+        { link: "", desc: "Shortlisting" },
+        { link: "", desc: "HR Round" },
+        { link: "", desc: "Technical Round" },
+        { link: "", desc: "Final Interview" }
+    ]
     return (
         <div className="container mx-auto px-6 py-12 grid lg:grid-cols-2 gap-12 items-center">
             <div className="grid grid-cols-2 gap-4">
-                <img src="/images/IMG-20250220-WA0006.jpg" alt="Image 1" className="w-full h-auto" />
-                <img src="/images/IMG-20250220-WA0006.jpg" alt="Image 2" className="w-full h-auto mt-4" />
-                <img src="/images/IMG-20250220-WA0006.jpg" alt="Image 3" className="w-full h-auto " />
-                <img src="/images/IMG-20250220-WA0006.jpg" alt="Image 4" className="w-full h-auto mt-4" />
-                <img src="/images/IMG-20250220-WA0006.jpg" alt="Image 5" className="w-full h-auto" />
-                <img src="/images/IMG-20250220-WA0006.jpg" alt="Image 6" className="w-full h-auto mt-4" />
+                {perks.map((perk, index) => (
+                    <div className="border-2 max-w-full border-companyBlue rounded-xl  h-48"
+                        key={index}
+                    >
+                        <div className="p-5">
+                            <h1 className="text-2xl font-bold">{perk.title}</h1>
+                        </div>
+                    </div>
+                ))}
             </div>
 
             <div className="hidden md:block">
                 <h1 className="text-5xl font-bold mb-4">
                     Perks of Being in <span className="font-generalSansMediumItalic text-companyBlue">befikr</span>
                 </h1>
-                <p className="text-gray-600 mb-8">Work at one of the most successful agency in India</p>
+            </div>
+
+            <div>
+                <h1>
+                    Our Interview Process at <span className="font-generalSansMediumItalic text-companyBlue">befikr</span>
+                </h1>
+                <div className="w-full flex">
+                    {process.map((steps, index) => (
+                        <div key={index}>
+                            <img
+                                src={steps.link}
+                                width={500}
+                            />
+                            <div>
+                                {steps.desc}
+                            </div>
+                        </div>
+                    ))}
+                </div>
             </div>
         </div>
     );

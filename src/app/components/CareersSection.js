@@ -9,7 +9,7 @@ export default function CareerSection() {
           <p className="text-lg mt-2 font-generalSansRegular">
           Looking for a place where your expertise drives real impact? At befiikr, we empower businesses with cutting-edge consulting solutions—and we need sharp minds like yours to make it happen.
 
-Be part of a team that transforms challenges into opportunities. Explore career opportunities today!
+          Be part of a team that transforms challenges into opportunities. Explore career opportunities today!
           </p>
           <Button
             link="/career"
@@ -17,13 +17,6 @@ Be part of a team that transforms challenges into opportunities. Explore career 
           >Join Us & See For Yourself</Button>
         </div>
         <div className="flex-1 ml-8">
-          <div className="p-4 bg-[#f5f5f5] shadow-xl rounded-2xl">
-          <img
-            className="rounded-xl"
-            src="/images/IMG-20250220-WA0008.jpg"
-            alt="Text that describes us"
-          />
-          </div>
         </div>
       </div>
     </div>

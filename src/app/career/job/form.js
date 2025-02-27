@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 
 export default function Form({onClose}) {
@@ -8,13 +8,18 @@ export default function Form({onClose}) {
     name: "",
     email: "",
     message: "",
+    resume: null, // Added for file input
   });
 
   const [status, setStatus] = useState("");
 
   // Handle input changes
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value, files } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: files ? files[0] : value, // Handle file input
+    }));
   };
 
   // Handle form submission
@@ -25,6 +30,9 @@ export default function Form({onClose}) {
     form.append("name", formData.name);
     form.append("email", formData.email);
     form.append("message", formData.message);
+    if (formData.resume) {
+      form.append("resume", formData.resume);
+    }
 
     try {
       const response = await fetch("http://localhost/Befikr/mailConfig.php", {
@@ -36,7 +44,7 @@ export default function Form({onClose}) {
       setStatus(result.message);
 
       if (result.status === "success") {
-        setFormData({ name: "", email: "", message: "" });
+        setFormData({ name: "", email: "", message: "", resume: null });
       }
     } catch (error) {
       setStatus("Error sending message.");
@@ -97,6 +105,7 @@ export default function Form({onClose}) {
             <input 
               type="file" 
               name="resume" 
+              onChange={handleChange} // Handling file input
               className="w-full px-3 py-2 border border-gray-300 rounded-lg cursor-pointer" 
               required 
             />
@@ -109,6 +118,7 @@ export default function Form({onClose}) {
             Send Message
           </button>
         </form>
+        {status && <p className="text-center mt-4 text-red-600">{status}</p>}
       </div>
     </div>
   );
