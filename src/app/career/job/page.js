@@ -145,6 +145,17 @@ export default function Page() {
       setSelectedJob(null);
     }
   }, []);
+  useEffect(() => {
+    if (selectedJob) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [selectedJob]);
+
 
   // Open modal & update URL manually
   const openJob = (job) => {
@@ -155,6 +166,7 @@ export default function Page() {
   // Close modal & reset URL manually
   const closeJob = () => {
     window.history.pushState({}, "", "/career/job"); // Removes jobId from the URL
+    window.history.pushState({}, "", "/career/job"); // Removes jobId from the URL
     setSelectedJob(null);
     setFormVisible(false);
   };
@@ -163,13 +175,13 @@ export default function Page() {
   return (
     <>
     <Navbar />
-    <div className="min-h-screen bg-[#f5f5f5] px-10 py-5 flex flex-col items-center">
+    <div className="min-h-screen bg-[#A9E9F3] px-10 py-5 flex flex-col items-center">
       <div className="bg-white px-10 py-5 w-full max-w-7xl rounded-lg shadow-lg mt-8">
-      <div className="text-left text-xl py-5 font-extrabold tracking-wider uppercase text-gray-900">Job Openings</div>
+      <div className="text-left text-xl py-5 text-[#038DAF] font-extrabold tracking-wider uppercase ">Job Openings</div>
       <div className="w-full max-w-6xl">
         <div className="flex px-4 py-2 rounded-md bg-[#f5f5f5] overflow-hidden border-2 w-full font-[sans-serif]">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192.904 192.904" width="20px"
-            className="fill-blue-600 mr-3 rotate-90 font-extrabold ">
+            className="fill-companyBlue mr-3 rotate-90 font-extrabold ">
             <path d="m190.707 180.101-47.078-47.077c11.702-14.072 18.752-32.142 18.752-51.831C162.381 36.423 125.959 0 81.191 0 36.422 0 0 36.423 0 81.193c0 44.767 36.422 81.187 81.191 81.187 19.688 0 37.759-7.049 51.831-18.751l47.079 47.078a7.474 7.474 0 0 0 5.303 2.197 7.498 7.498 0 0 0 5.303-12.803zM15 81.193C15 44.694 44.693 15 81.191 15c36.497 0 66.189 29.694 66.189 66.193 0 36.496-29.692 66.187-66.189 66.187C44.693 147.38 15 117.689 15 81.193z"></path>
           </svg>
           <input type="text" placeholder="Search Keywords" className="w-full outline-none bg-transparent text-gray-600 text-sm "
@@ -214,50 +226,59 @@ export default function Page() {
 
 
       <div className="py-10 px-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 justify-items-center w-full max-w-7xl">
-        {filteredJobs.map((items, index) => (
-          <div key={items.id} onClick={() => openJob(items)} className="w-full max-w-[450px] h-auto sm:h-[200px] md:h-[210px] lg:h-[220px] rounded-lg bg-white shadow-md p-4 sm:p-5 flex flex-col justify-between transition-shadow duration-300 ease-in hover:shadow-lg border">
-            <div className="flex flex-col items-center">
-              <p className="text-gray-900 text-base sm:text-lg font-bold uppercase text-center">{items.team}</p>
-              <p className="text-gray-700 font-semibold uppercase text-sm sm:text-base text-center">{items.position}</p>
-              <div className="flex flex-wrap gap-1 text-gray-700 text-xs sm:text-sm justify-center mt-2">
-                {Array.isArray(items.location) ? items.location.map((loc, i) => (
-                  <span key={i} className="bg-white-200 px-2 py-1 rounded-md">{loc}</span>
-                )) : null}
-              </div>
-              <div className="flex gap-2 mt-2">
-                <button className="bg-gray-300 px-2 py-1 rounded-md text-xs sm:text-sm cursor-default">{items.budget}</button>
-                <button className="bg-gray-300 px-2 py-1 rounded-md text-xs sm:text-sm cursor-default">{items.jobtype}</button>
-              </div>
-            </div>
-            <button onClick={() => setFormVisible(false)} 
-            className="text-blue-600 font-extrabold tracking-wide uppercase text-l bg-blue-200 px-3 py-2 sm:px-4 sm:py-2 rounded-md mt-2 sm:mt-3 hover:bg-blue-500 hover:text-white ">More Details</button>
-          </div>
-        ))}
+  {filteredJobs.map((items, index) => (
+    <div 
+      key={items.id} 
+      onClick={() => openJob(items)} 
+      className="w-full max-w-[450px] h-auto sm:h-[200px] md:h-[210px] lg:h-[220px] rounded-lg bg-white shadow-md p-4 sm:p-5 flex flex-col justify-between transition duration-300 transform hover:scale-105 hover:shadow-2xl"
+    >
+      <div className="flex flex-col items-center">
+        <p className="text-gray-900 text-base sm:text-lg font-bold uppercase text-center">{items.team}</p>
+        <p className="text-gray-700 font-semibold uppercase text-sm sm:text-base text-center">{items.position}</p>
+        <div className="flex flex-wrap gap-1 text-gray-700 text-xs sm:text-sm justify-center mt-2">
+          {Array.isArray(items.location) ? items.location.map((loc, i) => (
+            <span key={i} className="bg-white-200 px-2 py-1 rounded-md">{loc}</span>
+          )) : null}
+        </div>
+        <div className="flex gap-2 mt-2">
+          <button className="bg-sky-100 text-companyBlue font-bold px-2 py-1 rounded-md text-xs sm:text-sm cursor-default">{items.budget}</button>
+          <button className="bg-sky-100 text-companyBlue font-bold px-2 py-1 rounded-md text-xs sm:text-sm cursor-default">{items.jobtype}</button>
+        </div>
       </div>
+      <button 
+        onClick={() => setFormVisible(false)} 
+        className="text-white font-bold tracking-wide uppercase text-l bg-companyBlue px-3 py-2 sm:px-4 sm:py-2 rounded-md mt-2 sm:mt-3 hover:bg-cyan-50 hover:text-companyBlue hover:shadow-lg transition duration-300"
+      >
+        More Details
+      </button>
+    </div>
+  ))}
+</div>
 
-        {/* Full-Screen Animated Modal */}
-        <AnimatePresence>
-          {selectedJob && (
+
+      {/* Full-Screen Animated Modal */}
+      <AnimatePresence>
+        {selectedJob && (
+          <motion.div
+            className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
             <motion.div
-              className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
+              className="bg-white w-full h-full  md:w-3/4 md:h-3/4 rounded-lg shadow-lg p-8 relative flex flex-col overflow-auto"
+              initial={{ y: "100%" }}
+              animate={{ y: 0 }}
+              exit={{ y: "100%" }}
+              transition={{ type: "spring", stiffness: 120 }}
             >
-              <motion.div
-                className="bg-white w-full h-full md:w-3/4 md:h-3/4 rounded-lg shadow-lg p-8 relative flex flex-col"
-                initial={{ y: "100%" }}
-                animate={{ y: 0 }}
-                exit={{ y: "100%" }}
-                transition={{ type: "spring", stiffness: 120 }}
+              {/* Close Button */}
+              <button
+                onClick={closeJob}
+                className="absolute top-2 right-2 bg-red-500 text-white px-4 py-2 rounded-tr-lg"
               >
-                {/* Close Button */}
-                <button
-                  onClick={closeJob}
-                  className="absolute top-6 right-6 bg-red-500 text-white px-4 py-2 rounded-full"
-                >
-                  ✖
-                </button>
+                ✖
+              </button>
 
                 {/* Job Details */}
                 <h2 className="text-3xl font-bold">{selectedJob.position}</h2>
@@ -266,20 +287,20 @@ export default function Page() {
                 <p className="mt-4 text-gray-800">{selectedJob.tags}</p>
                 <p className="mt-4 text-gray-800">{selectedJob.id}</p>
 
-                {/* apply with email integration */}
-                {formVisible && (<Form></Form>)}
+              {/* apply with email integration */}
+              {formVisible && <Form onClose={() => setFormVisible(false)} />}
 
 
-                {/* Apply Button */}
-                <div className="mt-auto">
-                  <button onClick={() => setFormVisible(true)} className="mt-6 bg-blue-500 text-white px-6 py-3 rounded-lg w-full">
-                    Apply Now
-                  </button>
-                </div>
-              </motion.div>
+              {/* Apply Button */}
+              <div className="mt-auto">
+                <button onClick={() => setFormVisible(true)} className="mt-6 bg-companyBlue text-white px-6 py-3 rounded-lg w-full">
+                  Apply Now
+                </button>
+              </div>
             </motion.div>
-          )}
-        </AnimatePresence>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
     </div>
     <Footer />
@@ -293,7 +314,7 @@ function Dropdown({ label, options, selected, setSelected, getFilterCount }) {
   return (
     <Listbox value={selected} onChange={setSelected} multiple>
       <div className="relative">
-        <Listbox.Button className="flex text-gray-900 tracking-wide uppercase font-bold bg-[#f5f5f5] border rounded-md w-80  justify-center py-1 xl:w-[20rem] lg:w-[18rem] md:w-[14rem] sm:w-[12rem] ">
+        <Listbox.Button className="flex text-gray-900 tracking-wide uppercase font-bold bg-[#f5f5f5] border rounded-md w-80  justify-center py-1 xl:w-[18rem] lg:w-[16rem] md:w-[10rem] sm:w-[8rem]  hover:shadow-lg transition duration-300 ">
           {label}
         </Listbox.Button>
         <Transition
@@ -304,11 +325,11 @@ function Dropdown({ label, options, selected, setSelected, getFilterCount }) {
           leaveFrom="transform scale-100 opacity-100"
           leaveTo="transform scale-95 opacity-0"
         >
-          <Listbox.Options className="absolute mt-2 w-80 bg-white border rounded-md shadow-lg z-10">
+          <Listbox.Options className="absolute mt-2 w-80 bg-white border rounded-md shadow-lg z-10 xl:w-[18rem] lg:w-[16rem] md:w-[10rem] sm:w-[8rem]">
             {options.map((option, index) => (
               <Listbox.Option key={index} value={option} as="div">
                 {({ selected }) => (
-                  <label className="flex items-center px-4 py-2 hover:bg-gray-100 cursor-pointer text-gray-900">
+                  <label className="flex items-center px-4 py-2 hover:bg-gray-100 cursor-pointer text-gray-900 ">
                     <input
                       type="checkbox"
                       checked={selected}

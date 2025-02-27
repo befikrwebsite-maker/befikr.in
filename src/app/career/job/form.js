@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 
+
 export default function Form() {
   const [formData, setFormData] = useState({
     name: "",
@@ -43,40 +44,72 @@ export default function Form() {
   };
 
   return (
-    <div className="max-w-md mx-auto p-4 border rounded">
-      <h2 className="text-lg font-bold">Contact Form</h2>
-      {status && <p className="text-sm">{status}</p>}
-      <form onSubmit={handleSubmit} className="space-y-2">
-        <input
-          type="text"
-          name="name"
-          placeholder="Your Name"
-          value={formData.name}
-          onChange={handleChange}
-          required
-          className="border p-2 w-full"
-        />
-        <input
-          type="email"
-          name="email"
-          placeholder="Your Email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-          className="border p-2 w-full"
-        />
-        <textarea
-          name="message"
-          placeholder="Your Message"
-          value={formData.message}
-          onChange={handleChange}
-          required
-          className="border p-2 w-full"
-        />
-        <button type="submit" className="bg-blue-500 text-white p-2 w-full">
-          Send Message
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+      <div className="bg-white shadow-lg rounded-xl p-6 w-full max-w-md relative">
+        {/* Close Button */}
+        <button
+          onClick={onClose}
+          className="absolute top-2 right-2 bg-red-500 text-white px-3 py-1 rounded-tr-lg"
+        >
+          ✖
         </button>
-      </form>
+
+        <h2 className="text-2xl font-bold uppercase text-[#038DAF] text-center mb-4">Contact Us</h2>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label className="block text-gray-700 font-medium mb-1">Your Name</label>
+            <input 
+              type="text" 
+              name="name" 
+              value={userInput.name}
+              onChange={handleChange}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-companyBlue" 
+              required 
+            />
+          </div>
+          
+          <div>
+            <label className="block text-gray-700 font-medium mb-1">Your Email</label>
+            <input 
+              type="email" 
+              name="email" 
+              value={userInput.email}
+              onChange={handleChange}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-companyBlue" 
+              required 
+            />
+          </div>
+          
+          <div>
+            <label className="block text-gray-700 font-medium mb-1">Your Message</label>
+            <textarea 
+              name="message" 
+              value={userInput.message}
+              onChange={handleChange}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-companyBlue" 
+              rows="4" 
+              required
+            ></textarea>
+          </div>
+          
+          <div>
+            <label className="block text-gray-700 font-medium mb-1">Resume</label>
+            <input 
+              type="file" 
+              name="resume" 
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg cursor-pointer" 
+              required 
+            />
+          </div>
+          
+          <button 
+            type="submit" 
+            className="w-full bg-companyBlue text-white font-bold uppercase py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300"
+          >
+            Send Message
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
