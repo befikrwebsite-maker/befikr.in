@@ -3,80 +3,80 @@
 import { useEffect, useState } from "react";
 
 export default function Form() {
-    const [userInput, setUserInput] = useState({
-        team: "",
-        email: "",
-        message: "",
-        resume: null
-    });
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
 
-    useEffect(() =>{
-     console.log(userInput.resume);
-    }, [userInput.resume])
+  const [status, setStatus] = useState("");
 
+  // Handle input changes
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
-    return (
-        <div className="flex-auto">
-            <div className="flex w-50 justify-center">
-                <form className=" text-gray-900 border-2 rounded-xl">
-                    <div>
-                        <label className="text-gray-900">Your Name:</label>
-                        <input
-                            type="text"
-                            name="team"
-                            className="text-gray-900 border-2"
-                            value={userInput.name}
-                            onChange={(e) => setUserInput({ ...userInput, team: e.target.value })}
-                            required
-                        />
-                    </div>
-                    <div>
-                        <label className="text-gray-900">Your Email:</label>
-                        <input
-                            type="email"
-                            name="email"
-                            className="text-gray-900 boreder-2"
-                            value={userInput.email}
-                            onChange={(e) => setUserInput({ ...userInput, email: e.target.value })}
-                            required
-                        />
-                    </div>
-                    <div>
-                        <label className="text-gray-900">Your Message:</label>
-                        <textarea
-                            name="message"
-                            className="text-gray-900 border-2"
-                            value={userInput.message}
-                            onChange={(e) => setUserInput({ ...userInput, message: e.target.value })}
-                            required
-                        />
-                    </div>
-                    <div >
-                        <label className="text-gray-900">Resume:</label>
-                        <input
-                            type="file"
-                            accept=".pdf"
-                            name="resume"
-                            className="text-gray-900"
-                            onChange=
-                            {
-                                (e) => {
-                                    console.log(e.target.files[0]);
-                                    setUserInput({ ...userInput, resume: e.target.files[0] });
-                                    console.log(userInput.email);
-                                    console.log(userInput.team);
-                                    console.log(userInput.message);
-                                    console.log(userInput.resume);
-                                }
-                            }
-                            required
-                        />
-                    </div>
-                    <button className="text-gray-900 border-2" type="submit">Send Message</button>
-                </form>
-            </div>
+  // Handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-        </div>
+    const form = new FormData();
+    form.append("name", formData.name);
+    form.append("email", formData.email);
+    form.append("message", formData.message);
 
-    );
+    try {
+      const response = await fetch("http://localhost/Befikr/mailConfig.php", {
+        method: "POST",
+        body: form,
+      });
+
+      const result = await response.json();
+      setStatus(result.message);
+
+      if (result.status === "success") {
+        setFormData({ name: "", email: "", message: "" });
+      }
+    } catch (error) {
+      setStatus("Error sending message.");
+    }
+  };
+
+  return (
+    <div className="max-w-md mx-auto p-4 border rounded">
+      <h2 className="text-lg font-bold">Contact Form</h2>
+      {status && <p className="text-sm">{status}</p>}
+      <form onSubmit={handleSubmit} className="space-y-2">
+        <input
+          type="text"
+          name="name"
+          placeholder="Your Name"
+          value={formData.name}
+          onChange={handleChange}
+          required
+          className="border p-2 w-full"
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="Your Email"
+          value={formData.email}
+          onChange={handleChange}
+          required
+          className="border p-2 w-full"
+        />
+        <textarea
+          name="message"
+          placeholder="Your Message"
+          value={formData.message}
+          onChange={handleChange}
+          required
+          className="border p-2 w-full"
+        />
+        <button type="submit" className="bg-blue-500 text-white p-2 w-full">
+          Send Message
+        </button>
+      </form>
+    </div>
+  );
 }
