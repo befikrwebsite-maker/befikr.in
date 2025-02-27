@@ -120,7 +120,7 @@ export default function Page() {
 
   // Count Matching Jobs for Each Filter Option
   const getFilterCount = (filterType, value) => {
-    return cards.filter((job) => {
+    return filteredJobs.filter((job) => {
       if (filterType === "team") return job.team === value;
       if (filterType === "position") return job.position === value;
       if (filterType === "location") return job.location.includes(value);
