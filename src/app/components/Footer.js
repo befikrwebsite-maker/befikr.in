@@ -15,7 +15,7 @@ export default function Footer() {
             >
             <img 
             alt="CompanyLogo"
-            src="./logo.png"
+            src="/logo.png"
             className="max-w-[90px]"
             />
             </a>
