@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 
 
-export default function Form() {
+export default function Form({onClose}) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -61,7 +61,7 @@ export default function Form() {
             <input 
               type="text" 
               name="name" 
-              value={userInput.name}
+              value={formData.name}
               onChange={handleChange}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-companyBlue" 
               required 
@@ -73,7 +73,7 @@ export default function Form() {
             <input 
               type="email" 
               name="email" 
-              value={userInput.email}
+              value={formData.email}
               onChange={handleChange}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-companyBlue" 
               required 
@@ -84,7 +84,7 @@ export default function Form() {
             <label className="block text-gray-700 font-medium mb-1">Your Message</label>
             <textarea 
               name="message" 
-              value={userInput.message}
+              value={formData.message}
               onChange={handleChange}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-companyBlue" 
               rows="4" 
