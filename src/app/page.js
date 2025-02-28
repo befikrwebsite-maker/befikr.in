@@ -10,6 +10,7 @@ import { useEffect } from "react";
 import PartnerCarousel from "./components/PartnerCarousel";
 import Clock from "./components/Clock";
 import Service from "./services/page"
+import Testimonial from "./components/Testimonial"
 
 export default function Home() {
 
@@ -39,6 +40,7 @@ export default function Home() {
         <br />
         <Service/>
         <PartnerCarousel/>
+        <Testimonial/>
         <Clock/>
         <CareerSection />
       </main>

@@ -17,69 +17,120 @@ export default function Page() {
       location: ["Delhi NCR"],
       desc: "We are seeking a proactive and detail-oriented Logistics Coordinator to manage our e-waste pickup operations from households based out of Delhi NCR.",
       tags: ["mac"],
-      budget: "INR 17K-20K",
+      budget:"INR 17K-20K",
       jobtype: "fulltime"
     },
     {
       id: 2,
-      team: "team 1",
-      position: "pos 2",
-      location: ["loc 3", "loc 2"],
+      team: "Electrical and Energy Audits",
+      position: "Electrical Safety Auditor",
+      location: ["Gujarat"],
       desc: "Lorem Ipsum",
       tags: ["machine"],
-      budget: "INR 17K-20K",
+      budget:"INR 17K-20K",
       jobtype: "fulltime"
     },
     {
       id: 3,
-      team: "team 1",
-      position: "pos 3",
-      location: ["loc 1", "loc 2", "loc 4"],
+      team: "Electrical and Energy Audits",
+      position: "Electrical Safety Auditor",
+      location: ["Delhi NCR"],
       desc: "Lorem Ipsum",
       tags: ["machine", "learning"],
-      budget: "INR 17K-20K",
+      budget:"INR 17K-20K",
       jobtype: "fulltime"
     },
     {
       id: 4,
-      team: "team 2",
-      position: "pos 1",
-      location: ["loc 5"],
+      team: "Electrical and Energy Audits",
+      position: "Electrical Safety Auditor",
+      location: ["Rajasthan"],
       desc: "Lorem Ipsum",
       tags: ["learning"],
-      budget: "INR 17K-20K",
+      budget:"INR 17K-20K",
       jobtype: "fulltime"
     },
     {
       id: 5,
-      team: "team 3",
-      position: "pos 2",
-      location: ["loc 5", "loc 2"],
+      team: "Circular Economy Services",
+      position: "Defective Product Auditor",
+      location: ["Gurgaon"],
       desc: "Lorem Ipsum",
       tags: ["work"],
-      budget: "INR 17K-20K",
+      budget:"INR 17K-20K",
       jobtype: "fulltime"
     },
     {
       id: 6,
-      team: "team 3",
-      position: "pos 1",
-      location: ["loc 1", "loc 2"],
+      team: "Circular Economy Services",
+      position: "Defective Product Auditor",
+      location: ["Faridabad"],
       desc: "Lorem Ipsum",
       tags: ["work", "machine", "learning"],
-      budget: "INR 17K-20K",
+      budget:"INR 17K-20K",
       jobtype: "fulltime"
     },
     {
       id: 7,
-      team: "team 2",
-      position: "pos 2",
-      location: ["loc 1", "loc 2", "loc 3", "loc 4"],
+      team: "Circular Economy Services",
+      position: "Defective Product Auditor",
+      location: ["North Delhi"],
+      desc: "Lorem Ipsum",
+      tags: ["work", "machine", "learning"],
+      budget:"INR 17K-20K",
+      jobtype: "fulltime"
+    },
+    {
+      id: 8,
+      team: "Circular Economy Services",
+      position: "Defective Product Auditor",
+      location: ["Nashik"],
+      desc: "Lorem Ipsum",
+      tags: ["work", "machine", "learning"],
+      budget:"INR 17K-20K",
+      jobtype: "fulltime"
+    },
+    {
+      id: 9,
+      team: "Circular Economy Services",
+      position: "Defective Product Auditor",
+      location: ["Sonipat"],
+      desc: "Lorem Ipsum",
+      tags: ["work", "machine", "learning"],
+      budget:"INR 17K-20K",
+      jobtype: "fulltime"
+    },
+    {
+      id: 10,
+      team: "CSR Services",
+      position: "Field Officer",
+      location: ["Delhi NCR"],
       desc: "Lorem Ipsum",
       tags: ["hello", "Learning", "work"],
-      budget: "INR 17K-20K",
+      budget:"INR 17K-20K",
+      jobtype: "fulltime"
+    },
+    {
+      id: 11,
+      team: "Master Service Partnerships",
+      position: "Technician",
+      location: ["Noida"],
+      desc: "Lorem Ipsum",
+      tags: ["hello", "Learning", "work"],
+      budget:"INR 17K-20K",
+      jobtype: "fulltime"
+    },
+    {
+      id: 12,
+      team: "Electrical and Energy Audits",
+      position: "Field Officer",
+      location: ["Delhi NCR"],
+      desc: "Lorem Ipsum",
+      tags: ["hello", "Learning", "work"],
+      budget:"INR 17K-20K",
       jobtype: "fulltime"
     }
+    
   ];
 
   // show form ///////////////////////////////////////////////////////////////////////////////////////////////////////////
