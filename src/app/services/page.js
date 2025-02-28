@@ -138,7 +138,7 @@ export default function Page() {
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     return (
-        <div className="min-h-screen bg-[#f5f5f5] px-10 py-5 flex flex-col items-center">
+        <div className="min-h-screen max-w-full bg-[#f5f5f5] px-10 py-5 flex flex-col items-center">
             <div className="bg-white px-10 py-5 w-full max-w-7xl rounded-lg shadow-lg mt-8">
                 <div className="text-left text-xl py-5 font-extrabold font-generalSansSemibold text-gray-900">Our Services</div>
                 <div className="w-full max-w-6xl">
@@ -175,7 +175,7 @@ export default function Page() {
 
             <div className="py-10  grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 justify-items-center w-full max-w-7xl">
                 {filteredCards.map((items, index) => (
-                    <div key={items.id} onClick={() => openService(items)} className="w-full max-w-[450px]  h-auto sm:h-[200px] md:h-[210px] lg:h-[220px] rounded-lg bg-white shadow-md p-4 sm:p-5 flex flex-col justify-between transition-all duration-300 ease-in hover:shadow-lg hover:border-black  border">
+                    <div key={items.id} onClick={() => openService(items)} className="w-full max-w-[450px]  h-auto sm:h-[200px] md:h-[210px] lg:h-[220px] rounded-lg bg-white shadow-md p-4 sm:p-5 flex flex-col justify-between transition-all duration-300 ease-in hover:shadow-lg hover:border-companyBlue  border">
                         <div className="flex flex-col ">
                             <p className="text-gray-900 text-base sm:text-lg font-bold text-left">{items.title}</p>
                             <p className="text-gray-700 font-semibold text-sm sm:text-base">{items.category}</p>
