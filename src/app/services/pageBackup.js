@@ -29,7 +29,7 @@ export default function Page() {
             id: 1,
             category: "Environment",
             title: "Electrical Safety Audit",
-            desc: "et adipisci neque rem galisum ipsa qui molestiae rerum eum illo soluta quo magni harum. Sit magnam optio qui distinctio amet et pariatur nostrum est nihil aliquam in exercitationem amet. Et eveniet officiis nam Quis doloremque ut quia repudiandae",
+            desc: "",
             tags: ["electrical", "safety", "audit", "environment"]
         },
         {
@@ -127,12 +127,13 @@ export default function Page() {
 
     // Open modal & update URL manually
     const openService = (service) => {
+        window.history.pushState({}, "", `?serviceId=${service.id}`);
         setSelectedService(service);
     };
 
     // Close modal & reset URL manually
     const closeService = () => {
-        window.history.pushState({}, "", "/"); // Removes ServiceId from the URL
+        window.history.pushState({}, "", "/services"); // Removes ServiceId from the URL
         setSelectedService(null);
     };
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -175,18 +176,18 @@ export default function Page() {
 
             <div className="py-10  grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 justify-items-center w-full max-w-7xl">
                 {filteredCards.map((items, index) => (
-                    <div key={items.id} onClick={() => openService(items)} className="w-full max-w-[450px]  h-auto sm:h-[200px] md:h-[210px] lg:h-[220px] rounded-lg bg-white shadow-md p-4 sm:p-5 flex flex-col justify-between transition-all duration-300 ease-in hover:shadow-lg hover:border-black  border">
+                    <div key={items.id} onClick={() => openService(items)} className="w-full max-w-[450px] h-auto sm:h-[200px] md:h-[210px] lg:h-[220px] rounded-lg bg-white shadow-md p-4 sm:p-5 flex flex-col justify-between transition-shadow duration-300 ease-in hover:shadow-lg border">
                         <div className="flex flex-col ">
                             <p className="text-gray-900 text-base sm:text-lg font-bold text-left">{items.title}</p>
                             <p className="text-gray-700 font-semibold text-sm sm:text-base">{items.category}</p>
-                            <div className="hidden flex flex-wrap gap-1 text-gray-700 text-xs sm:text-sm  mt-2">
+                            <div className="flex flex-wrap gap-1 text-gray-700 text-xs sm:text-sm  mt-2">
                                 {Array.isArray(items.tags) ? items.tags.map((tag, i) => (
                                     <span key={i} className="bg-white-200 border rounded-3xl px-2 py-1 rounded-md">{tag}</span>
                                 )) : null}
                             </div>
-                            <p className="text-gray-700 pt-6 font-generalSansMedium line-clamp-4 text-sm sm:text-base">{items.desc}</p>
                         </div>
-                        
+                        <button onClick={() => { }}
+                            className="text-blue-600 font-extrabold tracking-wide uppercase text-l bg-blue-200 px-3 py-2 sm:px-4 sm:py-2 rounded-md mt-2 sm:mt-3 hover:bg-blue-500 hover:text-white ">More Details</button>
                     </div>
                 ))}
             </div>
@@ -218,11 +219,16 @@ export default function Page() {
                             {/* Service Details */}
                             <h2 className="text-3xl font-bold">{selectedService.title}</h2>
                             <p className="text-gray-600 text-lg">{selectedService.category}</p>
-                            <p className="text-gray-700 pt-6 font-generalSansMedium text-sm sm:text-base">{selectedService.desc}</p>
+                            <p className="mt-4 text-gray-800">{selectedService.tags}</p>
+                            <p className="mt-4 text-gray-800">{selectedService.tags}</p>
+                            <p className="mt-4 text-gray-800">{selectedService.id}</p>
+
 
                             {/* Apply Button */}
                             <div className="mt-auto">
-
+                                <button onClick={() => { }} className="mt-6 bg-blue-500 text-white px-6 py-3 rounded-lg w-full">
+                                    Apply Now
+                                </button>
                             </div>
                         </motion.div>
                     </motion.div>
@@ -239,7 +245,7 @@ function DropdownESG({ label, categories, selected, setSelected }) {
     return (
         <Listbox value={selected} onChange={setSelected} multiple>
             <div className="relative">
-                <Listbox.Button className="flex justify-center text-gray-900 font-bold bg-[#f5f5f5] border text-center rounded-md w-80 py-1 transition-all duration-300 hover:shadow-lg">
+                <Listbox.Button className="flex justify-center text-gray-900 font-bold bg-[#f5f5f5] border text-center rounded-md w-80 py-1 hover:shadow-lg">
                     {label}
                 </Listbox.Button>
 

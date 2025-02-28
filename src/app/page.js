@@ -2,7 +2,6 @@
 
 import Navbar from "./components/NavBar";
 import Hero from "./components/HeroSection";
-import ServicesSection from "./components/ServicesSectionBackUp";
 import CareerSection from "./components/CareersSection";
 import Footer from "./components/Footer";
 import Link from "next/link";
@@ -10,6 +9,7 @@ import Lenis from "@studio-freight/lenis";
 import { useEffect } from "react";
 import PartnerCarousel from "./components/PartnerCarousel";
 import Clock from "./components/Clock";
+import Service from "./services/page"
 
 export default function Home() {
 
@@ -36,8 +36,8 @@ export default function Home() {
       <main className="w-full no-scrollbar bg-[#f5f5f5] flex flex-col">
         <Hero />
         <div className="bg-[#f5f5f5] pt-10 text-4xl md:text-left text-center font-generalSansSemibold md:pl-12 text-gray-900">Our Services</div>
-        <ServicesSection />
         <br />
+        <Service/>
         <PartnerCarousel/>
         <Clock/>
         <CareerSection />

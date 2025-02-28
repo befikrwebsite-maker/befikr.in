@@ -5,7 +5,7 @@ const CountUp = dynamic(() => import("../components/Counter"), { ssr: false });
 
 
 export default function Clock() {
-    const [Audits, setAudits] = useState(12343)
+    const [Audits, setAudits] = useState(12043)
 
     useEffect(() => {
         const intervalId = setInterval(() => {
