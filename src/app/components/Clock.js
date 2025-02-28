@@ -23,7 +23,7 @@ export default function Clock() {
                     
                 </div>
 
-                <div className="flex-1 items-center">
+                <div className="flex-1 items-center justify-self-center">
                     <p className="inline-block">With</p>
                     <h1 className="inline-block text-8xl font-generalSansBold text-center">
                        <CountUp to={Audits} separator="," />

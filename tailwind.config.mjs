@@ -1,4 +1,3 @@
-import { Italianno } from 'next/font/google';
 
 /** @type {import('tailwindcss').Config} */
 export default {

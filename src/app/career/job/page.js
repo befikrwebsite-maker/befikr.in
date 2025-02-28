@@ -2,7 +2,6 @@
 
 import Navbar from "@/components/NavBar";
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import Form from "./form";
 import { Listbox, Transition } from "@headlessui/react";
@@ -181,7 +180,6 @@ export default function Page() {
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   // using modalcomponent here ///////////////////////////////////////////////////////////////////////////////////////////
-  const router = useRouter();
   const [selectedJob, setSelectedJob] = useState(null);
 
   // Read jobId from URL manually (since useSearchParams() doesn't work in static export)

@@ -1,11 +1,9 @@
 "use client";
 
-import Navbar from "@/components/NavBar";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Listbox, Transition } from "@headlessui/react";
-import Footer from "@/components/Footer";
 
 {/*
     ESG                                                             
@@ -29,21 +27,21 @@ export default function Page() {
             id: 1,
             category: "Environment",
             title: "Electrical Safety Audit",
-            desc: "et adipisci neque rem galisum ipsa qui molestiae rerum eum illo soluta quo magni harum. Sit magnam optio qui distinctio amet et pariatur nostrum est nihil aliquam in exercitationem amet. Et eveniet officiis nam Quis doloremque ut quia repudiandae",
+            desc: "The ESA business is Led by a skilled & professional team of Electrical Safety Auditors and Electrical Engineers with a speciality in auditing, investigating & constant annual tracking of electrical safety aspects like possible electrical short circuits & other critical electrical faults leading to fire incidences & severe loss of life & business. We take great pride in dedicating our ESA services for the Banking, Hospitality & Oil-Gas sectors across the Country.",
             tags: ["electrical", "safety", "audit", "environment"]
         },
         {
             id: 2,
             category: "Environment",
-            title: "Energy",
-            desc: "",
+            title: "Energy Audit",
+            desc: "The Energy Audit business is Led by well qualified & BEE Certified Energy Auditors with a speciality in energy data gathering, auditing & studying the installed electrical power consuming appliances, machines, analysis of power factors & load balancing studies. The objective of these energy audits is to  conserve wastage of energy resources with an impact on wasteful expenses & cost saving to businesses. We take great pride in dedicating our Energy Audit services for the Banking, Hospitality & Oil-Gas sectors across the Country.",
             tags: ["energy", "environment"]
         },
         {
             id: 3,
             category: "Environment",
             title: "Defective Audit",
-            desc: "",
+            desc: "The Defective Audit services business is Led by a team of young business administration graduates & an in-house, well-trained Engineers, ITI Graduates & befikr Brothers, the erstwhile Indian handyman. The objective of this service is to offer defective LED inspection & reverse logistics solutions. We take great pride in dedicating our defective audit services to leading Consumer Lighting brands.",
             tags: ["defective", "audit", "environment"]
         },
         {
@@ -140,7 +138,7 @@ export default function Page() {
     return (
         <div className="min-h-screen max-w-full bg-[#f5f5f5] px-10 py-5 flex flex-col items-center">
             <div className="bg-white px-10 py-5 w-full max-w-7xl rounded-lg shadow-lg mt-8">
-                <div className="text-left text-xl py-5 font-extrabold font-generalSansSemibold text-gray-900">Our Services</div>
+                <div className="text-left text-xl py-5 font-extrabold font-generalSansSemibold text-gray-900"></div>
                 <div className="w-full max-w-6xl">
                     <div className="flex px-4 py-2 rounded-md bg-[#f5f5f5] overflow-hidden border-2 w-full font-[sans-serif]">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192.904 192.904" width="20px"
@@ -239,7 +237,7 @@ function DropdownESG({ label, categories, selected, setSelected }) {
     return (
         <Listbox value={selected} onChange={setSelected} multiple>
             <div className="relative">
-                <Listbox.Button className="flex justify-center text-gray-900 font-bold bg-[#f5f5f5] border text-center rounded-md w-80 py-1 transition-all duration-300 hover:shadow-lg">
+                <Listbox.Button className="flex justify-center text-gray-900  font-bold bg-[#f5f5f5] border text-center rounded-2xl w-80 py-1 transition-all duration-300 hover:shadow-lg">
                     {label}
                 </Listbox.Button>
 

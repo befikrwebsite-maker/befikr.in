@@ -1,11 +1,9 @@
 "use client";
 
-import Navbar from "@/components/NavBar";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Listbox, Transition } from "@headlessui/react";
-import Footer from "@/components/Footer";
 
 {/*
     ESG                                                             

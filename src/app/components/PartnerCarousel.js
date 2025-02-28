@@ -1,6 +1,4 @@
-import { motion } from "framer-motion";
 import imageList from "./imageList";
-import Button from "./ui/Button";
 import { useState } from "react";
 
 export default function PartnerCarousel() {
@@ -27,9 +25,7 @@ export default function PartnerCarousel() {
 
     return (
         <div className="w-full p-6 overflow-hidden">
-            <h1 className="text-4xl text-center md:text-left font-generalSansSemibold mb-6">
-                Our Partners
-            </h1>
+
             <div className="p-6 rounded-xl shadow-xl bg-[#f5f5f5]">
                 <div className="md:flex pb-10">
                     {allTags.map((tag) => (
