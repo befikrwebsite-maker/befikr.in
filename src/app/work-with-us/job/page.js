@@ -214,8 +214,8 @@ export default function Page() {
 
   // Close modal & reset URL manually
   const closeJob = () => {
-    window.history.pushState({}, "", "/career/job"); // Removes jobId from the URL
-    window.history.pushState({}, "", "/career/job"); // Removes jobId from the URL
+    window.history.pushState({}, "", "/work-with-us/job"); // Removes jobId from the URL
+    window.history.pushState({}, "", "/work-with-us/job"); // Removes jobId from the URL
     setSelectedJob(null);
     setFormVisible(false);
   };

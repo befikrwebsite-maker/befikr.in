@@ -14,9 +14,8 @@ export default function Navbar() {
         "/": "",
         "/what-we-do": "What We Do",
         "/who-we-are": "Who We Are",
-        "/career": "Work With Us",
-        "/contact-us": "Contact Us",
-        "/career/job": "Jobs"
+        "/work-with-us": "Work With Us",
+        "/work-with-us/job": "Jobs"
       };
 
       setLink(pageNames[path] || "");
@@ -40,7 +39,7 @@ export default function Navbar() {
 
         {/* Navigation Links */}
         <div className="hidden md:flex space-x-8">
-        <a href="/" className="text-black hover:text-companyBlue transition-colors">
+          <a href="/" className="text-black hover:text-companyBlue transition-colors">
             Home
           </a>
           <a href="/what-we-do" className="text-black hover:text-companyBlue transition-colors">
@@ -49,10 +48,10 @@ export default function Navbar() {
           <a href="/who-we-are" className="text-black hover:text-companyBlue transition-colors">
             Who We Are
           </a>
-          <a href="/career" className="text-black hover:text-companyBlue transition-colors">
+          <a href="/work-with-us" className="text-black hover:text-companyBlue transition-colors">
             Work With Us
           </a>
-          
+
         </div>
       </nav>
     </header>
