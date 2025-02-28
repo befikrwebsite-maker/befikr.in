@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Listbox, Transition } from "@headlessui/react";
 import Footer from "@/components/Footer";
-import { Ticket } from "lucide-react";
 
 {/*
     ESG                                                             
@@ -94,16 +93,16 @@ export default function Page() {
     // Filter states
     const [selectedESG, setSelectedESG] = useState([]);
 
-    const checkboxFilter = (job) =>
-        (selectedESG.length === 0 || selectedESG.includes(job.title));
+    const checkboxFilter = (service) =>
+        (selectedESG.length === 0 || selectedESG.includes(service.title));
 
     // Apply both filters
-    const filteredCards = filtered.filter((job) => checkboxFilter(job));
+    const filteredCards = filtered.filter((service) => checkboxFilter(service));
 
-    // Count Matching Jobs for Each Filter Option
+    // Count Matching Services for Each Filter Option
     const getFilterCount = (filterType, value) => {
-        return filteredCards.filter((job) => {
-            if (filterType === "team") return job.team === value;
+        return filteredCards.filter((service) => {
+            if (filterType === "team") return service.team === value;
             return false;
         }).length;
     };
@@ -111,31 +110,31 @@ export default function Page() {
 
     // using modalcomponent here ///////////////////////////////////////////////////////////////////////////////////////////
     const router = useRouter();
-    const [selectedJob, setSelectedJob] = useState(null);
+    const [selectedService, setSelectedService] = useState(null);
 
-    // Read jobId from URL manually (since useSearchParams() doesn't work in static export)
+    // Read ServiceId from URL manually (since useSearchParams() doesn't work in static export)
     useEffect(() => {
         const param = new URLSearchParams(window.location.search);
-        const jobId = param.get("jobId");
+        const serviceId = param.get("serviceId");
 
-        if (jobId) {
-            const job = cards.find((j) => j.id.toString() === jobId);
-            setSelectedJob(job || null);
+        if (serviceId) {
+            const service = cards.find((j) => j.id.toString() === serviceId);
+            setSelectedService(service || null);
         } else {
-            setSelectedJob(null);
+            setSelectedService(null);
         }
     }, []);
 
     // Open modal & update URL manually
-    const openJob = (job) => {
-        window.history.pushState({}, "", `?jobId=${job.id}`);
-        setSelectedJob(job);
+    const openService = (service) => {
+        window.history.pushState({}, "", `?serviceId=${service.id}`);
+        setSelectedService(service);
     };
 
     // Close modal & reset URL manually
-    const closeJob = () => {
-        window.history.pushState({}, "", "/services"); // Removes jobId from the URL
-        setSelectedJob(null);
+    const closeService = () => {
+        window.history.pushState({}, "", "/services"); // Removes ServiceId from the URL
+        setSelectedService(null);
     };
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -168,10 +167,10 @@ export default function Page() {
 
                     </div>
 
-                    {/* Job Count */}
+                    {/* Service Count */}
                     <div className="flex text-gray-900 justify-center mt-4">
                         <p className="text-gray-900 tracking-wide uppercase font-bold">
-                            Showing {filteredCards.length} Jobs among the applied filters
+                            Showing {filteredCards.length} Services among the applied filters
                         </p>
                     </div>
                 </div>
@@ -179,7 +178,7 @@ export default function Page() {
 
                 <div className="py-10 px-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 justify-items-center w-full max-w-7xl">
                     {filteredCards.map((items, index) => (
-                        <div key={items.id} onClick={() => openJob(items)} className="w-full max-w-[450px] h-auto sm:h-[200px] md:h-[210px] lg:h-[220px] rounded-lg bg-white shadow-md p-4 sm:p-5 flex flex-col justify-between transition-shadow duration-300 ease-in hover:shadow-lg border">
+                        <div key={items.id} onClick={() => openService(items)} className="w-full max-w-[450px] h-auto sm:h-[200px] md:h-[210px] lg:h-[220px] rounded-lg bg-white shadow-md p-4 sm:p-5 flex flex-col justify-between transition-shadow duration-300 ease-in hover:shadow-lg border">
                             <div className="flex flex-col items-center">
                                 <p className="text-gray-900 text-base sm:text-lg font-bold uppercase text-center">{items.title}</p>
                                 <p className="text-gray-700 font-semibold uppercase text-sm sm:text-base text-center">{items.category}</p>
@@ -197,7 +196,7 @@ export default function Page() {
 
                 {/* Full-Screen Animated Modal */}
                 <AnimatePresence>
-                    {selectedJob && (
+                    {selectedService && (
                         <motion.div
                             className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center"
                             initial={{ opacity: 0 }}
@@ -213,18 +212,18 @@ export default function Page() {
                             >
                                 {/* Close Button */}
                                 <button
-                                    onClick={closeJob}
+                                    onClick={closeService}
                                     className="absolute top-6 right-6 bg-red-500 text-white px-4 py-2 rounded-full"
                                 >
                                     ✖
                                 </button>
 
-                                {/* Job Details */}
-                                <h2 className="text-3xl font-bold">{selectedJob.title}</h2>
-                                <p className="text-gray-600 text-lg">{selectedJob.category}</p>
-                                <p className="mt-4 text-gray-800">{selectedJob.tags}</p>
-                                <p className="mt-4 text-gray-800">{selectedJob.tags}</p>
-                                <p className="mt-4 text-gray-800">{selectedJob.id}</p>
+                                {/* Service Details */}
+                                <h2 className="text-3xl font-bold">{selectedService.title}</h2>
+                                <p className="text-gray-600 text-lg">{selectedService.category}</p>
+                                <p className="mt-4 text-gray-800">{selectedService.tags}</p>
+                                <p className="mt-4 text-gray-800">{selectedService.tags}</p>
+                                <p className="mt-4 text-gray-800">{selectedService.id}</p>
 
 
                                 {/* Apply Button */}
