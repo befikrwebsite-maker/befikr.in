@@ -11,125 +11,66 @@ export default function Page() {
   const cards = [
     {
       id: 1,
-      position: "E-Waste Collection  ",
-      team: "Logistics Coordinator",
-      location: ["Delhi NCR"],
-      desc: "We are seeking a proactive and detail-oriented Logistics Coordinator to manage our e-waste pickup operations from households based out of Delhi NCR.",
-      tags: ["mac"],
-      budget:"INR 17K-20K",
+      position: "Electrical Safety Auditor",
+      team: "Electrical and Energy Audits",
+      location: ["Gujarat","Delhi NCR","Rajasthan"],
+      desc: "",
+      tags: ["electrical","safety","auditor","energy","audits","audit","gujarat","delhi","ncr","rajasthan"],
+      budget: "",
       jobtype: "fulltime"
     },
     {
       id: 2,
-      position: "Electrical and Energy Audits",
-      team: "Electrical Safety Auditor",
-      location: ["Gujarat"],
-      desc: "Lorem Ipsum",
-      tags: ["machine"],
-      budget:"INR 17K-20K",
+      position: "Defective Product Auditor",
+      team: "Circular Economy Services",
+      location: ["Gurgaon","North Delhi","Faridabad","Nashik"],
+      desc: "",
+      tags: ["defective","product","auditor","economy","services","circular","audit","service","gurgaon","delhi","faridabad","nashik","ncr"],
+      budget: "",
       jobtype: "fulltime"
     },
     {
       id: 3,
-      position: "Electrical and Energy Audits",
-      team: "Electrical Safety Auditor",
-      location: ["Delhi NCR"],
-      desc: "Lorem Ipsum",
-      tags: ["machine", "learning"],
-      budget:"INR 17K-20K",
+      position: "Area Supervisor",
+      team: "Circular Economy Services",
+      location: ["Sonipat"],
+      desc: "",
+      tags: ["area","supervisor","economy","services","circular","service","sonipat"],
+      budget: "",
       jobtype: "fulltime"
     },
     {
       id: 4,
-      position: "Electrical and Energy Audits",
-      team: "Electrical Safety Auditor",
-      location: ["Rajasthan"],
-      desc: "Lorem Ipsum",
-      tags: ["learning"],
-      budget:"INR 17K-20K",
+      position: "Field Officer",
+      team: "CSR Services",
+      location: ["Delhi NCR"],
+      desc: "",
+      tags: ["field","officer","csr","services","service","delhi","ncr"],
+      budget: "",
       jobtype: "fulltime"
     },
     {
       id: 5,
-      position: "Circular Economy Services",
-      team: "Defective Product Auditor",
-      location: ["Gurgaon"],
-      desc: "Lorem Ipsum",
-      tags: ["work"],
-      budget:"INR 17K-20K",
+      position: "Technician",
+      team: "Master Service Partnerships",
+      location: ["Noida"],
+      desc: "",
+      tags: ["master","service","partnerships","spartnership","technician","services","noida"],
+      budget: "",
       jobtype: "fulltime"
     },
     {
       id: 6,
-      position: "Circular Economy Services",
-      team: "Defective Product Auditor",
-      location: ["Faridabad"],
-      desc: "Lorem Ipsum",
-      tags: ["work", "machine", "learning"],
-      budget:"INR 17K-20K",
-      jobtype: "fulltime"
-    },
-    {
-      id: 7,
-      position: "Circular Economy Services",
-      team: "Defective Product Auditor",
-      location: ["North Delhi"],
-      desc: "Lorem Ipsum",
-      tags: ["work", "machine", "learning"],
-      budget:"INR 17K-20K",
-      jobtype: "fulltime"
-    },
-    {
-      id: 8,
-      position: "Circular Economy Services",
-      team: "Defective Product Auditor",
-      location: ["Nashik"],
-      desc: "Lorem Ipsum",
-      tags: ["work", "machine", "learning"],
-      budget:"INR 17K-20K",
-      jobtype: "fulltime"
-    },
-    {
-      id: 9,
-      position: "Circular Economy Services",
-      team: "Defective Product Auditor",
-      location: ["Sonipat"],
-      desc: "Lorem Ipsum",
-      tags: ["work", "machine", "learning"],
-      budget:"INR 17K-20K",
-      jobtype: "fulltime"
-    },
-    {
-      id: 10,
-      position: "CSR Services",
-      team: "Field Officer",
+      position: "Manager- Operations",
+      team: "Electrical and Energy Audits",
       location: ["Delhi NCR"],
-      desc: "Lorem Ipsum",
-      tags: ["hello", "Learning", "work"],
-      budget:"INR 17K-20K",
+      desc: "",
+      tags: ["electrical","energy","audit","audits","manager","operations","operation","delhi","ncr"],
+      budget: "",
       jobtype: "fulltime"
     },
-    {
-      id: 11,
-      position: "Master Service Partnerships",
-      team: "Technician",
-      location: ["Noida"],
-      desc: "Lorem Ipsum",
-      tags: ["hello", "Learning", "work"],
-      budget:"INR 17K-20K",
-      jobtype: "fulltime"
-    },
-    {
-      id: 12,
-      position: "Electrical and Energy Audits",
-      team: "Field Officer",
-      location: ["Delhi NCR"],
-      desc: "Lorem Ipsum",
-      tags: ["Hello", "Learning", "work"],
-      budget:"INR 17K-20K",
-      jobtype: "fulltime"
-    }
     
+
   ];
 
   // show form ///////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -282,15 +223,15 @@ export default function Page() {
               className="w-full max-w-[450px] h-auto sm:h-[240px] md:h-[230px] lg:h-[220px] rounded-lg bg-white shadow-md p-4 sm:p-5 flex flex-col justify-between transition duration-300 border transform hover:border-companyBlue hover:shadow-2xl"
             >
               <div className="flex flex-col ">
-                <p className="text-gray-900 text-base sm:text-lg font-generalSansSemibold ">{items.team}</p>
-                <p className="text-gray-700 font-generalSansMedium text-sm sm:text-base ">{items.position}</p>
+                <p className="text-gray-900 text-base sm:text-lg font-generalSansSemibold ">{items.position}</p>
+                <p className="text-gray-700 font-generalSansMedium text-sm sm:text-base ">{items.team}</p>
                 <div className="flex flex-wrap gap-1 text-gray-700 text-xs sm:text-sm mt-2">
                   {Array.isArray(items.location) ? items.location.map((loc, i) => (
-                    <span key={i} className="bg-white-200  py-1 rounded-md">{loc}</span>
+                    <span key={i} className="bg-white-200  py-1 rounded-md">{loc} | </span>
                   )) : null}
                 </div>
                 <div className="flex gap-2 mt-2">
-                  <button className="bg-sky-100 text-companyBlue font-generalSansRegular px-2 py-1 rounded-md text-xs sm:text-sm cursor-default">{items.budget}</button>
+                  {/* <button className="bg-sky-100 text-companyBlue font-generalSansRegular px-2 py-1 rounded-md text-xs sm:text-sm cursor-default">{items.budget}</button> */}
                   <button className="bg-sky-100 text-companyBlue font-generalSansRegular px-2 py-1 rounded-md text-xs sm:text-sm cursor-default">{items.jobtype}</button>
                 </div>
               </div>
@@ -330,12 +271,18 @@ export default function Page() {
                 </button>
 
                 {/* Job Details */}
-                <h2 className="text-3xl font-bold">{selectedJob.team}</h2>
-                <p className="text-gray-600 text-lg">{selectedJob.position}</p>
-                <p className="mt-4 text-gray-800">Location: {selectedJob.location}</p>
-                <p className=" text-gray-800">Field: {selectedJob.tags}</p>
-                <p className=" text-gray-800">Job ID: {selectedJob.id}</p>
-                <p className="mt-4 text-gray-800">{selectedJob.desc}</p>
+                <h2 className="text-3xl font-bold">{selectedJob.position}</h2>
+                <p className="text-gray-600 text-lg">{selectedJob.team}</p>
+                <p className="mt-4 text-gray-800">Location:- </p>
+                {
+                  selectedJob.location.map((item, index) => (
+                  <p key={index} className="mt-4 text-gray-800"> • {item}</p>
+                ))
+                }
+
+                {/* <p className=" text-gray-800">Field: {selectedJob.tags}</p> */}
+                {/* <p className=" text-gray-800">Job ID: {selectedJob.id}</p> */}
+                {/* <p className="mt-4 text-gray-800">{selectedJob.desc}</p> */}
 
                 {/* apply with email integration */}
                 {formVisible && <Form onClose={() => setFormVisible(false)} />}

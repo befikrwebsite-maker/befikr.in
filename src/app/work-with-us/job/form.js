@@ -89,7 +89,7 @@ export default function Form({onClose}) {
           </div>
           
           <div>
-            <label className="block text-gray-700 font-medium mb-1">Your Message</label>
+            <label className="block text-gray-700 font-medium mb-1">Your Message (specify the team, postion and location you are applying for)</label>
             <textarea 
               name="message" 
               value={formData.message}
