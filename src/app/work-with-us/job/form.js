@@ -35,7 +35,7 @@ export default function Form({onClose}) {
     // }
 
     try {
-      const response = await fetch("http://localhost/Befikr/mailConfig.php", {
+      const response = await fetch("mail.php", {
         method: "POST",
         body: form,
       });

@@ -125,7 +125,7 @@ export default function Page() {
       team: "Field Officer",
       location: ["Delhi NCR"],
       desc: "Lorem Ipsum",
-      tags: ["hello", "Learning", "work"],
+      tags: ["Hello", "Learning", "work"],
       budget:"INR 17K-20K",
       jobtype: "fulltime"
     }

@@ -2,6 +2,8 @@
 
 import dynamic from "next/dynamic";
 import Head from "next/head";
+import Navbar from "@/components/NavBar";
+import Footer from "@/components/Footer";
 const MapComponent = dynamic(() => import("../components/MapComponent"), { ssr: false });
 
 export default function UnderDevelopment() {
@@ -12,15 +14,11 @@ export default function UnderDevelopment() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Befikr - Coming Soon</title>
       </Head>
+      <Navbar/>
 
       <div className="flex flex-col justify-start min-h-screen font-generalSansRegular text-[#009DC8]">
-
-
         <div className="bg-[#009DC8] h-full">
-          <div className="flex flex-col p-6 md:flex-row justify-between">
-
-          </div>
-          <div className="bg-[#ffffff] p-6 ">
+          <div className="bg-[#f5f5f5] p-6 ">
             <div>
               <p className="text-lg md:text-xl pt-6 text-black  inline-block">
                 <b className="font-generalSansSemibold">Contact Us</b>
@@ -51,6 +49,7 @@ export default function UnderDevelopment() {
           </div>
         </div>
       </div>
+      <Footer/>
     </>
   );
 }

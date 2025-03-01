@@ -24,7 +24,7 @@ export default function Hero() {
                     An <span className="font-generalSansMedium">ESG</span> Services Company
                 </p>
                 <a
-                    href="#contact"
+                    href="/contact-us"
                     className="inline-flex items-center px-8 py-4 mb-24 text-lg font-semibold text-black bg-white rounded-full delay-175 hover:bg-companyBlue hover:text-white transition-colors"
                 >
                     Get Started

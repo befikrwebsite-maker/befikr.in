@@ -17,7 +17,10 @@ export default function SectionTwo() {
     ]
     return (
         <div className="container mx-auto px-6 py-12 grid lg:grid-cols-2 gap-12 items-center">
-            <div className="grid grid-cols-2 gap-4">
+            <h1 className="sm:hidden text-5xl font-bold mb-4">
+                Perks of Being in <span className="font-generalSansMediumItalic text-companyBlue">befikr</span>
+            </h1>
+            <div className="grid sm:grid-cols-2 grid-cols-1 gap-4">
                 {perks.map((perk, index) => (
                     <div className="border-2 max-w-full border-companyBlue rounded-xl  h-48"
                         key={index}
@@ -35,7 +38,7 @@ export default function SectionTwo() {
                 </h1>
             </div>
 
-            <div>
+            {/* <div>
                 <h1>
                     Our Interview Process at <span className="font-generalSansMediumItalic text-companyBlue">befikr</span>
                 </h1>
@@ -52,7 +55,7 @@ export default function SectionTwo() {
                         </div>
                     ))}
                 </div>
-            </div>
+            </div> */}
         </div>
     );
 }

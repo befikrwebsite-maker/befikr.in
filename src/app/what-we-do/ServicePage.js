@@ -2,8 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import Navbar from "@/components/NavBar";
-import Footer from "@/components/Footer";
 import { motion, AnimatePresence } from "framer-motion";
 import { Listbox, Transition } from "@headlessui/react";
 
@@ -138,8 +136,6 @@ export default function Page() {
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     return (
-        <>
-        <Navbar/>
         <div className="min-h-screen max-w-full bg-[#f5f5f5] px-10 py-5 flex flex-col items-center">
             <div className="bg-white px-10 py-5 w-full max-w-7xl rounded-lg shadow-lg mt-8">
                 <div className="text-left text-xl py-5 font-extrabold font-generalSansSemibold text-gray-900"></div>
@@ -232,8 +228,7 @@ export default function Page() {
             </AnimatePresence>
 
         </div>
-        <Footer/>
-        </>
+
     );
 };
 

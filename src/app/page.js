@@ -9,7 +9,7 @@ import { useEffect } from "react";
 import PartnerCarousel from "./components/PartnerCarousel";
 import Impact from "./components/ImpactSection";
 import Clock from "./components/Clock";
-import Service from "./what-we-do/page"
+import Service from "./what-we-do/ServicePage"
 import Testimonial from "./components/Testimonial"
 
 export default function Home() {
@@ -36,7 +36,10 @@ export default function Home() {
 
       <main className="w-full no-scrollbar bg-[#f5f5f5] flex flex-col">
         <Hero />
-        <div className="bg-[#f5f5f5] pt-10 text-4xl md:text-left text-center font-generalSansSemibold md:pl-12 text-gray-900">Our Services</div>
+        <div className="bg-[#f5f5f5] pt-10 text-4xl md:text-left text-center font-generalSansSemibold md:pl-12 text-gray-900">Our Services
+          <p className="font-generalSansRegular text-base">Befikr, today has emerged as an ESG (Environment, Social, Governance) services company helping business comply to the newer BRSR (Business responsibility & sustainability reporting guidelines keeping  in view the recent regulations & relevance to the key attributes within the Indian market.
+            </p>
+        </div>
         <br />
         <Service/>
         <div className="bg-[#f5f5f5] pt-10 text-4xl md:text-left text-center font-generalSansSemibold md:pl-12 text-gray-900">Our Impact</div>

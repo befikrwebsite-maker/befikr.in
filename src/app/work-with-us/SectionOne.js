@@ -3,6 +3,13 @@ import Button from "@/components/ui/Button";
 export default function SectionOne() {
     return (
         <div className="container h-screen mx-auto px-6 py-12 grid lg:grid-cols-2 gap-12 items-center">
+            <div className=" md:hidden mx-auto">
+                <img
+                    src="/undraw_job-hunt_5umi.svg"
+                    alt="Team illustration"
+                    className="max-w-sm max-h-2xl"
+                />
+            </div>
             <div>
                 <h1 className="text-5xl font-bold mb-4">
                     Join Our Team At <span className="font-generalSansMediumItalic text-companyBlue">befikr</span>

@@ -13,7 +13,7 @@ export default function Home() {
         <div className="h-fit text-center flex flex-col justify-center items-center pb-10">
           <img
             src="/images/IMG1.jpg"
-            className=""
+            className="w-full"
           />
           <div>
             <h1 className="text-4xl pt-10 md:text-6xl font-generalSansMedium">
