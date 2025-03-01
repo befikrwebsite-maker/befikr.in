@@ -9,7 +9,7 @@ import { useEffect } from "react";
 import PartnerCarousel from "./components/PartnerCarousel";
 import Impact from "./components/ImpactSection";
 import Clock from "./components/Clock";
-import Service from "./what-we-do/ServicePage"
+import Service from "./components/ServicePage"
 import Testimonial from "./components/Testimonial"
 
 export default function Home() {

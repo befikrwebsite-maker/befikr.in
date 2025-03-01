@@ -1,4 +1,4 @@
-import { ChevronRight} from "lucide-react"
+import { ChevronRight } from "lucide-react"
 
 export default function Hero() {
     return (
@@ -17,9 +17,17 @@ export default function Hero() {
             </video>
             <div className="absolute inset-0 bg-black opacity-60 rounded-b-[4rem]"></div>
             <div className="relative z-10 text-white px-6 md:w-full rounded-b-[4rem]">
-                <h1 className="inline-block text-5xl md:text-7xl font-generalSansMedium leading-tight transition-all delay-175 text-white hover:inline-block  hover:text-companyBlue hover:bg-white p-2">
-                    Excellence is <span className="block">The Only <div className="inline-block font-generalSansMediumItalic">Standard</div></span> at befikr.
+                <h1 className="text-5xl md:text-7xl font-generalSansMedium leading-tight transition-all delay-175 text-white hover:text-companyBlue hover:bg-white p-2 inline-block">
+                    <span className="inline-block">
+                        Excellence is
+                    </span>
+                    <span className="block">
+                        The Only
+                        <span className="inline-block font-generalSansMediumItalic"> Standard </span>
+                    </span>
+                    at befikr.
                 </h1>
+
                 <p className="inlin-block p-3 font-generalSansLight text-xl md:text-2xl mb-8 max-w-3xl">
                     An <span className="font-generalSansMedium">ESG</span> Services Company
                 </p>

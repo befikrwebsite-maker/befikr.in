@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     // Email parameters
     $to = "bebefikr@befikr.in"; // Change this to the recipient's email
-    $subject = "New Contact Form Submission from $name";
+    $subject = "New Job Application $name";
     $body = "Name: $name\nEmail: $email\nMessage:\n$message";
     $headers = "From: $email\r\nReply-To: $email";
 

@@ -1,6 +1,5 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import PageTransition from "./PageTransition";
-import PageFadeOut from "./global";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -26,7 +25,6 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <PageFadeOut /> {/* Handles fade-out before navigation */}
         <PageTransition>{children}</PageTransition> {/* Handles slide-in */}
       </body>
     </html>
