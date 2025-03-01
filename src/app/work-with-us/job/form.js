@@ -8,7 +8,7 @@ export default function Form({onClose}) {
     name: "",
     email: "",
     message: "",
-    resume: null, // Added for file input
+    // resume: null, // Added for file input
   });
 
   const [status, setStatus] = useState("");
@@ -30,9 +30,9 @@ export default function Form({onClose}) {
     form.append("name", formData.name);
     form.append("email", formData.email);
     form.append("message", formData.message);
-    if (formData.resume) {
-      form.append("resume", formData.resume);
-    }
+    // if (formData.resume) {
+    //   form.append("resume", formData.resume);
+    // }
 
     try {
       const response = await fetch("http://localhost/Befikr/mailConfig.php", {
@@ -44,7 +44,7 @@ export default function Form({onClose}) {
       setStatus(result.message);
 
       if (result.status === "success") {
-        setFormData({ name: "", email: "", message: "", resume: null });
+        setFormData({ name: "", email: "", message: "" });
       }
     } catch (error) {
       setStatus("Error sending message.");
@@ -62,7 +62,7 @@ export default function Form({onClose}) {
           ✖
         </button>
 
-        <h2 className="text-2xl font-bold uppercase text-[#038DAF] text-center mb-4">Contact Us</h2>
+        <h2 className="text-2xl font-bold uppercase text-[#038DAF] text-center mb-4"></h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block text-gray-700 font-medium mb-1">Your Name</label>
@@ -100,7 +100,7 @@ export default function Form({onClose}) {
             ></textarea>
           </div>
           
-          <div>
+          {/* <div>
             <label className="block text-gray-700 font-medium mb-1">Resume</label>
             <input 
               type="file" 
@@ -109,13 +109,13 @@ export default function Form({onClose}) {
               className="w-full px-3 py-2 border border-gray-300 rounded-lg cursor-pointer" 
               required 
             />
-          </div>
+          </div> */}
           
           <button 
             type="submit" 
             className="w-full bg-companyBlue text-white font-bold uppercase py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300"
           >
-            Send Message
+            Apply Now
           </button>
         </form>
         {status && <p className="text-center mt-4 text-red-600">{status}</p>}

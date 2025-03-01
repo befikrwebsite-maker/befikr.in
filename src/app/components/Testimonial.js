@@ -14,7 +14,7 @@ const data = [
       name: "Monika Singh",
       text: "Consultant-CES",
       position: "Consultant-CES",
-      desc: "This is my first job at Corporate Office, and I'm very glad that I became a part of the Befikr family. Seniors are very helpful here, and the work environment is very good for females.",
+      desc: "This is my first job at corporate office and I'm very glad that I become a part of Befikr family. Seniors are very helpful here also work environment is very good for females.",
       image: "../Testimonial/Img2.jpg" 
     },
     { 
@@ -22,7 +22,7 @@ const data = [
       name: "Kapil Chawla",
       text: "third item",
       position: "Sr. Manager/Quality - ESA",
-      desc: "It's a really good place to work. Befikr provided me with an excellent experience and opportunities that helped me quickly transition into my role and gain valuable expertise in the audit field.",
+      desc: "It's a really good place to work. Befikr provided me with an excellent experience and opportunities that helped me quickly transition into my role and gain valuable expertise in the Audit field.",
       image: "../Testimonial/Img3.jpg" 
     },
     { 
@@ -30,7 +30,7 @@ const data = [
       name: "Animesh Verma",
       text: "fourth item",
       position: "Asst Manager - MSP",
-      desc: "I got a supportive work environment here. I have learned so many things while working, and I have found multiple growth opportunities.",
+      desc: "I got supportive work environment here. I have learnt so many things while working also I have found multiple growth opportunity.",
       image: "../Testimonial/Img4.jpg" 
     },
     { 

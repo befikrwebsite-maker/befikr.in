@@ -27,42 +27,42 @@ export default function Page() {
             id: 1,
             category: "Environment",
             title: "Electrical Safety Audit",
-            desc: "The ESA business is Led by a skilled & professional team of Electrical Safety Auditors and Electrical Engineers with a speciality in auditing, investigating & constant annual tracking of electrical safety aspects like possible electrical short circuits & other critical electrical faults leading to fire incidences & severe loss of life & business. We take great pride in dedicating our ESA services for the Banking, Hospitality & Oil-Gas sectors across the Country.",
+            desc: "An electrical audit is a comprehensive assessment of electrical systems & infrastructure within a building, facility, or industrial setting to evaluate electrical safety, power efficiency, electrical safety compliance with regulations, and overall performance. Regular electrical safety audits are recommended, typically every year depending on the nature of business operations and respective regulatory requirements. An efficient electrical safety audit helps prevent electrical accidents, to identify potential hazards, energy inefficiencies, opportunities for improvement, fires, and compliance issues while ensuring the safety of employees and assets.",
             tags: ["electrical", "safety", "audit", "environment"]
         },
         {
             id: 2,
             category: "Environment",
             title: "Energy Audit",
-            desc: "The Energy Audit business is Led by well qualified & BEE Certified Energy Auditors with a speciality in energy data gathering, auditing & studying the installed electrical power consuming appliances, machines, analysis of power factors & load balancing studies. The objective of these energy audits is to  conserve wastage of energy resources with an impact on wasteful expenses & cost saving to businesses. We take great pride in dedicating our Energy Audit services for the Banking, Hospitality & Oil-Gas sectors across the Country.",
+            desc: "An energy audit is a comprehensive assessment of energy consuming mechanical & electrical infrastructure within a building, facility, or industrial setting to evaluate energy consumption patterns over a period of time. Periodical energy audits promote use of energy efficient process¬es, equipment, devices and systems, brings an effort to reduce energy intensity, ensure efficient use of energy and its conservation as per the guidelines & norms set by Bureau of energy efficiency in India. An efficient energy audit helps promote businesses take steps for energy savings & energy conservation techniques Including spreading awareness of energy savings within businesses & organisations.",
             tags: ["energy", "environment"]
         },
         {
             id: 3,
             category: "Environment",
             title: "Defective Audit",
-            desc: "The Defective Audit services business is Led by a team of young business administration graduates & an in-house, well-trained Engineers, ITI Graduates & befikr Brothers, the erstwhile Indian handyman. The objective of this service is to offer defective LED inspection & reverse logistics solutions. We take great pride in dedicating our defective audit services to leading Consumer Lighting brands.",
+            desc: "Defective audit is a process to evaluate the within warranty product function & usage as designed & manufactured to work seamless for a certain set period of time in years. A defective audit gets triggered after a malfunction appearance in a new product within years of warranty as specified in the product brochure & commitment from the manufacturer or the brand. Such defective product audits ensure the customers get a due replacement as either a new product or parts amended as replacement as a service commitment within warranty. An efficient defective audit helps businesses, dealers, retailers & consumers get due justice as well as control the supply chain leakages as well as risks for businesses.",
             tags: ["defective", "audit", "environment"]
         },
-        {
-            id: 4,
-            category: "Environment",
-            title: "E-Waste Management",
-            desc: "",
-            tags: ["e", "waste", "e-waste", "management", "environment"]
-        },
+        // {
+        //     id: 4,
+        //     category: "Environment",
+        //     title: "E-Waste Management",
+        //     desc: "",
+        //     tags: ["e", "waste", "e-waste", "management", "environment"]
+        // },
         {
             id: 5,
             category: "Environment",
             title: "Reverse Logistics",
-            desc: "",
+            desc: "Reverse logistics is a process to develop a reverse supply chain mechanism to collect & deliver defective products or e-waste materials back to the manufacturer base of product origin or e-waste warehouses efficiently & within the stipulated timeframe. Businesses need reverse logistics services through partners & strengthen their supply chain infrastructure for smooth end to end business operations. An efficient reverse logistics team ensures organising the fragmented unorganised services helping businesses, dealers, retailers & consumers for the products to complete their end of life processing & help strengthen the Indian circular economy.",
             tags: ["reverse", "logistics", "environment"]
         },
         {
             id: 6,
             category: "Social",
             title: "Corporate Social Response",
-            desc: "",
+            desc: "Corporate social responsibility services are taken up by businesses in profit as a self-regulatory mechanism to socially contribute to specific sectors of priority & interest to the business group. Through their CSR efforts companies try and create certain social impacts contributing to a country’s infrastructure & people through business profits. Through various projects & initiatives the CSR efforts ensure businesses & brands contribute not only in the society but also for their own learning & development in the sectors they operate in. A well thought of CSR initiative eventually benefits the society & the country at large magnifying various efforts from the government, NGOs as well as the private sector thus creating a visible impact in the social frame of a country.",
             tags: ["corporate", "response", "social"]
         }
     ];
@@ -137,6 +137,7 @@ export default function Page() {
 
     return (
         <div className="min-h-screen max-w-full bg-[#f5f5f5] px-10 py-5 flex flex-col items-center">
+            Befikr, today has emerged as an ESG (Environment, Social, Governance) services company helping business comply to the newer BRSR (Business responsibility & sustainability reporting guidelines keeping  in view the recent regulations & relevance to the key attributes within the Indian market.
             <div className="bg-white px-10 py-5 w-full max-w-7xl rounded-lg shadow-lg mt-8">
                 <div className="text-left text-xl py-5 font-extrabold font-generalSansSemibold text-gray-900"></div>
                 <div className="w-full max-w-6xl">
