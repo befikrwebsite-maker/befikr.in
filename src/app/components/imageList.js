@@ -11,7 +11,10 @@ const imageList = [
     { url: "/logos/punjab-national-bank.svg", tag: ["Electrical Safety Audit", "Energy Audit"] },
     { url: "/logos/siemens.svg", tag: ["B2B2C"] },
     { url: "/logos/zoho-1.svg", tag: ["Electrical Safety Audit", "Energy Audit"] },
-    { url: "/logos/4071adb8901ed1457b6744710b9b12ea.png", tag: ["B2B2C"] }
+    { url: "/logos/4071adb8901ed1457b6744710b9b12ea.png", tag: ["B2B2C"] },
+    { url: "/logos/embassy.png", tag: ["Organization"] },
+    { url: "/logos/kent.png", tag: ["B2B2C"] },
+    { url: "/logos/ozone.png", tag: ["B2B2C"] }
 ];
 
 export default imageList;

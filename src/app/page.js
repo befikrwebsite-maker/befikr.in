@@ -36,19 +36,21 @@ export default function Home() {
 
       <main className="w-full no-scrollbar bg-[#f5f5f5] flex flex-col">
         <Hero />
-        <div className="bg-[#f5f5f5] pt-10 text-4xl md:text-left text-center font-generalSansSemibold md:pl-12 text-gray-900">Our Services
-          <p className="font-generalSansRegular text-base">Befikr, today has emerged as an ESG (Environment, Social, Governance) services company helping business comply to the newer BRSR (Business responsibility & sustainability reporting guidelines keeping  in view the recent regulations & relevance to the key attributes within the Indian market.
-            </p>
+        <div className="bg-[#f5f5f5] pt-10 text-4xl md:text-left text-center font-generalSansSemibold md:pl-12 text-gray-900">
+          <p className=" p-8 pb-0 text-2xl font-generalSansMedium tracking-wide ">Befikr, today has emerged as an ESG (Environment, Social, Governance) services company helping business comply to the newer BRSR (Business responsibility & sustainability reporting guidelines keeping  in view the recent regulations & relevance to the key attributes within the Indian market.
+          </p>
         </div>
         <br />
-        <Service/>
+        <Service />
         <div className="bg-[#f5f5f5] pt-10 text-4xl md:text-left text-center font-generalSansSemibold md:pl-12 text-gray-900">Our Impact</div>
-        <Impact/>
-        <div className="bg-[#f5f5f5] pt-10 text-4xl md:text-left text-center font-generalSansSemibold md:pl-12 text-gray-900">Our Partners</div>
-        <PartnerCarousel/>
-        <Testimonial/>
-        <Clock/>
+        <Impact />
+        <div className="bg-[#f5f5f5] pt-10 text-4xl md:text-left text-center font-generalSansSemibold md:pl-12 text-gray-900">About Us</div>
         <CareerSection />
+        <div className="bg-[#f5f5f5] pt-10 text-4xl md:text-left text-center font-generalSansSemibold md:pl-12 text-gray-900">Our Partners</div>
+        <PartnerCarousel />
+        <div className="bg-[#f5f5f5] pt-10 text-4xl md:text-left text-center font-generalSansSemibold md:pl-12 text-gray-900">Our Team</div>
+        <Testimonial />
+        <Clock />
       </main>
 
       <Footer />

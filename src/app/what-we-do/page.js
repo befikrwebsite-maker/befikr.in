@@ -158,7 +158,7 @@ export default function Page() {
                 {/* Dropdown Filters */}
                 <div className="w-full max-w-6xl text-center flex flex-wrap justify-center gap-3 px-6 mt-6">
                     <DropdownESG
-                        label="ESG Category"
+                        label="Our Services"
                         categories={esgCategories}
                         selected={selectedESG}
                         setSelected={setSelectedESG}

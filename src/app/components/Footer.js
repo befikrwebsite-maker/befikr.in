@@ -32,11 +32,12 @@ export default function Footer() {
               <li><Link href="/what-we-do" className="hover:text-companyBlue">What We Do</Link></li>
               <li><Link href="/who-we-are" className="hover:text-companyBlue">Who We Are</Link></li>
               <li><Link href="/work-with-us" className="hover:text-companyBlue">Work With Us</Link></li>
+              <li><Link href="/reach-us" className="hover:text-companyBlue">Reach Us</Link></li>
             </ul>
           </div>
           
           {/* Social Media Links */}
-          <div>
+          {/* <div>
             <h3 className="text-lg font-medium text-companyBlue">Follow Us</h3>
             <div className="flex space-x-4 mt-2">
               <a href="#" className="text-gray-400 hover:text-companyBlue text-xl"><Linkedin /></a>
@@ -44,7 +45,7 @@ export default function Footer() {
               <a href="#" className="text-gray-400 hover:text-companyBlue text-xl"><Facebook /></a>
               <a href="#" className="text-gray-400 hover:text-companyBlue text-xl"><Instagram /></a>
             </div>
-          </div>
+          </div> */}
         </div>
         
         {/* Copyright */}

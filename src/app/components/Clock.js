@@ -19,7 +19,7 @@ export default function Clock() {
         <div className="p-12 bg-companyBlue">
             <div className="text-white flex flex-col md:flex-row">
                 <div className="flex-1">
-                    <h1 className="text-4xl text-center md:text-left font-generalSansSemibold mb-6">Leading force in Electricity Safety Auditing</h1>
+                    <h1 className="text-4xl text-center md:text-left font-generalSansSemibold mb-6">India’s Leading Force in Electrical Safety Auditing</h1>
                     
                 </div>
 

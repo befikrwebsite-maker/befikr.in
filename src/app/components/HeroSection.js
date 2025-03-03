@@ -16,8 +16,8 @@ export default function Hero() {
                 Your browser does not support the video tag.
             </video>
             <div className="absolute inset-0 bg-black opacity-60 rounded-b-[4rem]"></div>
-            <div className="relative z-10 text-white px-6 md:w-full rounded-b-[4rem]">
-                <h1 className="text-5xl md:text-7xl font-generalSansMedium leading-tight transition-all delay-175 text-white hover:text-companyBlue hover:bg-white p-2 inline-block">
+            <div className="relative z-10 text-white px-6 pb-14 md:w-full rounded-b-[4rem]">
+                <h1 className="text-5xl md:text-7xl font-generalSansMedium leading-tight transition-all delay-175 text-white p-2 inline-block">
                     <span className="inline-block">
                         Excellence is
                     </span>
@@ -31,13 +31,13 @@ export default function Hero() {
                 <p className="inlin-block p-3 font-generalSansLight text-xl md:text-2xl mb-8 max-w-3xl">
                     An <span className="font-generalSansMedium">ESG</span> Services Company
                 </p>
-                <a
+                {/* <a
                     href="/contact-us"
                     className="inline-flex items-center px-8 py-4 mb-24 text-lg font-semibold text-black bg-white rounded-full delay-175 hover:bg-companyBlue hover:text-white transition-colors"
                 >
                     Get Started
                     <ChevronRight className="ml-2 h-6 w-6" />
-                </a>
+                </a> */}
             </div>
         </section>
     );

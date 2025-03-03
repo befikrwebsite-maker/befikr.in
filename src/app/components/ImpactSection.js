@@ -9,11 +9,11 @@ export default function Impact() {
     
     return(
         <div className="p-12">
-            <div className="grid grid-cols-2 gap-6 mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mx-auto">
                 {impacts.map((impact, index) => (
                     <div key={index} className="h-64 w-fit bg-gray-200 p-6 rounded-2xl border">
-                        <h1 className="text-xl font-generalSansSemibold">{impact.title}</h1>
-                        <p className="text-slate-500">{impact.desc}</p>
+                        <h1 className="text-2xl font-generalSansSemibold">{impact.title}</h1>
+                        <p className="text-slate-800 text-xl">{impact.desc}</p>
                     </div>
                 ))}
             </div>

@@ -13,11 +13,10 @@ export default function Navbar() {
       let path = window.location.pathname;
 
       // Remove .html for Next.js static export compatibility
-      path = path.replace(/\.html$/, "");
 
       const pageNames = {
         "/": "Home",
-        "/what-we-do": "What We Do",
+        "/what-we-do/": "What We Do",
         "/who-we-are": "Who We Are",
         "/work-with-us": "Work With Us",
         "/work-with-us/job": "Jobs",
@@ -35,20 +34,21 @@ export default function Navbar() {
           <a href="/" className="flex items-center space-x-2">
             <img
               src="/logo.png"
-              className="max-w-[120px] md:justify-start drop-shadow-xl"
+              className="max-w-[100px] md:justify-start drop-shadow-xl"
               alt="Company Logo"
             />
             <div className="w-[1px] ml-2 bg-black h-10"></div>
-            <p className="text-xl font-semibold text-companyBlue">{link}</p>
+            <p className="text-xl font-generalSansRegular">{link}</p>
           </a>
         </div>
 
         {/* Desktop Navigation Links */}
-        <div className="hidden md:flex space-x-8">
+        <div className="hidden md:flex space-x-8 font-generalSansRegular">
           <a href="/" className="text-black hover:text-companyBlue transition-colors">Home</a>
           <a href="/what-we-do" className="text-black hover:text-companyBlue transition-colors">What We Do</a>
           <a href="/who-we-are" className="text-black hover:text-companyBlue transition-colors">Who We Are</a>
           <a href="/work-with-us" className="text-black hover:text-companyBlue transition-colors">Work With Us</a>
+          <a href="/reach-us" className="text-black hover:text-companyBlue transition-colors">Reach Us</a>
         </div>
 
         {/* Mobile Menu Button */}

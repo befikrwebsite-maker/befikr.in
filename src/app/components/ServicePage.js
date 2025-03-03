@@ -136,7 +136,7 @@ export default function Page() {
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     return (
-        <div className="min-h-screen max-w-full bg-[#f5f5f5] px-10 py-5 flex flex-col items-center">
+        <div className="min-h-screen max-w-full bg-[#f5f5f5] px-10 flex flex-col items-center">
             <div className="bg-white px-10 py-5 w-full max-w-7xl rounded-lg shadow-lg mt-8">
                 <div className="text-left text-xl py-5 font-extrabold font-generalSansSemibold text-gray-900"></div>
                 <div className="w-full max-w-6xl">
@@ -154,7 +154,7 @@ export default function Page() {
                 {/* Dropdown Filters */}
                 <div className="w-full max-w-6xl text-center flex flex-wrap justify-center gap-3 px-6 mt-6">
                     <DropdownESG
-                        label="ESG Category"
+                        label="Our Services"
                         categories={esgCategories}
                         selected={selectedESG}
                         setSelected={setSelectedESG}
@@ -182,7 +182,7 @@ export default function Page() {
                                     <span key={i} className="bg-white-200 border rounded-3xl px-2 py-1 rounded-md">{tag}</span>
                                 )) : null}
                             </div>
-                            <p className="text-gray-700 pt-6 font-generalSansMedium line-clamp-4 text-sm sm:text-base">{items.desc}</p>
+                            <p className="text-gray-700 pt-6 font-generalSansMedium line-clamp-3 text-sm sm:text-base">{items.desc}</p><span className="cursor-pointer hover:text-companyBlue duration-100 transition-all">Read More</span>
                         </div>
                         
                     </div>
