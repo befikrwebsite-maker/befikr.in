@@ -68,9 +68,7 @@ export default function Page() {
       tags: ["electrical","energy","audit","audits","manager","operations","operation","delhi","ncr"],
       budget: "",
       jobtype: "fulltime"
-    },
-    
-
+    }
   ];
 
   // show form ///////////////////////////////////////////////////////////////////////////////////////////////////////////

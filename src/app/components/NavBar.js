@@ -38,7 +38,7 @@ export default function Navbar() {
               alt="Company Logo"
             />
             <div className="w-[1px] ml-2 bg-black h-10"></div>
-            <p className="text-xl font-generalSansRegular">{link}</p>
+            <p className="text-md font-generalSansRegular">{link}</p>
           </a>
         </div>
 
