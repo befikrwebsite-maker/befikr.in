@@ -16,7 +16,7 @@ export default function UnderDevelopment() {
       </Head>
       <Navbar/>
 
-      <div className="flex flex-col justify-start min-h-screen font-generalSansRegular text-[#009DC8]">
+      <div className="flex flex-col justify-start font-generalSansRegular text-[#009DC8]">
         <div className="bg-[#009DC8] h-full">
           <div className="bg-[#f5f5f5] p-6 ">
             <div>

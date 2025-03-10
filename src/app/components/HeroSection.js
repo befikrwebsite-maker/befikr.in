@@ -22,8 +22,7 @@ export default function Hero() {
                         Excellence is
                     </span>
                     <span className="block">
-                        The Only
-                        <span className="inline-block font-generalSansMediumItalic"> Standard </span>
+                        The Only <span className="inline-block font-generalSansMediumItalic"> Standard </span>
                     </span>
                     at befikr.
                 </h1>

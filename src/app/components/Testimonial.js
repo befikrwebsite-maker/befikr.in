@@ -6,7 +6,7 @@ const data = [
       name: "Manininder Singh",
       text: "first item",
       position: "Deputy Manager - HR",
-      desc: "It has been a great experience working as Deputy Manager - HR at Opera Gratia Pvt.Ltd. The organization has provided me with valuable opportunities to grow professionally while contributing to key HR functions such as recruitment, employee engagement, and process optimization. I am grateful to be part of a team that values innovation and collaboration.",
+      desc: "I have been working as an HR at Opera Gratia (Befikr) since December 2024, and my experience so far has been both enriching and rewarding. The company fosters a collaborative and growth-oriented work environment, allowing me to enhance my skills in recruitment, employee engagement, and HR operations.",
       image: "../Testimonial/Img1.jpg" 
     },
     { 
@@ -34,13 +34,61 @@ const data = [
       image: "../Testimonial/Img4.jpg" 
     },
     { 
-      id: 5, 
+      id: 6, 
       name: "Ajeena Khan",
       text: "fourth item",
       position: "Asst Manager - MSP",
       desc: "This is one of my best jobs. The environment and staff are very good and supportive. I have learned so many things here, and I enjoy my work.",
       image: "../Testimonial/Img5.jpg" 
     },
+    { 
+      id: 7, 
+      name: "Harish Yadav",
+      text: "fourth item",
+      position: "Deputy Manager - CES",
+      desc: "The most rewarding part of my journey here has been the way the company fosters a culture of continuous learning and open communication, making me feel valued and empowered every step of the way.",
+      image: "../Testimonial/Img7.png" 
+    },
+    { 
+      id: 8, 
+      name: "Amit Chauhan",
+      text: "fourth item",
+      position: "Manager - Admin & Operations",
+      desc: "Working with Opera Gratia (Befikr) has been a great experience. Their efficient operations, strong administrative support, and commitment to excellence make them a reliable and professional organization. Wishing them continued success in their endeavours",
+      image: "../Testimonial/Img8.png" 
+    },
+    { 
+      id: 9, 
+      name: "Sanjay Singh",
+      text: "fourth item",
+      position: "Deputy General Manager - CES",
+      desc: "I joined befikr as entry level manager and now hold a position of DGM- Services, where I managing a team of 550 in the capacity of manager. During my 8 years with befikr, I have seen that befikr always had a excellent team with wide range of skill sets which can help any client to achieve their objectives and goals. Working with befikr team is an Outstanding Experience. Opportunities are higher to learn and grow in befikr.",
+      image: "../Testimonial/Img9.png" 
+    },
+    { 
+      id: 10, 
+      name: "Sumit Kumar Mishra",
+      text: "fourth item",
+      position: "Deputy General Manager - CES",
+      desc: "As an employee, I appreciate the transparent and approachable nature of our management team. They consistently seek feedback, listen to concerns, and genuinely value our input, creating an open environment where communication flows freely. Management is always willing to offer guidance and support, but they also trust us to take ownership of our responsibilities.",
+      image: "../Testimonial/Img10.png" 
+    },
+    { 
+      id: 11, 
+      name: "Hemant Kumar",
+      text: "fourth item",
+      position: "Deputy General Manager - CES",
+      desc: " I'm proud to be part of the Befikr company that puts service at its heart. Every day, I get to work with a dedicated team that values excellence, genuine care, and constant innovation. It's inspiring to see how our commitment to quality service not only meets but exceeds our customers' expectations.",
+      image: "../Testimonial/Img11.png" 
+    },
+    // { 
+    //   id: 12, 
+    //   name: "Muskaan Suhag",
+    //   text: "fourth item",
+    //   position: "Deputy General Manager - CES",
+    //   desc: "I've been working with befikr Opera Gratia since 8th April, and my experience so far has been amazing. The company culture is supportive and innovative, and I appreciate the opportunities provided for growth and development. Specifically, I've enjoyed working as electrical safety Coordinator. Overall, I'm happy to be a part of this team at befikr.",
+    //   image: "../Testimonial/Img12.png" 
+    // },
   ];
 
 export default function InfiniteScroller() {

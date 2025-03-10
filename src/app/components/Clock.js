@@ -5,15 +5,18 @@ const CountUp = dynamic(() => import("../components/Counter"), { ssr: false });
 
 
 export default function Clock() {
-    const [Audits, setAudits] = useState(12043)
+    const [number, setNumber] = useState(null);
 
     useEffect(() => {
-        const intervalId = setInterval(() => {
-            setAudits(prev => prev + 1);
-        }, 60 * 60 * 1000); 
-
-        return () => clearInterval(intervalId); // Cleanup when unmounting
-    }, []);
+        fetch("https://www.befikr.in/get_number.php") // Replace with your actual domain
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.number !== undefined) {
+              setNumber(data.number);
+            }
+          })
+          .catch((error) => console.error("Error fetching number:", error));
+      }, []);
 
     return (
         <div className="p-12 bg-companyBlue">
@@ -26,7 +29,7 @@ export default function Clock() {
                 <div className="flex-1 items-center justify-self-center">
                     <p className="inline-block">With</p>
                     <h1 className="inline-block text-8xl font-generalSansBold text-center">
-                       <CountUp to={Audits} separator="," />
+                       <CountUp to={number} separator="," />
                     </h1>
                     <p className="inline-block">and counting</p>
                 </div>

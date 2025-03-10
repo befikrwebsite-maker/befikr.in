@@ -37,7 +37,7 @@ export default function Home() {
       <main className="w-full no-scrollbar bg-[#f5f5f5] flex flex-col">
         <Hero />
         <div className="bg-[#f5f5f5] pt-10 text-4xl md:text-left text-center font-generalSansSemibold md:pl-12 text-gray-900">
-          <p className=" p-8 pb-0 text-2xl font-generalSansMedium tracking-wide ">Befikr, today has emerged as an ESG (Environment, Social, Governance) services company helping business comply to the newer BRSR (Business responsibility & sustainability reporting guidelines keeping  in view the recent regulations & relevance to the key attributes within the Indian market.
+          <p className=" p-8 pb-0 text-2xl font-generalSansMedium tracking-wide ">Befikr has emerged as an ESG (Environment, Social, Governance) services company dedicated to helping businesses comply with the newer Business Responsibility & Sustainability Reporting - BRSR, an Indian regulatory compliance & strategic framework enabling businesses to evolve as sustainable leaders.
           </p>
         </div>
         <br />
