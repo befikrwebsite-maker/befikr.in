@@ -17,10 +17,22 @@ export default function Page() {
       desc: "",
       tags: ["electrical","safety","auditor","energy","audits","audit","gujarat","delhi","ncr","rajasthan"],
       budget: "",
+      position: "Electrical Safety Auditor",
+      team: "Electrical and Energy Audits",
+      location: ["Gujarat","Delhi NCR","Rajasthan"],
+      desc: "",
+      tags: ["electrical","safety","auditor","energy","audits","audit","gujarat","delhi","ncr","rajasthan"],
+      budget: "",
       jobtype: "fulltime"
     },
     {
       id: 2,
+      position: "Defective Product Auditor",
+      team: "Circular Economy Services",
+      location: ["Gurgaon","North Delhi","Faridabad","Nashik"],
+      desc: "",
+      tags: ["defective","product","auditor","economy","services","circular","audit","service","gurgaon","delhi","faridabad","nashik","ncr"],
+      budget: "",
       position: "Defective Product Auditor",
       team: "Circular Economy Services",
       location: ["Gurgaon","North Delhi","Faridabad","Nashik"],
@@ -37,10 +49,22 @@ export default function Page() {
       desc: "",
       tags: ["area","supervisor","economy","services","circular","service","sonipat"],
       budget: "",
+      position: "Area Supervisor",
+      team: "Circular Economy Services",
+      location: ["Sonipat"],
+      desc: "",
+      tags: ["area","supervisor","economy","services","circular","service","sonipat"],
+      budget: "",
       jobtype: "fulltime"
     },
     {
       id: 4,
+      position: "Field Officer",
+      team: "CSR Services",
+      location: ["Delhi NCR"],
+      desc: "",
+      tags: ["field","officer","csr","services","service","delhi","ncr"],
+      budget: "",
       position: "Field Officer",
       team: "CSR Services",
       location: ["Delhi NCR"],
@@ -57,10 +81,18 @@ export default function Page() {
       desc: "",
       tags: ["master","service","partnerships","spartnership","technician","services","noida"],
       budget: "",
+      position: "Technician",
+      team: "Master Service Partnerships",
+      location: ["Noida"],
+      desc: "",
+      tags: ["master","service","partnerships","spartnership","technician","services","noida"],
+      budget: "",
       jobtype: "fulltime"
     },
     {
       id: 6,
+      position: "Manager- Operations",
+      team: "Electrical and Energy Audits",
       position: "Manager- Operations",
       team: "Electrical and Energy Audits",
       location: ["Delhi NCR"],
@@ -223,12 +255,15 @@ export default function Page() {
               <div className="flex flex-col ">
                 <p className="text-gray-900 text-base sm:text-lg font-generalSansSemibold ">{items.position}</p>
                 <p className="text-gray-700 font-generalSansMedium text-sm sm:text-base ">{items.team}</p>
+                <p className="text-gray-900 text-base sm:text-lg font-generalSansSemibold ">{items.position}</p>
+                <p className="text-gray-700 font-generalSansMedium text-sm sm:text-base ">{items.team}</p>
                 <div className="flex flex-wrap gap-1 text-gray-700 text-xs sm:text-sm mt-2">
                   {Array.isArray(items.location) ? items.location.map((loc, i) => (
                     <span key={i} className="bg-white-200  py-1 rounded-md">{loc} | </span>
                   )) : null}
                 </div>
                 <div className="flex gap-2 mt-2">
+                  {/* <button className="bg-sky-100 text-companyBlue font-generalSansRegular px-2 py-1 rounded-md text-xs sm:text-sm cursor-default">{items.budget}</button> */}
                   {/* <button className="bg-sky-100 text-companyBlue font-generalSansRegular px-2 py-1 rounded-md text-xs sm:text-sm cursor-default">{items.budget}</button> */}
                   <button className="bg-sky-100 text-companyBlue font-generalSansRegular px-2 py-1 rounded-md text-xs sm:text-sm cursor-default">{items.jobtype}</button>
                 </div>
@@ -269,6 +304,18 @@ export default function Page() {
                 </button>
 
                 {/* Job Details */}
+                <h2 className="text-3xl font-bold">{selectedJob.position}</h2>
+                <p className="text-gray-600 text-lg">{selectedJob.team}</p>
+                <p className="mt-4 text-gray-800">Location:- </p>
+                {
+                  selectedJob.location.map((item, index) => (
+                  <p key={index} className="mt-4 text-gray-800"> • {item}</p>
+                ))
+                }
+
+                {/* <p className=" text-gray-800">Field: {selectedJob.tags}</p> */}
+                {/* <p className=" text-gray-800">Job ID: {selectedJob.id}</p> */}
+                {/* <p className="mt-4 text-gray-800">{selectedJob.desc}</p> */}
                 <h2 className="text-3xl font-bold">{selectedJob.position}</h2>
                 <p className="text-gray-600 text-lg">{selectedJob.team}</p>
                 <p className="mt-4 text-gray-800">Location:- </p>
