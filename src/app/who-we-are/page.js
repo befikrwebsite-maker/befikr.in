@@ -1,6 +1,7 @@
 "use client"
 
 import Navbar from "../components/NavBar";
+import NavbarSub from "@/components/Navbar-Sub";
 import Footer from "../components/Footer";
 import { useEffect } from "react";
 
@@ -8,6 +9,8 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-[#f5f5f5] font-generalSansMedium" style={{ height: "200vh" }}>
       <Navbar />
+      <NavbarSub />
+      
 
       <main className="w-[90%] md:w-full justify-self-center no-scrollbar bg-[#f5f5f5] flex flex-col">
         <div className="h-fit text-center flex flex-col justify-center items-center pb-10">
