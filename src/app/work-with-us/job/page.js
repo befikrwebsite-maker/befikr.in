@@ -88,11 +88,11 @@ export default function Page() {
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   // extracting unique teams positoins and locations /////////////////////////////////////////////////////////////////////
-  const uniqueTeams = [...new Set(cards.map(el => el.team))];
-  const uniquePositions = [...new Set(cards.map(el => el.position))];
+  const uniqueTeams = [...new Set(cards.map(el => el.team))].sort();
+  const uniquePositions = [...new Set(cards.map(el => el.position))].sort();
   const locations = new Set()
   cards.map(el => el.location.map(em => locations.add(em)))
-  const uniqueLocations = [...locations];
+  const uniqueLocations = [...locations].sort();
 
   // State for selected filters
   const [selectedTeams, setSelectedTeams] = useState([]);
@@ -309,7 +309,7 @@ function Dropdown({ label, options, selected, setSelected, getFilterCount }) {
   return (
     <Listbox value={selected} onChange={setSelected} multiple>
       <div className="relative">
-        <Listbox.Button className="flex text-gray-900 tracking-wide font-bold bg-[#f5f5f5] border rounded-md w-80  justify-center py-1 xl:w-[18rem] lg:w-[16rem] md:w-[10rem] sm:w-[8rem]  hover:shadow-lg transition duration-300 ">
+        <Listbox.Button className="flex text-gray-900 tracking-wide font-bold bg-[#f5f5f5] border rounded-md w-80  justify-center py-1 xl:w-[18rem] lg:w-[16rem] md:w-[10rem] sm:w-[8rem]  hover:shadow-lg transition duration-300  ">
           {label}
         </Listbox.Button>
         <Transition
