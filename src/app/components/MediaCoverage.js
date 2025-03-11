@@ -15,16 +15,16 @@ export default function MediaCoverage() {
     ];
 
     return (
-        <div className="bg-white grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 justify-items-center ">
+        <div className="bg-[#f5f5f5] pt-10 pb-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 justify-items-center ">
             {links.map((item, index) =>
                 <a
-                    className=" flex border justify-center items-center bg-white w-80 h-30 rounded-md hover:shadow-2xl hover:scale-[1.05] duration-300 ease-in text-gray-700 m-4 font-serif hover:border-companyBlue"
+                    className=" flex border justify-center items-center bg-white w-96 h-30 rounded-md hover:shadow-2xl duration-150 ease-in text-gray-700 m-4 font-generalSansMedium hover:border-companyBlue"
                     key={index}
                     href={item[0]}
                     target="_blank"
                 >
                     <div className="flex m-4 text-xl flex-row flex-wrap">
-                        <img src={item[2]} alt="logo" className="max-w-36 max-h-28 self-center my-2"></img>
+                        <img src={item[2]} alt="logo" className="max-w-36 flex-1 max-h-28 self-center my-2"></img>
                         {item[1]}
                         <br></br>
                         <div className="text-gray-400 text-md my-2 hover:text-companyBlue">Learn more..</div>
