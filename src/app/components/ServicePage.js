@@ -206,7 +206,7 @@ export default function Page() {
                         backgroundPosition: "center",
                     }}
                 >
-                    <div className="absolute inset-0 bg-gray-900 bg-opacity-30 rounded-lg"></div>
+                    <div className="absolute inset-0 bg-gray-900 bg-opacity-70 rounded-lg"></div>
 
 
                     <div className="relative z-10 flex flex-col text-white">
@@ -224,7 +224,7 @@ export default function Page() {
                         <p className="pt-6 font-generalSansMedium line-clamp-3 text-sm sm:text-base">
                             {items.desc}
                         </p>
-                        <span className="cursor-pointer hover:text-companyBlue duration-100 transition-all">Read More</span>
+                        <span className="cursor-pointer inline-block hover:text-companyBlue duration-100 transition-all">Read More</span>
                     </div>
                 </div>
             ))}

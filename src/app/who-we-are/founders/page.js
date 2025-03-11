@@ -14,7 +14,7 @@ export default function Home() {
       <main className="w-[90%] md:w-full justify-self-center no-scrollbar bg-[#f5f5f5] flex flex-col">
         <div className="h-fit text-center flex flex-col justify-center items-center pb-10">
           <img
-            src="/images/IMG1.jpg"
+            src="/images/IMG1_F.png"
             className="w-full"
           />
           <div>

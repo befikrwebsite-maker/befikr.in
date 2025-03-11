@@ -17,9 +17,10 @@ export default function Navbar() {
       const pageNames = {
         "/": "Home",
         "/what-we-do/": "What We Do",
-        "/who-we-are": "Who We Are",
-        "/work-with-us": "Work With Us",
-        "/work-with-us/job": "Jobs",
+        "/who-we-are/": "Who We Are",
+        "/who-we-are/founders/": "Founders",
+        "/work-with-us/": "Work With Us",
+        "/work-with-us/job/": "Jobs"
       };
 
       setLink(pageNames[path] || ""); // Default to empty if not found

@@ -15,23 +15,26 @@ export default function MediaCoverage() {
     ];
 
     return (
-        <div className="bg-[#f5f5f5] pt-10 pb-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 justify-items-center ">
-            {links.map((item, index) =>
-                <a
-                    className=" flex border justify-center items-center bg-white w-96 h-30 rounded-md hover:shadow-2xl duration-150 ease-in text-gray-700 m-4 font-generalSansMedium hover:border-companyBlue"
-                    key={index}
-                    href={item[0]}
-                    target="_blank"
+        <div className="bg-[#f5f5f5] pt-10 pb-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 justify-items-center gap-6">
+            {links.map(([url, title, logo], index) => (
+                <a 
+                    key={index} 
+                    href={url} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex flex-col items-center text-center border bg-white w-96 rounded-lg p-4 hover:shadow-xl duration-200 ease-in-out transform hover:-translate-y-1 hover:border-companyBlue"
                 >
-                    <div className="flex m-4 text-xl flex-row flex-wrap">
-                        <img src={item[2]} alt="logo" className="max-w-36 flex-1 max-h-28 self-center my-2"></img>
-                        {item[1]}
-                        <br></br>
-                        <div className="text-gray-400 text-md my-2 hover:text-companyBlue">Learn more..</div>
-                    </div>
+                    <figure className="flex flex-col items-center">
+                        <img 
+                            src={logo} 
+                            alt={`${title} - Media Logo`} 
+                            className="w-32 h-24 object-contain mb-4"
+                        />
+                        <figcaption className="text-lg font-medium text-gray-700">{title}</figcaption>
+                    </figure>
+                    <div className="text-gray-400 text-sm mt-2 hover:text-companyBlue">Learn more...</div>
                 </a>
-            )}
+            ))}
         </div>
-
     );
 }
