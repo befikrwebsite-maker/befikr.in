@@ -8,7 +8,7 @@ export default function MediaCoverage() {
         ["https://www.youtube.com/watch?v=XvxmThcbEhg", "Home services brand Befikr.in", "/media_logos/CNBC_Awaaz.png"],
         ["https://www.youtube.com/watch?v=nJBd51pCvj4", "Truly Organizing the Unorganized Indian Home Services Space","/media_logos/ndtv.png"],
         ["https://www.bwdisrupt.com/article/befikrin-plans-to-cater-top-100-cities-over-next-4-years-108591", "befikr.in: Plans to Cater Top 100 Cities Over Next 4 Years","/media_logos/BWDisrupt.png"],
-        ["https://amazingworkplaces.co/at-befikr-employees-are-the-most-precious-investment/", "Achieving near zero attrition rate at befikr.in - Amazing Workplaces","/media_logos/amazing_workplace.png"],
+        ["https://amazingworkplaces.co/at-befikr-employees-are-the-most-precious-investment/", "Achieving near zero attrition rate at befikr.in","/media_logos/amazing_workplace.png"],
         ["https://inc42.com/buzz/hyperlocal-befikr-funding/", "Exclusive: Hyperlocal Services Startup Befikr Raises Series A Funding","/media_logos/inc42.png"],
         ["https://www.dsim.in/blog/13-indian-startups-making-news-week-27-november-03-december/", "13 Indian Startups Making News This Week (27 November- 03 December)","/media_logos/delhi school of internet marketting.png"],
         ["https://tech.hindustantimes.com/tech/news/google-launches-areo-to-rival-zomato-foodpanda-urbanclap-and-befikr-in-story-bz8T40fjH1nUF2XLBGPHSJ.html", "Google launches Areo to rival Zomato, foodpanda, UrbanClap and befikr.in","/media_logos/ht_tech.png"]
