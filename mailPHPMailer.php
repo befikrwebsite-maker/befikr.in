@@ -6,20 +6,43 @@ header("Access-Control-Allow-Headers: Content-Type");
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
 
 require 'PHPMailer-Master/src/SMTP.php';
 require 'PHPMailer-Master/src/PHPMailer.php';
+require 'PHPMailer-Master/src/Exception.php';
 
 
 require 'vendor/autoload.php';
 
+ini_set('log_errors', 1);
+ini_set('error_log', __DIR__ . '/error_log.txt'); // Log errors to a file
+ini_set('display_errors', 0); // Disable direct error display
+
 if($_SERVER["REQUEST_METHOD"] == "POST"){
+    
     $name = $_POST["name"] ?? "";
     $email = $_POST["email"] ?? "";
     $message = $_POST["message"] ?? "";
-
-    if (empty($name) || empty($email) || empty($message)) {
+    $resume = $_FILES["resume"] ?? null;
+    
+    if (empty($name) || empty($email) || empty($message) || empty($resume)) {
         echo json_encode(["status" => "error", "message" => "All fields are required"]);
+        exit;
+    }
+
+     // Validate the file upload
+     if ($resume['error'] !== UPLOAD_ERR_OK) {
+        echo json_encode(["status" => "error", "message" => "File upload error"]);
+        exit;
+    }
+
+    // Move the file to a safe directory (e.g., 'uploads/')
+    $uploadDir = __DIR__ . "/uploads/";
+    $filePath = $uploadDir . basename($resume["name"]);
+
+    if (!move_uploaded_file($resume["tmp_name"], $filePath)) {
+        echo json_encode(["status" => "error", "message" => "Failed to save file"]);
         exit;
     }
 
@@ -34,6 +57,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     //SMTP::DEBUG_CLIENT = client messages
     //SMTP::DEBUG_SERVER = client and server messages
     $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+
+    $mail->SMTPDebug = 0; // Disable debugging
+    $mail->Debugoutput = function ($str, $level) {}; // Prevent debug output from interfering
 
     //Set the hostname of the mail server
     $mail->Host = 'smtp.gmail.com';
@@ -58,20 +84,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $mail->Username = 'divyam.study.work@gmail.com';
 
     //Password to use for SMTP authentication
-    $mail->Password = 'jwkghqzziihckujs';
+    $mail->Password = 'reqwvklemfpqsuyv';
 
     //Set who the message is to be sent from
     //Note that with gmail you can only use your account address (same as `Username`)
     //or predefined aliases that you have configured within your account.
     //Do not use user-submitted addresses in here
-    $mail->setFrom('animeshsrivastava2003@gmail.com', 'First Last');
+    $mail->setFrom('divyamsharma511@gmail.com', 'First Last');
 
     //Set an alternative reply-to address
     //This is a good place to put user-submitted addresses
     //$mail->addReplyTo('replyto@example.com', 'First Last');
 
     //Set who the message is to be sent to
-    $mail->addAddress('divyamsharma511@gmail.com', 'John Doe');
+    $mail->addAddress('animeshsrivastava2003@gmail.com', 'John Doe');
 
     //Set the subject line
     $mail->Subject = 'PHPMailer GMail SMTP test';
@@ -86,13 +112,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $mail->Body = "This is a plain-text message body from $name with email $email with the message $message";
 
     //Attach an pdf file
-    $mail->addAttachment('Output.pdf');
+    $mail->addAttachment($filePath, $resume["name"]);
 
     //send the message, check for errors
     if (!$mail->send()) {
-        echo 'Mailer Error: ' . $mail->ErrorInfo;
+        echo json_encode(["status" => "error","message" => 'Mailer Error: ' . $mail->ErrorInfo]);
     } else {
-        echo 'Message sent!';
+        echo json_encode(["status" => "success", "message" => "Email sent successfully!"]);
         //Section 2: IMAP
         //Uncomment these to save your message in the 'Sent Mail' folder.
         #if (save_mail($mail)) {
