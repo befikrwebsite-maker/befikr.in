@@ -264,11 +264,11 @@ export default function Page() {
                     </p>
     
                     {/* Apply Button */}
-                    <div className="mt-auto">
+                    {/* <div className="mt-auto">
                         <button className="bg-companyBlue text-white px-6 py-3 rounded-lg hover:bg-opacity-90">
                             Apply Now
                         </button>
-                    </div>
+                    </div> */}
                 </motion.div>
             </motion.div>
             )}

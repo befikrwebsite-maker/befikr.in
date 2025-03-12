@@ -8,6 +8,7 @@ import { Listbox, Transition } from "@headlessui/react";
 import Footer from "@/components/Footer";
 
 export default function Page() {
+  // data
   const cards = [
     {
       id: 1,
