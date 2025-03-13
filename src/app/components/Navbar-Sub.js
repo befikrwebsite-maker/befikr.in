@@ -17,7 +17,7 @@ export default function Navbar() {
   const normalizePath = (path) => path.replace(/\/$/, ""); // Remove trailing slash for consistency
 
   return (
-    <header className="sticky h-[60px] bg-[#f5f5f5] backdrop-blur-md z-50 shadow-md">
+    <header className="sticky h-[60px] bg-[#f5f5f5] backdrop-blur-md z-40 shadow-md">
       <nav className="w-full mx-auto px-6 py-4 flex justify-between items-center rounded-xl">
         {/* Desktop Navigation Links */}
         <div className="hidden md:flex w-full justify-evenly font-generalSansRegular">
@@ -51,7 +51,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden absolute top-20 left-0 w-full bg-[#f5f5f5] shadow-md py-4 flex flex-col items-center space-y-4 z-50"
+            className="md:hidden absolute mt-[-2] left-0 w-full bg-[#f5f5f5] shadow-md py-4 flex flex-col items-center space-y-4 z-40"
           >
             {Object.entries(pageNames).map(([path, name]) => {
               const isActive = normalizePath(pathname) === normalizePath(path);

@@ -49,7 +49,7 @@ export default function PartnerCarousel() {
                     ))}
                 </div>
 
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 place-items-center">
+                <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 place-items-center">
                     {filteredImages.map((logo, index) => (
                         <div
                             key={index}

@@ -288,7 +288,7 @@ function DropdownESG({ label, categories, selected, setSelected }) {
     return (
         <Listbox value={selected} onChange={setSelected} multiple>
             <div className="relative z-50"> {/* Higher z-index here */}
-                <Listbox.Button className="flex justify-center text-gray-900 font-bold bg-[#f5f5f5] border text-center rounded-2xl w-80 py-1 transition-all duration-300 hover:shadow-lg">
+                <Listbox.Button className="flex justify-center text-gray-900 font-bold bg-[#f5f5f5] border text-center rounded-2xl w-60 md:w-80 py-1 transition-all duration-300 hover:shadow-lg">
                     {label}
                 </Listbox.Button>
 

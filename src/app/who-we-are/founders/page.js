@@ -11,14 +11,14 @@ export default function Home() {
       <Navbar />
       <NavbarSub />
 
-      <main className="w-[90%] md:w-full justify-self-center no-scrollbar bg-[#f5f5f5] flex flex-col">
+      <main className="w-[100%] md:w-full justify-self-center no-scrollbar bg-[#f5f5f5] flex flex-col">
         <div className="h-fit text-center flex flex-col justify-center items-center pb-10">
           <img
             src="/images/IMG1_F.png"
-            className="w-full"
+            className="w-full scale-105"
           />
-          <div>
-            <h1 className="text-4xl pt-10 md:text-6xl font-generalSansMedium">
+          <div className="p-10">
+            <h1 className="text-4xl md:pt-10 md:text-6xl font-generalSansMedium">
               About The Founders<span className="pt-6 inline-block font-generalSansItalic text-companyBlue">.</span>
             </h1>
             <div className="pt-16 md:pt-24 max-w-4xl text-left">

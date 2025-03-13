@@ -104,7 +104,7 @@ export default function InfiniteScroller() {
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
   return (
-    <div className="relative flex w-full p-4 ">
+    <div className="relative flex w-full p-4 justify-center ">
       {/* Full-Screen Overlay (Only Active When Hovering) */}
       <AnimatePresence>
         {hoveredIndex !== null && (
@@ -120,9 +120,9 @@ export default function InfiniteScroller() {
               animate={{ y: 0 }}
               exit={{ y: 20 }}
             >
-              <h2 className="text-3xl font-bold">{data[hoveredIndex].name}</h2>
-              <p className="text-lg">{data[hoveredIndex].position}</p>
-              <p className="font-generalSansMedium text-xl mt-4">{data[hoveredIndex].desc}</p>
+              <h2 className="text-3xl z-50 font-bold">{data[hoveredIndex].name}</h2>
+              <p className="text-lg z-50">{data[hoveredIndex].position}</p>
+              <p className="font-generalSansMedium z-50 text-xl mt-4">{data[hoveredIndex].desc}</p>
             </motion.div>
           </motion.div>
         )}
@@ -144,7 +144,7 @@ export default function InfiniteScroller() {
                 hoveredIndex === index ? "border-4 border-white opacity-50 shadow-xl z-50" : ""
               }`}
             />
-            <h2 className="text-gray-700 m-2 mb-0">{item.name}</h2>
+            <h2 className="text-gray-700 font-generalSansSemibold m-2 mb-0">{item.name}</h2>
             <h2 className="text-gray-700 m-2 mt-0">{item.position}</h2>
           </div>
         ))}

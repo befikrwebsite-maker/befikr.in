@@ -38,11 +38,11 @@ export default function Impact() {
             <img
                         src={impact.image}
                         alt={impact.title}
-                        className="absolute right-0 h-full object-cover opacity-50"
+                        className="hidden md:block absolute right-0 h-full object-cover opacity-50"
             />
 
             {/* Text on Left */}
-            <div className="w-2/3 flex flex-col justify-center text-lg text-black p-4">
+            <div className=" flex flex-col justify-center text-lg text-black p-4">
               <h3 className="text-xl font-bold">{impact.title}</h3>
               <p className="text-sm mt-2">{impact.desc}</p>
             </div>
