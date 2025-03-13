@@ -44,7 +44,7 @@ export default function UnderDevelopment() {
     form.append("message", formData.message);
 
     try {
-      const response = await fetch("http://localhost/Befikr/postalService.php", {
+      const response = await fetch("postalService.php", {
         method: "POST",
         body: form,
       });
@@ -69,8 +69,47 @@ export default function UnderDevelopment() {
         <title>Befikr - Coming Soon</title>
       </Head>
       <Navbar />
-      <div className="flex-auto m-4">
-        <form className="max-w-md mx-auto" onSubmit={handleSubmit}>
+
+
+
+
+
+
+      <div className="flex flex-col justify-start min-h-screen font-generalSansRegular text-[#009DC8]">
+        <div className="bg-[#009DC8] h-full">
+          <div className="bg-[#f5f5f5] p-6 ">
+            <div>
+              <p className="text-lg md:text-xl pt-6 text-black  inline-block">
+                <b className="font-generalSansSemibold">Contact Us</b>
+              </p>
+              <p className="text-lg md:text-xl ">+91 92201 95506</p>
+              <p className="text-lg md:text-xl ">
+                <a
+                  href="https://mail.google.com/mail/?view=cm&fs=1&to=bebefikr@befikr.in"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  bebefikr@befikr.in
+                </a>
+              </p>
+              <br />
+              <p className="text-black text-lg"><b className="font-generalSansSemibold">Address</b></p>
+              <p className="">Befikr Office,</p>
+              <p className="">Second Floor, 384/2, Plot, No.-1, 100 Feet Rd, opp. Union Bank,</p>
+              <p className=""> Ghitorni, New Delhi,</p>
+              <p className=""> Delhi</p>
+              <p className="">110030 </p>
+              <div className="pt-7 pb-7">
+                <div className="h-[200px] sm:h-[380px]">
+                  <MapComponent className=" w-96" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="flex-auto bg-[#f5f5f5] p-4">
+        <form className="max-w-md pl-12" onSubmit={handleSubmit}>
           <div className="relative z-0 w-full mb-5 group">
             <input
               type="text"
@@ -212,44 +251,6 @@ export default function UnderDevelopment() {
           </button>
         </form>
         {/* {status && <p className="text-center mt-4 text-red-600">{status}</p>} */}
-      </div>
-
-
-
-
-
-      <div className="flex flex-col justify-start min-h-screen font-generalSansRegular text-[#009DC8]">
-        <div className="bg-[#009DC8] h-full">
-          <div className="bg-[#f5f5f5] p-6 ">
-            <div>
-              <p className="text-lg md:text-xl pt-6 text-black  inline-block">
-                <b className="font-generalSansSemibold">Contact Us</b>
-              </p>
-              <p className="text-lg md:text-xl ">+91 92201 95506</p>
-              <p className="text-lg md:text-xl ">
-                <a
-                  href="https://mail.google.com/mail/?view=cm&fs=1&to=bebefikr@befikr.in"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  bebefikr@befikr.in
-                </a>
-              </p>
-              <br />
-              <p className="text-black text-lg"><b className="font-generalSansSemibold">Address</b></p>
-              <p className="">Befikr Office,</p>
-              <p className="">Second Floor, 384/2, Plot, No.-1, 100 Feet Rd, opp. Union Bank,</p>
-              <p className=""> Ghitorni, New Delhi,</p>
-              <p className=""> Delhi</p>
-              <p className="">110030 </p>
-              <div className="pt-7 pb-7">
-                <div className="h-[200px] sm:h-[380px]">
-                  <MapComponent className=" w-96" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
       <Footer />
     </>

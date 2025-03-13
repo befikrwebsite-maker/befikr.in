@@ -15,7 +15,7 @@ export default function MediaCoverage() {
     ];
 
     return (
-        <div className="bg-[#f5f5f5] pt-10 pb-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 justify-items-center gap-6">
+        <div className="bg-[#f5f5f5] pt-10 p-10 pb-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 justify-items-center gap-6">
             {links.map(([url, title, logo], index) => (
                 <a 
                     key={index} 
