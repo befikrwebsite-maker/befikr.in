@@ -15,28 +15,69 @@ export default function Page() {
       position: "Electrical Safety Auditor",
       team: "Electrical and Energy Audits",
       location: ["Gujarat", "Delhi NCR", "Rajasthan"],
-      desc: "The ES Auditor is responsible for conducting audits of banks, petrol pumps, and other facilities as per predefined plans. They will assess electrical and energy systems, identify inefficiencies or risks, and document their observations in a detailed report for the client/company. The role requires ensuring compliance with safety and efficiency standards while providing actionable recommendations for improvements.", 
-      tags: ["electrical", "safety", "auditor", "energy", "audits", "audit", "gujarat", "delhi", "ncr", "rajasthan"],
+      desc: "The ES Auditor is responsible for conducting audits of banks, petrol pumps, and other facilities as per predefined plans. They will assess electrical and energy systems, identify inefficiencies or risks, and document their observations in a detailed report for the client/company. The role requires ensuring compliance with safety and efficiency standards while providing actionable recommendations for improvements.",
+      tags: [
+        "electrical",
+        "safety",
+        "auditor",
+        "energy",
+        "audits",
+        "audit",
+        "gujarat",
+        "delhi",
+        "ncr",
+        "rajasthan",
+      ],
       pay: "₹18,000.00 - ₹28,000.00 per month",
       jobtype: "fulltime",
-      responsibilities: ["Visit Commercial Buildings, Offices, Bank Branches/Offices/ATMs, Petrol Pumps to study and verify the installation across various cities in different states of India","To conduct comprehensive Electrical Safety Audit of the complete Electrical installation of Commercial Buildings, Offices, Bank Branches/Offices/ATMs, Petrol Pumps","Suggest Corrective measures necessary towards Electrical safety and providing budgetary estimate for rectification works required","Provide comprehensive report consisting of Observations on account of electrical and fire safety. Report must highlight critical areas/concerns which need immediate attention/ rectification as per given Audit Format."],
-      skills: ["Education: B. Tech / B.E. (Electrical) / Diploma (Electrical)","Experience: Minimum 2 years / 3 years for Diploma","Must Be Familiar With Basic Electrical Tools Like- Multimeter, IR Tester And Earth Tester","Must Be Familiar With Electrical Equipment Like- Diesel Generator, ServoStabilizer, UPS.","Should Have Working Experience In 440 Volts Supply Lines.","Must Be Aware About Commercial Building Electrical Installations.","Must Be Skilled In Electrical Fault Identification And Rectification."],
+      responsibilities: [
+        "Visit Commercial Buildings, Offices, Bank Branches/Offices/ATMs, Petrol Pumps to study and verify the installation across various cities in different states of India",
+        "To conduct comprehensive Electrical Safety Audit of the complete Electrical installation of Commercial Buildings, Offices, Bank Branches/Offices/ATMs, Petrol Pumps",
+        "Suggest Corrective measures necessary towards Electrical safety and providing budgetary estimate for rectification works required",
+        "Provide comprehensive report consisting of Observations on account of electrical and fire safety. Report must highlight critical areas/concerns which need immediate attention/ rectification as per given Audit Format.",
+      ],
+      skills: [
+        "Education: B. Tech / B.E. (Electrical) / Diploma (Electrical)",
+        "Experience: Minimum 2 years / 3 years for Diploma",
+        "Must Be Familiar With Basic Electrical Tools Like- Multimeter, IR Tester And Earth Tester",
+        "Must Be Familiar With Electrical Equipment Like- Diesel Generator, ServoStabilizer, UPS.",
+        "Should Have Working Experience In 440 Volts Supply Lines.",
+        "Must Be Aware About Commercial Building Electrical Installations.",
+        "Must Be Skilled In Electrical Fault Identification And Rectification.",
+      ],
       benefits: ["Health insurance"],
       schedule: ["Day shift"],
       supplemental_pay: ["Performance bonus"],
-      questions: ["Are you available for immediate joining? (Preferable)","Are you having an Electrical Engineering Degree (B.E. / B. Tech) or Diploma in Electrical Engineering?"],
+      questions: [
+        "Are you available for immediate joining? (Preferable)",
+        "Are you having an Electrical Engineering Degree (B.E. / B. Tech) or Diploma in Electrical Engineering?",
+      ],
       experience: ["Electrical engineering: 2 years (Required)"],
       travel: ["75% (Required)"],
       work_location: "In person",
-      expected_start_date: "18/01/2025"
+      expected_start_date: "18/01/2025",
     },
     {
       id: 2,
       position: "Defective Product Auditor",
       team: "Circular Economy Services",
       location: ["Gurgaon", "North Delhi", "Faridabad", "Nashik"],
-      desc: "The Auditor will visit dealer partners as per the predefined schedule and inspect all products, including defective bulbs, following the Standard Operating Procedure (SOP) to ensure quality compliance.", 
-      tags: ["defective", "product", "auditor", "economy", "services", "circular", "audit", "service", "gurgaon", "delhi", "faridabad", "nashik", "ncr"],
+      desc: "The Auditor will visit dealer partners as per the predefined schedule and inspect all products, including defective bulbs, following the Standard Operating Procedure (SOP) to ensure quality compliance.",
+      tags: [
+        "defective",
+        "product",
+        "auditor",
+        "economy",
+        "services",
+        "circular",
+        "audit",
+        "service",
+        "gurgaon",
+        "delhi",
+        "faridabad",
+        "nashik",
+        "ncr",
+      ],
       pay: "",
       jobtype: "fulltime",
       responsibilities: [],
@@ -48,7 +89,7 @@ export default function Page() {
       experience: [],
       travel: [],
       work_location: "",
-      expected_start_date: ""
+      expected_start_date: "",
     },
     {
       id: 3,
@@ -56,7 +97,15 @@ export default function Page() {
       team: "Circular Economy Services",
       location: ["Sonipat"],
       desc: "The Defective Lamp Supervisor is responsible for planning auditor schedules, coordinating with auditors and logistics teams, and ensuring smooth execution of inspection processes.",
-      tags: ["area", "supervisor", "economy", "services", "circular", "service", "sonipat"],
+      tags: [
+        "area",
+        "supervisor",
+        "economy",
+        "services",
+        "circular",
+        "service",
+        "sonipat",
+      ],
       pay: "",
       jobtype: "fulltime",
       responsibilities: [],
@@ -68,7 +117,7 @@ export default function Page() {
       experience: [],
       travel: [],
       work_location: "",
-      expected_start_date: ""
+      expected_start_date: "",
     },
     {
       id: 4,
@@ -88,7 +137,7 @@ export default function Page() {
       experience: [],
       travel: [],
       work_location: "",
-      expected_start_date: ""
+      expected_start_date: "",
     },
     {
       id: 5,
@@ -96,7 +145,15 @@ export default function Page() {
       team: "Master Service Partnerships",
       location: ["Noida"],
       desc: "The Technician will visit customers&#39; homes for appliance installation and demonstration. Additionally, they can promote and sell compatible stands to enhance the customer’s setup and experience.",
-      tags: ["master", "service", "partnerships", "spartnership", "technician", "services", "noida"],
+      tags: [
+        "master",
+        "service",
+        "partnerships",
+        "spartnership",
+        "technician",
+        "services",
+        "noida",
+      ],
       pay: "",
       jobtype: "fulltime",
       responsibilities: [],
@@ -108,7 +165,7 @@ export default function Page() {
       experience: [],
       travel: [],
       work_location: "",
-      expected_start_date: ""
+      expected_start_date: "",
     },
     {
       id: 6,
@@ -116,7 +173,17 @@ export default function Page() {
       team: "Electrical and Energy Audits",
       location: ["Delhi NCR"],
       desc: "We are looking for an Operations Manager with expertise in Electrical Safety and Energy Audits to oversee nationwide audits across retail, commercial, and industrial sites. The role involves managing a team of 15-20 engineers, ensuring compliance with OISD standards, and driving post-audit interventions. Responsibilities include client visits, team training, and conducting surprise secondary audits.",
-      tags: ["electrical", "energy", "audit", "audits", "manager", "operations", "operation", "delhi", "ncr"],
+      tags: [
+        "electrical",
+        "energy",
+        "audit",
+        "audits",
+        "manager",
+        "operations",
+        "operation",
+        "delhi",
+        "ncr",
+      ],
       pay: "",
       jobtype: "fulltime",
       responsibilities: [],
@@ -128,8 +195,8 @@ export default function Page() {
       experience: [],
       travel: [],
       work_location: "",
-      expected_start_date: ""
-    }
+      expected_start_date: "",
+    },
   ];
 
   // show form ///////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -139,9 +206,11 @@ export default function Page() {
   // search filter ///////////////////////////////////////////////////////////////////////////////////////////////////////
   function searchFilter(query) {
     if (!query.length || query[0] === "") {
-      return cards
+      return cards;
     }
-    return cards.filter((em) => query.every(qe => em.tags.map(el => el.toLowerCase()).includes(qe)))
+    return cards.filter((em) =>
+      query.every((qe) => em.tags.map((el) => el.toLowerCase()).includes(qe))
+    );
   }
   // setting the user input from the search
   const [query, setQuery] = useState([""]);
@@ -149,10 +218,10 @@ export default function Page() {
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   // extracting unique teams positoins and locations /////////////////////////////////////////////////////////////////////
-  const uniqueTeams = [...new Set(cards.map(el => el.team))].sort();
-  const uniquePositions = [...new Set(cards.map(el => el.position))].sort();
-  const locations = new Set()
-  cards.map(el => el.location.map(em => locations.add(em)))
+  const uniqueTeams = [...new Set(cards.map((el) => el.team))].sort();
+  const uniquePositions = [...new Set(cards.map((el) => el.position))].sort();
+  const locations = new Set();
+  cards.map((el) => el.location.map((em) => locations.add(em)));
   const uniqueLocations = [...locations].sort();
 
   // State for selected filters
@@ -162,8 +231,10 @@ export default function Page() {
 
   const checkboxFilter = (job) =>
     (selectedTeams.length === 0 || selectedTeams.includes(job.team)) &&
-    (selectedPositions.length === 0 || selectedPositions.includes(job.position)) &&
-    (selectedLocations.length === 0 || job.location.some((loc) => selectedLocations.includes(loc)));
+    (selectedPositions.length === 0 ||
+      selectedPositions.includes(job.position)) &&
+    (selectedLocations.length === 0 ||
+      job.location.some((loc) => selectedLocations.includes(loc)));
 
   // Apply both filters
   const filteredJobs = filtered.filter((job) => checkboxFilter(job));
@@ -205,7 +276,6 @@ export default function Page() {
     };
   }, [selectedJob]);
 
-
   // Open modal & update URL manually
   const openJob = (job) => {
     window.history.pushState({}, "", `?jobId=${job.id}`);
@@ -226,15 +296,26 @@ export default function Page() {
       <Navbar />
       <div className="min-h-screen bg-[#f5f5f5] px-10 py-5 flex flex-col items-center">
         <div className="bg-white px-10 py-5 w-full max-w-7xl rounded-lg shadow-lg mt-8">
-          <div className="text-left text-xl py-5 text-[#038DAF] font-generalSansBold tracking-wider ">Job Openings</div>
+          <div className="text-left text-xl py-5 text-[#038DAF] font-generalSansBold tracking-wider ">
+            Job Openings
+          </div>
           <div className="w-full max-w-6xl">
             <div className="flex px-4 py-2 rounded-md bg-[#f5f5f5] overflow-hidden border-2 w-full font-[sans-serif] ">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192.904 192.904" width="20px"
-                className="fill-companyBlue mr-3 rotate-90 font-extrabold ">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 192.904 192.904"
+                width="20px"
+                className="fill-companyBlue mr-3 rotate-90 font-extrabold "
+              >
                 <path d="m190.707 180.101-47.078-47.077c11.702-14.072 18.752-32.142 18.752-51.831C162.381 36.423 125.959 0 81.191 0 36.422 0 0 36.423 0 81.193c0 44.767 36.422 81.187 81.191 81.187 19.688 0 37.759-7.049 51.831-18.751l47.079 47.078a7.474 7.474 0 0 0 5.303 2.197 7.498 7.498 0 0 0 5.303-12.803zM15 81.193C15 44.694 44.693 15 81.191 15c36.497 0 66.189 29.694 66.189 66.193 0 36.496-29.692 66.187-66.189 66.187C44.693 147.38 15 117.689 15 81.193z"></path>
               </svg>
-              <input type="text" placeholder="Search Keywords" className="w-full outline-none bg-transparent text-gray-600 text-sm "
-                onChange={(e) => { setQuery(e.target.value.toLowerCase().split(" ")); }}
+              <input
+                type="text"
+                placeholder="Search Keywords"
+                className="w-full outline-none bg-transparent text-gray-600 text-sm "
+                onChange={(e) => {
+                  setQuery(e.target.value.toLowerCase().split(" "));
+                }}
               />
             </div>
           </div>
@@ -253,15 +334,18 @@ export default function Page() {
               options={uniquePositions}
               selected={selectedPositions}
               setSelected={setSelectedPositions}
-              getFilterCount={(position) => getFilterCount("position", position)}
+              getFilterCount={(position) =>
+                getFilterCount("position", position)
+              }
             />
             <Dropdown
               label="Location"
               options={uniqueLocations}
               selected={selectedLocations}
               setSelected={setSelectedLocations}
-              getFilterCount={(location) => getFilterCount("location", location)}
-
+              getFilterCount={(location) =>
+                getFilterCount("location", location)
+              }
             />
           </div>
 
@@ -273,7 +357,6 @@ export default function Page() {
           </div>
         </div>
 
-
         <div className="py-10 px- grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 justify-items-center w-full max-w-7xl">
           {filteredJobs.map((items, index) => (
             <div
@@ -282,17 +365,27 @@ export default function Page() {
               className="w-full max-w-[450px] h-auto sm:h-[240px] md:h-[230px] lg:h-[220px] rounded-lg bg-white shadow-md p-4 sm:p-5 flex flex-col justify-between transition duration-300 border transform hover:border-companyBlue hover:shadow-2xl"
             >
               <div className="flex flex-col ">
-                <p className="text-gray-900 text-base sm:text-lg font-generalSansSemibold ">{items.position}</p>
-                <p className="text-gray-700 font-generalSansMedium text-sm sm:text-base ">{items.team}</p>
+                <p className="text-gray-900 text-base sm:text-lg font-generalSansSemibold ">
+                  {items.position}
+                </p>
+                <p className="text-gray-700 font-generalSansMedium text-sm sm:text-base ">
+                  {items.team}
+                </p>
                 <div className="flex flex-wrap gap-1 text-gray-700 text-xs sm:text-sm mt-2">
-                  {Array.isArray(items.location) ? items.location.map((loc, i) => (
-                    <span key={i} className="bg-white-200  py-1 rounded-md">{loc} | </span>
-                  )) : null}
+                  {Array.isArray(items.location)
+                    ? items.location.map((loc, i) => (
+                        <span key={i} className="bg-white-200  py-1 rounded-md">
+                          {loc} |{" "}
+                        </span>
+                      ))
+                    : null}
                 </div>
                 <div className="flex gap-2 mt-2">
                   {/* <button className="bg-sky-100 text-companyBlue font-generalSansRegular px-2 py-1 rounded-md text-xs sm:text-sm cursor-default">{items.pay}</button> */}
                   {/* <button className="bg-sky-100 text-companyBlue font-generalSansRegular px-2 py-1 rounded-md text-xs sm:text-sm cursor-default">{items.pay}</button> */}
-                  <button className="bg-sky-100 text-companyBlue font-generalSansRegular px-2 py-1 rounded-md text-xs sm:text-sm cursor-default">{items.jobtype}</button>
+                  <button className="bg-sky-100 text-companyBlue font-generalSansRegular px-2 py-1 rounded-md text-xs sm:text-sm cursor-default">
+                    {items.jobtype}
+                  </button>
                 </div>
               </div>
               <div className="flex ">
@@ -313,7 +406,6 @@ export default function Page() {
           ))}
         </div>
 
-
         {/* Full-Screen Animated Modal */}
         <AnimatePresence>
           {selectedJob && (
@@ -324,7 +416,7 @@ export default function Page() {
               exit={{ opacity: 0 }}
             >
               <motion.div
-                className="bg-white w-full h-full  md:w-3/4 md:h-3/4 rounded-lg shadow-lg p-8 relative flex flex-col overflow-auto"
+                className="bg-white w-full h-full md:w-3/4 md:h-4/5 rounded-xl shadow-2xl p-8 relative flex flex-col overflow-y-auto"
                 initial={{ y: "100%" }}
                 animate={{ y: 0 }}
                 exit={{ y: "100%" }}
@@ -333,34 +425,190 @@ export default function Page() {
                 {/* Close Button */}
                 <button
                   onClick={closeJob}
-                  className="absolute top-2 right-2 bg-red-500 text-white px-4 py-2 rounded-tr-lg"
+                  className="absolute top-4 right-4 bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition duration-300"
                 >
                   ✖
                 </button>
 
-                {/* <p className=" text-gray-800">Field: {selectedJob.tags}</p> */}
-                {/* <p className=" text-gray-800">Job ID: {selectedJob.id}</p> */}
-                {/* <p className="mt-4 text-gray-800">{selectedJob.desc}</p> */}
-                <h2 className="text-3xl font-bold">{selectedJob.position}</h2>
-                <p className="text-gray-600 text-lg">{selectedJob.team}</p>
-                <p className="mt-4 text-gray-800">Location:- </p>
-                {
-                  selectedJob.location.map((item, index) => (
-                    <p key={index} className="mt-4 text-gray-800"> • {item}</p>
-                  ))
-                }
+                {/* Header */}
+                <div className="mb-6 border-b border-gray-300 pb-4">
+                  <h2 className="text-3xl font-[780] text-companyBlue uppercase">
+                    {selectedJob.position}
+                  </h2>
+                  <p className="text-gray-600 text-xl">{selectedJob.team}</p>
+                </div>
 
-                {/* <p className=" text-gray-800">Field: {selectedJob.tags}</p> */}
-                {/* <p className=" text-gray-800">Job ID: {selectedJob.id}</p> */}
-                {/* <p className="mt-4 text-gray-800">{selectedJob.desc}</p> */}
+                {/* Grid Layout */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* Left Section */}
+                  <div>
+                    <div className="mb-6">
+                      <p className="text-cyan-400 font-bold">Job Type:</p>
+                      <p className="text-gray-800">
+                        {selectedJob.jobtype || "Not specified"}
+                      </p>
+                    </div>
+                    <div className="mb-6">
+                      <p className="text-cyan-400 font-bold">Pay:</p>
+                      <p className="text-gray-800">
+                        {selectedJob.pay || "Not specified"}
+                      </p>
+                    </div>
+                    <div className="mb-6">
+                      <p className="text-cyan-400 font-bold">
+                        Expected Start Date:
+                      </p>
+                      <p className="text-gray-800">
+                        {selectedJob.expected_start_date || "Not specified"}
+                      </p>
+                    </div>
+                  </div>
 
-                {/* apply with email integration */}
-                {formVisible && <Form onClose={() => setFormVisible(false)} />}
+                  {/* Right Section */}
+                  <div>
+                    <div className="mb-6">
+                      <p className="text-cyan-400 font-bold">Location:</p>
+                      {selectedJob.location.map((item, index) => (
+                        <p key={index} className="text-gray-800">
+                          • {item}
+                        </p>
+                      ))}
+                    </div>
+                    {selectedJob.work_location && (
+                      <div className="mb-6">
+                        <p className="text-cyan-400 font-bold">
+                          Work Location:
+                        </p>
+                        <p className="text-gray-800">
+                          {selectedJob.work_location}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                </div>
 
+                {/* Description */}
+                <div className="mt-8 border-t border-gray-300 pt-6">
+                  <h3 className="text-xl font-semibold text-companyBlue uppercase">
+                    Job Description
+                  </h3>
+                  <p className="text-gray-700 mt-2 leading-relaxed">
+                    {selectedJob.desc}
+                  </p>
+                </div>
+
+                {/* Responsibilities */}
+                {selectedJob.responsibilities.length > 0 && (
+                  <div className="mt-8 border-t border-gray-300 pt-6">
+                    <h3 className="text-xl font-semibold text-companyBlue uppercase">
+                      Responsibilities
+                    </h3>
+                    <ul className="list-disc list-inside mt-2 space-y-1 text-gray-700">
+                      {selectedJob.responsibilities.map((item, index) => (
+                        <li key={index}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {/* Skills */}
+                {selectedJob.skills.length > 0 && (
+                  <div className="mt-8 border-t border-gray-300 pt-6">
+                    <h3 className="text-xl font-semibold text-companyBlue uppercase">
+                      Skills
+                    </h3>
+                    <ul className="flex flex-wrap gap-2 mt-2">
+                      {selectedJob.skills.map((skill, index) => (
+                        <li
+                          key={index}
+                          className="bg-gray-200 text-gray-700 px-3 py-1 rounded-md text-sm"
+                        >
+                          {skill}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {/* Benefits */}
+                {selectedJob.benefits.length > 0 && (
+                  <div className="mt-8 border-t border-gray-300 pt-6">
+                    <h3 className="text-xl font-semibold text-companyBlue uppercase">
+                      Benefits
+                    </h3>
+                    <ul className="list-disc list-inside mt-2 space-y-1 text-gray-700">
+                      {selectedJob.benefits.map((item, index) => (
+                        <li key={index}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {/* Schedule */}
+                {selectedJob.schedule.length > 0 && (
+                  <div className="mt-8 border-t border-gray-300 pt-6">
+                    <h3 className="text-xl font-semibold text-companyBlue uppercase">
+                      Schedule
+                    </h3>
+                    <ul className="list-disc list-inside mt-2 space-y-1 text-gray-700">
+                      {selectedJob.schedule.map((item, index) => (
+                        <li key={index}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {/* Experience */}
+                {selectedJob.experience.length > 0 && (
+                  <div className="mt-8 border-t border-gray-300 pt-6">
+                    <h3 className="text-xl font-semibold text-companyBlue uppercase">
+                      Experience
+                    </h3>
+                    <ul className="list-disc list-inside mt-2 space-y-1 text-gray-700">
+                      {selectedJob.experience.map((item, index) => (
+                        <li key={index}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {/* Supplemental Pay */}
+                {selectedJob.supplemental_pay.length > 0 && (
+                  <div className="mt-8 border-t border-gray-300 pt-6">
+                    <h3 className="text-xl font-semibold text-companyBlue uppercase">
+                      Supplemental Pay
+                    </h3>
+                    <ul className="list-disc list-inside mt-2 space-y-1 text-gray-700">
+                      {selectedJob.supplemental_pay.map((item, index) => (
+                        <li key={index}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {/* Questions */}
+                {selectedJob.questions.length > 0 && (
+                  <div className="mt-8 border-t border-gray-300 pt-6">
+                    <h3 className="text-xl font-semibold text-companyBlue uppercase">
+                      Questions
+                    </h3>
+                    <ul className="list-disc list-inside mt-2 space-y-1 text-gray-700">
+                      {selectedJob.questions.map((item, index) => (
+                        <li key={index}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
 
                 {/* Apply Button */}
                 <div className="mt-auto">
-                  <button onClick={() => setFormVisible(true)} className="mt-6 bg-companyBlue text-white px-6 py-3 rounded-lg w-full">
+                  {formVisible && (
+                    <Form onClose={() => setFormVisible(false)} />
+                  )}
+                  <button
+                    onClick={() => setFormVisible(true)}
+                    className="mt-8 bg-companyBlue text-white px-6 py-3 rounded-lg w-full hover:bg-blue-700 transition duration-300"
+                  >
                     Apply Now
                   </button>
                 </div>
@@ -368,13 +616,11 @@ export default function Page() {
             </motion.div>
           )}
         </AnimatePresence>
-
       </div>
       <Footer />
     </>
   );
-};
-
+}
 
 // Dropdown Component using Headless UI
 function Dropdown({ label, options, selected, setSelected, getFilterCount }) {
@@ -405,7 +651,9 @@ function Dropdown({ label, options, selected, setSelected, getFilterCount }) {
                     />
                     {option}
                     <div className="">
-                      <span className="text-gray-500 px-2">({getFilterCount(option)})</span>
+                      <span className="text-gray-500 px-2">
+                        ({getFilterCount(option)})
+                      </span>
                     </div>
                   </label>
                 )}
