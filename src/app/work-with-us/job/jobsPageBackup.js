@@ -296,7 +296,7 @@ export default function Page() {
       <Navbar />
       <div className="min-h-screen bg-[#f5f5f5] px-10 py-5 flex flex-col items-center">
         <div className="bg-white px-10 py-5 w-full max-w-7xl rounded-lg shadow-lg mt-8">
-          <div className="text-left text-xl py-5 text-[#038DAF] font-generalSansSemibold">
+          <div className="text-left text-xl py-5 text-[#038DAF] font-generalSansBold tracking-wider ">
             Job Openings
           </div>
           <div className="w-full max-w-6xl">
@@ -374,10 +374,10 @@ export default function Page() {
                 <div className="flex flex-wrap gap-1 text-gray-700 text-xs sm:text-sm mt-2">
                   {Array.isArray(items.location)
                     ? items.location.map((loc, i) => (
-                      <span key={i} className="bg-white-200  py-1 rounded-md">
-                        {loc} |{" "}
-                      </span>
-                    ))
+                        <span key={i} className="bg-white-200  py-1 rounded-md">
+                          {loc} |{" "}
+                        </span>
+                      ))
                     : null}
                 </div>
                 <div className="flex gap-2 mt-2">
@@ -396,12 +396,7 @@ export default function Page() {
                   More Details
                 </button>
                 <button
-                  onClick={() => {
-                    setFormVisible(true);
-                    setTimeout(() => {
-                      document.getElementById("apply")?.scrollIntoView({ behavior: "smooth" });
-                    }, 100);
-                  }}
+                  onClick={() => setFormVisible(true)}
                   className="text-white font-generalSansSemibold tracking-wide  text-l bg-companyBlue px-3 py-2 sm:px-4 sm:py-2 rounded-md mt-2 sm:mt-3 hover:bg-cyan-50 hover:text-companyBlue hover:shadow-lg transition duration-300"
                 >
                   Apply Now
@@ -428,15 +423,12 @@ export default function Page() {
                 transition={{ type: "spring", stiffness: 120 }}
               >
                 {/* Close Button */}
-                <div className="relative">
-                  <button
-                    onClick={closeJob}
-                    className="sticky top-0 right-0 bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition duration-300"
-                  >
-                    ✖
-                  </button>
-                </div>
-
+                <button
+                  onClick={closeJob}
+                  className="absolute top-4 right-4 bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition duration-300"
+                >
+                  ✖
+                </button>
 
                 {/* Header */}
                 <div className="mb-6 border-b border-gray-300 pb-4">
@@ -609,8 +601,16 @@ export default function Page() {
                 )}
 
                 {/* Apply Button */}
-                <div id="apply" className="mt-auto">
-                  <Form></Form>
+                <div className="mt-auto">
+                  {formVisible && (
+                    <Form onClose={() => setFormVisible(false)} />
+                  )}
+                  <button
+                    onClick={() => setFormVisible(true)}
+                    className="mt-8 bg-companyBlue text-white px-6 py-3 rounded-lg w-full hover:bg-blue-700 transition duration-300"
+                  >
+                    Apply Now
+                  </button>
                 </div>
               </motion.div>
             </motion.div>

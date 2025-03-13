@@ -56,7 +56,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     //SMTP::DEBUG_OFF = off (for production use)
     //SMTP::DEBUG_CLIENT = client messages
     //SMTP::DEBUG_SERVER = client and server messages
-    $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+    $mail->SMTPDebug = SMTP::DEBUG_OFF;
 
     $mail->SMTPDebug = 0; // Disable debugging
     $mail->Debugoutput = function ($str, $level) {}; // Prevent debug output from interfering
@@ -90,26 +90,43 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     //Note that with gmail you can only use your account address (same as `Username`)
     //or predefined aliases that you have configured within your account.
     //Do not use user-submitted addresses in here
-    $mail->setFrom('divyamsharma511@gmail.com', 'First Last');
+    $mail->setFrom('divyamsharma511@gmail.com', 'Applicant');
 
     //Set an alternative reply-to address
     //This is a good place to put user-submitted addresses
     //$mail->addReplyTo('replyto@example.com', 'First Last');
 
     //Set who the message is to be sent to
-    $mail->addAddress('animeshsrivastava2003@gmail.com', 'John Doe');
+    $mail->addAddress('bebefikr@befikr.in', 'Befikr');
 
     //Set the subject line
-    $mail->Subject = 'PHPMailer GMail SMTP test';
+    $mail->Subject = 'Job Application';
 
     //Read an HTML message body from an external file, convert referenced images to embedded,
     //convert HTML into a basic plain-text alternative body
     //$mail->msgHTML(file_get_contents('contents.html'), __DIR__);
     
-    $mail->isHTML(false);
+    $mail->isHTML(true);
     
     //Replace the plain text body with one created manually
-    $mail->Body = "This is a plain-text message body from $name with email $email with the message $message";
+    $mail->Body ="
+    Dear Hiring Manager,<br><br>
+    
+    I hope you are doing well.<br><br>
+    
+    My name is <strong>$name</strong>, and I am reaching out regarding my application for the <strong>[Job Title]</strong> position at <strong>[Company Name]</strong>.<br><br>
+    
+    Below is my message:<br><br>
+    
+    $message<br><br>
+    
+    Please let me know if any additional information is required. I look forward to your response.<br><br>
+    
+    Best regards,<br>
+    <strong>$name</strong><br>
+    Email: <strong>$email</strong>
+    ";
+    
 
     //Attach an pdf file
     $mail->addAttachment($filePath, $resume["name"]);
