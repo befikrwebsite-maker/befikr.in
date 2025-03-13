@@ -24,7 +24,7 @@ export default function UnderDevelopment() {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    console.log(status)
+    //console.log(status)
   };
 
 
@@ -38,13 +38,13 @@ export default function UnderDevelopment() {
     form.append("name", formData.name);
     form.append("email", formData.email);
     form.append("contact_number", formData.contact_number);
-    // form.append("designation", formData.designation);
-    // form.append("company", formData.company);
-    // form.append("city", formData.city);
+    form.append("designation", formData.designation);
+    form.append("company", formData.company);
+    form.append("city", formData.city);
     form.append("message", formData.message);
 
     try {
-      const response = await fetch("http://www.befikr.in/postal_service.php", {
+      const response = await fetch("http://localhost/Befikr/postalService.php", {
         method: "POST",
         body: form,
       });
@@ -56,6 +56,7 @@ export default function UnderDevelopment() {
         setFormData({ name: "", email: "", message: "" });
       }
     } catch (error) {
+      //console.log(error);
       setStatus("Error delivering postcard.");
     }
   }
@@ -68,123 +69,152 @@ export default function UnderDevelopment() {
         <title>Befikr - Coming Soon</title>
       </Head>
       <Navbar />
-
-      <div className="flex py-5 justify-center ">
-        <div className="flex flex-row flex-wrap h-full w-4/6 bg-white shadow-xl  overflow-hidden border border-black">
-          <div className="w-full flex justify-center">
-            <p className="font-mono text-sm md:text-sm lg:text-2xl xl:text-2xl 2xl:text-2xl text-cyan-800 ">POSTCARD</p>
+      <div className="flex-auto m-4">
+        <form className="max-w-md mx-auto" onSubmit={handleSubmit}>
+          <div className="relative z-0 w-full mb-5 group">
+            <input
+              type="text"
+              name="name"
+              id="name"
+              className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-companyBlue appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              placeholder=" "
+              onChange={handleChange}
+              value={formData.name}
+              required
+            />
+            <label
+              htmlFor="name"
+              className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+            >
+              Name
+            </label>
           </div>
-          <div className="flex flex-grow">
-            <div className="flex basis-2/4 ">
-              <div className="flex-grow">
-                <textarea
-                  className="w-full text-grey-700 px-4 py-2 focus:outline-none bg-transparent resize-none scroll-smooth focus-within:bg-gray-200/35 font-serif text-sm md:text-sm lg:text-md xl:text-xl 2xl:text-xl"
-                  name="message"
-                  placeholder="Write your message to us..."
-                  type="text"
-                  rows={14}
-                  onChange={handleChange}
-                  value={formData.message}
-                  required
-                />
-                <form className="justify-self-end px-3 py-2  " onSubmit={handleSubmit} >
-                  <button className="bg-blue-400 text-gray-200 rounded-full w-16 text-sm md:w-24 md:text-md lg:w-24 lg:text-md ">POST</button>
-                </form>
-                {status && <p className="text-center mt-4 text-red-600">{status}</p>}
-              </div>
-            </div>
-            <div className="h-full w-[1px] bg-black m-2"></div>
-            <div className="flex basis-2/4  ">
-              <div className=" flex-grow grid grid-cols-1 gap-4 m-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-3 ">
-                <div className="col-span-1 row-span-8 justify-items-end content-start px-5 md:col-span-2 lg:col-span-2 xl:col-span-2 2xl:col-span-3">
-                  {/* <button disabled className=" bg-transparent border-2 border-dashed border-gray-400 rounded-full w-20 h-20 "></button> */}
 
-                  <div className="flex justify-center items-center bg-transparent border-dashed border border-black  ">
-                    <img
-                      src="/logo_stamp.png"
-                      className="w-40"
-                      alt="Company Logo"
-                    />
-                  </div>
-                </div>
-
-                <div className="">
-                  <input
-                    className="w-full h-auto  text-grey-700 border-b-[0.2vw] font-serif text-sm md:text-sm lg:text-md xl:text-lg 2xl:text-xl border-sky-300 focus-within:bg-gray-200/35 autofill:bg-transparent focus:outline-none bg-transparent"
-                    name="name"
-                    placeholder="Name"
-                    type="text"
-                    onChange={handleChange}
-                    value={formData.name}
-                    required
-                  />
-                </div>
-
-                <div className="">
-                  <input
-                    className="w-full h-auto text-grey-700 border-b-[0.2vw] font-serif text-sm md:text-sm lg:text-md xl:text-lg 2xl:text-xl border-sky-300  focus-within:bg-gray-200/35 focus:outline-none bg-transparent"
-                    name="email"
-                    placeholder="Email"
-                    type="email"
-                    onChange={handleChange}
-                    value={formData.email}
-                    required
-                  />
-                </div>
-
-                <div className=" ">
-                  <input
-                    className="w-full h-auto text-grey-700 border-b-[0.2vw] font-serif text-sm md:text-sm lg:text-md xl:text-lg 2xl:text-xl border-sky-300 focus-within:bg-gray-200/35 focus:outline-none bg-transparent  "
-                    name="contact_number"
-                    placeholder="Contact Number"
-                    type="tel"
-                    pattern="[0-9]{10}"
-                    onChange={handleChange}
-                    value={formData.contact_number}
-                    required
-                  />
-                </div>
-
-                <div className="">
-                  <input
-                    className="w-full h-auto  text-grey-700 border-b-[0.2vw] font-serif text-sm md:text-sm lg:text-md xl:text-lg 2xl:text-xl border-sky-300 focus-within:bg-gray-200/35 focus:outline-none bg-transparent"
-                    name="designation"
-                    placeholder="Designation"
-                    type="text"
-                    onChange={handleChange}
-                    value={formData.designation}
-                    required
-                  />
-                </div>
-
-                <div className="">
-                  <input
-                    className="w-full h-auto  text-grey-700 border-b-[0.2vw] font-serif text-sm md:text-sm lg:text-md xl:text-lg 2xl:text-xl border-sky-300 focus-within:bg-gray-200/35 focus:outline-none bg-transparent"
-                    name="company"
-                    placeholder="Comapany"
-                    type="text"
-                    onChange={handleChange}
-                    value={formData.company}
-                    required
-                  />
-                </div>
-
-                <div className="">
-                  <input
-                    className=" w-full h-auto  text-grey-700 border-b-[0.2vw] font-serif text-sm md:text-sm lg:text-md xl:text-lg 2xl:text-xl border-sky-300  focus-within:bg-gray-200/35 focus:outline-none bg-transparent"
-                    name="city"
-                    placeholder="City"
-                    type="text"
-                    onChange={handleChange}
-                    value={formData.city}
-                    required
-                  />
-                </div>
-              </div>
-            </div>
+          <div className="relative z-0 w-full mb-5 group">
+            <input
+              type="email"
+              name="email"
+              id="email"
+              className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-companyBlue appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              placeholder=" "
+              onChange={handleChange}
+              value={formData.email}
+              required
+            />
+            <label
+              htmlFor="email"
+              className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+            >
+              Email Address
+            </label>
           </div>
-        </div>
+
+          <div className="relative z-0 w-full mb-5 group">
+            <input
+              type="tel"
+              name="contact_number"
+              id="contact_number"
+              pattern="[0-9]{10}"
+              className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-companyBlue appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              placeholder=" "
+              onChange={handleChange}
+              value={formData.contact_number}
+              required
+            />
+            <label
+              htmlFor="contact_number"
+              className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+            >
+              Contact Number
+            </label>
+          </div>
+
+          <div className="relative z-0 w-full mb-5 group">
+            <input
+              type="text"
+              name="designation"
+              id="designation"
+              className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-companyBlue appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              placeholder=" "
+              onChange={handleChange}
+              value={formData.designation}
+              required
+            />
+            <label
+              htmlFor="designation"
+              className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+            >
+              Designation
+            </label>
+          </div>
+          <div className="relative z-0 w-full mb-5 group">
+            <input
+              type="text"
+              name="company"
+              id="company"
+              className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-companyBlue appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              placeholder=" "
+              onChange={handleChange}
+              value={formData.company}
+              required
+            />
+            <label
+              htmlFor="company"
+              className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+            >
+              Company
+            </label>
+          </div>
+
+          <div className="relative z-0 w-full mb-5 group">
+            <input
+              type="text"
+              name="city"
+              id="city"
+              className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-companyBlue appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              placeholder=" "
+              onChange={handleChange}
+              value={formData.city}
+              required
+            />
+            <label
+              htmlFor="city"
+              className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+            >
+              City
+            </label>
+          </div>
+
+          <div className="relative z-0 w-full mb-5 group">
+            <textarea
+              name="message"
+              id="message"
+              rows="4"
+              className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-companyBlue appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer resize-none"
+              placeholder=" "
+              onChange={handleChange}
+              value={formData.message}
+              required
+            />
+            <label
+              htmlFor="message"
+              className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+            >
+              Message
+            </label>
+          </div>
+
+          <button
+            type="submit"
+            className="text-white bg-companyBlue hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          >
+            Submit
+          </button>
+        </form>
+        {/* {status && <p className="text-center mt-4 text-red-600">{status}</p>} */}
       </div>
+
+
 
 
 
