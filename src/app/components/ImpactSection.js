@@ -32,18 +32,19 @@ export default function Impact() {
         {impacts.map((impact, index) => (
           <div
             key={index}
-            className={`flex items-center bg-gray-200 p-6 rounded-lg shadow-lg transition-all duration-300`}
+            className={`flex items-center p-6 rounded-lg shadow-lg transition-all duration-300 bg-white relative border hover:shadow-xl`}
             
           >
-            {/* Image on Right */}
-            <div className="w-1/3 flex items-center justify-center">
-              <img src={impact.image} alt="Impact" className="w-full h-auto object-contain rounded-lg" />
-            </div>
+            <img
+                        src={impact.image}
+                        alt={impact.title}
+                        className="absolute right-0 h-full object-cover opacity-50"
+            />
 
             {/* Text on Left */}
             <div className="w-2/3 flex flex-col justify-center text-lg text-black p-4">
               <h3 className="text-xl font-bold">{impact.title}</h3>
-              <p className="text-sm text-gray-700 mt-2">{impact.desc}</p>
+              <p className="text-sm mt-2">{impact.desc}</p>
             </div>
           </div>
         ))}

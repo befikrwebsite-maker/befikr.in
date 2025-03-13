@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import {motion, AnimatePresence, hover} from "framer-motion";
 
 const data = [
   {
@@ -12,8 +13,8 @@ const data = [
   {
     id: 2,
     name: "Monika Singh",
-    text: "Consultant-CES",
-    position: "Consultant-CES",
+    text: "Consultant - CES",
+    position: "Consultant - CES",
     desc: "This is my first job at corporate office and I'm very glad that I become a part of Befikr family. Seniors are very helpful here also work environment is very good for females.",
     image: "../Testimonial/Img2.jpg"
   },
@@ -81,73 +82,73 @@ const data = [
     desc: " I'm proud to be part of the Befikr company that puts service at its heart. Every day, I get to work with a dedicated team that values excellence, genuine care, and constant innovation. It's inspiring to see how our commitment to quality service not only meets but exceeds our customers' expectations.",
     image: "../Testimonial/Img11.png"
   },
-  // { 
-  //   id: 12, 
-  //   name: "Muskaan Suhag",
-  //   text: "fourth item",
-  //   position: "Deputy General Manager - CES",
-  //   desc: "I've been working with befikr Opera Gratia since 8th April, and my experience so far has been amazing. The company culture is supportive and innovative, and I appreciate the opportunities provided for growth and development. Specifically, I've enjoyed working as electrical safety Coordinator. Overall, I'm happy to be a part of this team at befikr.",
-  //   image: "../Testimonial/Img12.png" 
-  // },
+  {
+    id: 12,
+    name: "Muskaan Suhag",
+    text: "fourth item",
+    position: "Jr. Consultant - ESA",
+    desc: " I've been working with befikr Opera Gratia since 8th April, and my experience so far has been amazing. The company culture is supportive and innovative, and I appreciate the opportunities provided for growth and development. Specifically, I&#39;ve enjoyed working as electrical safety Coordinator. Overall, I&#39;m happy to be a part of this team at befikr.",
+    image: "../Testimonial/Img12.png"
+  },
+  {
+    id: 13,
+    name: "Anjali Patel",
+    text: "fourth item",
+    position: "Jr. Consultant - ESA",
+    desc: "First of all, I’d like to appreciate to befikr who gave me this wonderful opportunity for professional growth and development. I’ve been working here for 1.5 years and I feel the same value nd support that was given to me on my first day. The communication from the corporate office is lear and on time, and I feel informed about company updates and initiatives.",
+    image: "../Testimonial/Img13.png"
+  },
 ];
 
 export default function InfiniteScroller() {
-  const [items, setItems] = useState([...data, ...data]); // Duplicate data for seamless looping
-  const containerRef = useRef(null);
-  const scrollInterval = useRef(null);
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
-  useEffect(() => {
-    if (hoveredIndex === null) {
-      scrollInterval.current = setInterval(() => {
-        if (containerRef.current) {
-          containerRef.current.scrollLeft += 3;
-          if (containerRef.current.scrollLeft >= containerRef.current.scrollWidth / 2) {
-            containerRef.current.scrollLeft = 0;
-          }
-        }
-      }, 30);
-    }
-    return () => clearInterval(scrollInterval.current);
-  }, [hoveredIndex]);
-
   return (
-    <div className="flex w-full p-4 justify-center ">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 justify-items-center items-center gap-4">
+    <div className="relative flex w-full p-4 ">
+      {/* Full-Screen Overlay (Only Active When Hovering) */}
+      <AnimatePresence>
+        {hoveredIndex !== null && (
+          <motion.div
+            className="fixed inset-0 bg-companyBlue bg-opacity-90 flex items-center justify-center z-40"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <motion.div
+              className="text-black text-center p-8 max-w-2xl"
+              initial={{ y: 20 }}
+              animate={{ y: 0 }}
+              exit={{ y: 20 }}
+            >
+              <h2 className="text-3xl font-bold">{data[hoveredIndex].name}</h2>
+              <p className="text-lg">{data[hoveredIndex].position}</p>
+              <p className="font-generalSansMedium text-xl mt-4">{data[hoveredIndex].desc}</p>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Grid Layout for Team Members */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-5 justify-items-center items-center gap-4">
         {data.map((item, index) => (
-          <div key={index} className="flex flex-wrap justify-center rounded-md  ">
-            <img src={item.image} className="block w-40 h-40 m-4 rounded-full" alt="image"></img>
-            <h2 className="text-gray-700 m-2">{item.position}</h2>
-          </div>
-        ))}
-      </div>
-
-
-      {/* <div ref={containerRef} className="flex overflow-hidden whitespace-nowrap w-full">
-        {items.map((item, index) => (
           <div
             key={index}
-            className={`flex flex-row flex-none mx-4 transition-all duration-300 rounded-lg shadow-lg bg-companyBlue p-4 max-w-[40rem] 
-                ${hoveredIndex !== null && hoveredIndex !== index ? "opacity-30 grayscale" : "opacity-100"}
-              ${hoveredIndex === index ? "scale-118" : "scale-95"}`}
+            className="flex flex-col items-center"
             onMouseEnter={() => setHoveredIndex(index)}
             onMouseLeave={() => setHoveredIndex(null)}
           >
-            <div className="w-1/3 h-58 flex items-center justify-center">
-              <img
-                src={item.image}
-                alt={item.text}
-                className="w-full h-full object-cover rounded-lg"
-              />
-            </div>
-            <div className="w-2/3 flex flex-col justify-center text-lg text-white p-4 text-center overflow-hidden break-words">
-              <h3 className="text-xl font-bold">{item.name}</h3>
-              <p className="text-s text-gray-300">{item.position}</p>
-              <p className="text-sm mt-2 text-white text-wrap">{item.desc}</p>
-            </div>
+            <img
+              src={item.image}
+              alt="image"
+              className={`block w-40 h-40 m-4 rounded-full transition-all duration-300 ${
+                hoveredIndex === index ? "border-4 border-white opacity-50 shadow-xl z-50" : ""
+              }`}
+            />
+            <h2 className="text-gray-700 m-2 mb-0">{item.name}</h2>
+            <h2 className="text-gray-700 m-2 mt-0">{item.position}</h2>
           </div>
         ))}
-      </div> */}
+      </div>
     </div>
   );
 }

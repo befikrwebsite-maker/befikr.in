@@ -20,7 +20,8 @@ export default function Navbar() {
         "/who-we-are/": "Who We Are",
         "/who-we-are/founders/": "Founders",
         "/work-with-us/": "Work With Us",
-        "/work-with-us/job/": "Jobs"
+        "/work-with-us/job/": "Jobs",
+        "/reach-us": "Reach Us"
       };
 
       setLink(pageNames[path] || ""); // Default to empty if not found

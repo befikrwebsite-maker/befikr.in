@@ -188,7 +188,7 @@ export default function Page() {
                 {/* Service Count */}
                 <div className="flex text-gray-900 justify-center mt-4">
                     <p className="text-gray-900 tracking-wide font-generalSansRegular">
-                        Showing {filteredCards.length} Services among the applied filters
+                        Showing <strong>{filteredCards.length}</strong> Services among the applied filters
                     </p>
                 </div>
             </div>
@@ -199,17 +199,22 @@ export default function Page() {
                 <div key={items.id} 
                     onClick={() => openService(items)} 
                     className="w-full max-w-2xl h-auto sm:h-[200px] md:h-[210px] lg:h-[250px] rounded-lg bg-white shadow-md p-4 sm:p-5 flex flex-col justify-between transition-all duration-300 ease-in hover:shadow-lg hover:border-companyBlue border relative"
-                    style={{
-                        backgroundImage: `url(${items.image})`,
-                        backgroundSize: "contain", 
-                        backgroundRepeat: "no-repeat",
-                        backgroundPosition: "center",
-                    }}
+                    // style={{
+                    //     backgroundImage: `url(${items.image})`,
+                    //     backgroundSize: "contain", 
+                    //     backgroundRepeat: "no-repeat",
+                    //     backgroundPosition: "center",
+                    // }}
                 >
-                    <div className="absolute inset-0 bg-gray-900 bg-opacity-70 rounded-lg"></div>
+                    <img
+                        src={items.image}
+                        alt={items.title}
+                        className="absolute  right-0 h-full pb-10 object-cover opacity-50"
+                    />
+                    <div className="absolute inset-0 bg-slate-50  bg-opacity-50 rounded-lg"></div>
 
 
-                    <div className="relative z-10 flex flex-col text-white">
+                    <div className="relative z-10 flex flex-col text-black">
                         <p className="text-base sm:text-lg font-bold">{items.title}</p>
                         <p className="font-semibold text-sm sm:text-base">{items.category}</p>
                         <div className="hidden flex-wrap gap-1 text-xs sm:text-sm mt-2">
