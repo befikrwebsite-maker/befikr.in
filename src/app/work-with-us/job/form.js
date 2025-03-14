@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 
 
-export default function Form({onClose}) {
+export default function Form({ onClose }) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -50,7 +50,7 @@ export default function Form({onClose}) {
     // }
 
     try {
-      const response = await fetch("http://localhost/Befikr/mailPHPMailer.php", {
+      const response = await fetch("mailPHPMailer.php", {
         method: "POST",
         body: form,
       });
@@ -61,11 +61,11 @@ export default function Form({onClose}) {
       try {
         result = JSON.parse(text);
         //console.log("server response: ", result);
-      } catch(jsonError){
+      } catch (jsonError) {
         console.error("invalid json: ", text);
         setStatus("Server returned invalid JSON.");
       }
-      
+
       //console.log(result); // Debug response
 
       setStatus(result.message);

@@ -37,15 +37,27 @@ export default function Footer() {
           </div>
           
           {/* Social Media Links */}
-          {/* <div>
-            <h3 className="text-lg font-medium text-companyBlue">Follow Us</h3>
-            <div className="flex space-x-4 mt-2">
-              <a href="#" className="text-gray-400 hover:text-companyBlue text-xl"><Linkedin /></a>
-              <a href="#" className="text-gray-400 hover:text-companyBlue text-xl"><Twitter /></a>
-              <a href="#" className="text-gray-400 hover:text-companyBlue text-xl"><Facebook /></a>
-              <a href="#" className="text-gray-400 hover:text-companyBlue text-xl"><Instagram /></a>
+          <div>
+            <h3 className="text-lg font-medium text-companyBlue"></h3>
+            <div className="grid grid-cols-2 gap-2">
+              <img
+                src="/extraLogos/logo-transparent-png_1.png"
+                className="w-32"
+              />
+              <img
+                src="/extraLogos/logo-transparent-png_2.png"
+                className="w-32"
+              />
+              <img
+                src="/extraLogos/logo-transparent-png_6.png"
+                className="w-32"
+              />
+              <img
+                src="/extraLogos/logo-transparent-png_4.png"
+                className="w-32"
+              />
             </div>
-          </div> */}
+          </div>
         </div>
         
         {/* Copyright */}
