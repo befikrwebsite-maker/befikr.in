@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Listbox, Transition } from "@headlessui/react";
+import SimpleForm from "./SimpleForm.js";
 
 {/*
     ESG                                                             
@@ -29,7 +30,7 @@ export default function Page() {
             title: "Electrical Safety Audit",
             desc: "An electrical audit is a comprehensive assessment of electrical systems & infrastructure within a building, facility, or industrial setting to evaluate electrical safety, power efficiency, electrical safety compliance with regulations, and overall performance. Regular electrical safety audits are recommended, typically every year depending on the nature of business operations and respective regulatory requirements. An efficient electrical safety audit helps prevent electrical accidents, to identify potential hazards, energy inefficiencies, opportunities for improvement, fires, and compliance issues while ensuring the safety of employees and assets.",
             tags: ["electrical", "safety", "audit", "environment"],
-            image: "../service_img/logo-svgELECTRICAL.svg" 
+            image: "../service_img/logo-svgELECTRICAL.svg"
         },
         {
             id: 2,
@@ -37,7 +38,7 @@ export default function Page() {
             title: "Energy Audit",
             desc: "An energy audit is a comprehensive assessment of energy consuming mechanical & electrical infrastructure within a building, facility, or industrial setting to evaluate energy consumption patterns over a period of time. Periodical energy audits promote use of energy efficient process¬es, equipment, devices and systems, brings an effort to reduce energy intensity, ensure efficient use of energy and its conservation as per the guidelines & norms set by Bureau of energy efficiency in India. An efficient energy audit helps promote businesses take steps for energy savings & energy conservation techniques Including spreading awareness of energy savings within businesses & organisations.",
             tags: ["energy", "environment"],
-            image: "../service_img/logo-svgEnergy.svg" 
+            image: "../service_img/logo-svgEnergy.svg"
         },
         {
             id: 3,
@@ -45,7 +46,7 @@ export default function Page() {
             title: "Defective Audit",
             desc: "Defective audit is a process to evaluate the within warranty product function & usage as designed & manufactured to work seamless for a certain set period of time in years. A defective audit gets triggered after a malfunction appearance in a new product within years of warranty as specified in the product brochure & commitment from the manufacturer or the brand. Such defective product audits ensure the customers get a due replacement as either a new product or parts amended as replacement as a service commitment within warranty. An efficient defective audit helps businesses, dealers, retailers & consumers get due justice as well as control the supply chain leakages as well as risks for businesses.",
             tags: ["defective", "audit", "environment"],
-            image: "../service_img/logo-svgDefective.svg" 
+            image: "../service_img/logo-svgDefective.svg"
         },
         // {
         //     id: 4,
@@ -60,7 +61,7 @@ export default function Page() {
             title: "Reverse Logistics",
             desc: "Reverse logistics is a process to develop a reverse supply chain mechanism to collect & deliver defective products or e-waste materials back to the manufacturer base of product origin or e-waste warehouses efficiently & within the stipulated timeframe. Businesses need reverse logistics services through partners & strengthen their supply chain infrastructure for smooth end to end business operations. An efficient reverse logistics team ensures organising the fragmented unorganised services helping businesses, dealers, retailers & consumers for the products to complete their end of life processing & help strengthen the Indian circular economy.",
             tags: ["reverse", "logistics", "environment"],
-            image: "../service_img/logo-svg.svg" 
+            image: "../service_img/logo-svg.svg"
         },
         {
             id: 6,
@@ -68,9 +69,11 @@ export default function Page() {
             title: "Corporate Social Response",
             desc: "Corporate social responsibility services are taken up by businesses in profit as a self-regulatory mechanism to socially contribute to specific sectors of priority & interest to the business group. Through their CSR efforts companies try and create certain social impacts contributing to a country’s infrastructure & people through business profits. Through various projects & initiatives the CSR efforts ensure businesses & brands contribute not only in the society but also for their own learning & development in the sectors they operate in. A well thought of CSR initiative eventually benefits the society & the country at large magnifying various efforts from the government, NGOs as well as the private sector thus creating a visible impact in the social frame of a country.",
             tags: ["corporate", "response", "social"],
-            image: "../service_img/logo-svg1.svg" 
+            image: "../service_img/logo-svg1.svg"
         }
     ];
+
+    const [showForm, setShowForm] = useState(false);
 
     // search filter ///////////////////////////////////////////////////////////////////////////////////////////////////////
     function searchFilter(query) {
@@ -141,8 +144,8 @@ export default function Page() {
             window.scrollTo(0, scrollY);
         }
     }, [selectedService]);
-    
-    
+
+
 
     // Open modal & update URL manually
     const openService = (service) => {
@@ -194,90 +197,97 @@ export default function Page() {
             </div>
 
 
-        <div className="py-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 justify-items-center w-full">
-            {cards.map((items) => (
-                <div key={items.id} 
-                    onClick={() => openService(items)} 
-                    className="w-full max-w-2xl h-auto sm:h-[200px] md:h-[210px] lg:h-[250px] rounded-lg bg-white shadow-md p-4 sm:p-5 flex flex-col justify-between transition-all duration-300 ease-in hover:shadow-lg hover:border-companyBlue border relative"
+            <div className="py-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 justify-items-center w-full">
+                {cards.map((items) => (
+                    <div key={items.id}
+                        onClick={() => openService(items)}
+                        className="w-full max-w-2xl h-auto sm:h-[200px] md:h-[210px] lg:h-[250px] rounded-lg bg-white shadow-md p-4 sm:p-5 flex flex-col justify-between transition-all duration-300 ease-in hover:shadow-lg hover:border-companyBlue border relative"
                     // style={{
                     //     backgroundImage: `url(${items.image})`,
                     //     backgroundSize: "contain", 
                     //     backgroundRepeat: "no-repeat",
                     //     backgroundPosition: "center",
                     // }}
-                >
-                    <img
-                        src={items.image}
-                        alt={items.title}
-                        className="absolute  right-0 h-full pb-10 object-cover opacity-50"
-                    />
-                    <div className="absolute inset-0 bg-slate-50  bg-opacity-50 rounded-lg"></div>
+                    >
+                        <img
+                            src={items.image}
+                            alt={items.title}
+                            className="absolute  right-0 h-full pb-10 object-cover opacity-50"
+                        />
+                        <div className="absolute inset-0 bg-slate-50  bg-opacity-50 rounded-lg"></div>
 
 
-                    <div className="relative z-10 flex flex-col text-black">
-                        <p className="text-base sm:text-lg font-bold">{items.title}</p>
-                        <p className="font-semibold text-sm sm:text-base">{items.category}</p>
-                        <div className="hidden flex-wrap gap-1 text-xs sm:text-sm mt-2">
-                            {Array.isArray(items.tags)
-                                ? items.tags.map((tag, i) => (
-                                    <span key={i} className="bg-white bg-opacity-20 border rounded-3xl px-2 py-1">
-                                        {tag}
-                                    </span>
-                                ))
-                                : null}
+                        <div className="relative z-10 flex flex-col text-black">
+                            <p className="text-base sm:text-lg font-bold">{items.title}</p>
+                            <p className="font-semibold text-sm sm:text-base">{items.category}</p>
+                            <div className="hidden flex-wrap gap-1 text-xs sm:text-sm mt-2">
+                                {Array.isArray(items.tags)
+                                    ? items.tags.map((tag, i) => (
+                                        <span key={i} className="bg-white bg-opacity-20 border rounded-3xl px-2 py-1">
+                                            {tag}
+                                        </span>
+                                    ))
+                                    : null}
+                            </div>
+                            <p className="pt-6 font-generalSansMedium line-clamp-3 text-sm sm:text-base">
+                                {items.desc}
+                            </p>
+                            <span className="cursor-pointer inline-block hover:text-companyBlue duration-100 transition-all">Read More</span>
                         </div>
-                        <p className="pt-6 font-generalSansMedium line-clamp-3 text-sm sm:text-base">
-                            {items.desc}
-                        </p>
-                        <span className="cursor-pointer inline-block hover:text-companyBlue duration-100 transition-all">Read More</span>
                     </div>
-                </div>
-            ))}
-        </div>
+                ))}
+            </div>
 
 
             {/* Full-Screen Animated Modal */}
-                      {/* Full-Screen Animated Modal */} 
-       <AnimatePresence>
-            {selectedService && (
-            <motion.div
-                className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-            >
-                <motion.div
-                    className="bg-white w-full h-full  md:w-3/4 md:h-3/4 rounded-lg shadow-lg p-8 relative flex flex-col overflow-auto"
-                    initial={{ y: "100%" }}
-                    animate={{ y: 0 }}
-                    exit={{ y: "100%" }}
-                    transition={{ type: "spring", stiffness: 120 }}
-                >
-                    {/* Close Button */}
-                    <button
-                        onClick={closeService}
-                        className="absolute top-2 right-2 bg-red-500 text-white px-4 py-2 rounded-tr-lg"
+            {/* Full-Screen Animated Modal */}
+            <AnimatePresence>
+                {selectedService && (
+                    <motion.div
+                        className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
                     >
-                        ✖
-                    </button>
-    
-                    {/* Service Details */}
-                    <h2 className="text-3xl font-bold">{selectedService.title}</h2>
-                    <p className="text-gray-600 text-lg">{selectedService.category}</p>
-                    <p className="text-gray-700 pt-6 font-generalSansMedium text-sm sm:text-base">
-                        {selectedService.desc}
-                    </p>
-    
-                    {/* Apply Button */}
-                    {/* <div className="mt-auto">
-                        <button className="bg-companyBlue text-white px-6 py-3 rounded-lg hover:bg-opacity-90">
-                            Apply Now
-                        </button>
-                    </div> */}
-                </motion.div>
-            </motion.div>
-            )}
-        </AnimatePresence>
+                        <motion.div
+                            className="bg-white w-full h-full  md:w-3/4 md:h-3/4 rounded-lg shadow-lg p-8 relative flex flex-col overflow-auto"
+                            initial={{ y: "100%" }}
+                            animate={{ y: 0 }}
+                            exit={{ y: "100%" }}
+                            transition={{ type: "spring", stiffness: 120 }}
+                        >
+                            {/* Close Button */}
+                            <button
+                                onClick={closeService}
+                                className="absolute top-2 right-2 bg-red-500 text-white px-4 py-2 rounded-tr-lg"
+                            >
+                                ✖
+                            </button>
+
+                            {/* Service Details */}
+                            <h2 className="text-3xl font-bold">{selectedService.title}</h2>
+                            <p className="text-gray-600 text-lg">{selectedService.category}</p>
+                            <p className="text-gray-700 pt-6 font-generalSansMedium text-sm sm:text-base">
+                                {selectedService.desc}
+                            </p>
+
+                            {/* Apply Button */}
+                            {showForm ? (
+                                <SimpleForm serviceTitle={selectedService.title} onClose={() => setShowForm(false)} />
+                            ) : (
+                                <div className="mt-auto">
+                                    <button
+                                        onClick={() => setShowForm(true)}
+                                        className="bg-companyBlue text-white px-6 py-3 rounded-lg hover:bg-opacity-90"
+                                    >
+                                        Book A Meeting Now!
+                                    </button>
+                                </div>
+                            )}
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </div>
 
     );
