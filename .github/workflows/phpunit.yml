@@ -1,0 +1,41 @@
+name: PHP Mailer Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: testdb
+        ports:
+          - 3306:3306
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.1
+          extensions: mbstring, xml, ctype, json, curl, dom
+
+      - name: Install Dependencies
+        run: composer install --prefer-dist --no-progress
+
+      - name: Set Environment Variables
+        run: |
+          echo "divyam.study.work@gmail.com" >> $GITHUB_ENV
+          echo "reqwvklemfpqsuyv" >> $GITHUB_ENV
+
+      - name: Run PHPUnit Tests
+        run: vendor/bin/phpunit tests

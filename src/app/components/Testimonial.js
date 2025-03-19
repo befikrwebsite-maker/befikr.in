@@ -87,7 +87,7 @@ const data = [
     name: "Muskaan Suhag",
     text: "fourth item",
     position: "Jr. Consultant - ESA",
-    desc: " I've been working with befikr Opera Gratia since 8th April, and my experience so far has been amazing. The company culture is supportive and innovative, and I appreciate the opportunities provided for growth and development. Specifically, I&#39;ve enjoyed working as electrical safety Coordinator. Overall, I&#39;m happy to be a part of this team at befikr.",
+    desc: " I've been working with befikr Opera Gratia since 8th April, and my experience so far has been amazing. The company culture is supportive and innovative, and I appreciate the opportunities provided for growth and development. Specifically, I've enjoyed working as electrical safety Coordinator. Overall, I'm happy to be a part of this team at befikr.",
     image: "../Testimonial/Img12.png"
   },
   {
@@ -101,7 +101,7 @@ const data = [
 ];
 
 export default function InfiniteScroller() {
-  const [hoveredIndex, setHoveredIndex] = useState(1);
+  const [hoveredIndex, setHoveredIndex] = useState(null);
 
   return (
     <div className="relative flex w-full p-4 justify-center ">
