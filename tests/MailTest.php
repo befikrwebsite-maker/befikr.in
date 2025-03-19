@@ -3,7 +3,7 @@
 use PHPUnit\Framework\TestCase;
 use PHPMailer\PHPMailer\PHPMailer;
 
-require __DIR__ . '/../sendMail.php';
+require __DIR__ . 'mail.php';
 
 class SendMailTest extends TestCase {
 
