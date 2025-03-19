@@ -21,8 +21,8 @@ jobs:
 
       - name: Set Environment Variables
         run: |
-          echo "divyam.study.work@gmail.com" >> $GITHUB_ENV
-          echo "reqwvklemfpqsuyv" >> $GITHUB_ENV
+          echo "SMTP_USERNAME=divyam.study.work@gmail.com" >> $GITHUB_ENV
+          echo "SMTP_PASSWORD=reqwvklemfpqsuyv" >> $GITHUB_ENV
 
       - name: List Repository Files (Debug)
         run: ls -R
