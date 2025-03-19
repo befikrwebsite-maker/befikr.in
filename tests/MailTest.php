@@ -21,7 +21,7 @@ class SendMailTest extends TestCase {
 
         // Send a POST request to the locally running PHP server
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, "http://localhost:8000/mail.php"); 
+        curl_setopt($ch, CURLOPT_URL, "http://localhost:8000/mail.php");
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, array_merge($postData, $fileData));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
