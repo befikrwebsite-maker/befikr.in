@@ -10,7 +10,7 @@ class SendMailTest extends TestCase {
 
     public function testEmailSentSuccessfully() {
         // Mock file path
-        $mockFilePath = __DIR__ . '/tests/mock_resume.pdf';
+        $mockFilePath = __DIR__ . '/tests/test.pdf';
         file_put_contents($mockFilePath, 'Test PDF content');
 
         // Mock successful email
