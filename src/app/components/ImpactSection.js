@@ -35,11 +35,11 @@ export default function Impact() {
             className={`flex items-center p-6 rounded-lg shadow-lg transition-all duration-300 bg-white relative border hover:shadow-xl`}
             
           >
-            <img
+            {/* <img
                         src={impact.image}
                         alt={impact.title}
                         className="hidden md:block absolute right-0 h-full object-cover opacity-50"
-            />
+            /> */}
 
             {/* Text on Left */}
             <div className=" flex flex-col justify-center text-lg text-black p-4">

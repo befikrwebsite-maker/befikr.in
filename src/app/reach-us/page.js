@@ -44,19 +44,29 @@ export default function UnderDevelopment() {
     form.append("message", formData.message);
 
     try {
-      const response = await fetch("postalService.php", {
+      const response = await fetch("https://www.befikr.in/postal_service.php", {
         method: "POST",
         body: form,
       });
 
-      const result = await response.json();
+      const text = await response.text();
+      let result;
+
+      try{
+        result = JSON.parse(text);
+        //setStatus(result.message);
+      } catch (jsonError){
+        //console.error("invalid json: ", text);
+        setStatus("Server returned invalid JSON.");
+      }
+      
       setStatus(result.message);
 
       if (result.status === "success") {
         setFormData({ name: "", email: "", message: "" });
       }
     } catch (error) {
-      //console.log(error);
+      //console.error("Fetch error:", error);
       setStatus("Error delivering postcard.");
     }
   }
@@ -244,7 +254,7 @@ export default function UnderDevelopment() {
                     Submit
                   </button>
                 </form>
-                {/* {status && <p className="text-center mt-4 text-red-600">{status}</p>} */}
+                {status && <p className="text-center mt-4 text-red-600">{status}</p>}
               </div>
 
             </div>
