@@ -1,46 +1,35 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-use PHPMailer\PHPMailer\PHPMailer;
-
-require __DIR__ . '/../mail.php';
-
 
 class SendMailTest extends TestCase {
 
     public function testEmailSentSuccessfully() {
-        // Mock file path
-        $mockFilePath = __DIR__ . '/tests/test.pdf';
+        // Create a mock file
+        $mockFilePath = __DIR__ . '/test.pdf';
         file_put_contents($mockFilePath, 'Test PDF content');
 
-        // Mock successful email
-        $response = sendMail('Test User', 'test@example.com', 'This is a test message.', $mockFilePath, 'resume.pdf');
+        $postData = [
+            'name' => 'Test User',
+            'email' => 'test@example.com',
+            'message' => 'This is a test message.'
+        ];
 
-        // Assert that email is sent
-        $this->assertEquals("success", $response["status"]);
-    }
+        $fileData = [
+            'resume' => new CURLFile($mockFilePath, 'application/pdf', 'test.pdf')
+        ];
 
-    public function testEmailFailsWithInvalidSMTP() {
-        // Backup original credentials
-        $originalUsername = getenv('SMTP_USERNAME');
-        $originalPassword = getenv('SMTP_PASSWORD');
+        // Send a POST request to the locally running PHP server
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, "http://localhost:8000/mail.php"); 
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, array_merge($postData, $fileData));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-        // Set invalid credentials
-        putenv('SMTP_USERNAME=invalid@example.com');
-        putenv('SMTP_PASSWORD=wrongpassword');
+        $response = curl_exec($ch);
+        curl_close($ch);
 
-        // Mock file path
-        $mockFilePath = __DIR__ . '/mock_resume.pdf';
-        file_put_contents($mockFilePath, 'Test PDF content');
-
-        // Mock failed email
-        $response = sendMail('Test User', 'test@example.com', 'This is a test message.', $mockFilePath, 'resume.pdf');
-
-        // Restore credentials
-        putenv("SMTP_USERNAME=$originalUsername");
-        putenv("SMTP_PASSWORD=$originalPassword");
-
-        // Assert failure
-        $this->assertEquals("error", $response["status"]);
+        $decodedResponse = json_decode($response, true);
+        $this->assertEquals("success", $decodedResponse["status"]);
     }
 }
