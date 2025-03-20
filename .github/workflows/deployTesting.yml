@@ -1,0 +1,38 @@
+name: Build and Deploy to Testing Server
+
+on:
+  workflow_run:
+    workflows: ["PHP Mailer Tests"]
+    types:
+      - completed
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18 
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build Application
+        run: npm run build
+
+      - name: Deploy to Testing Server
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ftp.befikr.in
+          username: ${{ secrets.TESTING_USERNAME }}
+          password: ${{ secrets.TESTING_PASSWORD }}
+          local-dir: ./out 
+          server-dir: /public_html/testing/
+
+      - name: Deployment Completed
+        run: echo "Deployed to Testing Server Successfully"
