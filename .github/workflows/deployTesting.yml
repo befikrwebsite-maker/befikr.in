@@ -25,14 +25,22 @@ jobs:
       - name: Build Application
         run: npm run build
 
-      - name: Deploy to Testing Server
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.TESTING_FTP }}
-          username: ${{ secrets.TESTING_USERNAME }}
-          password: ${{ secrets.TESTING_PASSWORD }}
-          local-dir: ./out/
-          server-dir: /public_html/testing/
+      - name: Setup SSH Key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_KEY_TESTING }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -p ${{ secrets.SSH_PORT_TESTING }} -H ${{ secrets.SSH_IP_TESTING }} >> ~/.ssh/known_hosts
 
-      - name: Deployment Completed
-        run: echo "Deployed to Testing Server Successfully"
+      - name: Deploy via SSH to Hostinger
+        run: |
+          echo "Connecting to Hostinger..."
+          ssh -p ${{ secrets.SSH_PORT_TESTING }} ${{ secrets.SSH_USERNAME_TESTING }}@${{ secrets.SSH_IP_TESTING }} << 'EOF'
+            rm -rf ${{ secrets.SSH_DEPLOY_DIR }}/*
+            exit
+          EOF
+          
+          echo "Uploading files..."
+          scp -P ${{ secrets.SSH_PORT_TESTING }} -r ./out/* ${{ secrets.SSH_USERNAME_TESTING }}@${{ secrets.SSH_IP_TESTING }}:${{ secrets.SSH_DEPLOY_DIR }}
+
+          echo "Deployment complete!"
