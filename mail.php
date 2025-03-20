@@ -9,10 +9,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-// Load PHPMailer
-require __DIR__ . '/PHPMailer-master/src/PHPMailer.php';
-require __DIR__ . '/PHPMailer-master/src/SMTP.php';
-require __DIR__ . '/PHPMailer-master/src/Exception.php';
+require 'vendor/autoload.php';
 
 ini_set('log_errors', 1);
 ini_set('error_log', __DIR__ . '/error_log.txt'); // Log errors to a file

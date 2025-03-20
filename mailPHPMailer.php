@@ -8,11 +8,6 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-require 'PHPMailer-Master/src/SMTP.php';
-require 'PHPMailer-Master/src/PHPMailer.php';
-require 'PHPMailer-Master/src/Exception.php';
-
-
 require 'vendor/autoload.php';
 
 ini_set('log_errors', 1);
