@@ -28,7 +28,7 @@ jobs:
       - name: Deploy to Testing Server
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: ftp.befikr.in
+          server: ${{ secrets.TESTING_FTP }}
           username: ${{ secrets.TESTING_USERNAME }}
           password: ${{ secrets.TESTING_PASSWORD }}
           local-dir: ./out/
