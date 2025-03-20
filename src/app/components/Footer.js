@@ -41,19 +41,19 @@ export default function Footer() {
             <h3 className="text-lg font-medium text-companyBlue"></h3>
             <div className="grid grid-cols-2 gap-2">
               <img
-                src="/extraLogos/logo-transparent-png_1.png"
-                className="w-32"
-              />
-              <img
-                src="/extraLogos/logo-transparent-png_2.png"
-                className="w-32"
-              />
-              <img
                 src="/extraLogos/logo-transparent-png_6.png"
                 className="w-32"
               />
               <img
-                src="/extraLogos/logo-transparent-png_4.png"
+                src="/extraLogos/logo-transparent-png_1.png"
+                className="w-32"
+              />
+              <img
+                src="/extraLogos/logo-transparent-png_5.png"
+                className="w-32"
+              />
+              <img
+                src="/extraLogos/logo-transparent-png_2.png"
                 className="w-32"
               />
             </div>

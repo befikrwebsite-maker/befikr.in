@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import {motion, AnimatePresence, hover} from "framer-motion";
+import { motion, AnimatePresence, hover } from "framer-motion";
 
 const data = [
   {
@@ -87,7 +87,7 @@ const data = [
     name: "Muskaan Suhag",
     text: "fourth item",
     position: "Jr. Consultant - ESA",
-    desc: " I've been working with befikr Opera Gratia since 8th April, and my experience so far has been amazing. The company culture is supportive and innovative, and I appreciate the opportunities provided for growth and development. Specifically, I&#39;ve enjoyed working as electrical safety Coordinator. Overall, I&#39;m happy to be a part of this team at befikr.",
+    desc: " I've been working with befikr Opera Gratia since 8th April, and my experience so far has been amazing. The company culture is supportive and innovative, and I appreciate the opportunities provided for growth and development. Specifically, I've enjoyed working as electrical safety Coordinator. Overall, I'm happy to be a part of this team at befikr.",
     image: "../Testimonial/Img12.png"
   },
   {
@@ -115,14 +115,26 @@ export default function InfiniteScroller() {
             exit={{ opacity: 0 }}
           >
             <motion.div
-              className="text-black text-center p-8 max-w-2xl"
+              className="text-black text-center  flex h-3/4 w-3/4"
               initial={{ y: 20 }}
               animate={{ y: 0 }}
               exit={{ y: 20 }}
             >
-              <h2 className="text-3xl z-50 font-bold">{data[hoveredIndex].name}</h2>
-              <p className="text-lg z-50">{data[hoveredIndex].position}</p>
-              <p className="font-generalSansMedium z-50 text-xl mt-4">{data[hoveredIndex].desc}</p>
+              <div className="flex-1 mr-12">
+                <img
+                  src={data[hoveredIndex].image}
+                  alt={data[hoveredIndex].name}
+                  className="w-full h-auto rounded-xl mr-12 object-cover transition-transform duration-300 hover:scale-105"
+                />
+              </div>
+
+              {/* Text Content Section */}
+              <div className="flex-1 text-center md:text-left space-y-4">
+                <h2 className="text-4xl font-bold text-gray-900">{data[hoveredIndex].name}</h2>
+                <p className="text-xl text-black">{data[hoveredIndex].position}</p>
+                <p className="text-lg text-black leading-relaxed">{data[hoveredIndex].desc}</p>
+              </div>
+
             </motion.div>
           </motion.div>
         )}
@@ -140,9 +152,8 @@ export default function InfiniteScroller() {
             <img
               src={item.image}
               alt="image"
-              className={`block w-40 h-40 m-4 rounded-full transition-all duration-300 ${
-                hoveredIndex === index ? "border-4 border-white opacity-50 shadow-xl z-50" : ""
-              }`}
+              className={`block w-40 h-40 m-4 rounded-full transition-all duration-300 ${hoveredIndex === index ? " border-white opacity-0 z-50" : ""
+                }`}
             />
             <h2 className="text-gray-700 font-generalSansSemibold m-2 mb-0">{item.name}</h2>
             <h2 className="text-gray-700 m-2 mt-0">{item.position}</h2>

@@ -8,7 +8,7 @@ export default function PartnerCarousel() {
         setActiveTags((prevTags) =>
             prevTags.includes(tag)
                 ? prevTags.filter((t) => t !== tag)
-                : [...prevTags, tag]
+                : [tag]
         );
     };
 
@@ -53,7 +53,7 @@ export default function PartnerCarousel() {
                     {filteredImages.map((logo, index) => (
                         <div
                             key={index}
-                            className="h-[150px] w-[200px] border flex items-center justify-center rounded-xl"
+                            className="h-[150px] w-[200px] bg-white  border flex items-center justify-center rounded-xl"
                         >
                             <img
                                 src={logo.url}

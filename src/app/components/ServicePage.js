@@ -22,7 +22,7 @@ import SimpleForm from "./SimpleForm.js";
 */}
 
 
-export default function Page() {
+export default function ServicePage() {
     const cards = [
         {
             id: 1,
@@ -197,10 +197,10 @@ export default function Page() {
             </div>
 
 
-            <div className="py-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 justify-items-center w-full">
+            <div className="py-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8 justify-items-center w-full">
                 {cards.map((items) => (
                     <div key={items.id}
-                        onClick={() => openService(items)}
+                        
                         className="w-full max-w-2xl h-auto sm:h-[200px] md:h-[210px] lg:h-[250px] rounded-lg bg-white shadow-md p-4 sm:p-5 flex flex-col justify-between transition-all duration-300 ease-in hover:shadow-lg hover:border-companyBlue border relative"
                     // style={{
                     //     backgroundImage: `url(${items.image})`,
@@ -212,9 +212,9 @@ export default function Page() {
                         <img
                             src={items.image}
                             alt={items.title}
-                            className="absolute  right-0 h-full pb-10 object-cover opacity-50"
+                            className="absolute  right-0 h-full pb-10 object-cover"
                         />
-                        <div className="absolute inset-0 bg-slate-50  bg-opacity-50 rounded-lg"></div>
+                        <div className="absolute inset-0 bg-slate-50  bg-opacity-0 rounded-lg"></div>
 
 
                         <div className="relative z-10 flex flex-col text-black">
@@ -229,10 +229,12 @@ export default function Page() {
                                     ))
                                     : null}
                             </div>
-                            <p className="pt-6 font-generalSansMedium line-clamp-3 text-sm sm:text-base">
+                            <p className="pt-6 font-generalSansMedium line-clamp-3 w-2/3 text-sm sm:text-base">
                                 {items.desc}
                             </p>
-                            <span className="cursor-pointer inline-block hover:text-companyBlue duration-100 transition-all">Read More</span>
+                            <span className="cursor-pointer inline-block hover:text-companyBlue duration-100 transition-all"
+                            onClick={() => openService(items)}
+                            >Read More</span>
                         </div>
                     </div>
                 ))}

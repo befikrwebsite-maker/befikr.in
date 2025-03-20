@@ -114,7 +114,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     
     I hope you are doing well.<br><br>
     
-    My name is <strong>$name</strong>, and I am reaching out regarding my application for the <strong>[Job Title]</strong> position at <strong>[Company Name]</strong>.<br><br>
+    My name is <strong>$name</strong>, and I am reaching out regarding my application for the position at <strong>befikr</strong>.<br><br>
     
     Below is my message:<br><br>
     
