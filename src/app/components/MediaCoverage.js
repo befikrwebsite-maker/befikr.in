@@ -15,14 +15,14 @@ export default function MediaCoverage() {
     ];
 
     return (
-        <div className="bg-[#f5f5f5] pt-10 p-10 pb-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 justify-items-center gap-6">
+        <div className="bg-[#f5f5f5] w-full pt-10 p-10 pb-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 justify-items-center gap-6">
             {links.map(([url, title, logo], index) => (
                 <a 
                     key={index} 
                     href={url} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="flex flex-col items-center text-center border bg-white w-96 rounded-lg p-4 hover:shadow-xl duration-200 ease-in-out transform hover:-translate-y-1 hover:border-companyBlue"
+                    className="flex flex-col items-center text-center border bg-white w-full rounded-lg p-4 hover:shadow-xl duration-200 ease-in-out transform hover:-translate-y-1 hover:border-companyBlue"
                 >
                     <figure className="flex flex-col items-center">
                         <img 

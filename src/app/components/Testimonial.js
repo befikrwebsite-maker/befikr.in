@@ -62,7 +62,7 @@ const data = [
     id: 9,
     name: "Sanjay Singh",
     text: "fourth item",
-    position: "Deputy General Manager - CES",
+    position: "Deputy General Manager - Services",
     desc: "I joined befikr as entry level manager and now hold a position of DGM- Services, where I managing a team of 550 in the capacity of manager. During my 8 years with befikr, I have seen that befikr always had a excellent team with wide range of skill sets which can help any client to achieve their objectives and goals. Working with befikr team is an Outstanding Experience. Opportunities are higher to learn and grow in befikr.",
     image: "../Testimonial/Img9.png"
   },
@@ -115,7 +115,7 @@ export default function InfiniteScroller() {
             exit={{ opacity: 0 }}
           >
             <motion.div
-              className="text-black text-center  flex h-3/4 w-3/4"
+              className="text-black text-center flex h-3/4 w-3/4"
               initial={{ y: 20 }}
               animate={{ y: 0 }}
               exit={{ y: 20 }}
@@ -141,7 +141,7 @@ export default function InfiniteScroller() {
       </AnimatePresence>
 
       {/* Grid Layout for Team Members */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-5 justify-items-center items-center gap-4">
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-5 justify-items-center items-center gap-4">
         {data.map((item, index) => (
           <div
             key={index}
@@ -156,7 +156,7 @@ export default function InfiniteScroller() {
                 }`}
             />
             <h2 className="text-gray-700 font-generalSansSemibold m-2 mb-0">{item.name}</h2>
-            <h2 className="text-gray-700 m-2 mt-0">{item.position}</h2>
+            <h2 className="text-gray-700 text-sm m-2 mt-0">{item.position}</h2>
           </div>
         ))}
       </div>

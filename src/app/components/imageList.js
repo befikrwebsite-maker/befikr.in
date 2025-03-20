@@ -3,7 +3,7 @@ const imageList = [
   { "name": "Kent", "url": "/logos/kent-.png", "tag": ["Environment/ESG Services"] },
   { "name": "Flipkart", "url": "/logos/flipkart.svg", "tag": ["Environment/ESG Services"] },
   { "name": "True North", "url": "/logos/truenorth_led_logo.jpeg", "tag": ["Environment/ESG Services"] },
-  { "name": "Kotak", "url": "", "tag": ["Environment/ESG Services"] },
+  { "name": "Kotak", "url": "/logos/kotak.png", "tag": ["Environment/ESG Services"] },
   { "name": "Axis", "url": "/logos/axis-bank-logo-1.svg", "tag": ["Environment/ESG Services"] },
   { "name": "American Embassy", "url": "/logos/embassy.png", "tag": ["Environment/ESG Services"] },
   { "name": "HDFC Bank", "url": "/logos/hdfc-bank-logo.svg", "tag": ["Environment/ESG Services", "Social/CSR Services"] },

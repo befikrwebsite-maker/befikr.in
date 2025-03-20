@@ -201,7 +201,7 @@ export default function ServicePage() {
                 {cards.map((items) => (
                     <div key={items.id}
                         
-                        className="w-full max-w-2xl h-auto sm:h-[200px] md:h-[210px] lg:h-[250px] rounded-lg bg-white shadow-md p-4 sm:p-5 flex flex-col justify-between transition-all duration-300 ease-in hover:shadow-lg hover:border-companyBlue border relative"
+                        className="w-full h-auto sm:h-[200px] md:h-[210px] lg:h-[250px] rounded-lg bg-white shadow-md p-4 sm:p-5 flex flex-col justify-between transition-all duration-300 ease-in hover:shadow-lg hover:border-companyBlue border relative"
                     // style={{
                     //     backgroundImage: `url(${items.image})`,
                     //     backgroundSize: "contain", 
