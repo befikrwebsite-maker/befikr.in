@@ -6,12 +6,17 @@ header("Access-Control-Allow-Headers: Content-Type");
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
 
 require 'PHPMailer-Master/src/SMTP.php';
 require 'PHPMailer-Master/src/PHPMailer.php';
-
+require 'PHPMailer-Master/src/Exception.php';
 
 require 'vendor/autoload.php';
+
+ini_set('log_errors', 1);
+ini_set('error_log', __DIR__ . '/error_log.txt'); // Log errors to a file
+ini_set('display_errors', 0); // Disable direct error display
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     $name = $_POST["name"] ?? "";
@@ -37,7 +42,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     //SMTP::DEBUG_OFF = off (for production use)
     //SMTP::DEBUG_CLIENT = client messages
     //SMTP::DEBUG_SERVER = client and server messages
-    $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+    $mail->SMTPDebug = SMTP::DEBUG_OFF;
+
+    $mail->SMTPDebug = 0; // Disable debugging
+    $mail->Debugoutput = function ($str, $level) {}; // Prevent debug output from interfering
 
     //Set the hostname of the mail server
     $mail->Host = 'smtp.gmail.com';
@@ -94,7 +102,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     //send the message, check for errors
     if (!$mail->send()) {
-        echo 'Mailer Error: ' . $mail->ErrorInfo;
+        echo json_encode(["status" => "error","message" => 'Mailer Error: ' . $mail->ErrorInfo]);;
     } else {
         echo json_encode(["status" => "success", "message" => "Postcard successfully delivered!"]);
         //Section 2: IMAP

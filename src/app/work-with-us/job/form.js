@@ -50,7 +50,7 @@ export default function Form({ onClose }) {
     // }
 
     try {
-      const response = await fetch("mailPHPMailer.php", {
+      const response = await fetch("http://localhost/Befikr/mailPHPMailer.php", {
         method: "POST",
         body: form,
       });
