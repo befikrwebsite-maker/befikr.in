@@ -44,7 +44,7 @@ export default function UnderDevelopment() {
     form.append("message", formData.message);
 
     try {
-      const response = await fetch("https://www.befikr.in/postal_service.php", {
+      const response = await fetch("http://localhost/Befikr/postalService.php", {
         method: "POST",
         body: form,
       });
