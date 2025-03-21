@@ -422,32 +422,32 @@ export default function Page() {
               exit={{ opacity: 0 }}
             >
               <motion.div
-                className="bg-white w-full h-full md:w-3/4 md:h-4/5 rounded-xl shadow-2xl p-8 relative flex flex-col overflow-y-auto"
+                className="bg-white w-full h-full md:w-3/4 md:h-4/5 rounded-xl shadow-2xl relative flex flex-col overflow-y-auto"
                 initial={{ y: "100%" }}
                 animate={{ y: 0 }}
                 exit={{ y: "100%" }}
                 transition={{ type: "spring", stiffness: 120 }}
               >
-                {/* Close Button */}
-                <div className="relative">
+                <div className="sticky top-0 z-10 bg-white px-6 py-5 border-b border-gray-100 flex justify-between items-center">
+                  <div>
+                    <h2 className="text-3xl font-bold text-gray-800">{selectedJob.position}</h2>
+                    <p className="text-gray-600 text-xl">{selectedJob.team}</p>
+
+                  </div>
                   <button
                     onClick={closeJob}
-                    className="fixed top-4 right-4 bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition duration-300"
+                    className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors duration-200"
+                    aria-label="Close modal"
                   >
-                    ✖
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <line x1="18" y1="6" x2="6" y2="18"></line>
+                      <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
                   </button>
                 </div>
 
-
-                {/* Header */}
-                <div className="mb-6 border-b border-gray-300 pb-4">
-                  <h2 className="text-3xl font-[780] text-companyBlue uppercase">
-                    {selectedJob.position}
-                  </h2>
-                  <p className="text-gray-600 text-xl">{selectedJob.team}</p>
-                </div>
-
                 {/* Grid Layout */}
+                <div className="p-8 flex-1 overflow-y-auto">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {/* Left Section */}
                   <div>
@@ -624,6 +624,7 @@ export default function Page() {
                   </button>
 
                   {formVisible && <Form />}
+                </div>
                 </div>
 
               </motion.div>

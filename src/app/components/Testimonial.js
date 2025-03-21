@@ -106,10 +106,11 @@ export default function InfiniteScroller() {
   return (
     <div className="relative flex w-full p-4 justify-center ">
       {/* Full-Screen Overlay (Only Active When Hovering) */}
+      {/* Desktop Modal (Hidden on Mobile) */}
       <AnimatePresence>
         {hoveredIndex !== null && (
           <motion.div
-            className="fixed inset-0 bg-companyBlue bg-opacity-90 flex items-center justify-center z-40"
+            className="hidden md:flex fixed inset-0 bg-companyBlue bg-opacity-90 items-center justify-center z-40"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -124,20 +125,44 @@ export default function InfiniteScroller() {
                 <img
                   src={data[hoveredIndex].image}
                   alt={data[hoveredIndex].name}
-                  className="w-full h-auto rounded-xl mr-12 object-cover transition-transform duration-300 hover:scale-105"
+                  className="w-full h-auto rounded-xl object-cover transition-transform duration-300 hover:scale-105"
                 />
               </div>
-
-              {/* Text Content Section */}
               <div className="flex-1 text-center md:text-left space-y-4">
                 <h2 className="text-4xl font-bold text-gray-900">{data[hoveredIndex].name}</h2>
                 <p className="text-xl text-black">{data[hoveredIndex].position}</p>
                 <p className="text-lg text-black leading-relaxed">{data[hoveredIndex].desc}</p>
               </div>
-
             </motion.div>
           </motion.div>
-          
+        )}
+      </AnimatePresence>
+
+      {/* Mobile Modal (Hidden on Desktop) */}
+      <AnimatePresence>
+        {hoveredIndex !== null && (
+          <motion.div
+            className="md:hidden fixed inset-0 bg-companyBlue bg-opacity-90 flex items-center justify-center z-50"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <motion.div
+              className="text-black text-center flex flex-col h-[90%] w-[90%] p-6 rounded-xl shadow-lg"
+              initial={{ y: 20 }}
+              animate={{ y: 0 }}
+              exit={{ y: 20 }}
+            >
+              <img
+                src={data[hoveredIndex].image}
+                alt={data[hoveredIndex].name}
+                className="w-full h-auto rounded-xl object-cover mb-4"
+              />
+              <h2 className="text-3xl font-bold text-gray-900">{data[hoveredIndex].name}</h2>
+              <p className="text-lg text-black">{data[hoveredIndex].position}</p>
+              <p className="text-base text-black leading-relaxed">{data[hoveredIndex].desc}</p>
+            </motion.div>
+          </motion.div>
         )}
       </AnimatePresence>
 

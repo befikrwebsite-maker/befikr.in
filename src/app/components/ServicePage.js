@@ -8,6 +8,7 @@ import SimpleForm from "./SimpleForm.js";
 import { ChevronDown } from "lucide-react";
 
 export default function ServicePage() {
+
     const cards = [
         {
             id: 1,
@@ -15,7 +16,8 @@ export default function ServicePage() {
             title: "Electrical Safety Audit",
             desc: "An electrical audit is a comprehensive assessment of electrical systems & infrastructure within a building, facility, or industrial setting to evaluate electrical safety, power efficiency, electrical safety compliance with regulations, and overall performance. Regular electrical safety audits are recommended, typically every year depending on the nature of business operations and respective regulatory requirements. An efficient electrical safety audit helps prevent electrical accidents, to identify potential hazards, energy inefficiencies, opportunities for improvement, fires, and compliance issues while ensuring the safety of employees and assets.",
             tags: ["electrical", "safety", "audit", "environment"],
-            image: "../service_img/logo-svgELECTRICAL.svg"
+            image: "../service_img/logo-svgELECTRICAL.svg",
+            depth: "electrical-safety-audit",
         },
         {
             id: 2,
@@ -23,7 +25,8 @@ export default function ServicePage() {
             title: "Energy Audit",
             desc: "An energy audit is a comprehensive assessment of energy consuming mechanical & electrical infrastructure within a building, facility, or industrial setting to evaluate energy consumption patterns over a period of time. Periodical energy audits promote use of energy efficient process¬es, equipment, devices and systems, brings an effort to reduce energy intensity, ensure efficient use of energy and its conservation as per the guidelines & norms set by Bureau of energy efficiency in India. An efficient energy audit helps promote businesses take steps for energy savings & energy conservation techniques Including spreading awareness of energy savings within businesses & organisations.",
             tags: ["energy", "environment"],
-            image: "../service_img/logo-svgEnergy.svg"
+            image: "../service_img/logo-svgEnergy.svg",
+            depth: "electrical-safety-audit",
         },
         {
             id: 3,
@@ -31,7 +34,8 @@ export default function ServicePage() {
             title: "Defective Audit",
             desc: "Defective audit is a process to evaluate the within warranty product function & usage as designed & manufactured to work seamless for a certain set period of time in years. A defective audit gets triggered after a malfunction appearance in a new product within years of warranty as specified in the product brochure & commitment from the manufacturer or the brand. Such defective product audits ensure the customers get a due replacement as either a new product or parts amended as replacement as a service commitment within warranty. An efficient defective audit helps businesses, dealers, retailers & consumers get due justice as well as control the supply chain leakages as well as risks for businesses.",
             tags: ["defective", "audit", "environment"],
-            image: "../service_img/logo-svgDefective.svg"
+            image: "../service_img/logo-svgDefective.svg",
+            depth: "electrical-safety-audit",
         },
         // {
         //     id: 4,
@@ -46,7 +50,8 @@ export default function ServicePage() {
             title: "Reverse Logistics",
             desc: "Reverse logistics is a process to develop a reverse supply chain mechanism to collect & deliver defective products or e-waste materials back to the manufacturer base of product origin or e-waste warehouses efficiently & within the stipulated timeframe. Businesses need reverse logistics services through partners & strengthen their supply chain infrastructure for smooth end to end business operations. An efficient reverse logistics team ensures organising the fragmented unorganised services helping businesses, dealers, retailers & consumers for the products to complete their end of life processing & help strengthen the Indian circular economy.",
             tags: ["reverse", "logistics", "environment"],
-            image: "../service_img/logo-svg.svg"
+            image: "../service_img/logo-svg.svg",
+            depth: "electrical-safety-audit",
         },
         {
             id: 6,
@@ -54,7 +59,8 @@ export default function ServicePage() {
             title: "Corporate Social Response",
             desc: "Corporate social responsibility services are taken up by businesses in profit as a self-regulatory mechanism to socially contribute to specific sectors of priority & interest to the business group. Through their CSR efforts companies try and create certain social impacts contributing to a country’s infrastructure & people through business profits. Through various projects & initiatives the CSR efforts ensure businesses & brands contribute not only in the society but also for their own learning & development in the sectors they operate in. A well thought of CSR initiative eventually benefits the society & the country at large magnifying various efforts from the government, NGOs as well as the private sector thus creating a visible impact in the social frame of a country.",
             tags: ["corporate", "response", "social"],
-            image: "../service_img/logo-svg1.svg"
+            image: "../service_img/logo-svg1.svg",
+            depth: "electrical-safety-audit",
         }
     ];
 
@@ -118,17 +124,14 @@ export default function ServicePage() {
 
     useEffect(() => {
         if (selectedService) {
-            const scrollY = window.scrollY;
-            document.documentElement.style.position = "fixed";
-            document.documentElement.style.top = `-${scrollY}px`;
-            document.documentElement.style.width = "100%";
+          document.body.style.overflow = "hidden";
         } else {
-            const scrollY = parseInt(document.documentElement.style.top || "0") * -1;
-            document.documentElement.style.position = "";
-            document.documentElement.style.top = "";
-            window.scrollTo(0, scrollY);
+          document.body.style.overflow = "auto";
         }
-    }, [selectedService]);
+        return () => {
+          document.body.style.overflow = "auto";
+        };
+      }, [selectedService]);
 
 
     // Open modal & update URL manually
@@ -228,46 +231,127 @@ export default function ServicePage() {
             <AnimatePresence>
                 {selectedService && (
                     <motion.div
-                        className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50"
+                        className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
+                        onClick={(e) => {
+                            // Close when clicking the backdrop but not the modal itself
+                            if (e.target === e.currentTarget) closeService();
+                        }}
                     >
                         <motion.div
-                            className="bg-white w-full h-full md:w-3/4 md:h-4/5 rounded-xl shadow-2xl p-8 relative flex flex-col overflow-y-auto"
-                            initial={{ y: "100%" }}
-                            animate={{ y: 0 }}
-                            exit={{ y: "100%" }}
-                            transition={{ type: "spring", stiffness: 120 }}
+                            className="bg-white w-full max-w-4xl max-h-[90vh] rounded-2xl shadow-2xl flex flex-col"
+                            initial={{ scale: 0.9, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            exit={{ scale: 0.9, opacity: 0 }}
+                            transition={{ type: "spring", damping: 25 }}
                         >
-                            {/* Close Button */}
-                            <div className="relative">
+                            {/* Header - Fixed */}
+                            <div className="sticky top-0 z-10 bg-white px-6 py-5 border-b border-gray-100 flex justify-between items-center">
+                                <div>
+                                    <h2 className="text-3xl font-bold text-gray-800">{selectedService.title}</h2>
+                                    <span className="inline-block mt-1 px-3 py-1 bg-companyBlue/10 text-companyBlue text-sm font-medium rounded-full">
+                                        {selectedService.category}
+                                    </span>
+                                </div>
                                 <button
                                     onClick={closeService}
-                                    className="fixed top-4 right-4 bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition duration-300"
+                                    className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors duration-200"
+                                    aria-label="Close modal"
                                 >
-                                    ✖
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                                    </svg>
                                 </button>
                             </div>
-                            {/* Service Details */}
-                            <h2 className="text-3xl font-bold">{selectedService.title}</h2>
-                            <p className="text-gray-600 text-lg">{selectedService.category}</p>
-                            <p className="text-gray-700 pt-6 font-generalSansMedium text-sm sm:text-base">
-                                {selectedService.desc}
-                            </p>
 
-                            {/* Apply Button */}
-                            <div
-                                id="apply"
-                                className="mt-auto flex flex-col"
-                            >
-                                <button
-                                    onClick={() => setShowForm(!showForm)}
-                                    className="px-6 py-3 mt-8 bg-companyBlue text-white text-lg font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 ease-in-out active:scale-95 flex items-center gap-2">
-                                    Book A Meeting  <ChevronDown className="w-5 h-5" />
-                                </button>
+                            {/* Content Area - This will be scrollable as a whole */}
+                            <div className="flex-1 overflow-y-auto">
+                                {/* Main content */}
+                                <div className="p-6">
+                                    <div className="prose prose-lg max-w-none">
+                                        <p className="text-gray-700 text-lg">{selectedService.desc}</p>
 
-                                {showForm && <SimpleForm />}
+                                        {/* Additional content sections */}
+                                        {selectedService.benefits && (
+                                            <div className="mt-8">
+                                                <h3 className="text-xl font-semibold text-gray-800 mb-3">Benefits</h3>
+                                                <ul className="space-y-2">
+                                                    {selectedService.benefits.map((benefit, index) => (
+                                                        <li key={index} className="flex items-start">
+                                                            <span className="inline-flex items-center justify-center h-6 w-6 rounded-full bg-green-100 text-green-600 mr-3 flex-shrink-0">
+                                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                                                </svg>
+                                                            </span>
+                                                            <span>{benefit}</span>
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            </div>
+                                        )}
+
+                                        {selectedService.features && (
+                                            <div className="mt-8">
+                                                <h3 className="text-xl font-semibold text-gray-800 mb-4">Key Features</h3>
+                                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                                    {selectedService.features.map((feature, index) => (
+                                                        <div key={index} className="p-4 rounded-lg border border-gray-100 bg-gray-50">
+                                                            <h4 className="font-medium text-gray-800">{feature.title}</h4>
+                                                            <p className="text-gray-600 text-sm mt-1">{feature.description}</p>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+
+                                {/* Footer section - still within the scrollable area */}
+                                <div className="bg-white border-t border-gray-100 p-6">
+                                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                                        {selectedService.price && (
+                                            <div>
+                                                <span className="text-gray-500 text-sm">Starting at</span>
+                                                <span className="text-2xl font-bold text-gray-900 ml-2">{selectedService.price}</span>
+                                            </div>
+                                        )}
+                                        <div className="flex flex-col sm:flex-row gap-3">
+                                            <button
+                                                onClick={() => setShowForm(!showForm)}
+                                                className="px-6 py-3 bg-companyBlue text-white font-semibold rounded-lg shadow hover:bg-companyBlue/90 focus:ring-2 focus:ring-companyBlue/50 focus:outline-none transition-all duration-200 flex items-center justify-center gap-2"
+                                            >
+                                                Book A Meeting
+                                                <svg
+                                                    className={`w-5 h-5 transition-transform duration-200 ${showForm ? 'rotate-180' : ''}`}
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    strokeWidth="2"
+                                                >
+                                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                                </svg>
+                                            </button>
+                                            <button
+                                                onClick={() => router.push(`/services/${selectedService.depth}`)}
+                                                className="px-6 py-3 border border-gray-300 text-gray-700 font-semibold rounded-lg hover:bg-gray-50 focus:ring-2 focus:ring-gray-200 focus:outline-none transition-all duration-200"
+                                            >
+                                                Learn More
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    {/* Booking Form */}
+                                    {showForm && (
+                                        <div className="mt-6">
+                                            <div className="border border-gray-200 rounded-lg p-5 bg-gray-50">
+                                                <SimpleForm />
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
                             </div>
                         </motion.div>
                     </motion.div>

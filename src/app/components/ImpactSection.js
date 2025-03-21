@@ -39,12 +39,12 @@ export default function Impact() {
   const prevSlide = () => setIndex((prev) => (prev - 1 + impacts.length) % impacts.length);
 
   return (
-    <div className="relative w-full h-[80vh] flex flex-col items-center justify-center overflow-hidden pt-8 px-4 sm:px-8 bg-gray-100">
+    <div className="relative w-full h-[80vh] flex flex-col items-center justify-center overflow-hidden pt-8 pb-8 px-4 sm:px-8 bg-gray-100">
       <div className="relative w-full h-full flex items-center justify-center">
         <AnimatePresence mode="wait">
           <motion.div
             key={impacts[index].title}
-            className="absolute w-full h-full flex flex-col sm:flex-row items-center justify-between p-6 bg-white shadow-lg rounded-lg"
+            className="hover:border hover:border-companyBlue duration-150 absolute w-full h-full flex flex-col sm:flex-row items-center justify-between p-6 bg-white shadow-lg rounded-lg"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.9 }}
@@ -65,7 +65,7 @@ export default function Impact() {
         </AnimatePresence>
       </div>
 
-      <div className="absolute bottom-4 flex gap-2">
+      <div className="absolute bottom-2 mt-8 flex gap-2">
         {impacts.map((_, i) => (
           <button
             key={i}
