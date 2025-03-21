@@ -6,22 +6,22 @@ const impacts = [
   {
     title: "Positively Impacting Environment & Sustainability",
     desc: "Enabling Businesses to conserve energy & reduce the negative impact over environment along with creating a social sustainable impact.",
-    image: "/impactSection/IMG-20250213-WA0002-removebg-preview.png",
+    image: "/impactSection/IMG-20250213-WA0005-removebg-preview.png",
   },
   {
     title: "Organising the Unorganised Business Services",
     desc: "Offering organised & dependable services to businesses thus helping them scale & sustain respective business environment.",
-    image: "/impactSection/IMG-20250213-WA0003-removebg-preview.png",
+    image: "/impactSection/IMG-20250213-WA0002-removebg-preview.png",
   },
   {
     title: "Pan-India One-Stop Services Company",
     desc: "Setting up a national foot-print of business services bringing uniformity & single-point-of-contact for businesses.",
-    image: "/impactSection/IMG-20250213-WA0004-removebg-preview.png",
+    image: "/impactSection/IMG-20250213-WA0003-removebg-preview.png",
   },
   {
     title: "In-House Team of Auditors, Engineers & Skilled Professionals",
     desc: "Creating a pool of qualified, skilled & professional Engineers-Handymen along with efficient Project Managers to Key Account Managers.",
-    image: "/impactSection/IMG-20250213-WA0005-removebg-preview.png",
+    image: "/impactSection/IMG-20250213-WA0004-removebg-preview.png",
   },
 ];
 
@@ -64,6 +64,9 @@ export default function Impact() {
       </AnimatePresence>
       <button className="absolute left-4 sm:left-5 p-2 bg-gray-800 text-white rounded-full" onClick={prevSlide}>
         <ChevronLeft size={30} />
+      </button>
+      <button className="absolute right-4 sm:right-5 p-2 bg-gray-800 text-white rounded-full" onClick={nextSlide}>
+        <ChevronRight size={30} />
       </button>
     </div>
   );

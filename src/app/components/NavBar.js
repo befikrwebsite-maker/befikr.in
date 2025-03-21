@@ -15,13 +15,13 @@ export default function Navbar() {
       // Remove .html for Next.js static export compatibility
 
       const pageNames = {
-        "/": "Home",
-        "/what-we-do/": "What We Do",
-        "/who-we-are/": "Who We Are",
-        "/who-we-are/founders/": "Founders",
-        "/work-with-us/": "Work With Us",
-        "/work-with-us/job/": "Jobs",
-        "/reach-us": "Reach Us"
+        "/": "home",
+        "/services/": "services",
+        "/about-us/": "about us",
+        "/about-us/founders/": "founders",
+        "/careers/": "careers",
+        "/careers/jobs/": "jobs",
+        "/reach-us": "reach Us"
       };
 
       setLink(pageNames[path] || ""); // Default to empty if not found
@@ -45,13 +45,16 @@ export default function Navbar() {
         </div>
 
         {/* Desktop Navigation Links */}
-        <div className="hidden md:flex space-x-8 font-generalSansRegular">
+        <div className="hidden md:flex space-x-8 font-generalSansRegular items-center">
           <a href="/" className="text-black hover:text-companyBlue transition-colors">Home</a>
-          <a href="/what-we-do" className="text-black hover:text-companyBlue transition-colors">What We Do</a>
-          <a href="/who-we-are" className="text-black hover:text-companyBlue transition-colors">Who We Are</a>
-          <a href="/work-with-us" className="text-black hover:text-companyBlue transition-colors">Work With Us</a>
-          <a href="/reach-us" className="text-black hover:text-companyBlue transition-colors">Reach Us</a>
+          <a href="/services" className="text-black hover:text-companyBlue transition-colors">Services</a>
+          <a href="/about-us" className="text-black hover:text-companyBlue transition-colors">About Us</a>
+          <a href="/careers" className="text-black hover:text-companyBlue transition-colors">Careers</a>
+          <a href="/reach-us" className="text-black hover:text-companyBlue transition-colors flex items-center">
+            <img src="/extraLogos/rev.png" className="h-12 w-auto" />
+          </a>
         </div>
+
 
         {/* Mobile Menu Button */}
         <button className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
@@ -70,12 +73,16 @@ export default function Navbar() {
             className="md:hidden absolute top-20 left-0 w-full bg-[#f5f5f5] shadow-md py-4 flex flex-col items-center space-y-4 z-50"
           >
             <a href="/" className="text-black hover:text-companyBlue transition-colors" onClick={() => setIsOpen(false)}>Home</a>
-            <a href="/what-we-do" className="text-black hover:text-companyBlue transition-colors" onClick={() => setIsOpen(false)}>What We Do</a>
-            <a href="/who-we-are" className="text-black hover:text-companyBlue transition-colors" onClick={() => setIsOpen(false)}>Who We Are</a>
-            <a href="/work-with-us" className="text-black hover:text-companyBlue transition-colors" onClick={() => setIsOpen(false)}>Work With Us</a>
+            <a href="/services" className="text-black hover:text-companyBlue transition-colors" onClick={() => setIsOpen(false)}>Services</a>
+            <a href="/about-us" className="text-black hover:text-companyBlue transition-colors" onClick={() => setIsOpen(false)}>About Us</a>
+            <a href="/careers" className="text-black hover:text-companyBlue transition-colors" onClick={() => setIsOpen(false)}>Careers</a>
+            <a href="/reach-us" className="text-black hover:text-companyBlue transition-colors flex items-center" onClick={() => setIsOpen(false)}>
+              <img src="/extraLogos/rev.png" className="h-8 w-auto" />
+            </a>
           </motion.div>
         )}
       </AnimatePresence>
+
     </header>
   );
 }

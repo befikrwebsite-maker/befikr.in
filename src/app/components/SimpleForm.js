@@ -27,7 +27,7 @@ export default function SimpleForm({ serviceTitle, onClose }) {
         form.append("message", formData.message);
 
         try {
-            const response = await fetch("http://localhost/Befikr/serviceBooking.php", {
+            const response = await fetch("https://befikr.in/serviceBooking.php", {
               method: "POST",
               body: form,
             });

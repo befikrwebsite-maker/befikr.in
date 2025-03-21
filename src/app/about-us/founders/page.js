@@ -13,10 +13,6 @@ export default function Home() {
 
       <main className="w-[100%] md:w-full justify-self-center no-scrollbar bg-[#f5f5f5] flex flex-col">
         <div className="h-fit text-center flex flex-col justify-center items-center pb-10">
-          <img
-            src="/images/IMG1_F.png"
-            className="w-full scale-105"
-          />
           <div className="p-10">
             <h1 className="text-4xl md:pt-10 md:text-6xl font-generalSansMedium">
               About The Founders<span className="pt-6 inline-block font-generalSansItalic text-companyBlue">.</span>

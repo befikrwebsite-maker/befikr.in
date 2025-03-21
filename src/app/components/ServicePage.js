@@ -226,28 +226,29 @@ export default function ServicePage() {
 
             {/* Full-Screen Animated Modal */}
             <AnimatePresence>
-                {selectedService && (
-                    <motion.div
-                        className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                    >
-                        <motion.div
-                            className="bg-white w-full max-h-screen md:w-3/4 md:max-h-[90vh] rounded-lg shadow-lg p-8 relative flex flex-col overflow-y-auto"
-                            style={{ maxHeight: "90vh" }}
-                            initial={{ y: "100%" }}
-                            animate={{ y: 0 }}
-                            exit={{ y: "100%" }}
-                            transition={{ type: "spring", stiffness: 120 }}
-                        >
-                            {/* Close Button */}
-                            <button
-                                onClick={closeService}
-                                className="absolute top-2 right-2 bg-red-500 text-white px-4 py-2 rounded-tr-lg"
-                            >
-                                ✖
-                            </button>
+          {selectedService && (
+            <motion.div
+              className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <motion.div
+                className="bg-white w-full h-full md:w-3/4 md:h-4/5 rounded-xl shadow-2xl p-8 relative flex flex-col overflow-y-auto"
+                initial={{ y: "100%" }}
+                animate={{ y: 0 }}
+                exit={{ y: "100%" }}
+                transition={{ type: "spring", stiffness: 120 }}
+              >
+                {/* Close Button */}
+                <div className="relative">
+                  <button
+                    onClick={closeService}
+                    className="fixed top-4 right-4 bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition duration-300"
+                  >
+                    ✖
+                  </button>
+                </div>
                             {/* Service Details */}
                             <h2 className="text-3xl font-bold">{selectedService.title}</h2>
                             <p className="text-gray-600 text-lg">{selectedService.category}</p>
@@ -261,12 +262,8 @@ export default function ServicePage() {
                                 onClick={() => setShowForm(!showForm)}
                                 className="mt-auto flex flex-col"
                             >
-                                <button onClick={() => {
-                                    setTimeout(() => {
-                                        document.getElementById("apply")?.scrollIntoView({ behavior: "smooth" });
-                                    }, 100);
-                                }} className="px-6 py-3 mt-8 bg-companyBlue text-white text-lg font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 ease-in-out active:scale-95 flex items-center gap-2">
-                                    Apply Now <ChevronDown className="w-5 h-5" />
+                                <button className="px-6 py-3 mt-8 bg-companyBlue text-white text-lg font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 ease-in-out active:scale-95 flex items-center gap-2">
+                                    Book A Meeting  <ChevronDown className="w-5 h-5" />
                                 </button>
 
                                 {showForm && <SimpleForm />}
