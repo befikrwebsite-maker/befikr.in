@@ -1,8 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 
-const sourceDir = __dirname; // Root directory
-const outDir = path.join(__dirname, 'out'); // Next.js export folder
+const sourceDir = path.join(__dirname, '..'); // Move up to root directory
+const outDir = path.join(sourceDir, 'out'); // 'out' folder in root directory
 
 if (!fs.existsSync(outDir)) {
   fs.mkdirSync(outDir, { recursive: true });
