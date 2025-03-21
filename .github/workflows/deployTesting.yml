@@ -25,6 +25,9 @@ jobs:
       - name: Build Application
         run: npm run build
 
+      - name: Export PHP Files
+        run: npm run export-php
+
       - name: Setup SSH Key
         run: |
           mkdir -p ~/.ssh
@@ -44,3 +47,4 @@ jobs:
           scp -P ${{ secrets.SSH_PORT_TESTING }} -r ./out/* ${{ secrets.SSH_USERNAME_TESTING }}@${{ secrets.SSH_IP_TESTING }}:${{ secrets.SSH_DEPLOY_DIR }}
 
           echo "Deployment complete!"
+
