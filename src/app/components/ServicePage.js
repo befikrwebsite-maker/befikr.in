@@ -123,28 +123,29 @@ export default function ServicePage() {
     }, []);
 
     useEffect(() => {
+        const html = document.documentElement;
         if (selectedService) {
-          document.body.style.overflow = "hidden";
+            html.style.overflow = "hidden";
         } else {
-          document.body.style.overflow = "auto";
+            html.style.overflow = "";
         }
         return () => {
-          document.body.style.overflow = "auto";
+            html.style.overflow = "";
         };
-      }, [selectedService]);
+    }, [selectedService]);
+
+
 
 
     // Open modal & update URL manually
     const openService = (service) => {
         setSelectedService(service);
-        document.body.style.overflow = "hidden";
     };
 
     // Close modal & reset URL manually
     const closeService = () => {
         window.history.pushState({}, "", "/"); // Removes ServiceId from the URL
         setSelectedService(null);
-        document.body.style.overflow = "";
     };
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -236,8 +237,7 @@ export default function ServicePage() {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         onClick={(e) => {
-                            // Close when clicking the backdrop but not the modal itself
-                            if (e.target === e.currentTarget) closeService();
+                            if (e.target === e.currentTarget) closeService(); // Close only when clicking outside the modal
                         }}
                     >
                         <motion.div
@@ -246,6 +246,7 @@ export default function ServicePage() {
                             animate={{ scale: 1, opacity: 1 }}
                             exit={{ scale: 0.9, opacity: 0 }}
                             transition={{ type: "spring", damping: 25 }}
+                            onWheel={(e) => e.stopPropagation()} // Prevent scroll events from propagating to the background
                         >
                             {/* Header - Fixed */}
                             <div className="sticky top-0 z-10 bg-white px-6 py-5 border-b border-gray-100 flex justify-between items-center">
@@ -268,7 +269,7 @@ export default function ServicePage() {
                             </div>
 
                             {/* Content Area - This will be scrollable as a whole */}
-                            <div className="flex-1 overflow-y-auto">
+                            <div className="flex-1 overflow-y-auto max-h-[70vh] p-6">
                                 {/* Main content */}
                                 <div className="p-6">
                                     <div className="prose prose-lg max-w-none">
