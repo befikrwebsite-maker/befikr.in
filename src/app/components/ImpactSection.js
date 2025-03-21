@@ -39,31 +39,31 @@ export default function Impact() {
   const prevSlide = () => setIndex((prev) => (prev - 1 + impacts.length) % impacts.length);
 
   return (
-    <div className="relative w-full h-[90vh] flex items-center justify-center overflow-hidden">
+    <div className="relative w-full h-[90vh] flex items-center justify-center overflow-hidden px-4 sm:px-8">
       <AnimatePresence>
         <motion.div
           key={impacts[index].title}
-          className="absolute w-full h-full flex items-center justify-center p-12 bg-[#f5f5f5]"
+          className="absolute w-full h-full flex flex-col sm:flex-row items-center justify-center p-6 bg-[#f5f5f5]"
           initial={{ x: "100%", opacity: 0 }}
           animate={{ x: "0%", opacity: 1 }}
           exit={{ x: "-100%", opacity: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <div className="relative p-6 bg-white rounded-lg shadow-lg transition-all duration-300 border w-full h-full">
+          <div className="relative p-6 bg-white rounded-lg shadow-lg transition-all duration-300 border w-full h-full flex flex-col sm:flex-row items-center sm:items-start">
             <img
               src={impacts[index].image}
               alt={impacts[index].title}
-              className="absolute right-0 bottom-0 w-1/3 object-cover"
+              className="w-2/3 sm:w-1/3 object-contain sm:absolute right-0 bottom-0"
             />
-            <div className="flex flex-col justify-center text-lg text-black p-4 z-10">
-              <h3 className="text-4xl font-bold">{impacts[index].title}</h3>
-              <p className="text-xl mt-2 w-1/2">{impacts[index].desc}</p>
+            <div className="flex flex-col justify-center text-black p-4 z-10 text-center sm:text-left">
+              <h3 className="text-2xl sm:text-4xl font-bold">{impacts[index].title}</h3>
+              <p className="text-lg sm:text-xl mt-2 w-full sm:w-1/2">{impacts[index].desc}</p>
             </div>
           </div>
         </motion.div>
       </AnimatePresence>
-      <button className="absolute right-5 p-2 bg-gray-800 text-white rounded-full" onClick={nextSlide}>
-        <ChevronRight size={30} />
+      <button className="absolute left-4 sm:left-5 p-2 bg-gray-800 text-white rounded-full" onClick={prevSlide}>
+        <ChevronLeft size={30} />
       </button>
     </div>
   );

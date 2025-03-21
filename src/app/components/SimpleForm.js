@@ -49,7 +49,7 @@ export default function SimpleForm({ serviceTitle, onClose }) {
     return (
         <div className="flex justify-center">
 
-            <div className="mt-4 p-4 bg-gray-100 rounded-md shadow-md w-full max-w-md">
+            <div className="mt-10 p-4 bg-gray-100 rounded-md shadow-md w-full ">
                 <h2 className="text-xl font-semibold text-companyBlue mb-2">
                     Book a Meeting for {serviceTitle}
                 </h2>

@@ -44,18 +44,19 @@ export default function Footer() {
                 src="/extraLogos/logo-transparent-png_6.png"
                 className="w-32"
               />
+               <img
+                src="/extraLogos/logo-transparent-png_4.png"
+                className="w-32"
+              />
+              <img
+                src="/extraLogos/logo-transparent-png.png"
+                className="w-32"
+              />
               <img
                 src="/extraLogos/logo-transparent-png_1.png"
                 className="w-32"
               />
-              <img
-                src="/extraLogos/logo-transparent-png_5.png"
-                className="w-32"
-              />
-              <img
-                src="/extraLogos/logo-transparent-png_2.png"
-                className="w-32"
-              />
+             
             </div>
           </div>
         </div>

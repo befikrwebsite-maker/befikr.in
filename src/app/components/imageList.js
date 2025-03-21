@@ -18,7 +18,7 @@ const imageList = [
   { "name": "Bank of India", "url": "/logos/bankofindia.jpg", "tag": ["Environment/ESG Services"] },
   { "name": "PNB", "url": "/logos/punjab-national-bank.svg", "tag": ["Environment/ESG Services"] },
 
-  { "name": "Elcon Drugs & Pharmaceuticals", "url": "", "tag": ["Projects"] },
+  // { "name": "Elcon Drugs & Pharmaceuticals", "url": "", "tag": ["Projects"] },
   { "name": "Baxy Limited", "url": "/logos/baxy2.jpg", "tag": ["Projects"] },
 
   { "name": "Eveready", "url": "/logos/eveready-removebg-preview.png", "tag": ["Social/CSR Services"] },

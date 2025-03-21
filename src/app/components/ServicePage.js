@@ -5,22 +5,7 @@ import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Listbox, Transition } from "@headlessui/react";
 import SimpleForm from "./SimpleForm.js";
-
-{/*
-    ESG                                                             
-    - Environment - Electrical Safety Audit
-                  - Energy
-                  - Defective Audit
-                  - E-Waste Management
-                  - Reverse Logistics
-
-    - Social - Corporate Social Response
-
-    ESG   - EN                      Services - 
-        - Socaila
-        - gov
-*/}
-
+import { ChevronDown } from "lucide-react";
 
 export default function ServicePage() {
     const cards = [
@@ -146,7 +131,6 @@ export default function ServicePage() {
     }, [selectedService]);
 
 
-
     // Open modal & update URL manually
     const openService = (service) => {
         setSelectedService(service);
@@ -166,7 +150,7 @@ export default function ServicePage() {
             <div className="bg-white px-10 py-5 w-full items-center rounded-lg shadow-lg mt-8 flex flex-col justify-center  text-center">
                 <div className="text-left text-xl py-5 font-extrabold font-generalSansSemibold text-gray-900"></div>
                 <div className="w-full max-w-6xl">
-                    <div className="flex px-4 py-2 rounded-md bg-[#f5f5f5] overflow-hidden border-2 w-full font-[sans-serif]">
+                    <div className="flex px-4 py-2 rounded-md bg-[#f5f5f5] border-2 w-full font-[sans-serif]">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192.904 192.904" width="20px"
                             className="fill-blue-600 mr-3 rotate-90 font-extrabold ">
                             <path d="m190.707 180.101-47.078-47.077c11.702-14.072 18.752-32.142 18.752-51.831C162.381 36.423 125.959 0 81.191 0 36.422 0 0 36.423 0 81.193c0 44.767 36.422 81.187 81.191 81.187 19.688 0 37.759-7.049 51.831-18.751l47.079 47.078a7.474 7.474 0 0 0 5.303 2.197 7.498 7.498 0 0 0 5.303-12.803zM15 81.193C15 44.694 44.693 15 81.191 15c36.497 0 66.189 29.694 66.189 66.193 0 36.496-29.692 66.187-66.189 66.187C44.693 147.38 15 117.689 15 81.193z"></path>
@@ -198,9 +182,9 @@ export default function ServicePage() {
 
 
             <div className="py-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8 justify-items-center w-full">
-                {cards.map((items) => (
+                {filteredCards.map((items) => (
                     <div key={items.id}
-                        
+
                         className="w-full h-auto sm:h-[200px] md:h-[210px] lg:h-[250px] rounded-lg bg-white shadow-md p-4 sm:p-5 flex flex-col justify-between transition-all duration-300 ease-in hover:shadow-lg hover:border-companyBlue border relative"
                     // style={{
                     //     backgroundImage: `url(${items.image})`,
@@ -233,15 +217,13 @@ export default function ServicePage() {
                                 {items.desc}
                             </p>
                             <span className="cursor-pointer inline-block hover:text-companyBlue duration-100 transition-all"
-                            onClick={() => openService(items)}
+                                onClick={() => openService(items)}
                             >Read More</span>
                         </div>
                     </div>
                 ))}
             </div>
 
-
-            {/* Full-Screen Animated Modal */}
             {/* Full-Screen Animated Modal */}
             <AnimatePresence>
                 {selectedService && (
@@ -252,7 +234,8 @@ export default function ServicePage() {
                         exit={{ opacity: 0 }}
                     >
                         <motion.div
-                            className="bg-white w-full h-full  md:w-3/4 md:h-3/4 rounded-lg shadow-lg p-8 relative flex flex-col overflow-auto"
+                            className="bg-white w-full max-h-screen md:w-3/4 md:max-h-[90vh] rounded-lg shadow-lg p-8 relative flex flex-col overflow-y-auto"
+                            style={{ maxHeight: "90vh" }}
                             initial={{ y: "100%" }}
                             animate={{ y: 0 }}
                             exit={{ y: "100%" }}
@@ -265,7 +248,6 @@ export default function ServicePage() {
                             >
                                 ✖
                             </button>
-
                             {/* Service Details */}
                             <h2 className="text-3xl font-bold">{selectedService.title}</h2>
                             <p className="text-gray-600 text-lg">{selectedService.category}</p>
@@ -274,24 +256,26 @@ export default function ServicePage() {
                             </p>
 
                             {/* Apply Button */}
-                            {showForm ? (
-                                <SimpleForm serviceTitle={selectedService.title} onClose={() => setShowForm(false)} />
-                            ) : (
-                                <div className="mt-auto">
-                                    <button
-                                        onClick={() => setShowForm(true)}
-                                        className="bg-companyBlue text-white px-6 py-3 rounded-lg hover:bg-opacity-90"
-                                    >
-                                        Book A Meeting Now!
-                                    </button>
-                                </div>
-                            )}
+                            <div
+                                id="apply"
+                                onClick={() => setShowForm(!showForm)}
+                                className="mt-auto flex flex-col"
+                            >
+                                <button onClick={() => {
+                                    setTimeout(() => {
+                                        document.getElementById("apply")?.scrollIntoView({ behavior: "smooth" });
+                                    }, 100);
+                                }} className="px-6 py-3 mt-8 bg-companyBlue text-white text-lg font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 ease-in-out active:scale-95 flex items-center gap-2">
+                                    Apply Now <ChevronDown className="w-5 h-5" />
+                                </button>
+
+                                {showForm && <SimpleForm />}
+                            </div>
                         </motion.div>
                     </motion.div>
                 )}
             </AnimatePresence>
         </div>
-
     );
 };
 
