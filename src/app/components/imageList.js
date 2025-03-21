@@ -19,7 +19,7 @@ const imageList = [
   { "name": "PNB", "url": "/logos/punjab-national-bank.svg", "tag": ["Environment/ESG Services"] },
 
   // { "name": "Elcon Drugs & Pharmaceuticals", "url": "", "tag": ["Projects"] },
-  { "name": "Baxy Limited", "url": "/logos/baxy2.jpg", "tag": ["Projects"] },
+  { "name": "Baxy Limited", "url": "/logos/baxy2-removebg-preview.png", "tag": ["Projects"] },
 
   { "name": "Eveready", "url": "/logos/eveready-removebg-preview.png", "tag": ["Social/CSR Services"] },
   { "name": "Jubilant Bhartia Foundation", "url": "/logos/jbf.png", "tag": ["Social/CSR Services"] }
