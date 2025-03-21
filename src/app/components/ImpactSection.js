@@ -30,43 +30,62 @@ export default function Impact() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setIndex((prev) => (prev + 1) % impacts.length);
-    }, 4000);
+      nextSlide();
+    }, 5000);
     return () => clearInterval(interval);
-  }, []);
+  }, [index]);
 
   const nextSlide = () => setIndex((prev) => (prev + 1) % impacts.length);
   const prevSlide = () => setIndex((prev) => (prev - 1 + impacts.length) % impacts.length);
 
   return (
-    <div className="relative w-full h-[90vh] flex items-center justify-center overflow-hidden px-4 sm:px-8">
-      <AnimatePresence>
-        <motion.div
-          key={impacts[index].title}
-          className="absolute w-full h-full flex flex-col sm:flex-row items-center justify-center p-6 bg-[#f5f5f5]"
-          initial={{ x: "100%", opacity: 0 }}
-          animate={{ x: "0%", opacity: 1 }}
-          exit={{ x: "-100%", opacity: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          <div className="relative p-6 bg-white rounded-lg shadow-lg transition-all duration-300 border w-full h-full flex flex-col sm:flex-row items-center sm:items-start">
-            <img
-              src={impacts[index].image}
-              alt={impacts[index].title}
-              className="w-2/3 sm:w-1/3 object-contain sm:absolute right-0 bottom-0"
-            />
-            <div className="flex flex-col justify-center text-black p-4 z-10 text-center sm:text-left">
-              <h3 className="text-2xl sm:text-4xl font-bold">{impacts[index].title}</h3>
-              <p className="text-lg sm:text-xl mt-2 w-full sm:w-1/2">{impacts[index].desc}</p>
+    <div className="relative w-full h-[80vh] flex flex-col items-center justify-center overflow-hidden pt-8 px-4 sm:px-8 bg-gray-100">
+      <div className="relative w-full h-full flex items-center justify-center">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={impacts[index].title}
+            className="absolute w-full h-full flex flex-col sm:flex-row items-center justify-between p-6 bg-white shadow-lg rounded-lg"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="flex flex-col justify-center p-4 text-center sm:text-left w-full sm:w-2/3">
+              <h3 className="text-3xl font-bold text-gray-900">{impacts[index].title}</h3>
+              <p className="text-lg text-gray-700 mt-2">{impacts[index].desc}</p>
             </div>
-          </div>
-        </motion.div>
-      </AnimatePresence>
-      <button className="absolute left-4 sm:left-5 p-2 bg-gray-800 text-white rounded-full" onClick={prevSlide}>
-        <ChevronLeft size={30} />
+            <div className="w-full sm:w-1/3 flex justify-center">
+              <img
+                src={impacts[index].image}
+                alt={impacts[index].title}
+                className="max-h-60 object-contain"
+              />
+            </div>
+          </motion.div>
+        </AnimatePresence>
+      </div>
+
+      <div className="absolute bottom-4 flex gap-2">
+        {impacts.map((_, i) => (
+          <button
+            key={i}
+            className={`h-3 w-3 rounded-full transition-all ${index === i ? "bg-gray-800 w-6" : "bg-gray-400"}`}
+            onClick={() => setIndex(i)}
+          />
+        ))}
+      </div>
+
+      <button
+        className="absolute left-2 sm:left-4 p-3 bg-gray-800 text-white rounded-full z-50 hover:bg-gray-700"
+        onClick={prevSlide}
+      >
+        <ChevronLeft size={24} />
       </button>
-      <button className="absolute right-4 sm:right-5 p-2 bg-gray-800 text-white rounded-full" onClick={nextSlide}>
-        <ChevronRight size={30} />
+      <button
+        className="absolute right-2 sm:right-4 p-3 bg-gray-800 text-white rounded-full hover:bg-gray-700"
+        onClick={nextSlide}
+      >
+        <ChevronRight size={24} />
       </button>
     </div>
   );

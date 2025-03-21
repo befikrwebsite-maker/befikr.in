@@ -1,8 +1,8 @@
 <?php
-$servername = "localhost"; // Try localhost first
-$username = "u485173045_befikr_in";
-$password = "Befikr@@@@####123123befikr";
-$dbname = "u485173045_befikr";
+$servername = getenv('DB_HOST');
+$username = getenv('DB_USER');
+$password = getenv('DB_PASS');
+$dbname = getenv('DB_NAME');
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 

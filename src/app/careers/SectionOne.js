@@ -15,7 +15,7 @@ export default function SectionOne() {
                     Join Our Team At <span className="font-generalSansMediumItalic text-companyBlue">befikr</span>
                 </h1>
                 <p className="text-gray-600 mb-8">Work at one of the most successful consulting firm in India</p>
-                <Button link="/careers/jobs" className="bg-companyBlue hover:bg-companyBlue hover:border-orange-600 hover:border-2 transition-all delay-100" >View Openings</Button>
+                <Button link="/careers/jobs" className="bg-companyBlue hover:bg-companyBlue hover:shadow-xl  transition-all duration-300" >View Openings</Button>
             </div>
             <div className="hidden md:block mx-auto">
                 <img

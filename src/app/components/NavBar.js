@@ -29,7 +29,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className="sticky  h-[80px] bg-[#f5f5f5] backdrop-blur-md z-50 shadow-md">
+    <header className="sticky  h-[80px] bg-white backdrop-blur-md z-50 shadow-md">
       <nav className="w-full mx-auto px-6 py-4 flex justify-between items-center rounded-xl">
         {/* Logo & Page Name */}
         <div className="flex items-center space-x-4">
