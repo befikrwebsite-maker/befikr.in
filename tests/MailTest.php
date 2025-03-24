@@ -34,4 +34,34 @@ class SendMailTest extends TestCase {
         $decodedResponse = json_decode($response, true);
         $this->assertEquals("success", $decodedResponse["status"]);
     }
+
+    public function testEmailSentUnsuccessfully() {
+        // Create a mock file
+        $mockFilePath = __DIR__ . '/test.pdf';
+        file_put_contents($mockFilePath, 'Test PDF content');
+
+        $postData = [
+            'name' => 'Test User',
+            'email' => 'test@example.com',
+            'message' => ''
+        ];
+
+        $fileData = [
+            'resume' => new CURLFile($mockFilePath, 'application/pdf', 'test.pdf')
+        ];
+
+        // Send a POST request to the locally running PHP server
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, "http://localhost:8000/mail.php");
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, array_merge($postData, $fileData));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        $response = curl_exec($ch);
+        curl_close($ch);
+
+        $decodedResponse = json_decode($response, true);
+        $this->assertEquals("error", $decodedResponse["status"]);
+        $this->assertEquals("All fields are required", $decodedResponse["message"]);
+    }
 }
