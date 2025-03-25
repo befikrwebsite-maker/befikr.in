@@ -53,6 +53,10 @@ export default {
   			}
   		},
   		fontFamily: {
+			BebasNue: [
+				'BebasNeue-Regular',
+				'sans-serif'
+			],
 			Italianno: [
 				'Italiano-Regular',
 				'Handwriting'

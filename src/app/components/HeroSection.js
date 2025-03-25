@@ -1,6 +1,26 @@
 import { ChevronRight } from "lucide-react"
+import { useRef, useEffect } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
 
 export default function Hero() {
+    const textRef = useRef(null);
+
+    useEffect(() => {
+      gsap.registerPlugin(ScrollTrigger);
+  
+      gsap.from(textRef.current, {
+        opacity: 0,
+        x: -50,
+        duration: 1.2,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: textRef.current,
+          start: "top 80%", 
+        },
+      });
+    }, []);
     return (
         <section
             className="relative h-screen flex items-end bg-cover bg-center bg-no-repeat rounded-b-[4rem]"
@@ -16,7 +36,8 @@ export default function Hero() {
                 Your browser does not support the video tag.
             </video>
             <div className="absolute inset-0 bg-black opacity-60 rounded-b-[4rem]"></div>
-            <div className="relative z-10 text-white px-6 pb-14 md:w-full rounded-b-[4rem]">
+            <div ref={textRef}
+            className="relative z-10 text-white px-6 pb-14 md:w-full rounded-b-[4rem]">
                 <h1 className="text-5xl md:text-7xl font-generalSansMedium leading-tight transition-all delay-175 text-white p-2 inline-block">
                     <span className="inline-block">
                         Excellence is

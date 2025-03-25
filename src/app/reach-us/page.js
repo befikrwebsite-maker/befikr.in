@@ -44,7 +44,7 @@ export default function UnderDevelopment() {
     form.append("message", formData.message);
 
     try {
-      const response = await fetch("https://befikr.in/postalService.php", {
+      const response = await fetch("https://befikr.in/postal_service.php", {
         method: "POST",
         body: form,
       });
@@ -80,7 +80,7 @@ export default function UnderDevelopment() {
       </Head>
       <Navbar />
 
-      <div className="flex flex-col justify-start min-h-screen font-generalSansRegular text-[#009DC8]">
+      <div className="flex pt-10 flex-col justify-start min-h-screen font-generalSansRegular text-[#009DC8]">
         <div className="bg-[#009DC8] h-full">
           <div className="bg-[#f5f5f5] p-6 ">
             <div>

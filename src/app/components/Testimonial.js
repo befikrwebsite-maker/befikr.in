@@ -70,7 +70,7 @@ const data = [
     id: 10,
     name: "Sumit Kumar Mishra",
     text: "fourth item",
-    position: "Deputy General Manager - CES",
+    position: "Asst.Manager - MIS & Planning",
     desc: "As an employee, I appreciate the transparent and approachable nature of our management team. They consistently seek feedback, listen to concerns, and genuinely value our input, creating an open environment where communication flows freely. Management is always willing to offer guidance and support, but they also trust us to take ownership of our responsibilities.",
     image: "../Testimonial/Img10.png"
   },
@@ -78,7 +78,7 @@ const data = [
     id: 11,
     name: "Hemant Kumar",
     text: "fourth item",
-    position: "Deputy General Manager - CES",
+    position: "Asst.Manager - CES",
     desc: " I'm proud to be part of the Befikr company that puts service at its heart. Every day, I get to work with a dedicated team that values excellence, genuine care, and constant innovation. It's inspiring to see how our commitment to quality service not only meets but exceeds our customers' expectations.",
     image: "../Testimonial/Img11.png"
   },

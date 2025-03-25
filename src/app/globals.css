@@ -20,6 +20,17 @@
 }
 
 @font-face {
+  font-family: 'BebasNeue-Regular';
+  src: url('/fonts/BebasNeue-Regular.woff2') format('woff2'),
+    url('/fonts/BebasNeue-Regular.woff') format('woff'),
+    url('/fonts/BebasNeue-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+
+
+@font-face {
   font-family: 'Italiano-Regular';
   src: url('/fonts/Italianno-Regular.ttf') format('truetype');
 }

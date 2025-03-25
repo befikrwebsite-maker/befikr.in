@@ -186,7 +186,7 @@ export default function Page() {
         "ncr",
       ],
       pay: "",
-      jobtype: "fulltime",
+      jobtype: "Fulltime",
       responsibilities: [],
       skills: [],
       benefits: [],
@@ -285,8 +285,7 @@ export default function Page() {
 
   // Close modal & reset URL manually
   const closeJob = () => {
-    window.history.pushState({}, "", "/work-with-us/job"); // Removes jobId from the URL
-    window.history.pushState({}, "", "/work-with-us/job"); // Removes jobId from the URL
+    window.history.pushState({}, "", "/careers/jobs"); // Removes jobId from the URL
     setSelectedJob(null);
     setFormVisible(false);
   };
@@ -295,7 +294,7 @@ export default function Page() {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-[#f5f5f5] px-10 py-5 flex flex-col items-center">
+      <div className="min-h-screen pt-20 bg-[#f5f5f5] px-10 py-5 flex flex-col items-center">
         <div className="bg-white px-10 py-5 w-full max-w-7xl rounded-lg shadow-lg mt-8">
           <div className="text-left text-xl py-5 text-[#038DAF] font-generalSansSemibold">
             Job Openings
@@ -448,183 +447,183 @@ export default function Page() {
 
                 {/* Grid Layout */}
                 <div className="p-8 flex-1 overflow-y-auto">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {/* Left Section */}
-                  <div>
-                    <div className="mb-6">
-                      <p className="text-cyan-400 font-bold">Job Type:</p>
-                      <p className="text-gray-800">
-                        {selectedJob.jobtype || "Not specified"}
-                      </p>
-                    </div>
-                    <div className="mb-6">
-                      <p className="text-cyan-400 font-bold">Pay:</p>
-                      <p className="text-gray-800">
-                        {selectedJob.pay || "Not specified"}
-                      </p>
-                    </div>
-                    <div className="mb-6">
-                      <p className="text-cyan-400 font-bold">
-                        Expected Start Date:
-                      </p>
-                      <p className="text-gray-800">
-                        {selectedJob.expected_start_date || "Not specified"}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Right Section */}
-                  <div>
-                    <div className="mb-6">
-                      <p className="text-cyan-400 font-bold">Location:</p>
-                      {selectedJob.location.map((item, index) => (
-                        <p key={index} className="text-gray-800">
-                          • {item}
-                        </p>
-                      ))}
-                    </div>
-                    {selectedJob.work_location && (
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {/* Left Section */}
+                    <div>
                       <div className="mb-6">
-                        <p className="text-cyan-400 font-bold">
-                          Work Location:
-                        </p>
+                        <p className="text-cyan-400 font-bold">Job Type:</p>
                         <p className="text-gray-800">
-                          {selectedJob.work_location}
+                          {selectedJob.jobtype || "Not specified"}
                         </p>
                       </div>
-                    )}
+                      <div className="mb-6">
+                        <p className="text-cyan-400 font-bold">Pay:</p>
+                        <p className="text-gray-800">
+                          {selectedJob.pay || "Not specified"}
+                        </p>
+                      </div>
+                      <div className="mb-6">
+                        <p className="text-cyan-400 font-bold">
+                          Expected Start Date:
+                        </p>
+                        <p className="text-gray-800">
+                          {selectedJob.expected_start_date || "Not specified"}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Right Section */}
+                    <div>
+                      <div className="mb-6">
+                        <p className="text-cyan-400 font-bold">Location:</p>
+                        {selectedJob.location.map((item, index) => (
+                          <p key={index} className="text-gray-800">
+                            • {item}
+                          </p>
+                        ))}
+                      </div>
+                      {selectedJob.work_location && (
+                        <div className="mb-6">
+                          <p className="text-cyan-400 font-bold">
+                            Work Location:
+                          </p>
+                          <p className="text-gray-800">
+                            {selectedJob.work_location}
+                          </p>
+                        </div>
+                      )}
+                    </div>
                   </div>
-                </div>
 
-                {/* Description */}
-                <div className="mt-8 border-t border-gray-300 pt-6">
-                  <h3 className="text-xl font-semibold text-companyBlue uppercase">
-                    Job Description
-                  </h3>
-                  <p className="text-gray-700 mt-2 leading-relaxed">
-                    {selectedJob.desc}
-                  </p>
-                </div>
-
-                {/* Responsibilities */}
-                {selectedJob.responsibilities.length > 0 && (
+                  {/* Description */}
                   <div className="mt-8 border-t border-gray-300 pt-6">
                     <h3 className="text-xl font-semibold text-companyBlue uppercase">
-                      Responsibilities
+                      Job Description
                     </h3>
-                    <ul className="list-disc list-inside mt-2 space-y-1 text-gray-700">
-                      {selectedJob.responsibilities.map((item, index) => (
-                        <li key={index}>{item}</li>
-                      ))}
-                    </ul>
+                    <p className="text-gray-700 mt-2 leading-relaxed">
+                      {selectedJob.desc}
+                    </p>
                   </div>
-                )}
 
-                {/* Skills */}
-                {selectedJob.skills.length > 0 && (
-                  <div className="mt-8 border-t border-gray-300 pt-6">
-                    <h3 className="text-xl font-semibold text-companyBlue uppercase">
-                      Skills
-                    </h3>
-                    <ul className="flex flex-wrap gap-2 mt-2">
-                      {selectedJob.skills.map((skill, index) => (
-                        <li
-                          key={index}
-                          className="bg-gray-200 text-gray-700 px-3 py-1 rounded-md text-sm"
-                        >
-                          {skill}
-                        </li>
-                      ))}
-                    </ul>
+                  {/* Responsibilities */}
+                  {selectedJob.responsibilities.length > 0 && (
+                    <div className="mt-8 border-t border-gray-300 pt-6">
+                      <h3 className="text-xl font-semibold text-companyBlue uppercase">
+                        Responsibilities
+                      </h3>
+                      <ul className="list-disc list-inside mt-2 space-y-1 text-gray-700">
+                        {selectedJob.responsibilities.map((item, index) => (
+                          <li key={index}>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {/* Skills */}
+                  {selectedJob.skills.length > 0 && (
+                    <div className="mt-8 border-t border-gray-300 pt-6">
+                      <h3 className="text-xl font-semibold text-companyBlue uppercase">
+                        Skills
+                      </h3>
+                      <ul className="flex flex-wrap gap-2 mt-2">
+                        {selectedJob.skills.map((skill, index) => (
+                          <li
+                            key={index}
+                            className="bg-gray-200 text-gray-700 px-3 py-1 rounded-md text-sm"
+                          >
+                            {skill}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {/* Benefits */}
+                  {selectedJob.benefits.length > 0 && (
+                    <div className="mt-8 border-t border-gray-300 pt-6">
+                      <h3 className="text-xl font-semibold text-companyBlue uppercase">
+                        Benefits
+                      </h3>
+                      <ul className="list-disc list-inside mt-2 space-y-1 text-gray-700">
+                        {selectedJob.benefits.map((item, index) => (
+                          <li key={index}>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {/* Schedule */}
+                  {selectedJob.schedule.length > 0 && (
+                    <div className="mt-8 border-t border-gray-300 pt-6">
+                      <h3 className="text-xl font-semibold text-companyBlue uppercase">
+                        Schedule
+                      </h3>
+                      <ul className="list-disc list-inside mt-2 space-y-1 text-gray-700">
+                        {selectedJob.schedule.map((item, index) => (
+                          <li key={index}>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {/* Experience */}
+                  {selectedJob.experience.length > 0 && (
+                    <div className="mt-8 border-t border-gray-300 pt-6">
+                      <h3 className="text-xl font-semibold text-companyBlue uppercase">
+                        Experience
+                      </h3>
+                      <ul className="list-disc list-inside mt-2 space-y-1 text-gray-700">
+                        {selectedJob.experience.map((item, index) => (
+                          <li key={index}>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {/* Supplemental Pay */}
+                  {selectedJob.supplemental_pay.length > 0 && (
+                    <div className="mt-8 border-t border-gray-300 pt-6">
+                      <h3 className="text-xl font-semibold text-companyBlue uppercase">
+                        Supplemental Pay
+                      </h3>
+                      <ul className="list-disc list-inside mt-2 space-y-1 text-gray-700">
+                        {selectedJob.supplemental_pay.map((item, index) => (
+                          <li key={index}>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {/* Questions */}
+                  {selectedJob.questions.length > 0 && (
+                    <div className="mt-8 border-t border-gray-300 pt-6">
+                      <h3 className="text-xl font-semibold text-companyBlue uppercase">
+                        Questions
+                      </h3>
+                      <ul className="list-disc list-inside mt-2 space-y-1 text-gray-700">
+                        {selectedJob.questions.map((item, index) => (
+                          <li key={index}>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {/* Apply Button */}
+                  <div
+                    id="apply"
+                    className="mt-auto flex flex-col "
+                  >
+                    <button onClick={() => {
+                      setFormVisible(!formVisible)
+                      setTimeout(() => {
+                        document.getElementById("apply")?.scrollIntoView({ behavior: "smooth" });
+                      }, 100);
+                    }} className="px-6 py-3 mt-8 bg-companyBlue text-white text-lg font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 ease-in-out active:scale-95 flex items-center gap-2">
+                      Apply Now <ChevronDown className="w-5 h-5" />
+                    </button>
+
+                    {formVisible && <Form />}
                   </div>
-                )}
-
-                {/* Benefits */}
-                {selectedJob.benefits.length > 0 && (
-                  <div className="mt-8 border-t border-gray-300 pt-6">
-                    <h3 className="text-xl font-semibold text-companyBlue uppercase">
-                      Benefits
-                    </h3>
-                    <ul className="list-disc list-inside mt-2 space-y-1 text-gray-700">
-                      {selectedJob.benefits.map((item, index) => (
-                        <li key={index}>{item}</li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-
-                {/* Schedule */}
-                {selectedJob.schedule.length > 0 && (
-                  <div className="mt-8 border-t border-gray-300 pt-6">
-                    <h3 className="text-xl font-semibold text-companyBlue uppercase">
-                      Schedule
-                    </h3>
-                    <ul className="list-disc list-inside mt-2 space-y-1 text-gray-700">
-                      {selectedJob.schedule.map((item, index) => (
-                        <li key={index}>{item}</li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-
-                {/* Experience */}
-                {selectedJob.experience.length > 0 && (
-                  <div className="mt-8 border-t border-gray-300 pt-6">
-                    <h3 className="text-xl font-semibold text-companyBlue uppercase">
-                      Experience
-                    </h3>
-                    <ul className="list-disc list-inside mt-2 space-y-1 text-gray-700">
-                      {selectedJob.experience.map((item, index) => (
-                        <li key={index}>{item}</li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-
-                {/* Supplemental Pay */}
-                {selectedJob.supplemental_pay.length > 0 && (
-                  <div className="mt-8 border-t border-gray-300 pt-6">
-                    <h3 className="text-xl font-semibold text-companyBlue uppercase">
-                      Supplemental Pay
-                    </h3>
-                    <ul className="list-disc list-inside mt-2 space-y-1 text-gray-700">
-                      {selectedJob.supplemental_pay.map((item, index) => (
-                        <li key={index}>{item}</li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-
-                {/* Questions */}
-                {selectedJob.questions.length > 0 && (
-                  <div className="mt-8 border-t border-gray-300 pt-6">
-                    <h3 className="text-xl font-semibold text-companyBlue uppercase">
-                      Questions
-                    </h3>
-                    <ul className="list-disc list-inside mt-2 space-y-1 text-gray-700">
-                      {selectedJob.questions.map((item, index) => (
-                        <li key={index}>{item}</li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-
-                {/* Apply Button */}
-                <div
-                  id="apply"
-                  onClick={() => setFormVisible(!formVisible)}
-                  className="mt-auto flex flex-col "
-                >
-                  <button onClick={() => {
-                    setTimeout(() => {
-                      document.getElementById("apply")?.scrollIntoView({ behavior: "smooth" });
-                    }, 100);
-                  }} className="px-6 py-3 mt-8 bg-companyBlue text-white text-lg font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 ease-in-out active:scale-95 flex items-center gap-2">
-                    Apply Now <ChevronDown className="w-5 h-5" />
-                  </button>
-
-                  {formVisible && <Form />}
-                </div>
                 </div>
 
               </motion.div>

@@ -9,10 +9,11 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-[#f5f5f5] font-generalSansMedium items-center justify-center" style={{ height: "200vh" }}>
       <Navbar />
-      <NavbarSub />
+
       
 
-      <main className="w-[100%]  md:w-full justify-self-center no-scrollbar bg-[#f5f5f5] flex flex-col">
+      <main className="w-[100%] pt-20 md:w-full justify-self-center no-scrollbar bg-[#f5f5f5] flex flex-col">
+      <NavbarSub />
         <div className="h-fit text-center flex flex-col justify-center items-center pb-10">
           <img
             src="/images/IMG1.jpg"

@@ -1,36 +1,95 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Menu, Router, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Navbar() {
   const [link, setLink] = useState("Home");
   const [isOpen, setIsOpen] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [direction, setDirection] = useState("up");
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const textRef = useRef(null);
+  const dropdownRef = useRef(null);
+  const [activePath, setActivePath] = useState("");
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.from(textRef.current, {
+      opacity: 0,
+      y: -50,
+      duration: 0.6,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: textRef.current,
+        start: "top 80%",
+      },
+    });
+
+    gsap.set(dropdownRef.current, { opacity: 0, y: -10, display: "none" });
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > lastScrollY) {
+        setDirection("down");
+      } else {
+        setDirection("up");
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
+
+  useEffect(() => {
+    gsap.to(".navbar", {
+      y: direction === "down" ? "-100%" : "0%",
+      duration: 0.3,
+      ease: "power2.out",
+    });
+  }, [direction]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
       let path = window.location.pathname;
 
-      // Remove .html for Next.js static export compatibility
-
       const pageNames = {
         "/": "home",
-        "/services/": "services",
-        "/about-us/": "about us",
-        "/about-us/founders/": "founders",
-        "/careers/": "careers",
-        "/careers/jobs/": "jobs",
-        "/reach-us": "reach Us"
+        "/services": "what we do",
+        "/about-us": "who we are",
+        "/about-us/founders": "founders",
+        "/careers": "work with us",
+        "/careers/jobs": "jobs",
+        "/reach-us": "reach Us",
       };
 
-      setLink(pageNames[path] || ""); // Default to empty if not found
+      setLink(pageNames[path] || "");
+      setActivePath(path);
     }
   }, []);
 
+  const handleMouseEnter = () => {
+    gsap.to(dropdownRef.current, { opacity: 1, y: 0, display: "block", duration: 0.3 });
+  };
+
+  const handleMouseLeave = () => {
+    gsap.to(dropdownRef.current, { opacity: 0, y: -10, display: "none", duration: 0.3 });
+  };
+
   return (
-    <header className="sticky  h-[80px] bg-white backdrop-blur-md z-50 shadow-md">
-      <nav className="w-full mx-auto px-6 py-4 flex justify-between items-center rounded-xl">
+    <header ref={textRef} className="fixed w-full navbar h-[80px] bg-white backdrop-blur-md z-50 shadow-md">
+      <nav className="w-full mx-auto px-6 py-4 flex justify-between tracking-wide items-center rounded-xl">
         {/* Logo & Page Name */}
         <div className="flex items-center space-x-4">
           <a href="/" className="flex items-center space-x-2">
@@ -45,16 +104,39 @@ export default function Navbar() {
         </div>
 
         {/* Desktop Navigation Links */}
-        <div className="hidden md:flex space-x-8 font-generalSansRegular items-center">
-          <a href="/" className="text-black hover:text-companyBlue transition-colors">Home</a>
-          <a href="/services" className="text-black hover:text-companyBlue transition-colors">Services</a>
-          <a href="/about-us" className="text-black hover:text-companyBlue transition-colors">About Us</a>
-          <a href="/careers" className="text-black hover:text-companyBlue transition-colors">Careers</a>
-          <a href="/reach-us" className="text-black hover:text-companyBlue transition-colors flex items-center">
-            <img src="/extraLogos/rev.png" className="h-12 w-auto" />
+        <div className="hidden text-xl md:flex space-x-8 font-BebasNue items-center">
+          <a href="/" className={`flex items-center gap-2 transition-colors duration-300 ${activePath === "/" ? "text-companyBlue font-bold" : "text-gray-500 hover:text-companyBlue"}`}>
+            Home
           </a>
-        </div>
 
+          <div className="relative" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+            <a href="/services" className={`flex items-center gap-2 transition-colors duration-300 ${activePath === "/services/" ? "text-companyBlue font-bold" : "text-gray-500 hover:text-companyBlue"}`}>
+              Services
+            </a>
+            <div ref={dropdownRef} className="absolute left-0 w-60 bg-gray-800 text-white rounded-lg shadow-lg">
+              <ul className="p-2 space-y-2">
+                <li className="px-4 py-2 hover:bg-gray-700 rounded"><a href="/services/item1">Item 1</a></li>
+                <li className="px-4 py-2 hover:bg-gray-700 rounded"><a href="/services/item2">Item 2</a></li>
+                <li className="px-4 py-2 hover:bg-gray-700 rounded"><a href="/services/item3">Item 3</a></li>
+              </ul>
+            </div>
+          </div>
+
+
+          <a href="/about-us" className={`flex items-center gap-2 transition-colors duration-300 ${activePath === "/about-us/" ? "text-companyBlue font-bold" : "text-gray-500 hover:text-companyBlue"}`}>
+            About Us
+          </a>
+
+          <a href="/careers" className={`flex items-center gap-2 transition-colors duration-300 ${activePath === "/careers/" ? "text-companyBlue font-bold" : "text-gray-500 hover:text-companyBlue"}`}>
+            Careers
+          </a>
+
+          <a href="/reach-us" className={`flex items-center gap-2 transition-colors duration-300 ${activePath === "/reach-us/" ? "text-companyBlue font-bold" : "text-gray-500 hover:text-companyBlue"}`}>
+            Reach Us
+            <img src="/extraLogos/rev.png" className="h-10 w-18 hover:scale-110 duration-300" />
+          </a>
+
+        </div>
 
         {/* Mobile Menu Button */}
         <button className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
@@ -62,7 +144,7 @@ export default function Navbar() {
         </button>
       </nav>
 
-      {/* Mobile Navigation Menu with Animation */}
+      {/* Mobile Navigation Menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -70,7 +152,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden absolute top-20 left-0 w-full bg-[#f5f5f5] shadow-md py-4 flex flex-col items-center space-y-4 z-50"
+            className="md:hidden font-BebasNue absolute top-20 left-0 w-full bg-[#f5f5f5] shadow-md py-4 flex flex-col items-center space-y-4 z-50"
           >
             <a href="/" className="text-black hover:text-companyBlue transition-colors" onClick={() => setIsOpen(false)}>Home</a>
             <a href="/services" className="text-black hover:text-companyBlue transition-colors" onClick={() => setIsOpen(false)}>Services</a>
@@ -82,7 +164,6 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
-
     </header>
   );
 }
