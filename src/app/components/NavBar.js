@@ -109,13 +109,13 @@ export default function Navbar() {
             style={{ width: `${scrollPercentage}%` }}
           ></span>
         </div>
-        <nav className="w-full mx-auto px-6 py-4 flex justify-between tracking-wide items-center rounded-xl">
+        <nav className="w-full mx-auto px-6 flex justify-between h-full tracking-wide items-center rounded-xl">
           {/* Logo & Page Name */}
           <div className="flex items-center space-x-4">
             <a href="/" className="flex items-center space-x-2">
               <img
                 src="/logo.png"
-                className="max-w-[100px] md:justify-start drop-shadow-xl"
+                className="max-w-[100px] pb-4 pt-4 md:justify-start drop-shadow-xl"
                 alt="Company Logo"
               />
               <div className="w-[1px] ml-2 bg-black h-10"></div>
@@ -124,12 +124,12 @@ export default function Navbar() {
           </div>
 
           {/* Desktop Navigation Links */}
-          <div className="hidden text-xl md:flex space-x-8 font-BebasNue items-center">
+          <div className="hidden text-xl h-full md:flex space-x-8 font-BebasNue items-center">
             <a href="/" className={`flex items-center gap-2 transition-colors duration-300 ${activePath === "/" ? "text-companyBlue font-bold" : "text-gray-500 hover:text-companyBlue"}`}>
               Home
             </a>
 
-            <div className="relative" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+            <div className="relative " onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
               <a href="/services" className={`z-40 flex items-center gap-2 transition-colors duration-300 ${activePath === "/services/" ? "text-companyBlue font-bold" : "text-gray-500 hover:text-companyBlue"}`}>
                 Services
               </a>
@@ -171,7 +171,7 @@ export default function Navbar() {
               <a href="/services" className="text-black hover:text-companyBlue transition-colors" onClick={() => setIsOpen(false)}>Services</a>
               <a href="/about-us" className="text-black hover:text-companyBlue transition-colors" onClick={() => setIsOpen(false)}>About Us</a>
               <a href="/careers" className="text-black hover:text-companyBlue transition-colors" onClick={() => setIsOpen(false)}>Careers</a>
-              <a href="/reach-us" className="text-black hover:text-companyBlue transition-colors flex items-center" onClick={() => setIsOpen(false)}>
+              <a href="/reach-us" className="text-black hover:text-companyBlue transition-colors flex items-center" onClick={() => setIsOpen(false)}>Reach Us
                 <img src="/extraLogos/rev.png" className="h-8 w-auto" />
               </a>
             </motion.div>
@@ -179,7 +179,7 @@ export default function Navbar() {
         </AnimatePresence>
       </header>
       <div className="fixed w-full z-40" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-        <div ref={dropdownRef} className="e left-0 w-full h-80 mt-20 p-20 bg-gray-800 items-center justify-center text-white  shadow-lg">
+        <div ref={dropdownRef} className="e left-0 w-full h-80 p-20 bg-gray-800 items-center justify-center text-white  shadow-lg">
           <div className="grid grid-cols-3 gap-16">
             <ul className="p-2 space-y-2">
               <li className="px-4 py-2 hover:bg-gray-700 rounded"><a href="/services/item1"><strong className="text-xl">Industry</strong></a></li>

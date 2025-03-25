@@ -151,7 +151,7 @@ export default function ServicePage() {
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     return (
-        <div className=" max-w-full bg-[#f5f5f5] pt-20 px-10 flex flex-col items-center">
+        <div className=" max-w-full bg-[#f5f5f5] px-4 flex flex-col items-center">
             <div className="bg-white px-10 py-5 w-full items-center rounded-lg shadow-lg mt-8 flex flex-col justify-center  text-center">
                 <div className="text-left text-xl py-5 font-extrabold font-generalSansSemibold text-gray-900"></div>
                 <div className="w-full max-w-6xl">
@@ -201,7 +201,7 @@ export default function ServicePage() {
                         <img
                             src={items.image}
                             alt={items.title}
-                            className="absolute  right-0 h-full pb-10 object-cover"
+                            className="absolute right-0 h-full pb-10 object-cover"
                         />
                         <div className="absolute inset-0 bg-slate-50  bg-opacity-0 rounded-lg"></div>
 

@@ -6,7 +6,9 @@ export default function Page() {
   return (
     <div>
       <Navbar />
+      <div className="pt-20">
       <ServicePage/>
+      </div>
       <Footer />
     </div>
   );

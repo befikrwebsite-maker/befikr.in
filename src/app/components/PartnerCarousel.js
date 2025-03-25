@@ -26,7 +26,7 @@ export default function PartnerCarousel() {
     return (
         <div className="w-full p-6 overflow-hidden">
 
-            <div className="p-6 rounded-xl shadow-xl bg-[#f5f5f5]">
+            <div className="p-6 rounded-xl shadow-xl bg-white">
                 <div className="md:flex pb-10">
                     {allTags.map((tag) => (
                         <label

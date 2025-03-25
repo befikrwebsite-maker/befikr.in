@@ -16,7 +16,7 @@ export default function Footer() {
             <img 
             alt="CompanyLogo"
             src="/logo.png"
-            className="max-w-[90px]"
+            className="max-w-[100px]"
             />
             </a>
             <p className="mt-2 text-sm">

@@ -1,9 +1,5 @@
 const imageList = [
     // Environment/ESG Services & Circular Economy (sorted by placement first)
-    { "name": "Crompton", "url": "/logos/crompton-logo.svg", "tag": ["Environment/Circular Economy Services"] },
-    { "name": "Attero", "url": "/logos/atteroN.jpg", "tag": ["Environment/Circular Economy Services"] },
-    { "name": "Dominos", "url": "/logos/domino-s-pizza-4.svg", "tag": ["Environment/Circular Economy Services"] },
-    
     { "name": "HDFC Bank", "url": "/logos/hdfc-bank-logo.svg", "tag": ["Environment/ESG Services", "Social/CSR Services"] },
     { "name": "Kotak", "url": "/logos/kotak.png", "tag": ["Environment/ESG Services"] },
     { "name": "Axis", "url": "/logos/axis-bank-logo-1.svg", "tag": ["Environment/ESG Services"] },
@@ -18,6 +14,10 @@ const imageList = [
     { "name": "True North", "url": "/logos/truenorth_led_logo.jpeg", "tag": ["Environment/ESG Services"] },
   
     { "name": "American Embassy", "url": "/logos/embassy.png", "tag": ["Environment/ESG Services"] }, 
+
+    { "name": "Crompton", "url": "/logos/crompton-logo.svg", "tag": ["Environment/Circular Economy Services"] },
+    { "name": "Attero", "url": "/logos/atteroN.jpg", "tag": ["Environment/Circular Economy Services"] },
+    { "name": "Dominos", "url": "/logos/domino-s-pizza-4.svg", "tag": ["Environment/Circular Economy Services"] },
   
     // Social/CSR Services
     { "name": "Vidya School", "url": "/logos/vidyaschool.jpeg", "tag": ["Social/CSR Services"] },
