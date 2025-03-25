@@ -1,6 +1,8 @@
+
 import { Geist, Geist_Mono } from "next/font/google";
 import PageTransition from "./PageTransition";
 import "./globals.css";
+import TrackingComponent from "@/components/TrackingProgress"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,6 +27,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+      <TrackingComponent />
         <PageTransition>{children}</PageTransition> {/* Handles slide-in */}
       </body>
     </html>
