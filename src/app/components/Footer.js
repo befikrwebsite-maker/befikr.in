@@ -66,6 +66,9 @@ export default function Footer() {
           <p>&copy; {new Date().getFullYear()} Befikr. All Rights Reserved.</p>
         </div>
       </div>
+          <a
+            href="https://admin.befikr.in" target="_blank"
+          ><p className="absolute right-0 text-xs underline p-4">Admin Login</p></a>
     </footer>
   );
 }

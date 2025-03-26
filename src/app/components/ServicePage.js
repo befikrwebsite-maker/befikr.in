@@ -1,13 +1,32 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Listbox, Transition } from "@headlessui/react";
 import SimpleForm from "./SimpleForm.js";
 import { ChevronDown } from "lucide-react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/all";
 
 export default function ServicePage() {
+      const textRef = useRef(null);
+    
+      useEffect(() => {
+        gsap.registerPlugin(ScrollTrigger);
+    
+        gsap.from(textRef.current, {
+          opacity: 0,
+          y: 50,
+          duration: 1.2,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: textRef.current,
+            start: "top 80%", 
+          },
+        });
+      }, []);
+    
 
     const cards = [
         {
@@ -136,10 +155,8 @@ export default function ServicePage() {
 
 
 
-
     // Open modal & update URL manually
     const openService = (service) => {
-        document.documentElement.style.overflow = "hidden";
         setSelectedService(service);
     };
 
@@ -151,7 +168,7 @@ export default function ServicePage() {
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     return (
-        <div className=" max-w-full bg-[#f5f5f5] px-4 flex flex-col items-center">
+        <div className=" max-w-full bg-[#f5f5f5] px-10 flex flex-col items-center" ref={textRef}>
             <div className="bg-white px-10 py-5 w-full items-center rounded-lg shadow-lg mt-8 flex flex-col justify-center  text-center">
                 <div className="text-left text-xl py-5 font-extrabold font-generalSansSemibold text-gray-900"></div>
                 <div className="w-full max-w-6xl">
@@ -189,7 +206,6 @@ export default function ServicePage() {
             <div className="py-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8 justify-items-center w-full">
                 {filteredCards.map((items) => (
                     <div key={items.id}
-
                         className="w-full h-auto sm:h-[200px] md:h-[210px] lg:h-[250px] rounded-lg bg-white shadow-md p-4 sm:p-5 flex flex-col justify-between transition-all duration-300 ease-in hover:shadow-lg hover:border-companyBlue border relative"
                     // style={{
                     //     backgroundImage: `url(${items.image})`,
@@ -201,7 +217,7 @@ export default function ServicePage() {
                         <img
                             src={items.image}
                             alt={items.title}
-                            className="absolute right-0 h-full pb-10 object-cover"
+                            className="absolute  right-0 h-full pb-10 object-cover"
                         />
                         <div className="absolute inset-0 bg-slate-50  bg-opacity-0 rounded-lg"></div>
 

@@ -5,6 +5,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Menu, Router, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import NavbarDropdown from "./NavBarDropdown";
 
 export default function Navbar() {
   const [link, setLink] = useState("Home");
@@ -102,7 +103,11 @@ export default function Navbar() {
 
   return (
     <>
-      <header ref={textRef} className="fixed w-full navbar h-[80px] bg-white backdrop-blur-md z-50 shadow-md">
+      <header
+        ref={textRef}
+        className="fixed w-full navbar h-[80px] bg-white backdrop-blur-md z-50 shadow-md"
+        style={{ top: 0, left: 0 }}
+      >
         <div className="fixed top-0 right-0 left-0 z-50 w-full bg-transparent h-1">
           <span
             className="bg-companyBlue h-full block transition-all duration-200"
@@ -129,7 +134,8 @@ export default function Navbar() {
               Home
             </a>
 
-            <div className="relative " onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+            <div className="relative"
+              onMouseEnter={() => setDropdownOpen(true)}>
               <a href="/services" className={`z-40 flex items-center gap-2 transition-colors duration-300 ${activePath === "/services/" ? "text-companyBlue font-bold" : "text-gray-500 hover:text-companyBlue"}`}>
                 Services
               </a>
@@ -178,24 +184,29 @@ export default function Navbar() {
           )}
         </AnimatePresence>
       </header>
-      <div className="fixed w-full z-40" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-        <div ref={dropdownRef} className="e left-0 w-full h-80 p-20 bg-gray-800 items-center justify-center text-white  shadow-lg">
+      {/* <div className="fixed w-full pt-20 rounded-b-2xl z-40" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+        <div ref={dropdownRef} className="left-0 w-full h-80 p-20 pt-10 bg-gray-800 items-center justify-center transition-all duration-200 text-white shadow-lg">
           <div className="grid grid-cols-3 gap-16">
-            <ul className="p-2 space-y-2">
-              <li className="px-4 py-2 hover:bg-gray-700 rounded"><a href="/services/item1"><strong className="text-xl">Industry</strong></a></li>
-              <li className="px-4 py-2 hover:bg-gray-700 rounded"><a href="/services/item1">Item 1</a></li>
-              <li className="px-4 py-2 hover:bg-gray-700 rounded"><a href="/services/item2">Item 2</a></li>
-              <li className="px-4 py-2 hover:bg-gray-700 rounded"><a href="/services/item3">Item 3</a></li>
-            </ul>
-            <ul className="p-2 space-y-2">
-              <li className="px-4 py-2 hover:bg-gray-700 rounded"><a href="/services/item1"><strong className="text-xl">Services</strong></a></li>
-              <li className="px-4 py-2 hover:bg-gray-700 rounded"><a href="/services/item1">Item 1</a></li>
-              <li className="px-4 py-2 hover:bg-gray-700 rounded"><a href="/services/item2">Item 2</a></li>
-              <li className="px-4 py-2 hover:bg-gray-700 rounded"><a href="/services/item3">Item 3</a></li>
+            <ul className="p-2 h-fit space-y-2 overflow-auto">
+              <li className="px-4 py-2 hover:bg-gray-700 rounded"><a href="/services/"><strong className="text-xl">Services</strong></a></li>
+              <li className="px-4 py-2 hover:bg-gray-700 rounded"><a href="/services/electrical-safety-audit/">Electrical Safety Audit</a></li>
+              <li className="px-4 py-2 hover:bg-gray-700 rounded"><a href="/services/item2">Energy Audit</a></li>
+              <li className="px-4 py-2 hover:bg-gray-700 rounded"><a href="/services/item3">Defective Audit</a></li>
+              <li className="px-4 py-2 hover:bg-gray-700 rounded"><a href="/services/electrical-safety-audit/">Electrical Safety Audit</a></li>
+              <li className="px-4 py-2 hover:bg-gray-700 rounded"><a href="/services/item2">Energy Audit</a></li>
+              <li className="px-4 py-2 hover:bg-gray-700 rounded"><a href="/services/item3">Defective Audit</a></li>
+              <li className="px-4 py-2 hover:bg-gray-700 rounded"><a href="/services/electrical-safety-audit/">Electrical Safety Audit</a></li>
+              <li className="px-4 py-2 hover:bg-gray-700 rounded"><a href="/services/item2">Energy Audit</a></li>
+              <li className="px-4 py-2 hover:bg-gray-700 rounded"><a href="/services/item3">Defective Audit</a></li>
             </ul>
           </div>
         </div>
-      </div>
+      </div> */}
+      <NavbarDropdown
+        isVisible={dropdownOpen}
+        onMouseLeave={() => setDropdownOpen(false)}
+        dropdownRef={dropdownRef}
+      />
     </>
   );
 }

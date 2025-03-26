@@ -16,22 +16,6 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export default function Home() {
-  const textRef = useRef(null);
-
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
-    gsap.from(textRef.current, {
-      opacity: 0,
-      y: 50,
-      duration: 1.2,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: textRef.current,
-        start: "top 80%", 
-      },
-    });
-  }, []);
 
   useEffect(() => {
     const lenis = new Lenis({
@@ -50,7 +34,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#f5f5f5] font-generalSansMedium" style={{ height: "200vh" }}>
+    <div className="min-h-screen relative bg-[#f5f5f5] font-generalSansMedium" style={{ height: "200vh" }}>
       <Navbar />
 
       <main className="w-full pt-20 bg-[#f5f5f5] flex flex-col">
@@ -60,9 +44,7 @@ export default function Home() {
           </p>
         </div>
         <br />
-        <div ref={textRef}>
         <Service />
-        </div>
         <div className="bg-[#f5f5f5] pt-10 text-4xl md:text-left text-center font-generalSansSemibold md:pl-12 text-gray-900">Our Impact</div>
         <Impact />
         <div className="bg-[#f5f5f5] pt-10 text-4xl md:text-left text-center font-generalSansSemibold md:pl-12 text-gray-900">About Us</div>

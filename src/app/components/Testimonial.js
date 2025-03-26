@@ -62,7 +62,7 @@ const data = [
     id: 9,
     name: "Sanjay Singh",
     text: "fourth item",
-    position: "Deputy General Manager - Services",
+    position: "Deputy General Manager - CES",
     desc: "I joined befikr as entry level manager and now hold a position of DGM- Services, where I managing a team of 550 in the capacity of manager. During my 8 years with befikr, I have seen that befikr always had a excellent team with wide range of skill sets which can help any client to achieve their objectives and goals. Working with befikr team is an Outstanding Experience. Opportunities are higher to learn and grow in befikr.",
     image: "../Testimonial/Img9.png"
   },
