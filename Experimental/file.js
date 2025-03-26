@@ -249,6 +249,19 @@ export default function Page() {
       return false;
     }).length;
   };
+
+  // function to remove filters when they are clicked outside in the filter bar
+  const handleCheckboxFilterRemoval = (type,value) => {
+    if (type === "team") {
+      setSelectedTeams((prev) => prev.filter((item) => item !== value));
+    };
+    if (type === "position") {
+      setSelectedPositions((prev) => prev.filter((item) => item !== value));
+    };
+    if (type === "location") {
+      setSelectedLocations((prev) => prev.filter((item) => item !== value));
+    };
+  }
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   // using modalcomponent here ///////////////////////////////////////////////////////////////////////////////////////////
@@ -329,7 +342,7 @@ export default function Page() {
               setSelected={setSelectedTeams}
               getFilterCount={(team) => getFilterCount("team", team)}
             />
-            
+
             <Dropdown
               label="Position"
               options={uniquePositions}
@@ -356,9 +369,31 @@ export default function Page() {
               Showing {filteredJobs.length} Jobs among the applied filters
             </p>
           </div>
+          <div className="flex justify-center flex-wrap">
+            {selectedTeams.map((items, index) =>
+            (
+              <div onClick={handleCheckboxFilterRemoval("team",items)} key={index} className=" flex justify-center text-xs text-companyBlue hover:border-companyBlue hover:border rounded m-2 ">
+                <div className="m-1">{items}</div>
+              </div>
+            ))}
+            {selectedPositions.map((items, index) =>
+            (
+              <div onClick={handleCheckboxFilterRemoval("position",items)} key={index} className=" flex justify-center text-xs text-companyBlue hover:border-companyBlue hover:border rounded m-2 ">
+                <div className="m-1">{items}</div>
+              </div>
+            ))}
+            {selectedLocations.map((items, index) =>
+            (
+              <div onClick={handleCheckboxFilterRemoval("location",items)} key={index} className=" flex justify-center text-xs text-companyBlue hover:border-companyBlue hover:border rounded m-2 ">
+                <div className="m-1">{items}</div>
+              </div>
+            ))}
+          
+          </div>
+
         </div>
 
-        
+
 
         <div className="py-10 px- grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 justify-items-center w-full max-w-7xl">
           {filteredJobs.map((items, index) => (
@@ -474,53 +509,53 @@ export default function Page() {
                         </p>
                       </div>
                     </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {/* Left Section */}
-                    <div>
-                      <div className="mb-6">
-                        <p className="text-cyan-400 font-bold">Job Type:</p>
-                        <p className="text-gray-800">
-                          {selectedJob.jobtype || "Not specified"}
-                        </p>
-                      </div>
-                      <div className="mb-6">
-                        <p className="text-cyan-400 font-bold">Pay:</p>
-                        <p className="text-gray-800">
-                          {selectedJob.pay || "Not specified"}
-                        </p>
-                      </div>
-                      <div className="mb-6">
-                        <p className="text-cyan-400 font-bold">
-                          Expected Start Date:
-                        </p>
-                        <p className="text-gray-800">
-                          {selectedJob.expected_start_date || "Not specified"}
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Right Section */}
-                    <div>
-                      <div className="mb-6">
-                        <p className="text-cyan-400 font-bold">Location:</p>
-                        {selectedJob.location.map((item, index) => (
-                          <p key={index} className="text-gray-800">
-                            • {item}
-                          </p>
-                        ))}
-                      </div>
-                      {selectedJob.work_location && (
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      {/* Left Section */}
+                      <div>
                         <div className="mb-6">
-                          <p className="text-cyan-400 font-bold">
-                            Work Location:
-                          </p>
+                          <p className="text-cyan-400 font-bold">Job Type:</p>
                           <p className="text-gray-800">
-                            {selectedJob.work_location}
+                            {selectedJob.jobtype || "Not specified"}
                           </p>
                         </div>
-                      )}
+                        <div className="mb-6">
+                          <p className="text-cyan-400 font-bold">Pay:</p>
+                          <p className="text-gray-800">
+                            {selectedJob.pay || "Not specified"}
+                          </p>
+                        </div>
+                        <div className="mb-6">
+                          <p className="text-cyan-400 font-bold">
+                            Expected Start Date:
+                          </p>
+                          <p className="text-gray-800">
+                            {selectedJob.expected_start_date || "Not specified"}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Right Section */}
+                      <div>
+                        <div className="mb-6">
+                          <p className="text-cyan-400 font-bold">Location:</p>
+                          {selectedJob.location.map((item, index) => (
+                            <p key={index} className="text-gray-800">
+                              • {item}
+                            </p>
+                          ))}
+                        </div>
+                        {selectedJob.work_location && (
+                          <div className="mb-6">
+                            <p className="text-cyan-400 font-bold">
+                              Work Location:
+                            </p>
+                            <p className="text-gray-800">
+                              {selectedJob.work_location}
+                            </p>
+                          </div>
+                        )}
+                      </div>
                     </div>
-                  </div>
                     {/* Right Section */}
                     <div>
                       <div className="mb-6">
@@ -775,22 +810,22 @@ export default function Page() {
                     }} className="px-6 py-3 mt-8 bg-companyBlue text-white text-lg font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 ease-in-out active:scale-95 flex items-center gap-2">
                       Apply Now <ChevronDown className="w-5 h-5" />
                     </button>
-                  {/* Apply Button */}
-                  <div
-                    id="apply"
-                    className="mt-auto flex flex-col "
-                  >
-                    <button onClick={() => {
-                      setFormVisible(!formVisible)
-                      setTimeout(() => {
-                        document.getElementById("apply")?.scrollIntoView({ behavior: "smooth" });
-                      }, 100);
-                    }} className="px-6 py-3 mt-8 bg-companyBlue text-white text-lg font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 ease-in-out active:scale-95 flex items-center gap-2">
-                      Apply Now <ChevronDown className="w-5 h-5" />
-                    </button>
+                    {/* Apply Button */}
+                    <div
+                      id="apply"
+                      className="mt-auto flex flex-col "
+                    >
+                      <button onClick={() => {
+                        setFormVisible(!formVisible)
+                        setTimeout(() => {
+                          document.getElementById("apply")?.scrollIntoView({ behavior: "smooth" });
+                        }, 100);
+                      }} className="px-6 py-3 mt-8 bg-companyBlue text-white text-lg font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 ease-in-out active:scale-95 flex items-center gap-2">
+                        Apply Now <ChevronDown className="w-5 h-5" />
+                      </button>
 
-                    {formVisible && <Form />}
-                  </div>
+                      {formVisible && <Form />}
+                    </div>
                     {formVisible && <Form />}
                   </div>
                 </div>
