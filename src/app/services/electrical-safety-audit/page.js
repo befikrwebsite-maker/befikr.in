@@ -9,7 +9,7 @@ export default function ElectricalSafetyAudit() {
     <div className="min-h-screen bg-[#f5f5f5] font-generalSansMedium">
       <Navbar />
 
-      <main className="w-full flex flex-col items-center no-scrollbar bg-[#f5f5f5]">
+      <main className="w-full pt-20 flex flex-col items-center no-scrollbar bg-[#f5f5f5]">
         <div className="h-fit text-center flex flex-col justify-center items-center pb-10">
           <div className="p-10 max-w-4xl">
             <h1 className="text-4xl md:text-6xl font-generalSansMedium">

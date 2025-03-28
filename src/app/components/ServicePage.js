@@ -144,7 +144,7 @@ export default function ServicePage() {
     useEffect(() => {
         const html = document.documentElement;
         if (selectedService) {
-            html.style.overflow = "hidden";
+            html.style.overflow = "fixed";
         } else {
             html.style.overflow = "";
         }
@@ -157,6 +157,7 @@ export default function ServicePage() {
 
     // Open modal & update URL manually
     const openService = (service) => {
+        document.documentElement.style.overflow = "fixed"; // Prevent background scroll
         setSelectedService(service);
     };
 
@@ -168,7 +169,7 @@ export default function ServicePage() {
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     return (
-        <div className=" max-w-full bg-[#f5f5f5] px-10 flex flex-col items-center" ref={textRef}>
+        <div className=" max-w-full bg-[#f5f5f5] px-10 flex flex-col items-center">
             <div className="bg-white px-10 py-5 w-full items-center rounded-lg shadow-lg mt-8 flex flex-col justify-center  text-center">
                 <div className="text-left text-xl py-5 font-extrabold font-generalSansSemibold text-gray-900"></div>
                 <div className="w-full max-w-6xl">
@@ -352,12 +353,12 @@ export default function ServicePage() {
                                                     <polyline points="6 9 12 15 18 9"></polyline>
                                                 </svg>
                                             </button>
-                                            <button
+                                            {/* <button
                                                 onClick={() => router.push(`/services/${selectedService.depth}`)}
                                                 className="px-6 py-3 border border-gray-300 text-gray-700 font-semibold rounded-lg hover:bg-gray-50 focus:ring-2 focus:ring-gray-200 focus:outline-none transition-all duration-200"
                                             >
                                                 Learn More
-                                            </button>
+                                            </button> */}
                                         </div>
                                     </div>
 

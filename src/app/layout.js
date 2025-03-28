@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import PageTransition from "./PageTransition";
 import "./globals.css";
 import TrackingComponent from "@/components/TrackingProgress"
+import CookieConsent from "./components/Cookie_Consent";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,6 +30,7 @@ export default function RootLayout({ children }) {
       >
       <TrackingComponent />
         <PageTransition>{children}</PageTransition> {/* Handles slide-in */}
+        <CookieConsent /> {/* Handles cookie consent */}
       </body>
     </html>
   );

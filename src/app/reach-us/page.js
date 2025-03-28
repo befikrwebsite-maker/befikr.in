@@ -5,6 +5,7 @@ import Head from "next/head";
 import Navbar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 import { useState } from "react";
+import ExpandableList from "@/components/OrganicExpCards";
 
 const MapComponent = dynamic(() => import("../components/MapComponent"), { ssr: false });
 
@@ -79,7 +80,7 @@ export default function UnderDevelopment() {
         <title>Befikr - Coming Soon</title>
       </Head>
       <Navbar />
-
+      <ExpandableList/>
       <div className="flex pt-10 flex-col justify-start min-h-screen font-generalSansRegular text-[#009DC8]">
         <div className="bg-[#009DC8] h-full">
           <div className="bg-[#f5f5f5] p-6 ">
