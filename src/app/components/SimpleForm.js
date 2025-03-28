@@ -51,7 +51,7 @@ export default function SimpleForm({ serviceTitle, onClose }) {
 
             <div className="mt-10 p-4 bg-gray-100 rounded-md shadow-md w-full ">
                 <h2 className="text-xl font-semibold text-companyBlue mb-2">
-                    Book a Meeting for {serviceTitle}
+                    Book a Meeting {serviceTitle}
                 </h2>
                 <form onSubmit={handleSubmit} className="space-y-3">
                     <div>

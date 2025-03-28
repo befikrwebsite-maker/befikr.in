@@ -53,14 +53,14 @@ export default function UnderDevelopment() {
       const text = await response.text();
       let result;
 
-      try{
+      try {
         result = JSON.parse(text);
         //setStatus(result.message);
-      } catch (jsonError){
+      } catch (jsonError) {
         //console.error("invalid json: ", text);
         setStatus("Server returned invalid JSON.");
       }
-      
+
       setStatus(result.message);
 
       if (result.status === "success") {
@@ -80,10 +80,171 @@ export default function UnderDevelopment() {
         <title>Befikr - Coming Soon</title>
       </Head>
       <Navbar />
-      <ExpandableList/>
-      <div className="flex pt-10 flex-col justify-start min-h-screen font-generalSansRegular text-[#009DC8]">
+      <div className="flex w-screen pt-20 flex-col justify-start min-h-screen font-generalSansRegular text-[#009DC8]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 m-4">
+          <form className="max-w-md sm:max-w-xl w-full mx-auto" onSubmit={handleSubmit}>
+            <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">
+              Reach Us
+            </h2>
+            <div className="relative z-0 w-full mb-5 group">
+              <input
+                type="text"
+                name="name"
+                id="name"
+                className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-companyBlue appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                placeholder=" "
+                onChange={handleChange}
+                value={formData.name}
+                required
+              />
+              <label
+                htmlFor="name"
+                className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              >
+                Name
+              </label>
+            </div>
+
+            <div className="relative z-0 w-full mb-5 group">
+              <input
+                type="email"
+                name="email"
+                id="email"
+                className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-companyBlue appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                placeholder=" "
+                onChange={handleChange}
+                value={formData.email}
+                required
+              />
+              <label
+                htmlFor="email"
+                className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              >
+                Email Address
+              </label>
+            </div>
+
+            <div className="relative z-0 w-full mb-5 group">
+              <input
+                type="tel"
+                name="contact_number"
+                id="contact_number"
+                pattern="[0-9]{10}"
+                className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-companyBlue appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                placeholder=" "
+                onChange={handleChange}
+                value={formData.contact_number}
+                required
+              />
+              <label
+                htmlFor="contact_number"
+                className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              >
+                Contact Number
+              </label>
+            </div>
+
+            <div className="relative z-0 w-full mb-5 group">
+              <input
+                type="text"
+                name="designation"
+                id="designation"
+                className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-companyBlue appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                placeholder=" "
+                onChange={handleChange}
+                value={formData.designation}
+                required
+              />
+              <label
+                htmlFor="designation"
+                className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              >
+                Designation
+              </label>
+            </div>
+            <div className="relative z-0 w-full mb-5 group">
+              <input
+                type="text"
+                name="company"
+                id="company"
+                className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-companyBlue appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                placeholder=" "
+                onChange={handleChange}
+                value={formData.company}
+                required
+              />
+              <label
+                htmlFor="company"
+                className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              >
+                Company
+              </label>
+            </div>
+
+            <div className="relative z-0 w-full mb-5 group">
+              <input
+                type="text"
+                name="city"
+                id="city"
+                className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-companyBlue appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                placeholder=" "
+                onChange={handleChange}
+                value={formData.city}
+                required
+              />
+              <label
+                htmlFor="city"
+                className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              >
+                City
+              </label>
+            </div>
+
+            <div className="relative z-0 w-full mb-5 group">
+              <textarea
+                name="message"
+                id="message"
+                rows="4"
+                className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-companyBlue appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer resize-none"
+                placeholder=" "
+                onChange={handleChange}
+                value={formData.message}
+                required
+              />
+              <label
+                htmlFor="message"
+                className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              >
+                Message
+              </label>
+            </div>
+
+            <button
+              type="submit"
+              className="text-white bg-companyBlue hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            >
+              Submit
+            </button>
+          </form>
+          {status && <p className="text-center mt-4 text-red-600">{status}</p>}
+          <div className="w-full">
+            <div className="w-full mt-10 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg border border-gray-300">
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white">To Befikr</h3>
+              <div className="mt-4 text-gray-700 dark:text-gray-300">
+                <p className="mb-5"><strong>Name:</strong> {formData.name || "Your Name"}</p>
+                <p className="mb-5"><strong>Email:</strong> {formData.email || "your.email@example.com"}</p>
+                <p className="mb-5"><strong>Contact:</strong> {formData.contact_number || "XXXXXXXXXX"}</p>
+                <p className="mb-5"><strong>Designation:</strong> {formData.designation || "Your Role"}</p>
+                <p className="mb-5"><strong>Company:</strong> {formData.company || "Your Company"}</p>
+                <p className="mb-5"><strong>City:</strong> {formData.city || "Your City"}</p>
+                <p className="mt-4 mb-40"><strong>Message:</strong> {formData.message || "Your message goes here..."}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div className="bg-[#009DC8] h-full">
-          <div className="bg-[#f5f5f5] p-6 ">
+          <div className="bg-white p-6 ">
             <div>
               <p className="text-lg md:text-xl pt-6 text-black  inline-block">
                 <b className="font-generalSansSemibold">Contact Us</b>
@@ -110,154 +271,6 @@ export default function UnderDevelopment() {
                   <MapComponent className=" w-96" />
                 </div>
               </div>
-              <div className="flex-auto m-4">
-                <form className="max-w-md mx-auto" onSubmit={handleSubmit}>
-                  <h2 className="text-2xl font-semibold text-center text-gray-900 dark:text-white mb-6">
-                    Reach Us
-                  </h2>
-                  <div className="relative z-0 w-full mb-5 group">
-                    <input
-                      type="text"
-                      name="name"
-                      id="name"
-                      className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-companyBlue appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                      placeholder=" "
-                      onChange={handleChange}
-                      value={formData.name}
-                      required
-                    />
-                    <label
-                      htmlFor="name"
-                      className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                    >
-                      Name
-                    </label>
-                  </div>
-
-                  <div className="relative z-0 w-full mb-5 group">
-                    <input
-                      type="email"
-                      name="email"
-                      id="email"
-                      className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-companyBlue appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                      placeholder=" "
-                      onChange={handleChange}
-                      value={formData.email}
-                      required
-                    />
-                    <label
-                      htmlFor="email"
-                      className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                    >
-                      Email Address
-                    </label>
-                  </div>
-
-                  <div className="relative z-0 w-full mb-5 group">
-                    <input
-                      type="tel"
-                      name="contact_number"
-                      id="contact_number"
-                      pattern="[0-9]{10}"
-                      className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-companyBlue appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                      placeholder=" "
-                      onChange={handleChange}
-                      value={formData.contact_number}
-                      required
-                    />
-                    <label
-                      htmlFor="contact_number"
-                      className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                    >
-                      Contact Number
-                    </label>
-                  </div>
-
-                  <div className="relative z-0 w-full mb-5 group">
-                    <input
-                      type="text"
-                      name="designation"
-                      id="designation"
-                      className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-companyBlue appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                      placeholder=" "
-                      onChange={handleChange}
-                      value={formData.designation}
-                      required
-                    />
-                    <label
-                      htmlFor="designation"
-                      className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                    >
-                      Designation
-                    </label>
-                  </div>
-                  <div className="relative z-0 w-full mb-5 group">
-                    <input
-                      type="text"
-                      name="company"
-                      id="company"
-                      className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-companyBlue appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                      placeholder=" "
-                      onChange={handleChange}
-                      value={formData.company}
-                      required
-                    />
-                    <label
-                      htmlFor="company"
-                      className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                    >
-                      Company
-                    </label>
-                  </div>
-
-                  <div className="relative z-0 w-full mb-5 group">
-                    <input
-                      type="text"
-                      name="city"
-                      id="city"
-                      className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-companyBlue appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                      placeholder=" "
-                      onChange={handleChange}
-                      value={formData.city}
-                      required
-                    />
-                    <label
-                      htmlFor="city"
-                      className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                    >
-                      City
-                    </label>
-                  </div>
-
-                  <div className="relative z-0 w-full mb-5 group">
-                    <textarea
-                      name="message"
-                      id="message"
-                      rows="4"
-                      className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-companyBlue appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer resize-none"
-                      placeholder=" "
-                      onChange={handleChange}
-                      value={formData.message}
-                      required
-                    />
-                    <label
-                      htmlFor="message"
-                      className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                    >
-                      Message
-                    </label>
-                  </div>
-
-                  <button
-                    type="submit"
-                    className="text-white bg-companyBlue hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                  >
-                    Submit
-                  </button>
-                </form>
-                {status && <p className="text-center mt-4 text-red-600">{status}</p>}
-              </div>
-
             </div>
           </div>
         </div>

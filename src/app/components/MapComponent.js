@@ -34,7 +34,7 @@ export default function Aaldnasikfbhasjkf() {
   return isMounted ? (
     <MapContainer
       key={isMounted ? "map-rendered" : "map-pending"}
-      className="rounded-xl"
+      className="rounded-xl z-40"
       center={position}
       zoom={15}
       style={{ height: "100%", width: "100%" }}

@@ -13,9 +13,21 @@ export default function ServicePage() {
     const textRef = useRef(null);
 
     useEffect(() => {
+    const textRef = useRef(null);
+
+    useEffect(() => {
         gsap.registerPlugin(ScrollTrigger);
 
+
         gsap.from(textRef.current, {
+            opacity: 0,
+            y: 50,
+            duration: 1.2,
+            ease: "power2.out",
+            scrollTrigger: {
+                trigger: textRef.current,
+                start: "top 80%",
+            },
             opacity: 0,
             y: 50,
             duration: 1.2,
@@ -27,12 +39,14 @@ export default function ServicePage() {
         });
     }, []);
 
+    }, []);
+
 
     const cards = [
         {
             id: 1,
             category: "Environment",
-            title: "Electrical Safety Audit",
+            title: "Electrical Safety Audit Services",
             desc: "An electrical audit is a comprehensive assessment of electrical systems & infrastructure within a building, facility, or industrial setting to evaluate electrical safety, power efficiency, electrical safety compliance with regulations, and overall performance. Regular electrical safety audits are recommended, typically every year depending on the nature of business operations and respective regulatory requirements. An efficient electrical safety audit helps prevent electrical accidents, to identify potential hazards, energy inefficiencies, opportunities for improvement, fires, and compliance issues while ensuring the safety of employees and assets.",
             tags: ["electrical", "safety", "audit", "environment"],
             image: "../service_img/logo-svgELECTRICAL.svg",
@@ -41,7 +55,7 @@ export default function ServicePage() {
         {
             id: 2,
             category: "Environment",
-            title: "Energy Audit",
+            title: "Energy Audit Services",
             desc: "An energy audit is a comprehensive assessment of energy consuming mechanical & electrical infrastructure within a building, facility, or industrial setting to evaluate energy consumption patterns over a period of time. Periodical energy audits promote use of energy efficient process¬es, equipment, devices and systems, brings an effort to reduce energy intensity, ensure efficient use of energy and its conservation as per the guidelines & norms set by Bureau of energy efficiency in India. An efficient energy audit helps promote businesses take steps for energy savings & energy conservation techniques Including spreading awareness of energy savings within businesses & organisations.",
             tags: ["energy", "environment"],
             image: "../service_img/logo-svgEnergy.svg",
@@ -50,7 +64,7 @@ export default function ServicePage() {
         {
             id: 3,
             category: "Environment",
-            title: "Defective Audit",
+            title: "Defective Audit Services",
             desc: "Defective audit is a process to evaluate the within warranty product function & usage as designed & manufactured to work seamless for a certain set period of time in years. A defective audit gets triggered after a malfunction appearance in a new product within years of warranty as specified in the product brochure & commitment from the manufacturer or the brand. Such defective product audits ensure the customers get a due replacement as either a new product or parts amended as replacement as a service commitment within warranty. An efficient defective audit helps businesses, dealers, retailers & consumers get due justice as well as control the supply chain leakages as well as risks for businesses.",
             tags: ["defective", "audit", "environment"],
             image: "../service_img/logo-svgDefective.svg",
@@ -66,7 +80,7 @@ export default function ServicePage() {
         {
             id: 5,
             category: "Environment",
-            title: "Reverse Logistics",
+            title: "Reverse Logistics Services",
             desc: "Reverse logistics is a process to develop a reverse supply chain mechanism to collect & deliver defective products or e-waste materials back to the manufacturer base of product origin or e-waste warehouses efficiently & within the stipulated timeframe. Businesses need reverse logistics services through partners & strengthen their supply chain infrastructure for smooth end to end business operations. An efficient reverse logistics team ensures organising the fragmented unorganised services helping businesses, dealers, retailers & consumers for the products to complete their end of life processing & help strengthen the Indian circular economy.",
             tags: ["reverse", "logistics", "environment"],
             image: "../service_img/logo-svg.svg",
@@ -75,7 +89,7 @@ export default function ServicePage() {
         {
             id: 6,
             category: "Social",
-            title: "Corporate Social Responsibility",
+            title: "Corporate Social Responsibilty Services",
             desc: "Corporate social responsibility services are taken up by businesses in profit as a self-regulatory mechanism to socially contribute to specific sectors of priority & interest to the business group. Through their CSR efforts companies try and create certain social impacts contributing to a country’s infrastructure & people through business profits. Through various projects & initiatives the CSR efforts ensure businesses & brands contribute not only in the society but also for their own learning & development in the sectors they operate in. A well thought of CSR initiative eventually benefits the society & the country at large magnifying various efforts from the government, NGOs as well as the private sector thus creating a visible impact in the social frame of a country.",
             tags: ["corporate", "response", "social"],
             image: "../service_img/logo-svg1.svg",
@@ -142,9 +156,9 @@ export default function ServicePage() {
     }, []);
 
     useEffect(() => {
-        const html = document.documentElement;
+        const html = document.body;
         if (selectedService) {
-            html.style.overflow = "fixed";
+            html.style.overflow = "hidden";
         } else {
             html.style.overflow = "";
         }
@@ -157,7 +171,6 @@ export default function ServicePage() {
 
     // Open modal & update URL manually
     const openService = (service) => {
-        document.documentElement.style.overflow = "fixed"; // Prevent background scroll
         setSelectedService(service);
     };
 

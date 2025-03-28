@@ -763,18 +763,7 @@ export default function Page() {
                   )}
 
                   {/* Apply Button */}
-                  <div
-                    id="apply"
-                    onClick={() => setFormVisible(!formVisible)}
-                    className="mt-auto flex flex-col "
-                  >
-                    <button onClick={() => {
-                      setTimeout(() => {
-                        document.getElementById("apply")?.scrollIntoView({ behavior: "smooth" });
-                      }, 100);
-                    }} className="px-6 py-3 mt-8 bg-companyBlue text-white text-lg font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 ease-in-out active:scale-95 flex items-center gap-2">
-                      Apply Now <ChevronDown className="w-5 h-5" />
-                    </button>
+
                   {/* Apply Button */}
                   <div
                     id="apply"
@@ -789,8 +778,6 @@ export default function Page() {
                       Apply Now <ChevronDown className="w-5 h-5" />
                     </button>
 
-                    {formVisible && <Form />}
-                  </div>
                     {formVisible && <Form />}
                   </div>
                 </div>
