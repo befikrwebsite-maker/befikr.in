@@ -25,9 +25,21 @@ export default function PartnerCarousel() {
 
     return (
         <div className="w-full p-6 overflow-hidden">
-
             <div className="p-6 rounded-xl shadow-xl bg-white">
-                <div className="md:flex pb-10">
+                <div className="md:flex pb-10 flex-wrap">
+                    {/* Default Button - Brands that trust us */}
+                    <button
+                        onClick={() => setActiveTags([])}
+                        className={`flex items-center mb-4 md:mb-0 justify-center px-4 py-2 text-sm font-medium rounded-2xl md:rounded-full ml-4 cursor-pointer transition-all border-2
+    ${activeTags.length === 0
+                                 ? "bg-companyBlue text-white shadow-lg"
+                                    : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 border-gray-300 dark:border-gray-600 hover:bg-indigo-50 dark:hover:bg-gray-700"
+                            }`}
+                    >
+                        Brands that trust us
+                    </button>
+
+                    {/* Dynamic Tags */}
                     {allTags.map((tag) => (
                         <label
                             key={tag}
@@ -53,7 +65,7 @@ export default function PartnerCarousel() {
                     {filteredImages.map((logo, index) => (
                         <div
                             key={index}
-                            className="h-[150px] w-[200px] bg-white  border flex items-center justify-center rounded-xl"
+                            className="h-[150px] w-[200px] bg-white border flex items-center justify-center rounded-xl"
                         >
                             <img
                                 src={logo.url}

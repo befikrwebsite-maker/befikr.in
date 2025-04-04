@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Navbar from "@/components/NavBar";
 
 export default function Form() {
   const [Title, setTitle] = useState("");
@@ -21,7 +22,7 @@ export default function Form() {
     };
 
     try {
-      const response = await fetch("http://localhost/myapp/insert-data.php", {
+      const response = await fetch("http://befikr.in/insertdata.php", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -45,20 +46,9 @@ export default function Form() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f5f5f5] font-generalSansMedium">
-      <header className="sticky w-full bg-[#f5f5f5] backdrop-blur-md z-50 border-black">
-        <nav className="container mx-auto px-6 py-4 flex justify-between items-center rounded-xl">
-          <div className="text-2xl font-bold text-blue-600"></div>
-          <div className="hidden md:flex space-x-8">
-            <a href="/" className="text-gray-600 hover:text-companyBlue transition-colors">
-              Home
-            </a>
-            <a href="/career/jobs" className="text-gray-600 hover:text-companyBlue transition-colors">
-              Jobs
-            </a>
-          </div>
-        </nav>
-      </header>
+    <>
+    <Navbar/>
+    <div className="min-h-screen pt-20 bg-[#f5f5f5] font-generalSansMedium">
       <main className="w-full no-scrollbar bg-[#f5f5f5]">
         <div className="p-24 pt-12 flex md:flex-row flex-col">
           <div className="flex-1">
@@ -98,5 +88,6 @@ export default function Form() {
         </div>
       </main>
     </div>
+    </>
   );
 }

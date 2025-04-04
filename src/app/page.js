@@ -14,6 +14,7 @@ import Testimonial from "./components/Testimonial"
 import MediaCoverage from "./components/MediaCoverage";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import ScreenSizeComponent from "./components/TestCompOne";
 
 export default function Home() {
 
@@ -45,6 +46,7 @@ export default function Home() {
         </div>
         <br />
         <Service />
+        {/* <ScreenSizeComponent/> */}
         <div className="bg-[#f5f5f5] pt-10 text-4xl md:text-left text-center font-generalSansSemibold md:pl-12 text-gray-900">Our Impact</div>
         <Impact />
         <div className="bg-[#f5f5f5] pt-10 text-4xl md:text-left text-center font-generalSansSemibold md:pl-12 text-gray-900">About Us</div>

@@ -68,12 +68,12 @@ export default function Navbar() {
 
       const pageNames = {
         "/": "home",
-        "/services": "what we do",
-        "/about-us": "who we are",
-        "/about-us/founders": "founders",
-        "/careers": "work with us",
-        "/careers/jobs": "jobs",
-        "/reach-us": "reach Us",
+        "/services/": "what we do",
+        "/about-us/": "who we are",
+        "/about-us/founders/": "founders",
+        "/careers/": "work with us",
+        "/careers/jobs/": "jobs",
+        "/reach-us/": "reach Us",
       };
 
       setLink(pageNames[path] || "");
@@ -152,7 +152,6 @@ export default function Navbar() {
 
             <a href="/reach-us" className={`flex items-center gap-2 transition-colors duration-300 ${activePath === "/reach-us/" ? "text-companyBlue font-bold" : "text-gray-500 hover:text-companyBlue"}`}>
               Reach Us
-              <img src="/extraLogos/rev.png" className="h-10 w-18 hover:scale-110 duration-300" />
             </a>
 
           </div>

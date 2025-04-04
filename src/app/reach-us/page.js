@@ -6,6 +6,7 @@ import Navbar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 import { useState } from "react";
 import ExpandableList from "@/components/OrganicExpCards";
+import TabComponent from "@/components/TestComp";
 
 const MapComponent = dynamic(() => import("../components/MapComponent"), { ssr: false });
 
@@ -228,9 +229,9 @@ export default function UnderDevelopment() {
           </form>
           {status && <p className="text-center mt-4 text-red-600">{status}</p>}
           <div className="w-full">
-            <div className="w-full mt-10 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg border border-gray-300">
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white">To Befikr</h3>
-              <div className="mt-4 text-gray-700 dark:text-gray-300">
+            <h3 className="text-2xl font-semibold text-gray-900 dark:text-white">To Befikr</h3>
+            <div className="flex w-full mt-4 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg border border-gray-300">
+              <div className="flex-1 mt-10 text-gray-700 dark:text-gray-300">
                 <p className="mb-5"><strong>Name:</strong> {formData.name || "Your Name"}</p>
                 <p className="mb-5"><strong>Email:</strong> {formData.email || "your.email@example.com"}</p>
                 <p className="mb-5"><strong>Contact:</strong> {formData.contact_number || "XXXXXXXXXX"}</p>
@@ -239,6 +240,14 @@ export default function UnderDevelopment() {
                 <p className="mb-5"><strong>City:</strong> {formData.city || "Your City"}</p>
                 <p className="mt-4 mb-40"><strong>Message:</strong> {formData.message || "Your message goes here..."}</p>
               </div>
+              <div className="flex-1 flex justify-center items-center">
+                <img
+                  src="/extraLogos/logo-transparent-png.png"
+                  className="w-56 object-cover"
+                  alt="Thank You"
+                />
+              </div>
+
             </div>
           </div>
         </div>
