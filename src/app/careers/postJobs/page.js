@@ -4,8 +4,8 @@ import { useState } from "react";
 import Navbar from "@/components/NavBar";
 
 export default function Form() {
-  const [Title, setTitle] = useState("");
-  const [Desc, setDesc] = useState("");
+  const [Position, setPosition] = useState("");
+  const [Team, setTeam] = useState("");
   const [Location, setLocation] = useState("");
   const [Tags, setTags] = useState("");
   const [Message, setMessage] = useState("");
@@ -15,10 +15,10 @@ export default function Form() {
     setMessage("Creating Job...");
 
     const jobData = {
-      Title,
-      Desc,
-      Location: Location.split(",").map((loc) => loc.trim()), // Convert to array
-      Tags: Tags.split(",").map((tag) => tag.trim()), // Convert to array
+      Position,
+      Team,
+      Location: Location.split(",").map((loc) => loc.trim()), 
+      Tags: Tags.split(",").map((tag) => tag.trim()), 
     };
 
     try {
@@ -33,8 +33,8 @@ export default function Form() {
       const result = await response.json();
       if (result.success) {
         setMessage("Job Created Successfully");
-        setTitle("");
-        setDesc("");
+        setPosition("");
+        setTeam("");
         setLocation("");
         setTags("");
       } else {
@@ -57,13 +57,13 @@ export default function Form() {
             </h1>
             <form onSubmit={handleSubmit} className="pt-6 max-w-md">
               <div className="relative z-0 w-full mb-5 group">
-                <input type="text" id="name" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required value={Title} onChange={(e) => setTitle(e.target.value)} />
-                <label htmlFor="name" className="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 peer-focus:text-blue-600">Job Title</label>
+                <input type="text" id="position" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required value={Position} onChange={(e) => setPosition(e.target.value)} />
+                <label htmlFor="position" className="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 peer-focus:text-blue-600">Position</label>
               </div>
 
               <div className="relative z-0 w-full mb-5 group">
-                <input type="text" id="desc" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required value={Desc} onChange={(e) => setDesc(e.target.value)} />
-                <label htmlFor="desc" className="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 peer-focus:text-blue-600">Description</label>
+                <input type="text" id="team" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required value={Team} onChange={(e) => setTeam(e.target.value)} />
+                <label htmlFor="team" className="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 peer-focus:text-blue-600">Team</label>
               </div>
 
               <div className="relative z-0 w-full mb-5 group">
