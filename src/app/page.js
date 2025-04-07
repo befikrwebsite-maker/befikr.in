@@ -5,16 +5,13 @@ import Hero from "./components/HeroSection";
 import CareerSection from "./components/CareersSection";
 import Footer from "./components/Footer";
 import Lenis from "@studio-freight/lenis";
-import {useRef,useEffect } from "react";
+import { useEffect } from "react";
 import PartnerCarousel from "./components/PartnerCarousel";
 import Impact from "./components/ImpactSection";
 import Clock from "./components/Clock";
 import Service from "./components/ServicePage"
 import Testimonial from "./components/Testimonial"
 import MediaCoverage from "./components/MediaCoverage";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import ScreenSizeComponent from "./components/TestCompOne";
 
 export default function Home() {
 
@@ -40,10 +37,27 @@ export default function Home() {
 
       <main className="w-full pt-20 bg-[#f5f5f5] flex flex-col">
         <Hero />
-        <div className="bg-[#f5f5f5] pt-10 text-4xl md:text-left text-center font-generalSansSemibold md:pl-12 text-gray-900">
-          <p className=" p-8 text-2xl font-generalSansMedium tracking-wide ">Befikr has emerged as an ESG (Environment, Social, Governance) services company dedicated to helping businesses comply with the newer Business Responsibility & Sustainability Reporting - BRSR, an Indian regulatory compliance & strategic framework enabling businesses to evolve as sustainable leaders.
-          </p>
+        <div className="bg-[#f5f5f5] py-16 px-6 md:px-12 text-gray-900 font-generalSansSemibold">
+          <div className="flex flex-col md:flex-row items-center gap-10">
+            {/* Text Section */}
+            <div className="flex-1 text-center md:text-left">
+              <h2 className="text-4xl mb-6">Befikr: ESG Compliance Partner</h2>
+              <p className="text-xl font-generalSansMedium leading-relaxed">
+                Befikr has emerged as an ESG (Environment, Social, Governance) services company dedicated to helping businesses comply with the newer Business Responsibility & Sustainability Reporting (BRSR) — an Indian regulatory and strategic framework enabling businesses to evolve as sustainable leaders.
+              </p>
+            </div>
+
+            {/* Image Section */}
+            <div className="flex-1 hidden md:flex justify-center items-center">
+              <img
+                src="/extraLogos/rev.png"
+                alt="Befikr ESG Logo"
+                className="w-64  transition-transform duration-300"
+              />
+            </div>
+          </div>
         </div>
+
         <br />
         <Service />
         {/* <ScreenSizeComponent/> */}

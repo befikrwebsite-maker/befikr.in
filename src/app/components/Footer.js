@@ -29,9 +29,9 @@ export default function Footer() {
             <h3 className="text-lg font-medium text-companyBlue">Quick Links</h3>
             <ul className="mt-2 space-y-2">
               <li><Link href="/" className="hover:text-companyBlue">Home</Link></li>
-              <li><Link href="/what-we-do" className="hover:text-companyBlue">Services</Link></li>
-              <li><Link href="/who-we-are" className="hover:text-companyBlue">About Us</Link></li>
-              <li><Link href="/work-with-us" className="hover:text-companyBlue">Careers</Link></li>
+              <li><Link href="/services" className="hover:text-companyBlue">Services</Link></li>
+              <li><Link href="/about-us" className="hover:text-companyBlue">About Us</Link></li>
+              <li><Link href="/careers" className="hover:text-companyBlue">Careers</Link></li>
               <li><Link href="/reach-us" className="hover:text-companyBlue">Reach Us</Link></li>
             </ul>
           </div>
@@ -42,18 +42,22 @@ export default function Footer() {
             <div className="grid grid-cols-2 gap-2">
               <img
                 src="/extraLogos/logo-transparent-png_6.png"
+                alt="Logo 6"
                 className="w-32"
               />
                <img
                 src="/extraLogos/logo-transparent-png_4.png"
+                alt="Logo 4"
                 className="w-32"
               />
               <img
-                src="/extraLogos/logo-transparent-png.png"
+                src="/extraLogos/image.png"
+                alt="Logo 2"
                 className="w-32"
               />
               <img
                 src="/extraLogos/logo-transparent-png_1.png"
+                alt="Logo 1"
                 className="w-32"
               />
              
@@ -68,7 +72,7 @@ export default function Footer() {
       </div>
           <a
             href="https://admin.befikr.in" target="_blank"
-          ><p className="absolute right-0 text-xs underline p-4">Admin Login</p></a>
+          ><p className="absolute right-0 text-xs underline pt-4 pr-4">Admin Login</p></a>
     </footer>
   );
 }

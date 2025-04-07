@@ -32,10 +32,10 @@ export default function Hero() {
                 muted
                 playsInline
             >
-                <source src="/videos/1536350-uhd_3840_2160_30fps.mp4" type="video/mp4" />
+                <source src="/videos/greenForest.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
             </video>
-            <div className="absolute inset-0 bg-black opacity-60 rounded-b-[4rem]"></div>
+            <div className="absolute inset-0 bg-black opacity-20 rounded-b-[4rem]"></div>
             <div ref={textRef}
             className="relative z-10 text-white px-6 pb-14 md:w-full rounded-b-[4rem]">
                 <h1 className="text-5xl md:text-7xl font-generalSansMedium leading-tight transition-all delay-175 text-white p-2 inline-block">

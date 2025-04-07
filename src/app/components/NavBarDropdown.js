@@ -37,12 +37,12 @@ export default function NavbarDropdown({ isVisible, onMouseLeave, dropdownRef })
         {/* Your dropdown content here */}
         <div className="space-y-4">
           <h3 className="text-2xl font-bold text-companyBlue border-b pb-2">Services</h3>
-          <ul className="space-y-3">
-            <li><a href="/services/web-development" className="hover:text-companyBlue transition-colors">Web Development</a></li>
-            <li><a href="/services/mobile-apps" className="hover:text-companyBlue transition-colors">Mobile Applications</a></li>
-            <li><a href="/services/ui-ux" className="hover:text-companyBlue transition-colors">UI/UX Design</a></li>
-            <li><a href="/services/digital-marketing" className="hover:text-companyBlue transition-colors">Digital Marketing</a></li>
-          </ul>
+          <div role="menu" className="space-y-3">
+            <button role="menuitem" onClick={() => window.location.href = '/services/web-development'} className="hover:text-companyBlue transition-colors">Web Development</button>
+            <button role="menuitem" onClick={() => window.location.href = '/services/mobile-apps'} className="hover:text-companyBlue transition-colors">Mobile Applications</button>
+            <button role="menuitem" onClick={() => window.location.href = '/services/ui-ux'} className="hover:text-companyBlue transition-colors">UI/UX Design</button>
+            <button role="menuitem" onClick={() => window.location.href = '/services/digital-marketing'} className="hover:text-companyBlue transition-colors">Digital Marketing</button>
+          </div>
         </div>
         
         {/* Column 2 */}

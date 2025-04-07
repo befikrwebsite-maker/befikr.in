@@ -69,7 +69,7 @@ export default function PartnerCarousel() {
                         >
                             <img
                                 src={logo.url}
-                                alt={`logo-${index}`}
+                                alt={logo.alt}
                                 className="w-full h-full object-contain p-4"
                             />
                         </div>

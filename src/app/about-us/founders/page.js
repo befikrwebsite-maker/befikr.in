@@ -3,7 +3,6 @@
 import Navbar from "@/components/NavBar";
 import NavbarSub from "@/components/Navbar-Sub";
 import Footer from "@/components/Footer";
-import { useEffect } from "react";
 
 export default function Home() {
   return (
