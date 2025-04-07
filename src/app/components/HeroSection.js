@@ -31,6 +31,7 @@ export default function Hero() {
                 loop
                 muted
                 playsInline
+                poster="/videos/Greenforest.webm"
             >
                 <source src="/videos/greenForest.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
