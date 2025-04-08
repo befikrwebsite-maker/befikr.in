@@ -365,7 +365,7 @@ export default function ServicePage() {
                                     {showForm && (
                                         <div className="mt-6">
                                             <div className="border border-gray-200 rounded-lg p-5 bg-gray-50">
-                                                <SimpleForm />
+                                                <SimpleForm serviceTitle={selectedService.title} />
                                             </div>
                                         </div>
                                     )}

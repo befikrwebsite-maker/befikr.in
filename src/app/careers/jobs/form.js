@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 
 
-export default function Form({ onClose }) {
+export default function Form({ team, position, locations, onClose }) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -15,6 +15,10 @@ export default function Form({ onClose }) {
 
   const [status, setStatus] = useState("");
 
+  const [selectedLocation, setSelectedLocation] = useState([]);
+
+  const joinedLocations = selectedLocation.join(", ");
+
   // Handle input changes
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -22,6 +26,14 @@ export default function Form({ onClose }) {
       ...prev,
       [name]: files ? files[0] : value, // Handle file input
     }));
+  };
+
+  const handleLocationChange = (location) => {
+    if (selectedLocation.includes(location)) {
+      setSelectedLocation((prev) => prev.filter((item) => item !== location));
+    } else {
+      setSelectedLocation((prev) => [...prev, location]);
+    }
   };
 
   const handleResumeChange = (e) => {
@@ -42,6 +54,9 @@ export default function Form({ onClose }) {
     form.append("name", formData.name);
     form.append("email", formData.email);
     form.append("message", formData.message);
+    form.append("team", team);
+    form.append("position", position);
+    form.append("location", joinedLocations);
     form.append("resume", userResume);
 
     // // Debugging: Check FormData contents
@@ -109,7 +124,37 @@ export default function Form({ onClose }) {
         </div>
 
         <div>
-          <label className="block text-gray-700 font-medium mb-1">Your Message (specify the team, position, and location you are applying for)</label>
+          <label className="block text-gray-700 font-medium mb-1">Team</label>
+          <p className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-companyBlue">
+            {team}
+          </p>
+        </div>
+
+        <div>
+          <label className="block text-gray-700 font-medium mb-1">Position</label>
+          <p className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-companyBlue">
+            {position}
+          </p>
+        </div>
+
+        <div>
+          <label className="block text-gray-700 font-medium mb-1">Locaiton</label>
+          <div className="flex flex-wrap gap-2 w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-companyBlue">
+            {locations.map((item, index) => (
+              <span key={index}
+                className={`inline-block rounded select-none cursor-pointer ${selectedLocation.includes(item)
+                    ? "border border-companyBlue"
+                    : "hover:border hover:border-companyBlue"}`}>
+                <div onClick={() => handleLocationChange(item)} className="m-1" >
+                  {item}
+                </div>
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <label className="block text-gray-700 font-medium mb-1">Your Message (specify the location you are applying for)</label>
           <textarea
             name="message"
             value={formData.message}

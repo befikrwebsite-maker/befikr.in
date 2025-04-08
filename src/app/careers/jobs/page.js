@@ -249,6 +249,19 @@ export default function Page() {
       return false;
     }).length;
   };
+
+  // function to remove filters when they are clicked outside in the filter bar
+  const handleCheckboxFilterRemoval = (type, value) => {
+    if (type === "team") {
+      setSelectedTeams((prev) => prev.filter((item) => item !== value));
+    };
+    if (type === "position") {
+      setSelectedPositions((prev) => prev.filter((item) => item !== value));
+    };
+    if (type === "location") {
+      setSelectedLocations((prev) => prev.filter((item) => item !== value));
+    };
+  }
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   // using modalcomponent here ///////////////////////////////////////////////////////////////////////////////////////////
@@ -355,6 +368,43 @@ export default function Page() {
             <p className="text-gray-900 tracking-wide font-bold">
               Showing {filteredJobs.length} Jobs among the applied filters
             </p>
+          </div>
+          <div className="flex justify-center flex-wrap">
+            {selectedTeams.map((items, index) =>
+            (
+              <div onClick={() => handleCheckboxFilterRemoval("team", items)} key={index} className=" flex justify-center text-xs text-companyBlue hover:border-companyBlue hover:border rounded m-2 ">
+                <div className="m-1 select-none">{items}</div>
+                {/* <div className="text-black text-sm mb-1 select-none">×</div> */}
+              </div>
+            ))}
+            {selectedPositions.map((items, index) =>
+            (
+              <div onClick={() => handleCheckboxFilterRemoval("position", items)} key={index} className=" flex justify-center text-xs text-companyBlue hover:border-companyBlue hover:border rounded m-2 ">
+                <div className="m-1 select-none">{items}</div>
+              </div>
+            ))}
+            {selectedLocations.map((items, index) =>
+            (
+              <div onClick={() => handleCheckboxFilterRemoval("location", items)} key={index} className=" flex justify-center text-xs text-companyBlue hover:border-companyBlue hover:border rounded m-2 ">
+                <div className="m-1 select-none">{items}</div>
+              </div>
+            ))}
+            {(selectedTeams.length > 0 ||
+              selectedPositions.length > 0 ||
+              selectedLocations.length > 0) && (
+                <div className="flex justify-center m-2">
+                  <button
+                    onClick={() => {
+                      setSelectedTeams([]);
+                      setSelectedPositions([]);
+                      setSelectedLocations([]);
+                    }}
+                    className="text-xs text-red-600 border border-red-600 rounded px-4 py-1 hover:bg-red-50 transition"
+                  >
+                    Clear All Filters
+                  </button>
+                </div>
+              )}
           </div>
         </div>
 
@@ -473,53 +523,7 @@ export default function Page() {
                         </p>
                       </div>
                     </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      {/* Left Section */}
-                      <div>
-                        <div className="mb-6">
-                          <p className="text-cyan-400 font-bold">Job Type:</p>
-                          <p className="text-gray-800">
-                            {selectedJob.jobtype || "Not specified"}
-                          </p>
-                        </div>
-                        <div className="mb-6">
-                          <p className="text-cyan-400 font-bold">Pay:</p>
-                          <p className="text-gray-800">
-                            {selectedJob.pay || "Not specified"}
-                          </p>
-                        </div>
-                        <div className="mb-6">
-                          <p className="text-cyan-400 font-bold">
-                            Expected Start Date:
-                          </p>
-                          <p className="text-gray-800">
-                            {selectedJob.expected_start_date || "Not specified"}
-                          </p>
-                        </div>
-                      </div>
 
-                      {/* Right Section */}
-                      <div>
-                        <div className="mb-6">
-                          <p className="text-cyan-400 font-bold">Location:</p>
-                          {selectedJob.location.map((item, index) => (
-                            <p key={index} className="text-gray-800">
-                              • {item}
-                            </p>
-                          ))}
-                        </div>
-                        {selectedJob.work_location && (
-                          <div className="mb-6">
-                            <p className="text-cyan-400 font-bold">
-                              Work Location:
-                            </p>
-                            <p className="text-gray-800">
-                              {selectedJob.work_location}
-                            </p>
-                          </div>
-                        )}
-                      </div>
-                    </div>
                     {/* Right Section */}
                     <div>
                       <div className="mb-6">
@@ -543,6 +547,7 @@ export default function Page() {
                     </div>
                   </div>
 
+
                   {/* Description */}
                   <div className="mt-8 border-t border-gray-300 pt-6">
                     <h3 className="text-xl font-semibold text-companyBlue uppercase">
@@ -552,15 +557,7 @@ export default function Page() {
                       {selectedJob.desc}
                     </p>
                   </div>
-                  {/* Description */}
-                  <div className="mt-8 border-t border-gray-300 pt-6">
-                    <h3 className="text-xl font-semibold text-companyBlue uppercase">
-                      Job Description
-                    </h3>
-                    <p className="text-gray-700 mt-2 leading-relaxed">
-                      {selectedJob.desc}
-                    </p>
-                  </div>
+
 
                   {/* Responsibilities */}
                   {selectedJob.responsibilities.length > 0 && (
@@ -575,19 +572,7 @@ export default function Page() {
                       </ul>
                     </div>
                   )}
-                  {/* Responsibilities */}
-                  {selectedJob.responsibilities.length > 0 && (
-                    <div className="mt-8 border-t border-gray-300 pt-6">
-                      <h3 className="text-xl font-semibold text-companyBlue uppercase">
-                        Responsibilities
-                      </h3>
-                      <ul className="list-disc list-inside mt-2 space-y-1 text-gray-700">
-                        {selectedJob.responsibilities.map((item, index) => (
-                          <li key={index}>{item}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
+
 
                   {/* Skills */}
                   {selectedJob.skills.length > 0 && (
@@ -607,24 +592,7 @@ export default function Page() {
                       </ul>
                     </div>
                   )}
-                  {/* Skills */}
-                  {selectedJob.skills.length > 0 && (
-                    <div className="mt-8 border-t border-gray-300 pt-6">
-                      <h3 className="text-xl font-semibold text-companyBlue uppercase">
-                        Skills
-                      </h3>
-                      <ul className="flex flex-wrap gap-2 mt-2">
-                        {selectedJob.skills.map((skill, index) => (
-                          <li
-                            key={index}
-                            className="bg-gray-200 text-gray-700 px-3 py-1 rounded-md text-sm"
-                          >
-                            {skill}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
+
 
                   {/* Benefits */}
                   {selectedJob.benefits.length > 0 && (
@@ -639,19 +607,7 @@ export default function Page() {
                       </ul>
                     </div>
                   )}
-                  {/* Benefits */}
-                  {selectedJob.benefits.length > 0 && (
-                    <div className="mt-8 border-t border-gray-300 pt-6">
-                      <h3 className="text-xl font-semibold text-companyBlue uppercase">
-                        Benefits
-                      </h3>
-                      <ul className="list-disc list-inside mt-2 space-y-1 text-gray-700">
-                        {selectedJob.benefits.map((item, index) => (
-                          <li key={index}>{item}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
+
 
                   {/* Schedule */}
                   {selectedJob.schedule.length > 0 && (
@@ -666,19 +622,7 @@ export default function Page() {
                       </ul>
                     </div>
                   )}
-                  {/* Schedule */}
-                  {selectedJob.schedule.length > 0 && (
-                    <div className="mt-8 border-t border-gray-300 pt-6">
-                      <h3 className="text-xl font-semibold text-companyBlue uppercase">
-                        Schedule
-                      </h3>
-                      <ul className="list-disc list-inside mt-2 space-y-1 text-gray-700">
-                        {selectedJob.schedule.map((item, index) => (
-                          <li key={index}>{item}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
+
 
                   {/* Experience */}
                   {selectedJob.experience.length > 0 && (
@@ -693,19 +637,7 @@ export default function Page() {
                       </ul>
                     </div>
                   )}
-                  {/* Experience */}
-                  {selectedJob.experience.length > 0 && (
-                    <div className="mt-8 border-t border-gray-300 pt-6">
-                      <h3 className="text-xl font-semibold text-companyBlue uppercase">
-                        Experience
-                      </h3>
-                      <ul className="list-disc list-inside mt-2 space-y-1 text-gray-700">
-                        {selectedJob.experience.map((item, index) => (
-                          <li key={index}>{item}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
+
 
                   {/* Supplemental Pay */}
                   {selectedJob.supplemental_pay.length > 0 && (
@@ -720,19 +652,7 @@ export default function Page() {
                       </ul>
                     </div>
                   )}
-                  {/* Supplemental Pay */}
-                  {selectedJob.supplemental_pay.length > 0 && (
-                    <div className="mt-8 border-t border-gray-300 pt-6">
-                      <h3 className="text-xl font-semibold text-companyBlue uppercase">
-                        Supplemental Pay
-                      </h3>
-                      <ul className="list-disc list-inside mt-2 space-y-1 text-gray-700">
-                        {selectedJob.supplemental_pay.map((item, index) => (
-                          <li key={index}>{item}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
+
 
                   {/* Questions */}
                   {selectedJob.questions.length > 0 && (
@@ -747,21 +667,8 @@ export default function Page() {
                       </ul>
                     </div>
                   )}
-                  {/* Questions */}
-                  {selectedJob.questions.length > 0 && (
-                    <div className="mt-8 border-t border-gray-300 pt-6">
-                      <h3 className="text-xl font-semibold text-companyBlue uppercase">
-                        Questions
-                      </h3>
-                      <ul className="list-disc list-inside mt-2 space-y-1 text-gray-700">
-                        {selectedJob.questions.map((item, index) => (
-                          <li key={index}>{item}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
 
-                  {/* Apply Button */}
+
 
                   {/* Apply Button */}
                   <div
@@ -777,7 +684,7 @@ export default function Page() {
                       Apply Now <ChevronDown className="w-5 h-5" />
                     </button>
 
-                    {formVisible && <Form />}
+                    {formVisible && <Form team={selectedJob.team} position={selectedJob.position} locations={selectedJob.location} />}
                   </div>
                 </div>
 
@@ -793,10 +700,18 @@ export default function Page() {
 
 // Dropdown Component using Headless UI
 function Dropdown({ label, options, selected, setSelected, getFilterCount }) {
+  const handleOptionClick = (option) => {
+    if (selected.includes(option)) {
+      setSelected(selected.filter((item) => item !== option));
+    } else {
+      setSelected([...selected, option]);
+    }
+  };
+
   return (
     <Listbox value={selected} onChange={setSelected} multiple>
       <div className="relative">
-        <Listbox.Button className="flex text-gray-900 tracking-wide font-bold bg-[#f5f5f5] border rounded-md w-80  justify-center py-1 xl:w-[18rem] lg:w-[16rem] md:w-[10rem] sm:w-[8rem]  hover:shadow-lg transition duration-300  ">
+        <Listbox.Button className="flex text-gray-900 tracking-wide font-bold bg-[#f5f5f5] border rounded-md w-80 justify-center py-1 xl:w-[18rem] lg:w-[16rem] md:w-[10rem] sm:w-[8rem] hover:shadow-lg transition duration-300">
           {label}
         </Listbox.Button>
         <Transition
@@ -808,26 +723,27 @@ function Dropdown({ label, options, selected, setSelected, getFilterCount }) {
           leaveTo="transform scale-95 opacity-0"
         >
           <Listbox.Options className="absolute mt-2 w-80 bg-white border rounded-md shadow-lg z-10 xl:w-[18rem] lg:w-[16rem] md:w-[10rem] sm:w-[8rem]">
-            {options.map((option, index) => (
-              <Listbox.Option key={index} value={option} as="div">
-                {({ selected }) => (
-                  <label className="flex items-center px-4 py-2 hover:bg-gray-100 cursor-pointer text-gray-900 ">
-                    <input
-                      type="checkbox"
-                      checked={selected}
-                      readOnly
-                      className="mr-2"
-                    />
-                    {option}
-                    <div className="">
-                      <span className="text-gray-500 px-2">
-                        ({getFilterCount(option)})
-                      </span>
-                    </div>
-                  </label>
-                )}
-              </Listbox.Option>
-            ))}
+            {options.map((option, index) => {
+              const isChecked = selected.includes(option);
+              return (
+                <div
+                  key={index}
+                  onClick={() => handleOptionClick(option)}
+                  className="flex items-center px-4 py-2 hover:bg-gray-100 cursor-pointer text-gray-900"
+                >
+                  <input
+                    type="checkbox"
+                    checked={isChecked}
+                    readOnly
+                    className="mr-2 pointer-events-none"
+                  />
+                  <span>{option}</span>
+                  <span className="text-gray-500 px-2 ml-auto">
+                    ({getFilterCount(option)})
+                  </span>
+                </div>
+              );
+            })}
           </Listbox.Options>
         </Transition>
       </div>

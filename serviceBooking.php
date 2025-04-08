@@ -91,7 +91,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     //send the message, check for errors
     if (!$mail->send()) {
-        echo 'Mailer Error: ' . $mail->ErrorInfo;
+        echo json_encode(["status" => "error","message" => 'Mailer Error: ' . $mail->ErrorInfo]);
     } else {
         echo json_encode(["status" => "success", "message" => "Email successfully sent!"]);
         //Section 2: IMAP
