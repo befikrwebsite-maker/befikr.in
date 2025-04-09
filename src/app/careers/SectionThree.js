@@ -1,75 +1,81 @@
+import { ChevronDown } from "lucide-react";
+
 export default function InterviewProcess() {
+    const steps = [
+        {
+            title: "Screening",
+            description:
+                "This is the initial step where the HR team reviews all applications and resumes to filter out candidates who don’t meet the basic eligibility criteria like education, experience, or required skills.",
+            image: "/interview/step1.png",
+        },
+        {
+            title: "Shortlisting",
+            description:
+                "From the screened applications, a select group of candidates is shortlisted based on how closely their profiles match the job requirements.",
+            image: "/interview/step2.png",
+        },
+        {
+            title: "HR Round",
+            description:
+                "The HR team interacts with the candidate to assess personality, communication skills, salary expectations, availability, and cultural fit within the organization.",
+            image: "/interview/step3.png",
+        },
+        {
+            title: "Technical Round",
+            description:
+                "Candidates undergo a technical evaluation where their knowledge, skills, and problem-solving abilities are tested through interviews, assessments, or case studies.",
+            image: "/interview/step4.png",
+        },
+        {
+            title: "Final Interview",
+            description:
+                "The final round involves a discussion with senior leadership or department heads to evaluate the candidate’s overall fit, long-term potential, and alignment with the company’s mission and values.",
+            image: "/interview/step5.png",
+        },
+    ];
+
     return (
-        <div className="p-8">
-            <h1 className="text-5xl font-bold mb-4">
-                Our Interview Process at <span className="font-generalSansMediumItalic text-companyBlue">befikr</span>
+        <div className="p-8 pt-20 max-w-6xl mx-auto">
+            <h1 className="text-4xl md:text-5xl font-bold mb-12 text-center">
+                Our Interview Process at{" "}
+                <span className="font-generalSansMediumItalic text-companyBlue">
+                    befikr
+                </span>
             </h1>
-            <div className="flex flex-col space-y-10">
-                {/* Step 1: Screening */}
-                <div className="flex flex-col md:flex-row gap-4 items-center">
-                    <div className="flex-1">
-                        <h1 className="text-2xl text-companyBlue font-bold">Screening</h1>
-                        <p>
-                            This is the initial step where the HR team reviews all applications and resumes to filter out candidates who don’t meet the basic eligibility criteria like education, experience, or required skills.
-                        </p>
-                    </div>
-                    <div className="w-96 p-4 border rounded-xl shadow-md bg-white ">
-                        <img className="w-60 mx-auto" src="/interview/step1.png" alt="Screening" />
-                    </div>
-                </div>
 
-                {/* Step 2: Shortlisting */}
-                <div className="flex flex-col md:flex-row-reverse gap-4 items-center">
-                    <div className="flex-1">
-                        <h1 className="text-2xl text-companyBlue font-bold">Shortlisting</h1>
-                        <p>
-                            From the screened applications, a select group of candidates is shortlisted based on how closely their profiles match the job requirements.
-                        </p>
-                    </div>
-                    <div className="w-96 p-4 border rounded-xl shadow-md bg-white">
-                        <img className="w-60 mx-auto" src="/interview/step2.png" alt="Shortlisting" />
-                    </div>
-                </div>
+            <div className="flex flex-col space-y-16">
+                {steps.map((step, index) => (
+                    <div key={step.title} className="space-y-8">
+                        <div
+                            className={`flex flex-col items-center gap-8 md:gap-16 md:items-start ${
+                                index % 2 === 1 ? "md:flex-row-reverse" : "md:flex-row"
+                            }`}
+                        >
+                            <div className="flex-1">
+                                <h2 className="text-3xl text-companyBlue font-semibold mb-2">
+                                    {step.title}
+                                </h2>
+                                <p className="text-lg text-gray-700 leading-relaxed">
+                                    {step.description}
+                                </p>
+                            </div>
+                            <div className="w-full md:w-96 p-6 bg-white border rounded-2xl shadow-lg">
+                                <img
+                                    src={step.image}
+                                    alt={step.title}
+                                    className="rounded-xl mx-auto w-60"
+                                />
+                            </div>
+                        </div>
 
-                {/* Step 3: HR Round */}
-                <div className="flex flex-col md:flex-row gap-4 items-center">
-                    <div className="flex-1">
-                        <h1 className="text-2xl text-companyBlue font-bold">HR Round</h1>
-                        <p>
-                            The HR team interacts with the candidate to assess personality, communication skills, salary expectations, availability, and cultural fit within the organization.
-                        </p>
+                        {index < steps.length - 1 && (
+                            <div className="flex justify-center">
+                                <ChevronDown className="h-10 w-10 text-companyBlue animate-bounce" />
+                            </div>
+                        )}
                     </div>
-                    <div className="w-96 p-4 border rounded-xl shadow-md bg-white">
-                        <img className="w-60 mx-auto" src="/interview/step3.png" alt="HR Round" />
-                    </div>
-                </div>
-
-                {/* Step 4: Technical Round */}
-                <div className="flex flex-col md:flex-row-reverse gap-4 items-center">
-                    <div className="flex-1">
-                        <h1 className="text-2xl text-companyBlue font-bold">Technical Round</h1>
-                        <p>
-                            Candidates undergo a technical evaluation where their knowledge, skills, and problem-solving abilities are tested through interviews, assessments, or case studies.
-                        </p>
-                    </div>
-                    <div className="w-96 p-4 border rounded-xl shadow-md bg-white">
-                        <img className="w-60 mx-auto" src="/interview/step4.png" alt="Technical Round" />
-                    </div>
-                </div>
-
-                {/* Step 5: Final Interview */}
-                <div className="flex flex-col md:flex-row gap-4 items-center">
-                    <div className="flex-1">
-                        <h1 className="text-2xl text-companyBlue font-bold">Final Interview</h1>
-                        <p>
-                            The final round involves a discussion with senior leadership or department heads to evaluate the candidate’s overall fit, long-term potential, and alignment with the company’s mission and values.
-                        </p>
-                    </div>
-                    <div className="w-96 p-4 border rounded-xl shadow-md bg-white">
-                        <img className="w-60 mx-auto" src="/interview/step5.png" alt="Final Interview" />
-                    </div>
-                </div>
+                ))}
             </div>
         </div>
-    )
+    );
 }

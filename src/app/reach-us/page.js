@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import { useState } from "react";
 import ExpandableList from "@/components/OrganicExpCards";
 import TabComponent from "@/components/TestComp";
+import NewService from "@/components/newServiceSection";
 
 const MapComponent = dynamic(() => import("../components/MapComponent"), { ssr: false });
 
@@ -26,7 +27,6 @@ export default function UnderDevelopment() {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    //console.log(status)
   };
 
 
@@ -68,7 +68,6 @@ export default function UnderDevelopment() {
         setFormData({ name: "", email: "", message: "" });
       }
     } catch (error) {
-      //console.error("Fetch error:", error);
       setStatus("Error delivering postcard.");
     }
   }
@@ -81,7 +80,9 @@ export default function UnderDevelopment() {
         <title>Befikr - Coming Soon</title>
       </Head>
       <Navbar />
-      <div className="flex w-screen pt-20 flex-col justify-start min-h-screen font-generalSansRegular text-[#009DC8]">
+      <div className="flex w-full pt-20 flex-col justify-start min-h-screen font-generalSansRegular text-[#009DC8]">
+      {/* <NewService/>
+      <TabComponent/>  */}
         <div className="grid grid-cols-1 sm:grid-cols-2 m-4">
           <form className="max-w-md sm:max-w-xl w-full mx-auto" onSubmit={handleSubmit}>
             <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">

@@ -2,7 +2,7 @@ import Button from "@/components/ui/Button";
 
 export default function SectionOne() {
     return (
-        <div className="container h-screen pt-20 mx-auto px-6 py-12 grid lg:grid-cols-2 gap-12 items-center">
+        <div className="container h-screen pt-25 mx-auto px-6 py-12 grid lg:grid-cols-2 gap-12 items-center">
             <div className=" md:hidden mx-auto">
                 <img
                     src="/undraw_job-hunt_5umi.svg"

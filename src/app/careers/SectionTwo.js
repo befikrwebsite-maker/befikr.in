@@ -16,7 +16,7 @@ export default function SectionTwo() {
         { link: "", desc: "Final Interview" }
     ]
     return (
-        <div className="container mx-auto px-6 py-12 grid lg:grid-cols-2 gap-12 items-center">
+        <div className="container mx-auto px-6 py-12 grid lg:grid-cols-2 gap-12 bg-white rounded-3xl shadow-xl items-center">
             <h1 className="sm:hidden text-5xl font-bold mb-4">
                 Perks of Being in <span className="font-generalSansMediumItalic text-companyBlue">befikr</span>
             </h1>

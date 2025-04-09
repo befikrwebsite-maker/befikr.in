@@ -78,6 +78,7 @@ jspm_packages
 # Optional REPL history
 .node_repl_history
 .next
+adminPanel
 .VSCodeCounter
 .VSCodeCounter/
 .VSCodeCounter/2025-02-27_20-23-16/details.md

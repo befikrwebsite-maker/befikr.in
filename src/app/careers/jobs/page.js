@@ -386,7 +386,7 @@ export default function Page() {
             {selectedLocations.map((items, index) =>
             (
               <div onClick={() => handleCheckboxFilterRemoval("location", items)} key={index} className=" flex justify-center text-xs text-companyBlue hover:border-companyBlue hover:border rounded m-2 ">
-                <div className="m-1 select-none">{items}</div>
+                <div className=" m-1 select-none">{items}</div>
               </div>
             ))}
             {(selectedTeams.length > 0 ||
