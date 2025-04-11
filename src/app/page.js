@@ -12,6 +12,7 @@ import Clock from "./components/Clock";
 import Service from "./components/ServicePage"
 import Testimonial from "./components/Testimonial"
 import MediaCoverage from "./components/MediaCoverage";
+import CompanyLogoGrid from "./components/CompanyLogoGrid";
 
 export default function Home() {
 
@@ -67,6 +68,7 @@ export default function Home() {
         <CareerSection />
         <div className="bg-[#f5f5f5] pt-10 text-4xl md:text-left text-center font-generalSansSemibold md:pl-12 text-gray-900">Our Partners</div>
         <PartnerCarousel />
+        {/* <CompanyLogoGrid/> */}
         <div className="bg-[#f5f5f5] pt-10 text-4xl md:text-left text-center font-generalSansSemibold md:pl-12 text-gray-900">Our Team</div>
         <Testimonial />
         <div className="bg-[#f5f5f5] pt-10 text-4xl md:text-left text-center font-generalSansSemibold md:pl-12 text-gray-900">Interviews & Articles</div>

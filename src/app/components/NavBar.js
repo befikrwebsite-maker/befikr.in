@@ -129,7 +129,7 @@ export default function Navbar() {
           </div>
 
           {/* Desktop Navigation Links */}
-          <div className="hidden text-xl h-full md:flex space-x-8 font-BebasNue font-thin items-center">
+          <div className="hidden text-xl h-full md:flex space-x-8 font-WorkSans font-thin items-center">
             <a href="/" className={`flex items-center gap-2 transition-colors duration-300 ${activePath === "/" ? "text-companyBlue font-bold" : "text-gray-500 hover:text-companyBlue"}`}>
               Home
             </a>
@@ -177,7 +177,6 @@ export default function Navbar() {
               <a href="/about-us" className="text-black hover:text-companyBlue transition-colors" onClick={() => setIsOpen(false)}>About Us</a>
               <a href="/careers" className="text-black hover:text-companyBlue transition-colors" onClick={() => setIsOpen(false)}>Careers</a>
               <a href="/reach-us" className="text-black hover:text-companyBlue transition-colors flex items-center" onClick={() => setIsOpen(false)}>Reach Us
-                <img src="/extraLogos/rev.png" className="h-8 w-auto" alt="Company Logo" />
               </a>
             </motion.div>
           )}

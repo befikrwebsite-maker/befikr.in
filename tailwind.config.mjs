@@ -53,6 +53,10 @@ export default {
   			}
   		},
   		fontFamily: {
+			WorkSans: [
+				'WorkSans-Regular',
+				'sans-serif'
+			],
 			BebasNue: [
 				'BebasNeue-Regular',
 				'sans-serif'

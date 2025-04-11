@@ -20,7 +20,7 @@ export default function Navbar() {
     <header className="sticky h-[60px] bg-[#f5f5f5] backdrop-blur-md z-40 shadow-md">
       <nav className="w-full mx-auto px-6 py-4 flex justify-between items-center rounded-xl">
         {/* Desktop Navigation Links */}
-        <div className="hidden md:flex w-full justify-evenly font-generalSansRegular">
+        <div className="hidden md:flex w-full justify-evenly font-WorkSans">
           {Object.entries(pageNames).map(([path, name]) => {
             const isActive = normalizePath(pathname) === normalizePath(path);
             return (
@@ -33,7 +33,7 @@ export default function Navbar() {
               >
                 {name}
               </a>
-            );
+            ); 
           })}
         </div>
 

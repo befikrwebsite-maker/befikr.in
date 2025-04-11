@@ -92,7 +92,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     //convert HTML into a basic plain-text alternative body
     //$mail->msgHTML(file_get_contents('contents.html'), __DIR__);
     
-    $mail->isHTML(false);
+    $mail->isHTML(true);
     
     //Replace the plain text body with one created manually
     $mail->Body = "This is a postcard from $name with email $email with number: $contact_number under the designation: $designation from the company: $company situated in: $city with its message as $message";

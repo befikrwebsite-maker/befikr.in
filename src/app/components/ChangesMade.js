@@ -9,10 +9,16 @@ export default function ChangesMade() {
     "Added more info in the careers section",
     "Improved performance and loading times",
     "Applied filters in the jobs section can now be seen and removed on a single click",
+    "Changed the font of navbar to something soft and readable",
+    "Updated the way services are mapped",
+    "Optimized the video with a preload poster for better ranking on Google",
+    "Created a different rough version for how the design of services section could look which can be seen on the reach us page of testing website",
   ];
 
   useEffect(() => {
-    setShowConsent(true);
+    if (window.location.pathname === "/") {
+      setShowConsent(true);
+    }
   }, []);
 
   const acceptCookies = () => {

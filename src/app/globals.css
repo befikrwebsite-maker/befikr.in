@@ -1,6 +1,7 @@
 /* Importing the font styles
 @import url('./css/general-sans.css');
- */
+*/
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -18,6 +19,7 @@
     /* Firefox */
   }
 }
+
 
 @font-face {
   font-family: 'BebasNeue-Regular';
@@ -193,6 +195,7 @@
 
 body {
   font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Work Sans', sans-serif;
 
 }
 

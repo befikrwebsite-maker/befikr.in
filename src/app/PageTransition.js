@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
+
 export default function PageTransition({ children }) {
   const [isVisible, setIsVisible] = useState(false);
 
