@@ -154,7 +154,7 @@ export default function Form({ team, position, locations, onClose }) {
         </div>
 
         <div>
-          <label className="block text-gray-700 font-medium mb-1">Your Message (specify the location you are applying for)</label>
+          <label className="block text-gray-700 font-medium mb-1">Your Message</label>
           <textarea
             name="message"
             value={formData.message}
