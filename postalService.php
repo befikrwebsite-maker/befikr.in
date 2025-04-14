@@ -67,23 +67,23 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $mail->SMTPAuth = true;
 
     //Username to use for SMTP authentication - use full email address for gmail
-    $mail->Username = 'divyam.study.work@gmail.com';
+    $mail->Username = 'befikrdropbox@gmail.com';
 
     //Password to use for SMTP authentication
-    $mail->Password = 'reqwvklemfpqsuyv';
+    $mail->Password = 'mtlaqdrevpyleszw';
 
     //Set who the message is to be sent from
     //Note that with gmail you can only use your account address (same as `Username`)
     //or predefined aliases that you have configured within your account.
     //Do not use user-submitted addresses in here
-    $mail->setFrom('befikr@client.com', 'Potential Client');
+    $mail->setFrom('befikrdropbox@gmail.com', 'Potential Client');
 
     //Set an alternative reply-to address
     //This is a good place to put user-submitted addresses
     //$mail->addReplyTo('replyto@example.com', 'First Last');
 
     //Set who the message is to be sent to
-    $mail->addAddress('divyamsharma511@gmail.com', 'Befikr');
+    $mail->addAddress('bebefikr@befikr.in', 'Befikr');
 
     //Set the subject line
     $mail->Subject = 'PHPMailer GMail SMTP test';

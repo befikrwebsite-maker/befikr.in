@@ -76,16 +76,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $mail->SMTPAuth = true;
 
     //Username to use for SMTP authentication - use full email address for gmail
-    $mail->Username = 'divyam.study.work@gmail.com';
+    $mail->Username = 'befikrdropbox@gmail.com';
 
     //Password to use for SMTP authentication
-    $mail->Password = 'reqwvklemfpqsuyv';
+    $mail->Password = 'mtlaqdrevpyleszw';
 
     //Set who the message is to be sent from
     //Note that with gmail you can only use your account address (same as `Username`)
     //or predefined aliases that you have configured within your account.
     //Do not use user-submitted addresses in here
-    $mail->setFrom('divyamsharma511@gmail.com', 'Applicant');
+    $mail->setFrom('befikrdropbox@gmail.com', 'Applicant');
 
     //Set an alternative reply-to address
     //This is a good place to put user-submitted addresses
