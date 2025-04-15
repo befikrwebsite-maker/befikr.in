@@ -10,6 +10,7 @@ export default function Form({ team, position, locations, onClose }) {
     message: "",
     // resume: null, // Added for file input
   });
+  
 
   // only three possible values - failed, ongoing, success
   const [submitStatus, setSubmitStatus] = useState("");
@@ -100,6 +101,36 @@ export default function Form({ team, position, locations, onClose }) {
       setStatus("Error sending message.");
     }
   };
+
+  const [countdown, setCountdown] = useState(4);
+
+
+  useEffect(() => {
+    if (submitStatus === "ongoing") {
+      setCountdown(4); // reset countdown
+  
+      const interval = setInterval(() => {
+        setCountdown((prev) => {
+          if (prev <= 1) {
+            clearInterval(interval);
+            return 0;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+  
+      const timeout = setTimeout(() => {
+        setSubmitStatus("");
+      }, 4000);
+  
+      return () => {
+        clearInterval(interval);
+        clearTimeout(timeout);
+      };
+    }
+  }, [submitStatus]);
+  
+  
 
   return (
     <div className="bg-white shadow-lg rounded-xl p-6 w-full mx-auto mt-10">
@@ -211,6 +242,20 @@ export default function Form({ team, position, locations, onClose }) {
         </button>
       </form>
       {status && <p className="text-center mt-4 text-red-600">{status}</p>}
+      {submitStatus === "ongoing" && (
+        <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
+          <div className="bg-white p-6 rounded-xl shadow-lg text-center w-80 transition-all duration-500 ease-out transform scale-100 animate-fadeIn">
+            <h2 className="text-lg font-semibold text-companyBlue mb-2">
+              Application Submitted!
+            </h2>
+            <p className="text-sm text-gray-700 mb-2">
+              We’ve received your application.
+            </p>
+            <p className="text-xs text-gray-500">Closing in {countdown} second{countdown !== 1 && "s"}...</p>
+
+          </div>
+        </div>
+      )}
     </div>
   );
 };
