@@ -129,7 +129,8 @@ export default function Navbar() {
           </div>
 
           {/* Desktop Navigation Links */}
-          <div className="hidden text-xl h-full md:flex space-x-8 font-WorkSans font-thin items-center">
+          <div className="hidden md:flex text-xl h-full space-x-14 font-WorkSans font-thin items-center">
+
             <a href="/" className={`flex items-center gap-2 transition-colors duration-300 ${activePath === "/" ? "text-companyBlue font-bold" : "text-gray-500 hover:text-companyBlue"}`}>
               Home
             </a>

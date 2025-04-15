@@ -87,7 +87,7 @@ export default function UnderDevelopment() {
       </Head>
       <Navbar />
       <div className="flex w-full pt-20 flex-col justify-start min-h-screen font-generalSansRegular text-[#009DC8]">
-        <TabComponent />
+        {/* <TabComponent /> */}
         <div className="grid grid-cols-1 sm:grid-cols-2 m-4">
           <form className="max-w-md sm:max-w-xl w-full mx-auto" onSubmit={handleSubmit}>
             <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">

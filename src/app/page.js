@@ -69,8 +69,7 @@ export default function Home() {
         <div className="bg-[#f5f5f5] pt-10 text-4xl md:text-left text-center font-generalSansSemibold md:pl-12 text-gray-900">Our Partners</div>
         <PartnerCarousel />
         {/* <CompanyLogoGrid/> */}
-        <div className="bg-[#f5f5f5] pt-10 text-4xl md:text-left text-center font-generalSansSemibold md:pl-12 text-gray-900">Our Team</div>
-        <Testimonial />
+        
         <div className="bg-[#f5f5f5] pt-10 text-4xl md:text-left text-center font-generalSansSemibold md:pl-12 text-gray-900">Interviews & Articles</div>
         <MediaCoverage />
         <Clock />

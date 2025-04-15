@@ -32,7 +32,7 @@ export default function RootLayout({ children }) {
       <TrackingComponent />
         <PageTransition>{children}</PageTransition> {/* Handles slide-in */}
         <CookieConsent /> {/* Handles cookie consent */}
-        <ChangesMade /> {/* displays changes made */}
+        {/* <ChangesMade /> */}
       </body>
     </html>
   );

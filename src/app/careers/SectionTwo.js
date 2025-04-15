@@ -22,11 +22,11 @@ export default function SectionTwo() {
             </h1>
             <div className="grid sm:grid-cols-2 grid-cols-1 gap-4">
                 {perks.map((perk, index) => (
-                    <div className="border-2 max-w-full border-companyBlue rounded-xl  h-48"
+                    <div className="border-2 bg-companyBlue max-w-full border-companyBlue rounded-xl  h-48"
                         key={index}
                     >
                         <div className="p-5">
-                            <h1 className="text-2xl font-bold">{perk.title}</h1>
+                            <h1 className="text-2xl text-white font-bold">{perk.title}</h1>
                         </div>
                     </div>
                 ))}

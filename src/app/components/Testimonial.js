@@ -1,5 +1,6 @@
-import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence, hover } from "framer-motion";
+"use client";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const data = [
   {
@@ -8,7 +9,7 @@ const data = [
     text: "first item",
     position: "Deputy Manager - HR",
     desc: "I have been working as an HR at Opera Gratia (Befikr) since December 2024, and my experience so far has been both enriching and rewarding. The company fosters a collaborative and growth-oriented work environment, allowing me to enhance my skills in recruitment, employee engagement, and HR operations.",
-    image: "../Testimonial/Img1.jpg"
+    image: "/../Testimonial/Img1.jpg"
   },
   {
     id: 2,
@@ -16,7 +17,7 @@ const data = [
     text: "Consultant - CES",
     position: "Consultant - CES",
     desc: "This is my first job at corporate office and I'm very glad that I become a part of Befikr family. Seniors are very helpful here also work environment is very good for females.",
-    image: "../Testimonial/Img2.jpg"
+    image: "/../Testimonial/Img2.jpg"
   },
   {
     id: 3,
@@ -24,7 +25,7 @@ const data = [
     text: "third item",
     position: "Sr. Manager/Quality - ESA",
     desc: "It's a really good place to work. Befikr provided me with an excellent experience and opportunities that helped me quickly transition into my role and gain valuable expertise in the Audit field.",
-    image: "../Testimonial/Img3.jpg"
+    image: "/../Testimonial/Img3.jpg"
   },
   {
     id: 4,
@@ -32,7 +33,7 @@ const data = [
     text: "fourth item",
     position: "Asst Manager - MSP",
     desc: "I got supportive work environment here. I have learnt so many things while working also I have found multiple growth opportunity.",
-    image: "../Testimonial/Img4.jpg"
+    image: "/../Testimonial/Img4.jpg"
   },
   {
     id: 6,
@@ -40,7 +41,7 @@ const data = [
     text: "fourth item",
     position: "Asst Manager - MSP",
     desc: "This is one of my best jobs. The environment and staff are very good and supportive. I have learned so many things here, and I enjoy my work.",
-    image: "../Testimonial/Img5.jpg"
+    image: "/../Testimonial/Img5.jpg"
   },
   {
     id: 7,
@@ -48,7 +49,7 @@ const data = [
     text: "fourth item",
     position: "Deputy Manager - CES",
     desc: "The most rewarding part of my journey here has been the way the company fosters a culture of continuous learning and open communication, making me feel valued and empowered every step of the way.",
-    image: "../Testimonial/Img7.png"
+    image: "/../Testimonial/Img7.png"
   },
   {
     id: 8,
@@ -56,7 +57,7 @@ const data = [
     text: "fourth item",
     position: "Manager - Admin & Operations",
     desc: "Working with Opera Gratia (Befikr) has been a great experience. Their efficient operations, strong administrative support, and commitment to excellence make them a reliable and professional organization. Wishing them continued success in their endeavours",
-    image: "../Testimonial/Img8.png"
+    image: "/../Testimonial/Img8.png"
   },
   {
     id: 9,
@@ -64,7 +65,7 @@ const data = [
     text: "fourth item",
     position: "Deputy General Manager - CES",
     desc: "I joined befikr as entry level manager and now hold a position of DGM- Services, where I managing a team of 550 in the capacity of manager. During my 8 years with befikr, I have seen that befikr always had a excellent team with wide range of skill sets which can help any client to achieve their objectives and goals. Working with befikr team is an Outstanding Experience. Opportunities are higher to learn and grow in befikr.",
-    image: "../Testimonial/Img9.png"
+    image: "/../Testimonial/Img9.png"
   },
   {
     id: 10,
@@ -72,7 +73,7 @@ const data = [
     text: "fourth item",
     position: "Asst.Manager - MIS & Planning",
     desc: "As an employee, I appreciate the transparent and approachable nature of our management team. They consistently seek feedback, listen to concerns, and genuinely value our input, creating an open environment where communication flows freely. Management is always willing to offer guidance and support, but they also trust us to take ownership of our responsibilities.",
-    image: "../Testimonial/Img10.png"
+    image: "/../Testimonial/Img10.png"
   },
   {
     id: 11,
@@ -80,7 +81,7 @@ const data = [
     text: "fourth item",
     position: "Asst.Manager - CES",
     desc: " I'm proud to be part of the Befikr company that puts service at its heart. Every day, I get to work with a dedicated team that values excellence, genuine care, and constant innovation. It's inspiring to see how our commitment to quality service not only meets but exceeds our customers' expectations.",
-    image: "../Testimonial/Img11.png"
+    image: "/../Testimonial/Img11.png"
   },
   {
     id: 12,
@@ -88,7 +89,7 @@ const data = [
     text: "fourth item",
     position: "Jr. Consultant - ESA",
     desc: " I've been working with befikr Opera Gratia since 8th April, and my experience so far has been amazing. The company culture is supportive and innovative, and I appreciate the opportunities provided for growth and development. Specifically, I've enjoyed working as electrical safety Coordinator. Overall, I'm happy to be a part of this team at befikr.",
-    image: "../Testimonial/Img12.png"
+    image: "/../Testimonial/Img12.png"
   },
   {
     id: 13,
@@ -96,7 +97,7 @@ const data = [
     text: "fourth item",
     position: "Jr. Consultant - ESA",
     desc: "First of all, I’d like to appreciate to befikr who gave me this wonderful opportunity for professional growth and development. I’ve been working here for 1.5 years and I feel the same value nd support that was given to me on my first day. The communication from the corporate office is lear and on time, and I feel informed about company updates and initiatives.",
-    image: "../Testimonial/Img13.png"
+    image: "/../Testimonial/Img13.png"
   },
 ];
 

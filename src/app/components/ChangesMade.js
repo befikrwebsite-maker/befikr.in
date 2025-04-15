@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 
 export default function ChangesMade() {
   const [showConsent, setShowConsent] = useState(false);
-
+  //TODO: Add the major changes made in the website in the array below
   const changes = [
     "Added more info in the careers section",
     "Improved performance and loading times",
@@ -13,6 +13,7 @@ export default function ChangesMade() {
     "Updated the way services are mapped",
     "Optimized the video with a preload poster for better ranking on Google",
     "Created a different rough version for how the design of services section could look which can be seen on the reach us page of testing website",
+    "Added a loading animation when applying for jobs"
   ];
 
   useEffect(() => {

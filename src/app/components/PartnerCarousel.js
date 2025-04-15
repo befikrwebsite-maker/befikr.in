@@ -53,7 +53,7 @@ export default function PartnerCarousel() {
                     {filteredImages.map((logo, index) => (
                         <div
                             key={index}
-                            className="h-[150px] w-[200px] bg-white border flex items-center justify-center rounded-xl"
+                            className="h-[150px] w-[200px] bg-white flex items-center justify-center rounded-xl"
                         >
                             <img
                                 src={logo.url}

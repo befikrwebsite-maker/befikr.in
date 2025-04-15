@@ -14,7 +14,7 @@ export default function Home() {
     <div className="min-h-screen bg-[#f5f5f5] font-generalSansMedium" style={{ height: "200vh" }}>
       <Navbar />
 
-      <main className="w-full pt-20 no-scrollbar bg-[#f5f5f5] flex flex-col">
+      <main className="w-full pt-20 no-scrollbar bg-white flex flex-col">
         <SectionOne />
         <SectionTwo />
         <InterviewProcess />
