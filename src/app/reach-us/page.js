@@ -91,7 +91,7 @@ export default function UnderDevelopment() {
         <div className="grid grid-cols-1 sm:grid-cols-2 m-4 gap-5">
           <div className="w-full ">
             <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4 ">Reach Us</h2>
-            <form className=" bg-[#feebb3] rounded-lg shadow-lg border border-gray-300  max-w-md sm:max-w-full w-full mx-auto p-2 pl-6" onSubmit={handleSubmit}>
+            <form className=" bg-[#ffe084] rounded-lg shadow-lg border border-gray-300  max-w-md sm:max-w-full w-full mx-auto p-2 pl-6" onSubmit={handleSubmit}>
               <div className="relative z-0 w-full mb-5 group">
                 <input
                   type="text"
@@ -251,27 +251,33 @@ export default function UnderDevelopment() {
           </div>
           {status && <p className="text-center mt-4 text-red-600">{status}</p>}
           <div className="w-full">
-            <h3 className="text-2xl font-semibold text-gray-900 dark:text-white">To Befikr</h3>
-            <div className="flex w-full mt-4 bg-[#feebb3] dark:bg-gray-800 p-6 rounded-lg shadow-lg border border-gray-300">
-              <div className="flex-1 mt-10 text-[#000000] dark:text-gray-300">
-                <p className="mb-5">{formData.name || "Your Name"}</p>
-                <p className="mb-5">{formData.email || "your.email@example.com"}</p>
-                <p className="mb-5">{formData.contact_number || "XXXXXXXXXX"}</p>
-                <p className="mb-5">{formData.designation || "Your Role"}</p>
-                <p className="mb-5">{formData.company || "Your Company"}</p>
-                <p className="mb-5">{formData.city || "Your City"}</p>
-                <p className="mt-4 mb-40">{formData.message || "Your message goes here..."}</p>
-              </div>
-              <div className="flex-1 flex justify-end items-start">
+            <div className="mt-4 bg-[#ffe084] dark:bg-gray-800 p-6 rounded-lg shadow-lg border border-gray-300 relative h-full min-h-[580px] flex flex-col">
+
+              {/* Header Inside Card */}
+              <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">To Befikr</h3>
+
+              {/* Floating Image Top Right */}
+              <div className="absolute top-4 right-4">
                 <img
                   src="/extraLogos/logo-transparent-png.png"
-                  className="w-48 object-cover"
+                  className="w-44 object-contain"
                   alt="Thank You"
                 />
               </div>
 
+              {/* Content */}
+              <div className="text-[#000000] dark:text-gray-300 mt-24 space-y-3 break-words whitespace-pre-wrap">
+                <p>{formData.name || "Your Name"}</p>
+                <p>{formData.email || "your.email@example.com"}</p>
+                <p>{formData.contact_number || "XXXXXXXXXX"}</p>
+                <p>{formData.designation || "Your Role"}</p>
+                <p>{formData.company || "Your Company"}</p>
+                <p>{formData.city || "Your City"}</p>
+                <p className="mt-4">{formData.message || "Your message goes here..."}</p>
+              </div>
             </div>
           </div>
+
         </div>
 
         <div className="bg-[#009DC8] h-full">
@@ -299,7 +305,7 @@ export default function UnderDevelopment() {
               <p className="">110030 </p>
               <div className="pt-7 pb-7">
                 <div className="h-[200px] sm:h-[380px]">
-                  <MapComponent className=" w-96" />
+                  {/* <MapComponent className=" w-96" /> */}
                 </div>
               </div>
             </div>
