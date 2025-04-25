@@ -1,7 +1,9 @@
 
 const ServicesBreakdown = [
     {
-        Cateogery: "Environment", Services: [{
+        Cateogery: "Environment",
+        bgColor: "bg-orange-100",
+        Services: [{
             Service: "Safety Audit Services",
             SubServices: [
                 {
@@ -41,7 +43,9 @@ const ServicesBreakdown = [
         ]
     },
     {
-        Cateogery: "Social", Services: [{
+        Cateogery: "Social",
+        bgColor: "bg-blue-100",
+         Services: [{
             Service: "Corporate Social Responsibility Services",
             SubServices: [
                 {
@@ -56,7 +60,9 @@ const ServicesBreakdown = [
         ]
     },
     {
-        Cateogery: "Governance", Services: [{
+        Cateogery: "Governance", 
+        bgColor: "bg-gray-100",
+        Services: [{
             Service: "Testing & Inspection Services",
             SubServices: [
                 {
