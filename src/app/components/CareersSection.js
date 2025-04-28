@@ -9,7 +9,7 @@ export default function CareerSection() {
             <p className=" font-generalSansRegular"><strong className=" text-companyBlue">befikr</strong> is a strategic & execution partner for environment, safety & social IMPACT services.</p>
             <p className="pb-4">We work with businesses to exhibit Business Responsibility & Sustainability through direct impact ESG services.</p>
             <div className="items-center h-[0.5px] rounded-full bg-companyBlue"></div>
-            <p className="pt-4 pb-4">Our Environment (E) IMPACT services are Energy audit, Electrical safety audit, Circular economy (Defective inspection, e-waste collection & Reverse logistics management). Today, befikr has also become the last mile partner for brands looking to comply with the Extended Producer Responsibility by managing & embracing the complete circular economy chain efficiently.</p>
+            <p className="pt-4 pb-4">Our Environment (E) IMPACT services are Energy audit, Electrical safety audit, Circular economy (Defective inspection, e-waste collection & Reverse logistics management).</p>
             <p className="pt-4 pb-4">Our Social (S) IMPACT services include CSR (Corporate Social Responsibility) touching lives & employability through training & development services for the under privileged & deserving to contribute towards a Developed India.</p>
             </div>
             <Button

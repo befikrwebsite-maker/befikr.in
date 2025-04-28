@@ -7,6 +7,7 @@ const ServicesBreakdown = [
         bgColor: "bg-orange-100",
         Services: [{
             Service: "Safety Audit Services",
+            link: "services/environment/safety-audit/",
             SubServices: [
                 {
                     title: "Electrical Safety Audit Services",
@@ -14,6 +15,7 @@ const ServicesBreakdown = [
                     tags: ["electrical", "safety", "audit", "environment"],
                     image: "../service_img/logo-svgELECTRICAL.svg",
                     depth: "electrical-safety-audit",
+                    link: "services/environment/safety-audit/electrical-safety-audit",
                 },
                 {
                     title: "Energy Audit Services",
@@ -25,6 +27,7 @@ const ServicesBreakdown = [
             ],},
             {
             Service: "Circular Economy Services",
+            link: "services/environment/circular-economy",
             SubServices: [
                 {
                     title: "E-Waste Management",
@@ -49,8 +52,10 @@ const ServicesBreakdown = [
         link:"/services?service=Social",
         image: "/catImage/image-2.png",
         bgColor: "bg-blue-100",
+        link: "services/social/",
          Services: [{
             Service: "Corporate Social Responsibility Services",
+            link: "services/social/csr",
             SubServices: [
                 {
                     title: "Corporate Social Responsibility Services",
@@ -70,6 +75,7 @@ const ServicesBreakdown = [
         bgColor: "bg-gray-100",
         Services: [{
             Service: "Testing & Inspection Services",
+            link: "services/governance/testing-inspection-demo",
             SubServices: [
                 {
                     title: "Defective Audit Services",

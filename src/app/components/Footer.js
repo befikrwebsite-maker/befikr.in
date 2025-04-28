@@ -46,7 +46,7 @@ export default function Footer() {
                 className="w-32"
               />
                <img
-                src="/extraLogos/logo-transparent-png_4.png"
+                src="/extraLogos/logo-transparent-png_2.png"
                 alt="Logo 4"
                 className="w-32"
               />
