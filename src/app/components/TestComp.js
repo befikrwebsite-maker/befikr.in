@@ -15,7 +15,7 @@ export default function TabComponent() {
   const pathname = usePathname();
   const [activeTab, setActiveTab] = useState('Environment');
 
-  const imageRef = useRef(null);          // Ref for the image
+  const imageRef = useRef(null); // Ref for the image
   const servicesContainerRef = useRef(null); // Ref for the services container
 
   const filteredCards = ServicesBreakdown.filter((card) => card.Cateogery === activeTab);
@@ -26,18 +26,17 @@ export default function TabComponent() {
   }, [pathname]);
 
   const handleTabClick = (tabId) => {
-    setActiveTab(tabId);
-    window.history.pushState(null, '', `?service=${tabId}`);
-  };
-
     // Fade out the image
     gsap.to(imageRef.current, {
       opacity: 0,
       duration: 0.5,
       onComplete: () => {
-        setActiveTab(tabId);
+        setActiveTab(tabId); // Change tab after fading out
       },
     });
+    // Update the URL
+    window.history.pushState(null, '', `?service=${tabId}`);
+  };
 
   useEffect(() => {
     // Fade in the image when activeTab changes
@@ -83,12 +82,12 @@ export default function TabComponent() {
         <img
           ref={imageRef}
           src={activeTab === 'Environment' ? tabs[0].img : activeTab === 'Social' ? tabs[1].img : tabs[2].img}
-          className="w-full object-left-top max-h-96 rounded-2xl"
+          className="w-full md:object-cover object-center max-h-96 rounded-2xl"
           alt="Image"
         />
 
         {/* Text on top of the image */}
-        <h1 className="hidden md:absolute bottom-16 ml-8 text-6xl text-white font-bold">
+        <h1 className="hidden sm:absolute bottom-16 ml-8 text-6xl text-white font-bold">
           {activeTab}
         </h1>
       </div>
@@ -107,18 +106,20 @@ export default function TabComponent() {
                   <h3 className="text-2xl font-semibold text-blue-700">{service.Service}</h3>
                   {service.SubServices.map((sub, subIndex) => (
                     <div
+                      onClick={() => (window.location.href = sub.depth)}
                       key={subIndex}
-                      className="mt-4 p-8 ml-2 border-l-4 border-blue-200 pl-4 hover:bg-slate-300 transition-all duration-300"
+                      className="mt-6 p-6 mx-4 border-l-4 border-blue-400 pl-6 cursor-pointer hover:bg-gray-100 transition-all duration-300 rounded-lg shadow-lg transform"
                     >
-                      <h4 className="text-md font-medium text-gray-800">{sub.title}</h4>
-                      <p className="text-sm text-gray-600">{sub.desc}</p>
-                      <img
+                      <h4 className="text-lg font-semibold text-gray-800 hover:text-blue-600 transition-colors duration-200">{sub.title}</h4>
+                      <p className="text-sm text-gray-500 mt-2">{sub.desc}</p>
+                      {/* <img
                         src={sub.image}
                         alt={sub.title}
-                        className="w-full max-w-xs h-fit object-cover rounded-md mt-2 shadow-sm"
-                      />
+                        className="w-full max-w-xs h-auto object-cover rounded-md mt-4 shadow-lg"
+                      /> */}
                     </div>
                   ))}
+
                 </div>
               ))}
 
