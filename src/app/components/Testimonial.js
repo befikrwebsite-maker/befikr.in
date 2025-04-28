@@ -111,7 +111,7 @@ export default function InfiniteScroller() {
       <AnimatePresence>
         {hoveredIndex !== null && (
           <motion.div
-            className="hidden md:flex fixed inset-0 bg-companyBlue bg-opacity-90 items-center justify-center z-40"
+            className="hidden md:flex fixed inset-0 bg-companyBlue bg-opacity-90 rounded-2xl items-center justify-center z-40"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}

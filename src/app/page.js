@@ -33,12 +33,13 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen relative bg-[#f5f5f5] font-generalSansMedium" style={{ height: "200vh" }}>
+    <div className="min-h-screen relative bg-white font-generalSansMedium" style={{ height: "200vh" }}>
       <Navbar />
 
-      <main className="w-full pt-20 bg-[#f5f5f5] flex flex-col">
+      <main className="w-full pt-20 bg-companyBlue flex flex-col">
         <Hero />
-        <div className="bg-[#f5f5f5] py-16 px-6 md:px-12 text-gray-900 font-generalSansSemibold">
+        <Clock />
+        <div className="bg-white py-16 px-6 md:px-12 text-gray-900 font-generalSansSemibold">
           <div className="flex flex-col md:flex-row items-center gap-10">
             {/* Text Section */}
             <div className="flex-1 text-center md:text-left">
@@ -59,20 +60,18 @@ export default function Home() {
           </div>
         </div>
 
-        <br />
+        
+
         <Service />
         {/* <ScreenSizeComponent/> */}
-        <div className="bg-[#f5f5f5] pt-10 text-4xl md:text-left text-center font-generalSansSemibold md:pl-12 text-gray-900">Our Impact</div>
+        <div className="bg-white pt-10 text-4xl md:text-left text-center font-generalSansSemibold md:pl-12 text-gray-900">Our Impact</div>
         <Impact />
-        <div className="bg-[#f5f5f5] pt-10 text-4xl md:text-left text-center font-generalSansSemibold md:pl-12 text-gray-900">About Us</div>
-        <CareerSection />
-        <div className="bg-[#f5f5f5] pt-10 text-4xl md:text-left text-center font-generalSansSemibold md:pl-12 text-gray-900">Our Partners</div>
+        <div className="bg-white pt-10 text-4xl md:text-left text-center font-generalSansSemibold md:pl-12 text-gray-900">Our Partners</div>
         <PartnerCarousel />
         {/* <CompanyLogoGrid/> */}
-        
-        <div className="bg-[#f5f5f5] pt-10 text-4xl md:text-left text-center font-generalSansSemibold md:pl-12 text-gray-900">Interviews & Articles</div>
+
+        <div className="bg-white pt-10 text-4xl md:text-left text-center font-generalSansSemibold md:pl-12 text-gray-900">Interviews & Articles</div>
         <MediaCoverage />
-        <Clock />
       </main>
 
       <Footer />

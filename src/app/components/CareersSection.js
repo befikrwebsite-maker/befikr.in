@@ -2,7 +2,7 @@ import Button from "./ui/Button"
 
 export default function CareerSection() {
   return (
-    <div className="pl-12 pb-8">
+    <div className="pl-12 bg-white pb-8">
       <div className="flex w-full">
         <div className=" mt-6">
           <div className="text-2xl font-generalSansLight">

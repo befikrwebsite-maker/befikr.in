@@ -2,7 +2,7 @@ import imageList from "./imageList";
 import { useState } from "react";
 
 export default function PartnerCarousel() {
-    const [activeTags, setActiveTags] = useState([]);
+    const [activeTags, setActiveTags] = useState(["Brands that trust us"]);
 
     const toggleTag = (tag) => {
         setActiveTags((prevTags) =>
@@ -24,7 +24,8 @@ export default function PartnerCarousel() {
 
 
     return (
-        <div className="w-full p-6 overflow-hidden">
+        <div className="w-full p-6 bg-white overflow-hidden">
+
             <div className="p-6 rounded-xl shadow-xl bg-white">
                 <div className="md:flex pb-10 flex-wrap">
 

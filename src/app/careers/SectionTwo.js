@@ -1,4 +1,40 @@
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/all";
+
 export default function SectionTwo() {
+
+    const containerRef = useRef(null);
+    const textRef = useRef(null);
+
+    useEffect(() => {
+        gsap.registerPlugin(ScrollTrigger);
+
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: containerRef.current,
+                start: "top 90%",
+                toggleActions: "play none none none",
+            },
+        });
+
+
+        tl.from(containerRef.current, {
+            height: 0,
+            duration: 1,
+            ease: "power2.out",
+        });
+
+
+        tl.from(textRef.current, {
+            opacity: 0,
+            y: 20,
+            duration: 0.8,
+            ease: "power2.out",
+        }, "-=0.3");
+
+    }, []);
+
     const perks = [
         { title: "A dynamic workplace that balances professionalism with a friendly vibe" },
         { title: "A team that supports, uplifts, and grows together" },
@@ -7,14 +43,6 @@ export default function SectionTwo() {
         { title: "A career that’s not just a job, but a journey of fulfillment" }
     ];
 
-
-    const process = [
-        { link: "", desc: "Screening" },
-        { link: "", desc: "Shortlisting" },
-        { link: "", desc: "HR Round" },
-        { link: "", desc: "Technical Round" },
-        { link: "", desc: "Final Interview" }
-    ]
     return (
         <div className="container mx-auto px-6 py-12 grid lg:grid-cols-2 gap-12 bg-white rounded-3xl shadow-xl items-center">
             <h1 className="sm:hidden text-5xl font-bold mb-4">
@@ -22,7 +50,7 @@ export default function SectionTwo() {
             </h1>
             <div className="grid sm:grid-cols-2 grid-cols-1 gap-4">
                 {perks.map((perk, index) => (
-                    <div className="border-2 bg-companyBlue max-w-full border-companyBlue rounded-xl  h-48"
+                    <div ref={textRef} className="border-2 bg-companyBlue max-w-full border-black rounded-xl h-48"
                         key={index}
                     >
                         <div className="p-5">
@@ -38,24 +66,7 @@ export default function SectionTwo() {
                 </h1>
             </div>
 
-            {/* <div>
-                <h1>
-                    Our Interview Process at <span className="font-generalSansMediumItalic text-companyBlue">befikr</span>
-                </h1>
-                <div className="w-full flex">
-                    {process.map((steps, index) => (
-                        <div key={index}>
-                            <img
-                                src={steps.link}
-                                width={500}
-                            />
-                            <div>
-                                {steps.desc}
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </div> */}
+
         </div>
     );
 }

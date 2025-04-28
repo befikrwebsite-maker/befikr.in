@@ -73,11 +73,11 @@ export default function Impact() {
   };
 
   return (
-    <div className="relative w-full h-[80vh] flex flex-col items-center justify-center overflow-hidden pt-8 pb-8 px-4 sm:px-8 bg-gray-100">
-      <div className="relative w-full h-full flex items-center justify-center">
+    <div className="relative w-full h-[80vh] flex flex-col items-center justify-center overflow-hidden pt-8 pb-8 px-4 sm:px-8 bg-white">
+      <div className="relative w-full h-full flex  items-center justify-center">
         <div
           ref={containerRef}
-          className="hover:border hover:border-companyBlue duration-150 absolute w-full h-full flex flex-col sm:flex-row items-center justify-between p-6 bg-white shadow-lg rounded-lg"
+          className="border border-companyBlue duration-150 absolute w-full h-full flex flex-col sm:flex-row items-center justify-between p-6 bg-white shadow-lg rounded-lg"
         >
           <div className="flex flex-col justify-center p-4 text-center sm:text-left w-full sm:w-2/3">
             <h3 className="text-3xl font-bold text-gray-900">{impacts[index].title}</h3>

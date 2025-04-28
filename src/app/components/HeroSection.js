@@ -22,7 +22,7 @@ export default function Hero() {
     }, []);
 
     return (
-        <section className="relative h-screen bg-cover bg-center bg-no-repeat rounded-b-[4rem]">
+        <section className="relative h-screen bg-companyBlue bg-cover bg-center bg-no-repeat rounded-b-[4rem]">
             {/* Background Video */}
             <video
                 className="absolute top-0 left-0 w-full h-full object-cover rounded-b-[4rem]"

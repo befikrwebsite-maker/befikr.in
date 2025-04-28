@@ -5,16 +5,10 @@ import Head from "next/head";
 import Navbar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 import { useState } from "react";
-import ExpandableList from "@/components/OrganicExpCards";
-import TabComponent from "@/components/TestComp";
-import NewService from "@/components/newServiceSection";
 
 const MapComponent = dynamic(() => import("../components/MapComponent"), { ssr: false });
 
-
-
-export default function UnderDevelopment() {
-
+export default function ContactForm() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -23,32 +17,26 @@ export default function UnderDevelopment() {
     designation: "",
     company: "",
     city: ""
-  })
+  });
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-
   const [status, setStatus] = useState("");
+  const [submitStatus, setSubmitStatus] = useState(""); // "failed", "ongoing", "success"
 
-  // only three possible values - failed, ongoing, success
-  const [submitStatus, setSubmitStatus] = useState("");
-
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const form = new FormData();
-    form.append("name", formData.name);
-    form.append("email", formData.email);
-    form.append("contact_number", formData.contact_number);
-    form.append("designation", formData.designation);
-    form.append("company", formData.company);
-    form.append("city", formData.city);
-    form.append("message", formData.message);
+    Object.entries(formData).forEach(([key, value]) => {
+      form.append(key, value);
+    });
 
     try {
+      setSubmitStatus("ongoing");
+      
       const response = await fetch("https://befikr.in/postal_service.php", {
         method: "POST",
         body: form,
@@ -59,228 +47,328 @@ export default function UnderDevelopment() {
 
       try {
         result = JSON.parse(text);
-        //setStatus(result.message);
       } catch (jsonError) {
-        //console.error("invalid json: ", text);
         setSubmitStatus("failed");
         setStatus("Server returned invalid JSON.");
+        return;
       }
 
       setStatus(result.message);
 
       if (result.status === "success") {
         setSubmitStatus("success");
-        setFormData({ name: "", email: "", message: "" });
+        setFormData({
+          name: "",
+          email: "",
+          contact_number: "",
+          message: "",
+          designation: "",
+          company: "",
+          city: ""
+        });
+      } else {
+        setSubmitStatus("failed");
       }
     } catch (error) {
       setSubmitStatus("failed");
       setStatus("Error delivering postcard.");
     }
-  }
+  };
 
   return (
     <>
       <Head>
-        <meta name="description" content="We are upgrading our website for a better experience." />
+        <meta name="description" content="Contact Befikr - We'd love to hear from you" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Befikr - Coming Soon</title>
+        <title>Contact Us - Befikr</title>
       </Head>
       <Navbar />
-      <div className="flex w-full pt-20 flex-col justify-start min-h-screen font-generalSansRegular text-[#009DC8]">
-        {/* <TabComponent /> */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 m-4 gap-5">
-          <div className="w-full ">
-            <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4 ">Reach Us</h2>
-            <form className=" bg-[#ffe084] rounded-lg shadow-lg border border-gray-300  max-w-md sm:max-w-full w-full mx-auto p-2 pl-6" onSubmit={handleSubmit}>
-              <div className="relative z-0 w-full mb-5 group">
-                <input
-                  type="text"
-                  name="name"
-                  id="name"
-                  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-companyBlue appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                  placeholder=" "
-                  onChange={handleChange}
-                  value={formData.name}
-                  required
-                />
-                <label
-                  htmlFor="name"
-                  className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                >
-                  Name
-                </label>
-              </div>
-
-              <div className="relative z-0 w-full mb-5 group">
-                <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-companyBlue appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                  placeholder=" "
-                  onChange={handleChange}
-                  value={formData.email}
-                  required
-                />
-                <label
-                  htmlFor="email"
-                  className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                >
-                  Email Address
-                </label>
-              </div>
-
-              <div className="relative z-0 w-full mb-5 group">
-                <input
-                  type="tel"
-                  name="contact_number"
-                  id="contact_number"
-                  pattern="[0-9]{10}"
-                  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-companyBlue appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                  placeholder=" "
-                  onChange={handleChange}
-                  value={formData.contact_number}
-                  required
-                />
-                <label
-                  htmlFor="contact_number"
-                  className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                >
-                  Contact Number
-                </label>
-              </div>
-
-              <div className="relative z-0 w-full mb-5 group">
-                <input
-                  type="text"
-                  name="designation"
-                  id="designation"
-                  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-companyBlue appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                  placeholder=" "
-                  onChange={handleChange}
-                  value={formData.designation}
-                  required
-                />
-                <label
-                  htmlFor="designation"
-                  className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                >
-                  Designation
-                </label>
-              </div>
-              <div className="relative z-0 w-full mb-5 group">
-                <input
-                  type="text"
-                  name="company"
-                  id="company"
-                  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-companyBlue appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                  placeholder=" "
-                  onChange={handleChange}
-                  value={formData.company}
-                  required
-                />
-                <label
-                  htmlFor="company"
-                  className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                >
-                  Company
-                </label>
-              </div>
-
-              <div className="relative z-0 w-full mb-5 group">
-                <input
-                  type="text"
-                  name="city"
-                  id="city"
-                  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-companyBlue appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                  placeholder=" "
-                  onChange={handleChange}
-                  value={formData.city}
-                  required
-                />
-                <label
-                  htmlFor="city"
-                  className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                >
-                  City
-                </label>
-              </div>
-
-              <div className="relative z-0 w-full mb-5 group">
-                <textarea
-                  name="message"
-                  id="message"
-                  rows="4"
-                  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-companyBlue appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer resize-none"
-                  placeholder=" "
-                  onChange={handleChange}
-                  value={formData.message}
-                  required
-                />
-                <label
-                  htmlFor="message"
-                  className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                >
-                  Message
-                </label>
-              </div>
-
-              <button
-                type="submit"
-                onClick={() => setSubmitStatus("ongoing")}
-                className="text-white bg-companyBlue hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-              >
-                <div className="flex justify-center">
-                  {submitStatus === "ongoing" ? (
-                    <div className="flex justify-center items-center" role="status">
-                      <svg aria-hidden="true" className="w-4 h-4 me-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor" /><path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill" /></svg>
-                    </div>
-                  ) : (<div className=""></div>)}
-                  {submitStatus === "success" ? (
-                    <div className="flex justify-center items-center">
-                      <svg className="w-4 h-4 me-2 text-green-500 dark:text-green-400 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 20 20">
-                        <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
-                      </svg>
-                    </div>
-                  ) : (<div className=""></div>)}
-                  Send
+      
+      <div className="flex w-full pt-24 pb-16 px-4 md:px-8 lg:px-16 flex-col justify-start min-h-screen bg-gradient-to-b from-white to-blue-50 font-generalSansRegular">
+        <div className="max-w-7xl mx-auto w-full">
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-8 text-center">Get in Touch</h1>
+          <p className="text-gray-600 text-center max-w-2xl mx-auto mb-12">We're here to help with your questions and needs. Fill out the form below and our team will get back to you promptly.</p>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="w-full">
+              <div className="bg-white rounded-xl shadow-xl overflow-hidden">
+                <div className="bg-[#009DC8] py-4 px-6">
+                  <h2 className="text-xl font-semibold text-white">Send Us a Message</h2>
                 </div>
+                <form className="p-6 pb-24" onSubmit={handleSubmit}>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div className="relative">
+                      <input
+                        type="text"
+                        name="name"
+                        id="name"
+                        className="peer w-full border-b-2 border-gray-300 bg-transparent pt-3 pb-2 px-0 text-gray-900 focus:outline-none focus:border-[#009DC8] transition-colors"
+                        placeholder=" "
+                        onChange={handleChange}
+                        value={formData.name}
+                        required
+                      />
+                      <label
+                        htmlFor="name"
+                        className="absolute left-0 -top-3.5 text-gray-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-[#009DC8] peer-focus:text-sm"
+                      >
+                        Name
+                      </label>
+                    </div>
+                    
+                    <div className="relative">
+                      <input
+                        type="email"
+                        name="email"
+                        id="email"
+                        className="peer w-full border-b-2 border-gray-300 bg-transparent pt-3 pb-2 px-0 text-gray-900 focus:outline-none focus:border-[#009DC8] transition-colors"
+                        placeholder=" "
+                        onChange={handleChange}
+                        value={formData.email}
+                        required
+                      />
+                      <label
+                        htmlFor="email"
+                        className="absolute left-0 -top-3.5 text-gray-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-[#009DC8] peer-focus:text-sm"
+                      >
+                        Email Address
+                      </label>
+                    </div>
+                  </div>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div className="relative">
+                      <input
+                        type="tel"
+                        name="contact_number"
+                        id="contact_number"
+                        pattern="[0-9]{10}"
+                        className="peer w-full border-b-2 border-gray-300 bg-transparent pt-3 pb-2 px-0 text-gray-900 focus:outline-none focus:border-[#009DC8] transition-colors"
+                        placeholder=" "
+                        onChange={handleChange}
+                        value={formData.contact_number}
+                        required
+                      />
+                      <label
+                        htmlFor="contact_number"
+                        className="absolute left-0 -top-3.5 text-gray-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-[#009DC8] peer-focus:text-sm"
+                      >
+                        Contact Number
+                      </label>
+                    </div>
+                    
+                    <div className="relative">
+                      <input
+                        type="text"
+                        name="city"
+                        id="city"
+                        className="peer w-full border-b-2 border-gray-300 bg-transparent pt-3 pb-2 px-0 text-gray-900 focus:outline-none focus:border-[#009DC8] transition-colors"
+                        placeholder=" "
+                        onChange={handleChange}
+                        value={formData.city}
+                        required
+                      />
+                      <label
+                        htmlFor="city"
+                        className="absolute left-0 -top-3.5 text-gray-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-[#009DC8] peer-focus:text-sm"
+                      >
+                        City
+                      </label>
+                    </div>
+                  </div>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div className="relative">
+                      <input
+                        type="text"
+                        name="designation"
+                        id="designation"
+                        className="peer w-full border-b-2 border-gray-300 bg-transparent pt-3 pb-2 px-0 text-gray-900 focus:outline-none focus:border-[#009DC8] transition-colors"
+                        placeholder=" "
+                        onChange={handleChange}
+                        value={formData.designation}
+                        required
+                      />
+                      <label
+                        htmlFor="designation"
+                        className="absolute left-0 -top-3.5 text-gray-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-[#009DC8] peer-focus:text-sm"
+                      >
+                        Designation
+                      </label>
+                    </div>
+                    
+                    <div className="relative">
+                      <input
+                        type="text"
+                        name="company"
+                        id="company"
+                        className="peer w-full border-b-2 border-gray-300 bg-transparent pt-3 pb-2 px-0 text-gray-900 focus:outline-none focus:border-[#009DC8] transition-colors"
+                        placeholder=" "
+                        onChange={handleChange}
+                        value={formData.company}
+                        required
+                      />
+                      <label
+                        htmlFor="company"
+                        className="absolute left-0 -top-3.5 text-gray-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-[#009DC8] peer-focus:text-sm"
+                      >
+                        Company
+                      </label>
+                    </div>
+                  </div>
+                  
+                  <div className="relative mb-8">
+                    <textarea
+                      name="message"
+                      id="message"
+                      rows="4"
+                      className="peer w-full border-2 border-gray-300 rounded-lg bg-transparent p-3 text-gray-900 focus:outline-none focus:border-[#009DC8] transition-colors resize-none"
+                      placeholder=" "
+                      onChange={handleChange}
+                      value={formData.message}
+                      required
+                    />
+                    <label
+                      htmlFor="message"
+                      className="absolute left-3 -top-2.5 bg-white px-1 text-sm text-gray-600 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-3 peer-focus:-top-2.5 peer-focus:text-[#009DC8] peer-focus:text-sm"
+                    >
+                      Your Message
+                    </label>
+                  </div>
 
-              </button>
-            </form>
-          </div>
-          {status && <p className="text-center mt-4 text-red-600">{status}</p>}
-          <div className="w-full">
-            <div className="mt-4 bg-[#ffe084] dark:bg-gray-800 p-6 rounded-lg shadow-lg border border-gray-300 relative h-full min-h-[580px] flex flex-col">
+                  {status && (
+                    <div className={`mb-4 p-3 rounded-md text-sm ${
+                      submitStatus === "success" ? "bg-green-50 text-green-700" : "bg-red-50 text-red-700"
+                    }`}>
+                      {status}
+                    </div>
+                  )}
 
-              {/* Header Inside Card */}
-              <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">To Befikr</h3>
-
-              {/* Floating Image Top Right */}
-              <div className="absolute top-4 right-4">
-                <img
-                  src="/extraLogos/logo-transparent-png.png"
-                  className="w-44 object-contain"
-                  alt="Thank You"
-                />
+                  <button
+                    type="submit"
+                    className="w-full md:w-auto px-6 py-3 bg-[#009DC8] hover:bg-[#0081a3] text-white font-medium rounded-lg transition-colors duration-300 flex items-center justify-center space-x-2"
+                  >
+                    {submitStatus === "ongoing" ? (
+                      <svg className="w-5 h-5 animate-spin" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                    ) : submitStatus === "success" ? (
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+                      </svg>
+                    ) : (
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                      </svg>
+                    )}
+                    <span>{submitStatus === "success" ? "Sent!" : "Send Message"}</span>
+                  </button>
+                </form>
               </div>
-
-              {/* Content */}
-              <div className="text-[#000000] dark:text-gray-300 mt-24 space-y-3 break-words whitespace-pre-wrap">
-                <p>{formData.name || "Your Name"}</p>
-                <p>{formData.email || "your.email@example.com"}</p>
-                <p>{formData.contact_number || "XXXXXXXXXX"}</p>
-                <p>{formData.designation || "Your Role"}</p>
-                <p>{formData.company || "Your Company"}</p>
-                <p>{formData.city || "Your City"}</p>
-                <p className="mt-4">{formData.message || "Your message goes here..."}</p>
+            </div>
+            
+            <div className="w-full">
+              <div className="bg-gradient-to-br from-[#ffe084] to-[#ffd458] rounded-xl shadow-xl h-full overflow-hidden relative">
+                <div className="p-6 h-full flex flex-col">
+                  <div className="flex justify-between items-start mb-6">
+                    <h3 className="text-xl font-semibold text-gray-800">Your Message Preview</h3>
+                    <img
+                      src="/extraLogos/logo-transparent-png.png"
+                      className="w-32 h-auto object-contain"
+                      alt="Befikr Logo"
+                    />
+                  </div>
+                  
+                  <div className="bg-white/70 backdrop-blur-sm rounded-lg p-6 flex-grow shadow-inner">
+                    <div className="space-y-2 text-gray-800">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2">
+                        <div>
+                          <p className="text-sm font-medium text-gray-500">Name</p>
+                          <p className="font-medium">{formData.name || "Your Name"}</p>
+                        </div>
+                        <div>
+                          <p className="text-sm font-medium text-gray-500">Email</p>
+                          <p>{formData.email || "your.email@example.com"}</p>
+                        </div>
+                        <div>
+                          <p className="text-sm font-medium text-gray-500">Phone</p>
+                          <p>{formData.contact_number || "XXXXXXXXXX"}</p>
+                        </div>
+                        <div>
+                          <p className="text-sm font-medium text-gray-500">City</p>
+                          <p>{formData.city || "Your City"}</p>
+                        </div>
+                        <div>
+                          <p className="text-sm font-medium text-gray-500">Designation</p>
+                          <p>{formData.designation || "Your Role"}</p>
+                        </div>
+                        <div>
+                          <p className="text-sm font-medium text-gray-500">Company</p>
+                          <p>{formData.company || "Your Company"}</p>
+                        </div>
+                      </div>
+                      
+                      <div className="mt-6">
+                        <p className="text-sm font-medium text-gray-500">Message</p>
+                        <div className="mt-2 p-3 bg-white/70 rounded border border-gray-200 min-h-[100px]">
+                          {formData.message || "Your message will appear here..."}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="mt-6 text-center">
+                    <p className="text-sm text-gray-600">Thank you for reaching out to us!</p>
+                    <p className="text-xs text-gray-500 mt-1">We'll get back to you shortly</p>
+                  </div>
+                </div>
+                
+                {/* Decorative elements */}
+                <div className="absolute -bottom-16 -right-16 w-32 h-32 bg-[#009DC8]/20 rounded-full"></div>
+                <div className="absolute -top-8 -left-8 w-24 h-24 bg-[#009DC8]/10 rounded-full"></div>
               </div>
             </div>
           </div>
-
+          
+          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="bg-white p-6 rounded-xl shadow-md flex flex-col items-center text-center">
+              <div className="w-14 h-14 bg-[#009DC8]/10 rounded-full flex items-center justify-center mb-4">
+                <svg className="w-6 h-6 text-[#009DC8]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-800 mb-2">Email Us</h3>
+              <p className="text-gray-500">info@befikr.in</p>
+              <p className="text-gray-500">support@befikr.in</p>
+            </div>
+            
+            <div className="bg-white p-6 rounded-xl shadow-md flex flex-col items-center text-center">
+              <div className="w-14 h-14 bg-[#009DC8]/10 rounded-full flex items-center justify-center mb-4">
+                <svg className="w-6 h-6 text-[#009DC8]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-800 mb-2">Call Us</h3>
+              <p className="text-gray-500">+91 90000 00000</p>
+              <p className="text-gray-500">Mon-Fri, 9AM-6PM</p>
+            </div>
+            
+            <div className="bg-white p-6 rounded-xl shadow-md flex flex-col items-center text-center">
+              <div className="w-14 h-14 bg-[#009DC8]/10 rounded-full flex items-center justify-center mb-4">
+                <svg className="w-6 h-6 text-[#009DC8]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-800 mb-2">Visit Us</h3>
+              <p className="text-gray-500">123 Business Park</p>
+              <p className="text-gray-500">Mumbai, India 400001</p>
+            </div>
+          </div>
         </div>
 
-        <div className="bg-[#009DC8] h-full">
+        <div className=" h-full pt-20">
           <div className="bg-white p-6 ">
             <div>
               <p className="text-lg md:text-xl pt-6 text-black  inline-block">
@@ -305,7 +393,7 @@ export default function UnderDevelopment() {
               <p className="">110030 </p>
               <div className="pt-7 pb-7">
                 <div className="h-[200px] sm:h-[380px]">
-                  {/* <MapComponent className=" w-96" /> */}
+                  <MapComponent className=" w-96" />
                 </div>
               </div>
             </div>

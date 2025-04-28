@@ -51,30 +51,15 @@ export default function Home() {
                   <p className="pt-4 pb-8">We work with businesses to exhibit Business Responsibility & Sustainability through direct impact ESG services.</p>
                   <div className="items-center h-[0.5px] rounded-full bg-companyBlue"></div>
                   <p className="pt-4 pb-8">Our Environment (E) IMPACT services are Energy audit, Electrical safety audit, Circular economy (Defective inspection, e-waste collection & Reverse logistics management). Today, befikr has also become the last mile partner for brands looking to comply with the Extended Producer Responsibility by managing & embracing the complete circular economy chain efficiently.</p>
-                  <img
-                    src=""
-                  ></img>
                   <p className="pt-4 pb-8">Our Social (S) IMPACT services include CSR (Corporate Social Responsibility) touching lives & employability through training & development services for the under privileged & deserving to contribute towards a Developed India.</p>
-                  <img
-                    src=""
-                  ></img>
                   <div className="items-center h-[0.5px] rounded-full bg-companyBlue"></div>
                   <p className="pt-4 pb-8">We carry a credible track record of winning multiple years of service contracts from Banking, Oil & Gas & Consumer brands setting year on year new standards & controls through diligent Inspection-investigation-Auditing-Remidiation services.</p>
-                  <img
-                    src=""
-                  ></img>
                   <p className="pt-4 pb-8"> Established in 2016, today we take pride in serving market leaders like HDFC Bank, ICICI Bank, Axis Bank, Kotak Mahindra Bank, Bank of India, Indian Oil, Hindustan Petroleum, Jubilant Food-works (Dominos India), Crompton, Bosch & Siemens, American Embassy, Attero & many such prestigious organisations.</p>
-                  <img
-                    src=""
-                  ></img>
                   <p className="pt-4 pb-8"> Our unique propositions for businesses comprises offering a one stop end to end service through a well trained professional team of engineers with a pan-India execution network to help businesses get serviced as well scale sustainably.</p>
                   <img
                     src="/images/IMG-20250220-WA0004.jpg"
                   ></img>
                   <p className="pt-4 pb-8">Today, befikr is successfully addressing businesses protecting their risks as well as helping them welcome growth opportunities.</p>
-                  <img
-                    src=""
-                  ></img>
                   <p className="pt-4 pb-8">The brand “befikr” is owned and operated by Opera Gratia Pvt Ltd. The company has its headquarters in Delhi.</p>
                 </div>
                 <MeetTeam />
@@ -82,10 +67,12 @@ export default function Home() {
             </div>
           </div>
         </div>
+        <div className=" p-8 ">
         <div
         ref={textRef}
-        className="container mx-auto px-6 py-12  bg-white rounded-3xl shadow-xl mb-10 items-center">
+        className="container mx-auto px-6 py-1 bg-white rounded-3xl shadow-xl mb-10 items-center">
           <Testimonial />
+        </div>
         </div>
       </main>
 
