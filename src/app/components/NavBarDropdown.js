@@ -266,59 +266,68 @@ function NavBarDropdown2({ isVisible, onMouseLeave, dropdownRef }) {
   return (
     <div
       ref={dropdownRef}
-      className="fixed left-0 w-full bg-white shadow-xl z-40"
+      className="fixed left-0 w-full bg-white shadow-xl z-40 transition-all duration-300 ease-in-out"
       style={{
         top: "80px",
         minHeight: "calc(100vh - 200px)",
-        display: "none"
+        display: "none", // controlled elsewhere
       }}
       onMouseLeave={onMouseLeave}
     >
-      {/* Optional Close Button for Mobile */}
+      {/* Close button for Mobile */}
       <div className="flex justify-end p-4 md:hidden">
-        <button onClick={onMouseLeave} className="text-gray-500 text-xl font-bold">
+        <button onClick={onMouseLeave} className="text-gray-500 text-2xl font-bold">
           ✕
         </button>
       </div>
-
+  
       <div className="max-w-7xl mx-auto py-8 px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
-        {/* Main Navigation Column */}
+        {/* Explore Section */}
         <div className="space-y-6">
-          <h3 className="text-2xl font-bold text-gray-900">Explore</h3>
+          <h3 className="text-2xl font-bold text-gray-900 mb-4">Explore</h3>
           <div className="flex flex-col space-y-4">
             {Object.keys(menuData).map((section) => (
               <button
                 key={section}
                 onMouseEnter={() => setActiveSection(section)}
                 onClick={() => setActiveSection(section)}
-                className={`text-left py-2 px-4 rounded-md transition-colors ${activeSection === section ? 'bg-blue-50 text-blue-600 font-medium' : 'hover:bg-gray-50'}`}
+                className={`w-full text-left py-3 px-4 rounded-md text-lg transition-colors ${
+                  activeSection === section
+                    ? "bg-blue-50 text-blue-600 font-semibold"
+                    : "hover:bg-gray-100"
+                }`}
               >
                 {section}
               </button>
             ))}
           </div>
         </div>
-
-        {/* Content Column - Takes up remaining 3 columns */}
+  
+        {/* Divider for mobile */}
+        <div className="border-t border-gray-200 my-6 md:hidden"></div>
+  
+        {/* Content Section */}
         <div className="md:col-span-3">
-          {typeof menuData[activeSection] === 'object' && !Array.isArray(menuData[activeSection]) ? (
-            // Services section with categories
+          {typeof menuData[activeSection] === "object" && !Array.isArray(menuData[activeSection]) ? (
+            // Services with categories
             <div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">Organising {activeSection} for a sustainable Future for all</h3>
-              <p className="text-gray-600 mb-8 max-w-2xl">
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                Organizing {activeSection} for a sustainable Future for all
+              </h3>
+              <p className="text-gray-600 mb-6 max-w-2xl">
                 We empower companies to comply with Environmental, Social & Governance business Goals around BRSR & ESG Framework.
               </p>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+  
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                 {Object.keys(menuData[activeSection]).map((category) => (
-                  <div key={category} className="space-y-4">
+                  <div key={category} className="space-y-3">
                     <h4 className="text-lg font-semibold text-gray-800 border-b pb-2">{category}</h4>
-                    <ul className="space-y-3">
+                    <ul className="space-y-2">
                       {menuData[activeSection][category].map((item, index) => (
                         <li key={index}>
                           <a
                             href="#"
-                            className="text-gray-600 hover:text-blue-600 transition-colors"
+                            className="block text-gray-600 hover:text-blue-600 transition-colors"
                           >
                             {item}
                           </a>
@@ -330,15 +339,15 @@ function NavBarDropdown2({ isVisible, onMouseLeave, dropdownRef }) {
               </div>
             </div>
           ) : (
-            // Simple list for other sections
+            // Simple links list
             <div>
               <h3 className="text-2xl font-bold text-gray-900 mb-6">{activeSection}</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                {menuData[activeSection].map((item, index) => (
+                {menuData[activeSection]?.map((item, index) => (
                   <a
                     key={index}
                     href="#"
-                    className="block p-3 border border-gray-200 rounded-md hover:bg-gray-50 hover:text-blue-600 transition-colors"
+                    className="block p-4 border border-gray-200 rounded-md hover:bg-gray-50 hover:text-blue-600 transition-colors"
                   >
                     {item}
                   </a>
@@ -351,5 +360,5 @@ function NavBarDropdown2({ isVisible, onMouseLeave, dropdownRef }) {
     </div>
   );
 }
-
+  
 export default NavBarDropdown2;

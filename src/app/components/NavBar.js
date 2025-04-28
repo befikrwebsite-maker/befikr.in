@@ -171,10 +171,10 @@ export default function Navbar() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.3 }}
-              className="md:hidden font-BebasNue absolute top-20 left-0 w-full bg-[#f5f5f5] shadow-md py-4 flex flex-col items-center space-y-4 z-50"
+              className="md:hidden font-generalSansRegular absolute top-20 left-0 w-full bg-[#f5f5f5] shadow-md py-4 flex flex-col items-center space-y-4 z-50"
             >
               <a href="/" className="text-black hover:text-companyBlue transition-colors" onClick={() => setIsOpen(false)}>Home</a>
-              <a href="/services" className="text-black hover:text-companyBlue transition-colors" onClick={() => setIsOpen(false)}>Services</a>
+              <a href="/services" className="text-black hover:text-companyBlue transition-colors" onClick={() => setDropdownOpen(true)}>Services</a>
               <a href="/about-us" className="text-black hover:text-companyBlue transition-colors" onClick={() => setIsOpen(false)}>About Us</a>
               <a href="/careers" className="text-black hover:text-companyBlue transition-colors" onClick={() => setIsOpen(false)}>Careers</a>
               <a href="/reach-us" className="text-black hover:text-companyBlue transition-colors flex items-center" onClick={() => setIsOpen(false)}>Reach Us

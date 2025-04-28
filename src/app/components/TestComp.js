@@ -67,7 +67,7 @@ export default function TabComponent() {
           <button
             key={tab.id}
             onClick={() => handleTabClick(tab.id)}
-            className={`px-6 py-2 rounded-full font-medium transition-all duration-300 shadow-sm
+            className={`px-4 py-2 rounded-full font-medium transition-all duration-300 shadow-sm
               ${activeTab === tab.id
                 ? 'bg-blue-600 text-white shadow-md'
                 : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
@@ -83,12 +83,12 @@ export default function TabComponent() {
         <img
           ref={imageRef}
           src={activeTab === 'Environment' ? tabs[0].img : activeTab === 'Social' ? tabs[1].img : tabs[2].img}
-          className="w-full object-cover max-h-96 rounded-2xl"
+          className="w-full object-left-top max-h-96 rounded-2xl"
           alt="Image"
         />
 
         {/* Text on top of the image */}
-        <h1 className="absolute bottom-16 ml-8 text-6xl text-white font-bold">
+        <h1 className="hidden md:absolute bottom-16 ml-8 text-6xl text-white font-bold">
           {activeTab}
         </h1>
       </div>

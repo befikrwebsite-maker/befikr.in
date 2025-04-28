@@ -2,7 +2,7 @@ export default function SectionFour() {
     return (
         <>
             {/* Section 4: Explore Job Openings */}
-            <div className="mt-24 text-center bg-[#fff44f] py-16 px-6 rounded-2xl shadow-inner" >
+            <div className="mt-24 text-center bg-[#fff44f] py-16 px-6 shadow-inner" >
                 <h2 className=" md:text-6xl font-bold text-black mb-16 text-3xl">
                     Ready to join our team?
                 </h2>
