@@ -50,20 +50,21 @@ export default function PartnerCarousel() {
                     ))}
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 place-items-center">
-                    {filteredImages.map((logo, index) => (
-                        <div
-                            key={index}
-                            className="h-[150px] w-[200px] bg-white flex items-center justify-center rounded-xl"
-                        >
-                            <img
-                                src={logo.url}
-                                alt={logo.alt}
-                                className="w-full h-full object-contain p-4"
-                            />
-                        </div>
-                    ))}
-                </div>
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6 place-items-center">
+    {filteredImages.map((logo, index) => (
+        <div
+            key={index}
+            className="h-[100px] w-[140px] sm:h-[120px] sm:w-[160px] md:h-[150px] md:w-[200px] bg-white flex items-center justify-center rounded-xl"
+        >
+            <img
+                src={logo.url}
+                alt={logo.alt}
+                className="w-full h-full object-contain p-2 sm:p-3 md:p-4"
+            />
+        </div>
+    ))}
+</div>
+
             </div>
         </div>
     );
