@@ -183,24 +183,6 @@ export default function Navbar() {
           )}
         </AnimatePresence>
       </header>
-      {/* <div className="fixed w-full pt-20 rounded-b-2xl z-40" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-        <div ref={dropdownRef} className="left-0 w-full h-80 p-20 pt-10 bg-gray-800 items-center justify-center transition-all duration-200 text-white shadow-lg">
-          <div className="grid grid-cols-3 gap-16">
-            <ul className="p-2 h-fit space-y-2 overflow-auto">
-              <li className="px-4 py-2 hover:bg-gray-700 rounded"><a href="/services/"><strong className="text-xl">Services</strong></a></li>
-              <li className="px-4 py-2 hover:bg-gray-700 rounded"><a href="/services/electrical-safety-audit/">Electrical Safety Audit</a></li>
-              <li className="px-4 py-2 hover:bg-gray-700 rounded"><a href="/services/item2">Energy Audit</a></li>
-              <li className="px-4 py-2 hover:bg-gray-700 rounded"><a href="/services/item3">Defective Audit</a></li>
-              <li className="px-4 py-2 hover:bg-gray-700 rounded"><a href="/services/electrical-safety-audit/">Electrical Safety Audit</a></li>
-              <li className="px-4 py-2 hover:bg-gray-700 rounded"><a href="/services/item2">Energy Audit</a></li>
-              <li className="px-4 py-2 hover:bg-gray-700 rounded"><a href="/services/item3">Defective Audit</a></li>
-              <li className="px-4 py-2 hover:bg-gray-700 rounded"><a href="/services/electrical-safety-audit/">Electrical Safety Audit</a></li>
-              <li className="px-4 py-2 hover:bg-gray-700 rounded"><a href="/services/item2">Energy Audit</a></li>
-              <li className="px-4 py-2 hover:bg-gray-700 rounded"><a href="/services/item3">Defective Audit</a></li>
-            </ul>
-          </div>
-        </div>
-      </div> */}
       <NavbarDropdown
         isVisible={dropdownOpen}
         onMouseLeave={() => setDropdownOpen(false)}
