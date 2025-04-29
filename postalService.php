@@ -76,7 +76,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     //Note that with gmail you can only use your account address (same as `Username`)
     //or predefined aliases that you have configured within your account.
     //Do not use user-submitted addresses in here
-    $mail->setFrom('befikrdropbox@gmail.com', 'Potential Client');
+    $mail->setFrom('befikrdropbox@gmail.com', $name);
 
     //Set an alternative reply-to address
     //This is a good place to put user-submitted addresses
