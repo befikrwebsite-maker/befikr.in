@@ -10,7 +10,8 @@
     "export": "next export",
     "generate-sitemap": "node script/generate-sitemap.js",
     "export-php": "node script/copy-php-files.js",
-    "export-env": "node script/envBackend.js"
+    "export-env": "node script/envBackend.js",
+    "generate-pages": "node script/generate-page.js"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
