@@ -262,6 +262,9 @@ export default function Page() {
       setSelectedLocations((prev) => prev.filter((item) => item !== value));
     };
   }
+
+  const [mobileFilterVisible, setMobileFilterVisible] = useState(false);
+
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   // using modalcomponent here ///////////////////////////////////////////////////////////////////////////////////////////
@@ -333,14 +336,107 @@ export default function Page() {
             </div>
           </div>
 
-          {/* Dropdown Filters */}
-          <div className="w-full max-w-6xl flex flex-wrap justify-center gap-3 px-6 mt-6 xl:gap-[3.5rem] lg:gap-[0.5rem] md:gap-[1.5rem] sm:gap-[1.5rem]">
+          {/* Dropdown filters for mobile view */}
+          <div className="flex pt-3">
+            <div onClick={() => setMobileFilterVisible(true)} className="md:hidden flex justify-center items-center rounded-full bg-[#ffa552] ">
+              <img
+                src="\jobSectionImage\filter-svgrepo-com (1).svg"
+                className="w-6 h-6 m-2">
+              </img>
+              <p className="mr-2 text-white font-semibold">FILTERS</p>
+            </div>
+          </div>
+
+          {/* Mobile Navigation Menu with Animation (Slide in from Left) */}
+          <AnimatePresence>
+            {mobileFilterVisible && (
+              <motion.div
+                initial={{ opacity: 0, x: -200 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -200 }}
+                transition={{ duration: 0.3 }}
+                className="md:hidden fixed top-0 left-0 h-full w-3/4 max-w-xs bg-[#f5f5f5] shadow-md py-8 px-6 flex flex-col space-y-6 z-40"
+              >
+                <div className=" mt-16 h-full w-full flex flex-wrap overflow-hidden items-start px-6 py-4 border-b border-gray-300 bg-white shadow-sm relative">
+                  <div className="flex flex-wrap gap-3 justify-between items-center">
+                    <h2 className="text-2xl font-semibold text-gray-800">Filters</h2>
+
+                    <button
+                      onClick={() => setMobileFilterVisible(false)}
+                      type="button"
+                      className="text-gray-500 hover:text-gray-700 hover:bg-gray-100 p-2 rounded-full transition duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-companyBlue"
+                      aria-label="Close Filters"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        className="w-6 h-6"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </button>
+                    <div className="flex flex-wrap gap-6">
+                      <Dropdown
+                        label="Team"
+                        options={uniqueTeams}
+                        selected={selectedTeams}
+                        setSelected={setSelectedTeams}
+                        getFilterCount={(team) => getFilterCount("team", team)}
+                        svgPath="\jobSectionImage\team-svgrepo-com.svg"
+                        mobileFilterVisible={true}
+                      />
+
+                      <Dropdown
+                        label="Position"
+                        options={uniquePositions}
+                        selected={selectedPositions}
+                        setSelected={setSelectedPositions}
+                        getFilterCount={(position) =>
+                          getFilterCount("position", position)
+                        }
+                        svgPath="\jobSectionImage\employee-job-position-svgrepo-com.svg"
+                        mobileFilterVisible={true}
+                      />
+                      <Dropdown
+                        label="Location"
+                        options={uniqueLocations}
+                        selected={selectedLocations}
+                        setSelected={setSelectedLocations}
+                        getFilterCount={(location) =>
+                          getFilterCount("location", location)
+                        }
+                        svgPath="\jobSectionImage\location-svgrepo-com.svg"
+                        mobileFilterVisible={true}
+                      />
+                    </div>
+                  </div>
+
+
+
+
+
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+
+          {/* Dropdown Filters for destop */}
+          <div className="hidden w-full max-w-6xl md:flex flex-wrap justify-center gap-3 px-6 mt-6 xl:gap-[3.5rem] lg:gap-[0.5rem] md:gap-[1.5rem] sm:gap-[1.5rem]">
             <Dropdown
               label="Team"
               options={uniqueTeams}
               selected={selectedTeams}
               setSelected={setSelectedTeams}
               getFilterCount={(team) => getFilterCount("team", team)}
+              svgPath="\jobSectionImage\team-svgrepo-com.svg"
+              mobileFilterVisible={false}
             />
 
             <Dropdown
@@ -351,6 +447,8 @@ export default function Page() {
               getFilterCount={(position) =>
                 getFilterCount("position", position)
               }
+              svgPath="\jobSectionImage\employee-job-position-svgrepo-com.svg"
+              mobileFilterVisible={false}
             />
             <Dropdown
               label="Location"
@@ -360,7 +458,11 @@ export default function Page() {
               getFilterCount={(location) =>
                 getFilterCount("location", location)
               }
+              svgPath="\jobSectionImage\location-svgrepo-com.svg"
+              mobileFilterVisible={false}
             />
+
+
           </div>
 
           {/* Job Count */}
@@ -692,14 +794,14 @@ export default function Page() {
             </motion.div>
           )}
         </AnimatePresence>
-      </div>
+      </div >
       <Footer />
     </>
   );
 }
 
 // Dropdown Component using Headless UI
-function Dropdown({ label, options, selected, setSelected, getFilterCount }) {
+function Dropdown({ label, options, selected, setSelected, getFilterCount, svgPath, mobileFilterVisible }) {
   const handleOptionClick = (option) => {
     if (selected.includes(option)) {
       setSelected(selected.filter((item) => item !== option));
@@ -711,8 +813,26 @@ function Dropdown({ label, options, selected, setSelected, getFilterCount }) {
   return (
     <Listbox value={selected} onChange={setSelected} multiple>
       <div className="relative">
-        <Listbox.Button className="flex text-gray-900 tracking-wide font-bold bg-[#f5f5f5] border rounded-md w-80 justify-center py-1 xl:w-[18rem] lg:w-[16rem] md:w-[10rem] sm:w-[8rem] hover:shadow-lg transition duration-300">
-          {label}
+        {/* possible colours #ffa552 ; #2176FF  */}
+
+        <Listbox.Button className={` flex text-white tracking-wide font-bold bg-[#2176FF] hover:bg-[#3321ff] border rounded-md justify-center py-1 xl:w-[18rem] lg:w-[16rem] md:w-[10rem] sm:w-[8rem] hover:shadow-lg transition duration-300 ${mobileFilterVisible ? "w-52" : "w-80"}`}>
+
+          <div className="flex w-full justify-end basis-2/3">
+            <img
+              src={svgPath}
+              alt="image"
+              className="w-6 h-6 mr-2">
+            </img>
+            {label}
+          </div>
+          <div className="flex w-full justify-end items-center basis-1/3">
+            <img
+              src="\jobSectionImage\chevron-down-black-svgrepo-com.svg"
+              alt=""
+              className="w-6 j-6 pr-2">
+            </img>
+          </div>
+
         </Listbox.Button>
         <Transition
           enter="transition duration-100 ease-out"
@@ -722,7 +842,7 @@ function Dropdown({ label, options, selected, setSelected, getFilterCount }) {
           leaveFrom="transform scale-100 opacity-100"
           leaveTo="transform scale-95 opacity-0"
         >
-          <Listbox.Options className="absolute mt-2 w-80 bg-white border rounded-md shadow-lg z-10 xl:w-[18rem] lg:w-[16rem] md:w-[10rem] sm:w-[8rem]">
+          <Listbox.Options className={` ${mobileFilterVisible ? "w-52 h-52" : "w-80 h-60"} absolute mt-2 overflow-y-scroll bg-white border rounded-md shadow-lg z-10 xl:w-[18rem] lg:w-[16rem] md:w-[10rem] sm:w-[8rem]`}>
             {options.map((option, index) => {
               const isChecked = selected.includes(option);
               return (
