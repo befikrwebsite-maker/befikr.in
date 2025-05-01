@@ -13,6 +13,7 @@ import Service from "./components/ServicePage"
 import Testimonial from "./components/Testimonial"
 import MediaCoverage from "./components/MediaCoverage";
 import CompanyLogoGrid from "./components/CompanyLogoGrid";
+import ClockArea from "./components/ClockArea";
 
 export default function Home() {
 
@@ -43,7 +44,7 @@ export default function Home() {
           <div className="flex flex-col md:flex-row items-center gap-10">
             {/* Text Section */}
             <div className="flex-1 text-center md:text-left">
-              <h2 className="text-4xl mb-6">Befikr: ESG Compliance Partner</h2>
+              <h2 className="text-4xl mb-6">Befikr - An ESG Compliance Partner</h2>
               <p className="text-xl font-generalSansMedium leading-relaxed">
                 Befikr has emerged as an ESG (Environment, Social, Governance) services company dedicated to helping businesses comply with the newer Business Responsibility & Sustainability Reporting (BRSR) — an Indian regulatory and strategic framework enabling businesses to evolve as sustainable leaders.
               </p>
@@ -63,8 +64,9 @@ export default function Home() {
         
 
         <Service />
+        <ClockArea/>
         {/* <ScreenSizeComponent/> */}
-        <div className="bg-white pt-10 text-4xl md:text-left text-center font-generalSansSemibold md:pl-12 text-gray-900">Our Impact</div>
+    
         <Impact />
         <div className="bg-white pt-10 text-4xl md:text-left text-center font-generalSansSemibold md:pl-12 text-gray-900">Our Partners</div>
         <PartnerCarousel />

@@ -50,7 +50,7 @@ export default function SectionTwo() {
             </h1>
             <div className="grid sm:grid-cols-2 grid-cols-1 gap-4">
                 {perks.map((perk, index) => (
-                    <div ref={textRef} className="border-2 bg-companyBlue max-w-full border-black rounded-xl h-48"
+                    <div ref={textRef} className="border-2 bg-companyBlue max-w-full  rounded-xl h-48"
                         key={index}
                     >
                         <div className="p-5">

@@ -1,8 +1,9 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, act } from 'react';
 import ServicesBreakdown from './Services';
+import { Category } from './dataArrays';
 import { gsap } from 'gsap';
 
 const tabs = [
@@ -87,9 +88,18 @@ export default function TabComponent() {
         />
 
         {/* Text on top of the image */}
-        <h1 className="hidden sm:absolute bottom-16 ml-8 text-6xl text-white font-bold">
+        <h1 className="hidden sm:block sm:absolute bottom-16 ml-8 text-6xl text-white font-bold">
           {activeTab}
         </h1>
+
+      </div>
+
+      <div className="m-8">
+        {Category.filter(item => item.Category === activeTab).map(item => (
+          <p key={item.Category} className="text-gray-700 text-base leading-relaxed">
+            {item.desc}
+          </p>
+        ))}
       </div>
 
       <div ref={servicesContainerRef} className="flex w-full gap-6 mt-6">

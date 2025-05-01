@@ -174,152 +174,65 @@ const companies = [
 export { companies };
 
 
-const servicesData = {
-    "environment/safety-audit/energy-audit": {
-        placeholder: "Energy Audit",
-        auditdesc: ["An energy audit is a comprehensive assessment of energy-consuming mechanical & electrical infrastructure within a building, facility, or industrial setting to evaluate energy consumption patterns over some time.",
-            "Periodical energy audits promote the use of energy-efficient processes, equipment, devices and systems, bring an effort to reduce energy intensity and ensure efficient use of energy and its conservation as per the guidelines & norms set by the Bureau of Energy Efficiency in India.",
-            "An efficient energy audit helps encourage businesses to regularly drive energy efficiency programs, implement energy-conservation techniques and set up awareness drives within firms & organisations imbibing the philosophy of energy saving & conservation.",
-            "At befikr, as an ESG services company, we provide energy audits for businesses, institutions & organisations helping them achieve their environmental goals while protecting both people and the planet through energy audits."
-        ],
-        audit: "Energy Audit",
-        image: "/images/energy-audit/hero.jpg",
-        imageScope: "/images/energy-audit/scope.jpg",
-        ArrayAppr: [
-            { title: "Documentation Audit", description: "Checking existing electrical drawings, cyclic maintenance records, and compliance certificates. ", image: "/icons/step1.png" },
-            { title: "Visual inspection", description: "Examining the physical state of electrical installations and equipment. ", image: "/icons/step2.png" },
-            { title: "Testing", description: "Performing electrical tests like insulation resistance, earth continuity, and circuit breaker tripping characteristics. ", image: "/icons/step3.png" },
-            { title: "Reporting", description: "Preparing a detailed report outlining identified safety concerns, recommendations for corrective actions, and compliance status. ", image: "/icons/step3.png" },
-        ],
-        ArraySupp: [
-            { desc: "Preservation of Life and Health by averting accidents & Injuries originating from fire." },
-            { desc: "Following electrical safety guidelines helps reduce the risk of electrical shocks, burns, and injuries to personnel, thus preserving human lives." },
-            { desc: "Following electrical safety guidelines helps reduce the risk of electrical shocks, burns, and injuries to personnel, thus preserving human lives." },
-            { desc: "Identifying potential electrical hazards through regular audits, proactive repairs & improvement activities, manages the risk of damages to equipment & real estate infrastructure, thus preserving the business economy." },
-            { desc: "Compliance with Regulations through compliance verification, documentation, record keeping, employee training & awareness. " },
-            { desc: "Following electrical safety regulations and standards ensures legal compliance & setting up self-governing mechanisms for smooth & safe business operations." }
-        ],
-        scope: "An energy audit is held under applicable energy audit standards based on Bureau of Energy Efficiency (BEE) guidelines and in adherence with the Energy Saving Conservation Act 2001. "
+const Category = [
+    {
+        Category: "Environment", desc: ["Each operating business enterprise, at some point, negatively impacts the environment, natural resources, and biodiversity through its operational dynamics. This contributes to the pre-existing environmental imbalance, which is mainly caused by population rise and economic growth. ",
+            "The environmental aspect of ESG (E) involves monitoring various business activities, measuring the degree of impact, and taking concrete steps to ensure & comply with environmental regulations. ",
+            "Businesses have the responsibility to protect and restore the natural environment while reducing environmental issues such as climate change, greenhouse gas emissions (GHG), deforestation, biodiversity loss, carbon emissions, waste management, and pollution.",
+            "At befikr, as an ESG services company, we provide solutions that assist businesses in achieving their environmental goals while protecting both people and the planet through electrical safety audits, energy audits, and managing a circular economy."
+        ]
     },
-    "environment/safety-audit/energy-audit": {
-        placeholder: "Energy Audit",
-        audit: "Energy Audit",
-        auditdesc: [],
-        image: "",
-        imageScope: "",
-        ArrayAppr: [],
-        ArraySupp: [],
-        scope: ""
+    {
+        Category: "Governance", desc: ["Governance within Environmental, Social, and Governance (ESG) services focuses on a company's internal systems, ethical conduct, and transparency, ensuring accountability and ethical decision-making. ",
+            "It assesses how companies are governed, especially services related to the quality of products and customer services. ",
+            "At befikr, as an ESG services company, we provide testing, inspection & certification services for businesses, helping them achieve their governance goals. ",
+        ]
     },
-    "environment/circular-economy/e-waste-management": {
-        placeholder: "E-Waste Management",
-        audit: "E-Waste Audit",
-        auditdesc: ["E-waste management services handle the responsible disposal and recycling of electronic waste. These services include collection, sorting, and processing of e-waste, ensuring proper management and recovery of valuable resources. They also offer data destruction and asset refurbishment. ",
-            "At befikr, as an ESG services company, we provide e-waste management services for businesses, helping them achieve their environmental goals while protecting both people and the planet through efficient e-waste management services."
-        ],
-        image: "",
-        imageScope: "",
-        ArrayAppr: [
-            {
-                "title": "Collection and Pickup",
-                "sec": "Services offer convenient collection for businesses and households, ensuring safe transportation.",
-                "image": ""
-            },
-            {
-                "title": "Sorting and Processing",
-                "desc": "E-waste is sorted to separate valuable materials and hazardous substances.",
-                "image": ""
-            },
-            {
-                "title": "Data Destruction",
-                "desc": "Secure data deletion of hard drives from computers, laptops, and servers is provided to protect confidential information.",
-                "image": ""
-            },
-            {
-                "title": "Asset Refurbishment",
-                "desc": "Repairing and restoring electronic devices to extend their lifespan.",
-                "image": ""
-            },
-            {
-                "title": "Recycling",
-                "desc": "Extracting valuable components like metals and plastics from e-waste for reuse and repurposing.",
-                "image": ""
-            },
-            {
-                "title": "Disposal",
-                "desc": "Safe and environmentally responsible disposal of non-recyclable materials.",
-                "image": ""
-            }
-        ],
-        ArraySupp: [
-            {
-              "desc": "Environmental Protection: Reduces the amount of hazardous materials ending up in landfills and water bodies."
-            },
-            {
-              "desc": "Resource Conservation: Recovers valuable materials like gold, silver, and copper."
-            },
-            {
-              "desc": "Energy Conservation: Requires less energy than mining new resources."
-            },
-            {
-              "desc": "Job Creation: Creates jobs in collection, sorting, and processing."
-            },
-            {
-              "desc": "Economic Benefits: Generates revenue through recovered materials."
-            }
-          ],
-        scope: ""
+    {
+        Category: "Social", desc: ["The S in ESG stands for Social, and it refers to a company's relationships with and impact on its stakeholders, including employees, customers, communities, and the wider society. It assesses how a company manages its social footprint, focusing on human rights, labour practices, diversity and inclusion, and community engagement. ",
+            "The Social side of a corporation defines people’s interactions against principles of ethics, justice, and care for well-being. This can be as basic as how they treat their employees or as far-reaching as their impact on customers, partners, and other stakeholders. It considers topics like inequality, working conditions, human rights, product safety, community relations, supply chain transparency, and more.",
+            "ESG Social performance indicators can include diversity, income equality, workplace injury rates, philanthropy, and labour practices of suppliers. These factors aim to measure how well the organisation is meeting its human obligations in operations, global supply chains, and local communities.",
+            "Organisations that successfully adopt the social pillar of ESG recognise that business operates within the context of a society that is intrinsically inequitable. This means that some individuals are subject to more systemic inequalities and injustices than others, and businesses have a responsibility to address the inequities within their locus of control.",
+            "At befikr, as an ESG services company, we provide solutions that assist businesses in achieving their Social goals, protecting & nurturing their people through various learning & development programs, specific training programs in areas affecting health & safety & community-focused corporate social responsibility programs.",
+        ]
     },
-    "environment/circular-economy/reverse-logistics": {
-        placeholder: "Reverse Logistics",
-        audit: "Reverse Logistics Audit",
-        auditdesc: [],
-        image: "",
-        imageScope: "",
-        ArrayAppr: [],
-        ArraySupp: [],
-        scope: ""
-    },
-    "governance/testing-inspection-demo/defective-audit": {
-        placeholder: "Defective Audit",
-        audit: "Defective Product Audit",
-        auditdesc: [],
-        image: "",
-        imageScope: "",
-        ArrayAppr: [],
-        ArraySupp: [],
-        scope: ""
-    },
-    "governance/testing-inspection-demo/installation-demo": {
-        placeholder: "Installation Demo",
-        audit: "Installation Demo Audit",
-        auditdesc: [],
-        image: "",
-        imageScope: "",
-        ArrayAppr: [],
-        ArraySupp: [],
-        scope: ""
-    },
-    "social/csr/csr": {
-        placeholder: "CSR Services",
-        audit: "CSR Audit",
-        auditdesc: [],
-        image: "",
-        imageScope: "",
-        ArrayAppr: [],
-        ArraySupp: [],
-        scope: ""
-    },
-    "social": {
-        placeholder: "Social Services",
-        audit: "Social Audit",
-        auditdesc: [],
-        image: "",
-        imageScope: "",
-        ArrayAppr: [],
-        ArraySupp: [],
-        scope: ""
-    },
-};
+]
 
-export default { servicesData };
+export { Category }
+
+
+
+const IndustryData = {
+    "Services": {
+      "Environment": [
+        "Electrical Safety Audit Services",
+        "Energy Audit Services",
+        "Circular Economy Services",
+        "E-waste management services",
+        "Reverse logistics services"
+      ],
+      "Social": [
+        "Corporate Social Responsibility Services (CSR)",
+      ],
+      "Governance": [
+        "Testing, Inspection & Certification Services (TIC)",
+        "Defective Product Testing & Inspection Services",
+      ]
+    },
+    "Industries": [
+      "Oil & Gas",
+      "Banking",
+      "Consumer Products",
+      "Food & Quick Service Restaurants (QSR)",
+      "Infotech",
+      "Real Estate & Infrastructure",
+      "Others"
+    ],
+    "Resources": [
+      "Blog",
+      "Case Studies",
+      "Whitepapers"
+    ]
+  };
+
+  export { IndustryData }

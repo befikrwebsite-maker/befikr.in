@@ -6,7 +6,7 @@ const CountUp = dynamic(() => import("../components/Counter"), { ssr: false });
 
 export default function ClockArea() {
     const [number, setNumber] = useState(null);
-    const areaNumber = 39741000
+    const [areaNumber, setAreaNumber] = useState(39741000)
 
     useEffect(() => {
         fetch("https://www.befikr.in/get_number.php") // Replace with your actual domain
@@ -31,7 +31,7 @@ export default function ClockArea() {
                 <div className="flex-1 flex flex-row items-center justify-center text-center">
                     <p className="inline-block">With</p>
                     <h1 className="inline-block text-8xl font-generalSansBold">
-                        <CountUp to={areaNumber} separator="," />
+                        <CountUp to={number * 3000} separator="," />
                     </h1>
                     <p className="inline-block">sq.ft and counting</p>
                 </div>

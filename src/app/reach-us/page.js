@@ -202,7 +202,7 @@ export default function ContactForm() {
                         type="text"
                         name="company"
                         id="company"
-                        className="peer w-full border-b-2 border-gray-300 bg-transparent pt-3 pb-2 px-0 text-gray-900 focus:outline-none focus:border-[#009DC8] transition-colors"
+                        className="peer w-full border-b-s2 border-gray-300 bg-transparent pt-3 pb-2 px-0 text-gray-900 focus:outline-none focus:border-[#009DC8] transition-colors"
                         placeholder=" "
                         onChange={handleChange}
                         value={formData.company}
@@ -370,3 +370,4 @@ export default function ContactForm() {
     </>
   );
 }
+

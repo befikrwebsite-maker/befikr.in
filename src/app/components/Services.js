@@ -6,28 +6,76 @@ const ServicesBreakdown = [
         image: "/catImage/image-1.png",
         bgColor: "bg-orange-100",
         Services: [{
-            Service: "Safety Audit Services",
-            link: "services/environment/safety-audit/",
+            Service: "Electrical Safety Audit Services",
+            link: "/services/environment/safety-audit/",
             SubServices: [
                 {
-                    title: "Electrical Safety Audit Services",
+                    title: "",
                     desc: "An electrical audit is a comprehensive assessment of electrical systems & infrastructure within a building, facility, or industrial setting to evaluate electrical safety, power efficiency, electrical safety compliance with regulations, and overall performance. Regular electrical safety audits are recommended, typically every year depending on the nature of business operations and respective regulatory requirements. An efficient electrical safety audit helps prevent electrical accidents, to identify potential hazards, energy inefficiencies, opportunities for improvement, fires, and compliance issues while ensuring the safety of employees and assets.",
                     tags: ["electrical", "safety", "audit", "environment"],
                     image: "../service_img/logo-svgELECTRICAL.svg",
                     depth: "electrical-safety-audit",
-                    link: "services/environment/safety-audit/electrical-safety-audit",
+                    link: "/services/environment/safety-audit/electrical-safety-audit",
                 },
                 {
-                    title: "Energy Audit Services",
+                    title: "",
                     desc: "An energy audit is a comprehensive assessment of energy consuming mechanical & electrical infrastructure within a building, facility, or industrial setting to evaluate energy consumption patterns over a period of time. Periodical energy audits promote use of energy efficient process¬es, equipment, devices and systems, brings an effort to reduce energy intensity, ensure efficient use of energy and its conservation as per the guidelines & norms set by Bureau of energy efficiency in India. An efficient energy audit helps promote businesses take steps for energy savings & energy conservation techniques Including spreading awareness of energy savings within businesses & organisations.",
                     tags: ["energy", "environment"],
                     image: "../service_img/logo-svgEnergy.svg",
                     depth: "energy-audit-service",
                 },
-            ],},
+            ],
+        },
+            {
+                Service:"Energy Audit Services",
+                SubServices: [
+                    {
+                        title: "",
+                        desc: "An electrical audit is a comprehensive assessment of electrical systems & infrastructure within a building, facility, or industrial setting to evaluate electrical safety, power efficiency, electrical safety compliance with regulations, and overall performance. Regular electrical safety audits are recommended, typically every year depending on the nature of business operations and respective regulatory requirements. An efficient electrical safety audit helps prevent electrical accidents, to identify potential hazards, energy inefficiencies, opportunities for improvement, fires, and compliance issues while ensuring the safety of employees and assets.",
+                        tags: ["electrical", "safety", "audit", "environment"],
+                        image: "../service_img/logo-svgELECTRICAL.svg",
+                        depth: "electrical-safety-audit",
+                        link: "/services/environment/safety-audit/electrical-safety-audit",
+                    },
+                    {
+                        title: "",
+                        desc: "An energy audit is a comprehensive assessment of energy consuming mechanical & electrical infrastructure within a building, facility, or industrial setting to evaluate energy consumption patterns over a period of time. Periodical energy audits promote use of energy efficient process¬es, equipment, devices and systems, brings an effort to reduce energy intensity, ensure efficient use of energy and its conservation as per the guidelines & norms set by Bureau of energy efficiency in India. An efficient energy audit helps promote businesses take steps for energy savings & energy conservation techniques Including spreading awareness of energy savings within businesses & organisations.",
+                        tags: ["energy", "environment"],
+                        image: "../service_img/logo-svgEnergy.svg",
+                        depth: "energy-audit-service",
+                    },
+                ],
+            },
+            {
+                Service:"Greenhouse Gas Emission Audit Services",
+                SubServices: [
+                    {
+                        title: "Electrical Safety Audit Services",
+                        desc: "An electrical audit is a comprehensive assessment of electrical systems & infrastructure within a building, facility, or industrial setting to evaluate electrical safety, power efficiency, electrical safety compliance with regulations, and overall performance. Regular electrical safety audits are recommended, typically every year depending on the nature of business operations and respective regulatory requirements. An efficient electrical safety audit helps prevent electrical accidents, to identify potential hazards, energy inefficiencies, opportunities for improvement, fires, and compliance issues while ensuring the safety of employees and assets.",
+                        tags: ["electrical", "safety", "audit", "environment"],
+                        image: "../service_img/logo-svgELECTRICAL.svg",
+                        depth: "electrical-safety-audit",
+                        link: "/services/environment/safety-audit/electrical-safety-audit",
+                    },
+                    {
+                        title: "Energy Audit Services",
+                        desc: "An energy audit is a comprehensive assessment of energy consuming mechanical & electrical infrastructure within a building, facility, or industrial setting to evaluate energy consumption patterns over a period of time. Periodical energy audits promote use of energy efficient process¬es, equipment, devices and systems, brings an effort to reduce energy intensity, ensure efficient use of energy and its conservation as per the guidelines & norms set by Bureau of energy efficiency in India. An efficient energy audit helps promote businesses take steps for energy savings & energy conservation techniques Including spreading awareness of energy savings within businesses & organisations.",
+                        tags: ["energy", "environment"],
+                        image: "../service_img/logo-svgEnergy.svg",
+                        depth: "energy-audit-service",
+                    },
+                    {
+                        title: "Greenhouse Gas Emission Audit Services",
+                        desc: "An energy audit is a comprehensive assessment of energy consuming mechanical & electrical infrastructure within a building, facility, or industrial setting to evaluate energy consumption patterns over a period of time. Periodical energy audits promote use of energy efficient process¬es, equipment, devices and systems, brings an effort to reduce energy intensity, ensure efficient use of energy and its conservation as per the guidelines & norms set by Bureau of energy efficiency in India. An efficient energy audit helps promote businesses take steps for energy savings & energy conservation techniques Including spreading awareness of energy savings within businesses & organisations.",
+                        tags: ["energy", "environment"],
+                        image: "../service_img/logo-svgEnergy.svg",
+                        depth: "energy-audit-service",
+                    },
+                ],
+            },
             {
             Service: "Circular Economy Services",
-            link: "services/environment/circular-economy",
+            link: "/services/environment/circular-economy",
             SubServices: [
                 {
                     title: "E-Waste Management",
@@ -52,10 +100,10 @@ const ServicesBreakdown = [
         link:"/services?service=Social",
         image: "/catImage/image-2.png",
         bgColor: "bg-blue-100",
-        link: "services/social/",
+        link: "/services/social/",
          Services: [{
             Service: "Corporate Social Responsibility Services",
-            link: "services/social/csr",
+            link: "/services/social/csr",
             SubServices: [
                 {
                     title: "Corporate Social Responsibility Services",
@@ -75,7 +123,7 @@ const ServicesBreakdown = [
         bgColor: "bg-gray-100",
         Services: [{
             Service: "Testing & Inspection Services",
-            link: "services/governance/testing-inspection-demo",
+            link: "/services/governance/testing-inspection-demo",
             SubServices: [
                 {
                     title: "Defective Audit Services",
@@ -86,6 +134,13 @@ const ServicesBreakdown = [
                 },
                 {
                     title: "Testing, Inspection & Installation Services",
+                    desc: "Testing, Inspection & Installation services are a set of services that ensure the quality, safety, and compliance of products, systems, and processes with relevant standards and regulations. These services play a crucial role in various industries, including manufacturing, construction, food and beverage, pharmaceuticals, and consumer goods. TIC services help businesses demonstrate their commitment to quality and safety while ensuring compliance with industry standards and regulations.",
+                    tags: ["testing", "inspection", "installation", "environment"],
+                    image: "../service_img/logo-svgDefective.svg",
+                    depth: "testing-inspection-service",
+                },
+                {
+                    title: "Safety Mat Installation Service",
                     desc: "Testing, Inspection & Installation services are a set of services that ensure the quality, safety, and compliance of products, systems, and processes with relevant standards and regulations. These services play a crucial role in various industries, including manufacturing, construction, food and beverage, pharmaceuticals, and consumer goods. TIC services help businesses demonstrate their commitment to quality and safety while ensuring compliance with industry standards and regulations.",
                     tags: ["testing", "inspection", "installation", "environment"],
                     image: "../service_img/logo-svgDefective.svg",

@@ -1,5 +1,3 @@
-const { Heading } = require("lucide-react");
-
 const servicesData = {
     "environment/safety-audit/energy-audit": {
         placeholder: "Energy Audit",
