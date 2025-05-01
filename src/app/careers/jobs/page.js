@@ -265,6 +265,17 @@ export default function Page() {
 
   const [mobileFilterVisible, setMobileFilterVisible] = useState(false);
 
+  useEffect(() => {
+    if (mobileFilterVisible) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [mobileFilterVisible]);
+
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   // using modalcomponent here ///////////////////////////////////////////////////////////////////////////////////////////
@@ -337,8 +348,8 @@ export default function Page() {
           </div>
 
           {/* Dropdown filters for mobile view */}
-          <div className="flex pt-3">
-            <div onClick={() => setMobileFilterVisible(true)} className="md:hidden flex justify-center items-center rounded-full bg-[#ffa552] ">
+          <div className="flex pt-5">
+            <div onClick={() => setMobileFilterVisible(true)} className="md:hidden flex justify-center items-center rounded-xl bg-[#ffa552] ">
               <img
                 src="\jobSectionImage\filter-svgrepo-com (1).svg"
                 className="w-6 h-6 m-2">
@@ -416,11 +427,6 @@ export default function Page() {
                       />
                     </div>
                   </div>
-
-
-
-
-
                 </div>
               </motion.div>
             )}
