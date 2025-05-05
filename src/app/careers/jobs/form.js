@@ -62,7 +62,7 @@ export default function Form({ questions, team, position, locations, onClose }) 
     setSubmitStatus("ongoing");
 
     const form = new FormData();
-    form.append("application_id", id);
+    //form.append("application_id", id);
     form.append("name", formData.name);
     form.append("email", formData.email);
     form.append("message", formData.message);

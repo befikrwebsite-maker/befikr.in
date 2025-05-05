@@ -28,7 +28,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $team = $_POST["team"] ?? "";
     $position = $_POST["position"] ?? "";
     $location = $_POST["location"] ?? "";
-    $qa_pairs_json = $_POST["qa_pairs"] ?? "";
+    $qa_pairs_json = $_POST['qa_pairs'] ?? "";
 
     if (empty($name) || empty($email) || empty($message) || empty($resume)) {
         echo json_encode(["status" => "error", "message" => "All fields are required"]);
@@ -50,23 +50,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         exit;
     }
 
-    $qa_pairs = json_decode($qa_pairs_json, true); // true = return associative array
-
-    $questions = [];
-    $index = 1;
-
-    // Loop until no more question/answer pair is found
-    while (isset($_POST["question_$index"]) && isset($_POST["answer_$index"])) {
-        $question = $_POST["question_$index"];
-        $answer = $_POST["answer_$index"];
-        $questions[] = ["question" => $question, "answer" => $answer];
-        $index++;
-    }
+    
+    $qa_pairs = json_decode($qa_pairs_json, true);
 
     $qa_html = "<h4>Additional Questions and Answers:</h4><ul>";
-    foreach ($questions as $pair) {
-        $qa_html .= "<li><strong>" . htmlspecialchars($pair['question']) . ":</strong> " . htmlspecialchars($pair['answer']) . "</li>";
+
+    foreach ($qa_pairs as $question => $answer) {
+        $qa_html .= "<li><strong>" . htmlspecialchars($question) . ":</strong> " . htmlspecialchars($answer) . "</li>";
     }
+
     $qa_html .= "</ul>";
 
     //Create a new PHPMailer instance
@@ -120,10 +112,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     //$mail->addReplyTo('replyto@example.com', 'First Last');
 
     //Set who the message is to be sent to
-    $mail->addAddress('bebefikr@befikr.in', 'Befikr');
+    $mail->addAddress('divyamsharma511@gmail.com', 'Befikr');
     
     //Set who the CC recipients are
-    $mail->addCC('maninder.singh@befikr.in');
+    $mail->addCC('animeshsrivastavaofficial@gmail.com');
 
 
     //Set the subject line
@@ -153,6 +145,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if (!$mail->send()) {
         echo json_encode(["status" => "error", "message" => "Mailer Error: " . $mail->ErrorInfo]);
     } else {
+
+        echo json_encode(["status" => "success", "message" => "Application submitted successfully!"]);
+
         $conn = new mysqli("localhost", "u485173045_befikr_in", "Befikr@@@@####123123befikr", "u485173045_befikr");
 
         if ($conn->connect_error) {
