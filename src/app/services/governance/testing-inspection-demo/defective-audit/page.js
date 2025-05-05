@@ -33,7 +33,7 @@ export default function Page() {
     },
     {
       "title": "Step 4",
-      "desc": "Recording findings in detailed reports, which include photographs, descriptions, and categorization of defects."
+      "desc": "Recording findings in detailed reports, which include photographs, descs, and categorization of defects."
     },
     {
       "title": "Step 5",

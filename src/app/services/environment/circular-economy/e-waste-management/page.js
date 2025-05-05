@@ -17,7 +17,7 @@ export default function Page() {
   "ArrayAppr": [
     {
       "title": "Collection and Pickup",
-      "sec": "Services offer convenient collection for businesses and households, ensuring safe transportation.",
+      "desc": "Services offer convenient collection for businesses and households, ensuring safe transportation.",
       "image": ""
     },
     {

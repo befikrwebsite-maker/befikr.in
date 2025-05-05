@@ -3,39 +3,39 @@ import dynamic from "next/dynamic";
 
 const CountUp = dynamic(() => import("../components/Counter"), { ssr: false });
 
-
 export default function Clock() {
-    const [number, setNumber] = useState(null);
+  const [number, setNumber] = useState(null);
 
-    useEffect(() => {
-        fetch("https://www.befikr.in/get_number.php") // Replace with your actual domain
-            .then((res) => res.json())
-            .then((data) => {
-                if (data.number !== undefined) {
-                    setNumber(data.number);
-                }
-            })
-            .catch((error) => console.error("Error fetching number:", error));
-    }, []);
+  useEffect(() => {
+    fetch("https://www.befikr.in/get_number.php")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.number !== undefined) {
+          setNumber(data.number);
+        }
+      })
+      .catch((error) => console.error("Error fetching number:", error));
+  }, []);
 
-    return (
-        <div className="p-12 bg-companyBlue">
-            <div className="text-white flex flex-col  md:flex-row">
-                <div className="flex-1 flex items-center justify-center text-center">
-                    <h1 className="text-4xl md:text-left text-center font-generalSansSemibold mb-2">
-                        India’s Leading Force in Electrical Safety Auditing
-                    </h1>
-                </div>
-
-                <div className="flex-1 flex flex-row items-center justify-center text-center">
-                    <p className="inline-block">With</p>
-                    <h1 className="inline-block text-8xl font-generalSansBold">
-                        <CountUp to={number} separator="," />
-                    </h1>
-                    <p className="inline-block">audits and counting</p>
-                </div>
-
-            </div>
+  return (
+    <div className="px-4 py-10 sm:px-6 lg:px-12 bg-companyBlue">
+      <div className="text-white flex flex-col gap-8 md:flex-row items-center justify-between">
+        
+        <div className="flex-1 text-center md:text-left">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-generalSansSemibold leading-snug">
+            India’s Leading Force in Electrical Safety Auditing
+          </h1>
         </div>
-    );
-};
+
+        <div className="flex-1 flex flex-wrap justify-center items-center text-center gap-x-2">
+          <p className="text-lg sm:text-xl">With</p>
+          <h1 className="text-4xl sm:text-6xl font-generalSansBold">
+            <CountUp to={number} separator="," />
+          </h1>
+          <p className="text-lg sm:text-xl">audits and counting</p>
+        </div>
+
+      </div>
+    </div>
+  );
+}

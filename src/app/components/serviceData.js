@@ -10,23 +10,21 @@ const servicesData = {
         image: "/images/energy-audit/hero.jpg",
         imageScope: "/images/energy-audit/scope.jpg",
         ArrayAppr: [
-            { title: "Documentation Audit", description: "Checking existing electrical drawings, cyclic maintenance records, and compliance certificates. ", image: "/icons/step1.png" },
-            { title: "Visual inspection", description: "Examining the physical state of electrical installations and equipment. ", image: "/icons/step2.png" },
-            { title: "Testing", description: "Performing electrical tests like insulation resistance, earth continuity, and circuit breaker tripping characteristics. ", image: "/icons/step3.png" },
-            { title: "Reporting", description: "Preparing a detailed report outlining identified safety concerns, recommendations for corrective actions, and compliance status. ", image: "/icons/step3.png" },
+            { title: "Pre-Audit ", desc: "Documentation Audit: Checking existing drawings, cyclic maintenance records, and compliance certificates. ", image: "/icons/step1.png" },
+            { title: "On-Site Energy Audit", desc: "Visual inspection & Testing: Examining the physical state of electrical & mechanical installations and equipment, measuring & monitoring the energy-consuming machines & equipment under running conditions & timeframes.", image: "/icons/step2.png" },
+            { title: "Data Analysis, Reporting & Final Recommendations", desc: "Preparing a detailed report outlining energy readings & parameters & recommendations for corrective actions.", image: "/icons/step3.png" },
         ],
         ArraySupp: [
-            { desc: "Preservation of Life and Health by averting accidents & Injuries originating from fire." },
-            { desc: "Following electrical safety guidelines helps reduce the risk of electrical shocks, burns, and injuries to personnel, thus preserving human lives." },
-            { desc: "Following electrical safety guidelines helps reduce the risk of electrical shocks, burns, and injuries to personnel, thus preserving human lives." },
-            { desc: "Identifying potential electrical hazards through regular audits, proactive repairs & improvement activities, manages the risk of damages to equipment & real estate infrastructure, thus preserving the business economy." },
-            { desc: "Compliance with Regulations through compliance verification, documentation, record keeping, employee training & awareness. " },
-            { desc: "Following electrical safety regulations and standards ensures legal compliance & setting up self-governing mechanisms for smooth & safe business operations." }
+            { desc: "Our team Identifies areas of opportunity for energy saving by spotting energy wastage in various running operations within the infrastructure." },
+            { desc: "Befikr tests the energy performance and efficiency of various mechanical & electrical equipment and study process optimisations." },
+            { desc: "We create recommendations for conserving energy & share the list of equipment to be replaced with more efficient equipment with projected benefits." },
+            { desc: "Suggest measures for minimising energy losses and alternative energy-saving measures that can effectively replace inefficient processes." },
+            { desc: "Recommend the action plan to bring down total energy costs in the organisation" },
         ],
         scope: "An energy audit is held under applicable energy audit standards based on Bureau of Energy Efficiency (BEE) guidelines and in adherence with the Energy Saving Conservation Act 2001. "
     },
     "environment/safety-audit/electrical-safety-audit": {
-        placeholder: "Electrical Safety Audir",
+        placeholder: "Electrical Safety Audit",
         audit: "Electrical Safety Audit",
         auditdesc: ["An electrical safety audit comprehensively assesses electrical systems and infrastructure within a building, facility, or industrial setting to evaluate electrical safety, power efficiency, regulatory compliance, and overall performance for sectors such as Manufacturing, Oil & Gas, mines, Banking and commercial buildings.",
             "Regular electrical safety audits are recommended, typically every year depending on the nature of business operations and respective regulatory requirements. These regulations are primarily governed by the Central Electricity Authority (CEA) (Measures relating to Safety and Electric Supply) Regulations, 2023. In addition to CEA, the other regulatory bodies & regulations come from State Electricity Boards (SEB), the Bureau of Indian Standards (BIS) & the National Building Code of India (NBC).",
@@ -36,10 +34,10 @@ const servicesData = {
         image: "",
         imageScope: "",
         ArrayAppr: [
-            { title: "Documentation Audit", description: "Checking existing electrical drawings, cyclic maintenance records, and compliance certificates. ", image: "/icons/step1.png" },
-            { title: "Visual inspection", description: "Examining the physical state of electrical installations and equipment. ", image: "/icons/step2.png" },
-            { title: "Testing", description: "Performing electrical tests like insulation resistance, earth continuity, and circuit breaker tripping characteristics. ", image: "/icons/step3.png" },
-            { title: "Reporting", description: "Preparing a detailed report outlining identified safety concerns, recommendations for corrective actions, and compliance status. ", image: "/icons/step3.png" },
+            { title: "Documentation Audit", desc: "Checking existing electrical drawings, cyclic maintenance records, and compliance certificates. ", image: "/icons/step1.png" },
+            { title: "Visual inspection", desc: "Examining the physical state of electrical installations and equipment. ", image: "/icons/step2.png" },
+            { title: "Testing", desc: "Performing electrical tests like insulation resistance, earth continuity, and circuit breaker tripping characteristics. ", image: "/icons/step3.png" },
+            { title: "Reporting", desc: "Preparing a detailed report outlining identified safety concerns, recommendations for corrective actions, and compliance status. ", image: "/icons/step3.png" },
         ],
         ArraySupp: [
             { desc: "Preservation of Life and Health by averting accidents & Injuries originating from fire." },
@@ -51,11 +49,11 @@ const servicesData = {
         ],
         scope: "",
         ArrayInstrumentsAndTechnology: [
-            { title: "Infrared Thermography Cameras", description: "To detect overheating and potential failure points through thermal imaging.", image: "/icons/step1.png" },
-            { title: "Insulation Resistance Testers", description: "For checking the electrical insulation of equipment.", image: "/icons/step2.png" },
-            { title: "Earth Resistance Testers", description: "To measure the resistance of earthing systems.", image: "/icons/step3.png" },
-            { title: "Multimeter and Clamp Meters", description: "For measurement of voltage, current, and resistance.", image: "/icons/step4.png" },
-            { title: "Lux Meters", description: "For assessing lighting levels and ensuring adequate illumination.", image: "/icons/step5.png" },
+            { title: "Infrared Thermography Cameras", desc: "To detect overheating and potential failure points through thermal imaging.", image: "/icons/step1.png" },
+            { title: "Insulation Resistance Testers", desc: "For checking the electrical insulation of equipment.", image: "/icons/step2.png" },
+            { title: "Earth Resistance Testers", desc: "To measure the resistance of earthing systems.", image: "/icons/step3.png" },
+            { title: "Multimeter and Clamp Meters", desc: "For measurement of voltage, current, and resistance.", image: "/icons/step4.png" },
+            { title: "Lux Meters", desc: "For assessing lighting levels and ensuring adequate illumination.", image: "/icons/step5.png" },
         ]
     },
     "environment/circular-economy/e-waste-management": {
@@ -69,7 +67,7 @@ const servicesData = {
         ArrayAppr: [
             {
                 "title": "Collection and Pickup",
-                "sec": "Services offer convenient collection for businesses and households, ensuring safe transportation.",
+                "desc": "Services offer convenient collection for businesses and households, ensuring safe transportation.",
                 "image": ""
             },
             {
@@ -162,7 +160,7 @@ const servicesData = {
             {title: "Step 1", desc: "Setting clear criteria for what constitutes a defect (e.g., functional issues, cosmetic defects, safety concerns); and preparing the team to conduct inspections based on these criteria."},
             {title: "Step 2", desc: "Physical inspection: Checking the products for visible defects, such as damaged packaging, faulty components, or incomplete manufacturing processes."},
             {title: "Step 3", desc: "Functional inspection: Ensuring that products work as intended (for example, testing electronics, mechanical devices, etc.)."},
-            {title: "Step 4", desc: "Recording findings in detailed reports, which include photographs, descriptions, and categorization of defects."},
+            {title: "Step 4", desc: "Recording findings in detailed reports, which include photographs, descs, and categorization of defects."},
             {title: "Step 5", desc: "Providing a comprehensive report to the client, which includes the number and type of defects found, any trends or patterns, and recommendations for improvement."},
         ],
         ArraySupp: [],

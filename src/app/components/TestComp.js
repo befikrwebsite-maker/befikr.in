@@ -109,33 +109,34 @@ export default function TabComponent() {
           filteredCards.map((card, cardIndex) => (
             <div
               key={cardIndex}
-              className="bg-white shadow-md rounded-2xl p-6 hover:shadow-lg transition-shadow w-full "
+              className="bg-white shadow-md rounded-2xl p-6 hover:shadow-lg transition-shadow w-full"
             >
               {card.Services.map((service, index) => (
-                <div key={index} className="relative inline-block mb-4">
-                  <h3 className="text-2xl font-semibold text-blue-700">{service.Service}</h3>
-                  {service.SubServices.map((sub, subIndex) => (
-                    <div
-                      onClick={() => (window.location.href = sub.depth)}
-                      key={subIndex}
-                      className="mt-6 p-6 mx-4 border-l-4 border-blue-400 pl-6 cursor-pointer hover:bg-gray-100 transition-all duration-300 rounded-lg shadow-lg transform"
-                    >
-                      <h4 className="text-lg font-semibold text-gray-800 hover:text-blue-600 transition-colors duration-200">{sub.title}</h4>
-                      <p className="text-sm text-gray-500 mt-2">{sub.desc}</p>
-                      {/* <img
-                        src={sub.image}
-                        alt={sub.title}
-                        className="w-full max-w-xs h-auto object-cover rounded-md mt-4 shadow-lg"
-                      /> */}
-                    </div>
-                  ))}
-
+                <div key={index} className="mb-8">
+                  <h3 className="text-2xl font-semibold text-blue-700 mb-2">{service.Service}</h3>
+          
+                  {/* If subservices exist */}
+                  {service.SubServices && Array.isArray(service.SubServices) && service.SubServices.length > 0 ? (
+                    service.SubServices.map((sub, subIndex) => (
+                      <div
+                        onClick={() => (window.location.href = sub.depth)}
+                        key={subIndex}
+                        className="mt-4 p-6 border-l-4 border-blue-400 pl-6 cursor-pointer hover:bg-gray-100 transition-all duration-300 rounded-lg shadow-md"
+                      >
+                        <h4 className="text-lg font-semibold text-gray-800 hover:text-blue-600 transition-colors duration-200">{sub.title}</h4>
+                        <p className="text-sm text-gray-500 mt-2">{sub.desc}</p>
+                        {/* Optional image */}
+                        {/* <img src={sub.image} alt={sub.title} className="w-full max-w-xs h-auto object-cover rounded-md mt-4 shadow-lg" /> */}
+                      </div>
+                    ))
+                  ) : (
+                    // If no subservices, show description
+                    service.desc && (
+                      <p className="text-sm text-gray-600 mt-2">{service.desc}</p>
+                    )
+                  )}
                 </div>
               ))}
-
-              {card.desc && (
-                <p className="mt-4 text-sm text-gray-500 border-t pt-4">{card.desc}</p>
-              )}
             </div>
           ))
         )}

@@ -91,7 +91,7 @@ export default function ServicesShowcase() {
                         >
                           <div className="flex items-center">
                             <a
-                              href={serviceGroup?.SubServices[0].link}
+                              href={serviceGroup.link}
                             >
                             <h4 className="font-semibold text-gray-800 flex-grow text-sm md:text-base">
                               {serviceGroup.Service}
@@ -118,7 +118,7 @@ export default function ServicesShowcase() {
                                   className="text-gray-600 hover:text-blue-600 transition-colors text-sm flex items-start"
                                   onClick={(e) => {
                                     e.stopPropagation();
-                                    window.location.href = `services/${sub.link}`;
+                                    window.location.href = `${sub.link}`;
                                   }}
                                 >
                                   <span className="inline-block w-1.5 h-1.5 rounded-full bg-blue-500 mt-2 mr-2" />

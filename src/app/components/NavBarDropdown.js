@@ -208,6 +208,7 @@ function NavBarDropdown1({ isVisible, onMouseLeave, dropdownRef }) {
   );
 }
 
+import ServicesBreakdown from "./Services";
 
 function NavBarDropdown2({ isVisible, onMouseLeave, dropdownRef }) {
   const [activeSection, setActiveSection] = useState("Services");
@@ -217,16 +218,17 @@ function NavBarDropdown2({ isVisible, onMouseLeave, dropdownRef }) {
       "Environment": [
         "Electrical Safety Audit Services",
         "Energy Audit Services",
-        "Circular Economy Services",
-        "E-waste management services",
-        "Reverse logistics services"
+        "Greenhouse Gas Emission Audit Services",
+        "E-Waste Management",
+        "Reverse Logistics Services"
       ],
       "Social": [
-        "Corporate Social Responsibility Services (CSR)",
+        "Corporate Social Responsibility Services",
       ],
       "Governance": [
-        "Testing, Inspection & Certification Services (TIC)",
-        "Defective Product Testing & Inspection Services",
+        "Testing, Inspection & Installation Services",
+        "Defective Audit Services",
+        "Safety Mat Installation Service"
       ]
     },
     "Industries": [
@@ -319,23 +321,57 @@ function NavBarDropdown2({ isVisible, onMouseLeave, dropdownRef }) {
               </p>
   
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                {Object.keys(menuData[activeSection]).map((category) => (
-                  <div key={category} className="space-y-3">
-                    <h4 className="text-lg font-semibold text-white border-b pb-2">{category}</h4>
-                    <ul className="space-y-2">
-                      {menuData[activeSection][category].map((item, index) => (
-                        <li key={index}>
-                          <a
-                            href="#"
-                            className="block text-white hover:text-blue-600 transition-colors"
-                          >
-                            {item}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
+              {Object.entries(menuData[activeSection]).map(([category, serviceNames]) => (
+  <div key={category} className="space-y-3">
+    <h4 className="text-lg font-semibold text-white border-b pb-2">{category}</h4>
+    <ul className="space-y-2">
+      {Array.isArray(serviceNames) &&
+        serviceNames.map((serviceName) => {
+          let matchedLink = null;
+
+          // 1. Try matching in top-level Services
+          for (const section of ServicesBreakdown) {
+            const match = section.Services.find(service => service.Service === serviceName);
+            if (match) {
+              matchedLink = match.link;
+              break;
+            }
+          }
+
+          // 2. If not found, try matching in SubServices
+          if (!matchedLink) {
+            outer: for (const section of ServicesBreakdown) {
+              for (const service of section.Services) {
+                if (service.SubServices) {
+                  for (const subService of service.SubServices) {
+                    if (subService.title === serviceName) {
+                      matchedLink = subService.link;
+                      break outer;
+                    }
+                  }
+                }
+              }
+            }
+          }
+
+          if (!matchedLink) return null; // Skip if no match
+
+          return (
+            <li key={serviceName}>
+              <a
+                href={matchedLink}
+                className="block text-white hover:text-blue-600 transition-colors"
+              >
+                {serviceName}
+              </a>
+            </li>
+          );
+        })}
+    </ul>
+  </div>
+))}
+
+
               </div>
             </div>
           ) : (

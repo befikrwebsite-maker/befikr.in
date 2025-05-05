@@ -2,8 +2,6 @@ export default function ServiceTemplate({
   placeholder = "Our Service",
   auditdesc = [],
   audit,
-  image,
-  imageScope,
   ArrayAppr = [],
   ArraySupp = [],
   ArrayKeyAspects = [],
@@ -11,24 +9,15 @@ export default function ServiceTemplate({
   ArrayBenifits = [],
   scope = ""
 }) {
-  const fallbackImage = "/default-image.jpg"; // optional placeholder
-
   return (
-    <div className="relative overflow-hidden bg-gray-50">
+    <div className="relative overflow-hidden pt-20 bg-gray-50">
 
       {/* Hero Section */}
-      {(image || placeholder) && (
-        <div className="flex w-full h-full bg-companyBlue">
-          <div className="relative h-96 w-full bg-cover">
-            <img
-              src={image || fallbackImage}
-              alt={placeholder}
-              className="absolute inset-0 w-full h-full object-cover"
-            />
-            <h1 className="text-5xl absolute top-[200px] left-0 right-0 px-4 text-black font-bold ">
-              {placeholder}
-            </h1>
-          </div>
+      {placeholder && (
+        <div className="flex w-full h-48 bg-companyBlue items-center justify-center">
+          <h1 className="text-5xl text-black font-bold text-center px-4">
+            {placeholder}
+          </h1>
         </div>
       )}
 
@@ -61,20 +50,13 @@ export default function ServiceTemplate({
               item && (
                 <div
                   key={index}
-                  className="flex flex-col items-center p-6 bg-gray-100 rounded-lg h-96 shadow-md w-full md:w-1/3"
+                  className="flex flex-col items-start p-6 bg-gray-100 rounded-lg h-auto shadow-md w-full md:w-50"
                 >
-                  {item?.image && (
-                    <img
-                      src={item.image}
-                      alt={item.title || "Approach Image"}
-                      className="w-16 h-16 mb-4"
-                    />
-                  )}
                   {item?.title && (
-                    <h2 className="text-xl font-bold">{item.title}</h2>
+                    <h2 className="text-xl font-bold mb-2">{item.title}</h2>
                   )}
-                  {item?.description && (
-                    <p className="text-gray-600 text-center">{item.description}</p>
+                  {item?.desc && (
+                    <p className="text-gray-600">{item.desc}</p>
                   )}
                 </div>
               )
@@ -159,25 +141,12 @@ export default function ServiceTemplate({
       )}
 
       {/* Scope Section */}
-      {(scope || imageScope) && (
-        <div className="max-w-7xl flex flex-col md:flex-row items-center justify-center py-16 px-4 mx-auto gap-10">
-          {scope && (
-            <div className="flex-1">
-              <h1 className="text-4xl text-black mb-6">
-                Scope of an {audit || placeholder}
-              </h1>
-              <p className="text-gray-700">{scope}</p>
-            </div>
-          )}
-          {imageScope && (
-            <div className="flex-1">
-              <img
-                src={imageScope}
-                alt="Scope Image"
-                className="w-full rounded-lg shadow-md"
-              />
-            </div>
-          )}
+      {scope && (
+        <div className="max-w-5xl flex flex-col items-start justify-center py-16 px-4 mx-auto gap-10">
+          <h1 className="text-4xl text-black mb-6">
+            Scope of an {audit || placeholder}
+          </h1>
+          <p className="text-gray-700">{scope}</p>
         </div>
       )}
     </div>

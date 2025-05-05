@@ -18,44 +18,36 @@ export default function Page() {
   "imageScope": "/images/energy-audit/scope.jpg",
   "ArrayAppr": [
     {
-      "title": "Documentation Audit",
-      "description": "Checking existing electrical drawings, cyclic maintenance records, and compliance certificates. ",
+      "title": "Pre-Audit ",
+      "desc": "Documentation Audit: Checking existing drawings, cyclic maintenance records, and compliance certificates. ",
       "image": "/icons/step1.png"
     },
     {
-      "title": "Visual inspection",
-      "description": "Examining the physical state of electrical installations and equipment. ",
+      "title": "On-Site Energy Audit",
+      "desc": "Visual inspection & Testing: Examining the physical state of electrical & mechanical installations and equipment, measuring & monitoring the energy-consuming machines & equipment under running conditions & timeframes.",
       "image": "/icons/step2.png"
     },
     {
-      "title": "Testing",
-      "description": "Performing electrical tests like insulation resistance, earth continuity, and circuit breaker tripping characteristics. ",
-      "image": "/icons/step3.png"
-    },
-    {
-      "title": "Reporting",
-      "description": "Preparing a detailed report outlining identified safety concerns, recommendations for corrective actions, and compliance status. ",
+      "title": "Data Analysis, Reporting & Final Recommendations",
+      "desc": "Preparing a detailed report outlining energy readings & parameters & recommendations for corrective actions.",
       "image": "/icons/step3.png"
     }
   ],
   "ArraySupp": [
     {
-      "desc": "Preservation of Life and Health by averting accidents & Injuries originating from fire."
+      "desc": "Our team Identifies areas of opportunity for energy saving by spotting energy wastage in various running operations within the infrastructure."
     },
     {
-      "desc": "Following electrical safety guidelines helps reduce the risk of electrical shocks, burns, and injuries to personnel, thus preserving human lives."
+      "desc": "Befikr tests the energy performance and efficiency of various mechanical & electrical equipment and study process optimisations."
     },
     {
-      "desc": "Following electrical safety guidelines helps reduce the risk of electrical shocks, burns, and injuries to personnel, thus preserving human lives."
+      "desc": "We create recommendations for conserving energy & share the list of equipment to be replaced with more efficient equipment with projected benefits."
     },
     {
-      "desc": "Identifying potential electrical hazards through regular audits, proactive repairs & improvement activities, manages the risk of damages to equipment & real estate infrastructure, thus preserving the business economy."
+      "desc": "Suggest measures for minimising energy losses and alternative energy-saving measures that can effectively replace inefficient processes."
     },
     {
-      "desc": "Compliance with Regulations through compliance verification, documentation, record keeping, employee training & awareness. "
-    },
-    {
-      "desc": "Following electrical safety regulations and standards ensures legal compliance & setting up self-governing mechanisms for smooth & safe business operations."
+      "desc": "Recommend the action plan to bring down total energy costs in the organisation"
     }
   ],
   "scope": "An energy audit is held under applicable energy audit standards based on Bureau of Energy Efficiency (BEE) guidelines and in adherence with the Energy Saving Conservation Act 2001. "

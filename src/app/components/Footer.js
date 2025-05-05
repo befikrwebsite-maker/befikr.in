@@ -41,18 +41,21 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-medium text-companyBlue">Services</h3>
             <ul className="mt-2 space-y-2">
-              {ServicesBreakdown?.map((category, index) =>
-                category?.Services?.map((item, subIndex) => item.SubServices.map((subItem, subSubIndex) => (
-                  <li key={`${index}-${subIndex}-${subSubIndex}`}>
-                    <a
-                      href={subItem.link}
-                      className="text-gray-700 hover:text-companyBlue transition-colors duration-200"
-                    >
-                      {subItem.title}
-                    </a>
-                  </li>
-                )))
-              )}
+            {ServicesBreakdown?.map((category, index) =>
+            category?.Services?.map((item, subIndex) =>
+              Array.isArray(item?.SubServices) &&
+              item.SubServices.map((subItem, subSubIndex) => (
+                <li key={`${index}-${subIndex}-${subSubIndex}`}>
+                  <a
+                    href={subItem.link}
+                    className=" text-gray-700 hover:text-companyBlue duration-200"
+                  >
+                    {subItem.title}
+                  </a>
+                </li>
+              ))
+            )
+            )}
             </ul>
           </div>
 

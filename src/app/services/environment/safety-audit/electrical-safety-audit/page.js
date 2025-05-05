@@ -6,7 +6,7 @@ import Footer from "@/components/Footer.js"
 
 export default function Page() {
   const props = {
-  "placeholder": "Electrical Safety Audir",
+  "placeholder": "Electrical Safety Audit",
   "audit": "Electrical Safety Audit",
   "auditdesc": [
     "An electrical safety audit comprehensively assesses electrical systems and infrastructure within a building, facility, or industrial setting to evaluate electrical safety, power efficiency, regulatory compliance, and overall performance for sectors such as Manufacturing, Oil & Gas, mines, Banking and commercial buildings.",
@@ -19,22 +19,22 @@ export default function Page() {
   "ArrayAppr": [
     {
       "title": "Documentation Audit",
-      "description": "Checking existing electrical drawings, cyclic maintenance records, and compliance certificates. ",
+      "desc": "Checking existing electrical drawings, cyclic maintenance records, and compliance certificates. ",
       "image": "/icons/step1.png"
     },
     {
       "title": "Visual inspection",
-      "description": "Examining the physical state of electrical installations and equipment. ",
+      "desc": "Examining the physical state of electrical installations and equipment. ",
       "image": "/icons/step2.png"
     },
     {
       "title": "Testing",
-      "description": "Performing electrical tests like insulation resistance, earth continuity, and circuit breaker tripping characteristics. ",
+      "desc": "Performing electrical tests like insulation resistance, earth continuity, and circuit breaker tripping characteristics. ",
       "image": "/icons/step3.png"
     },
     {
       "title": "Reporting",
-      "description": "Preparing a detailed report outlining identified safety concerns, recommendations for corrective actions, and compliance status. ",
+      "desc": "Preparing a detailed report outlining identified safety concerns, recommendations for corrective actions, and compliance status. ",
       "image": "/icons/step3.png"
     }
   ],
@@ -62,27 +62,27 @@ export default function Page() {
   "ArrayInstrumentsAndTechnology": [
     {
       "title": "Infrared Thermography Cameras",
-      "description": "To detect overheating and potential failure points through thermal imaging.",
+      "desc": "To detect overheating and potential failure points through thermal imaging.",
       "image": "/icons/step1.png"
     },
     {
       "title": "Insulation Resistance Testers",
-      "description": "For checking the electrical insulation of equipment.",
+      "desc": "For checking the electrical insulation of equipment.",
       "image": "/icons/step2.png"
     },
     {
       "title": "Earth Resistance Testers",
-      "description": "To measure the resistance of earthing systems.",
+      "desc": "To measure the resistance of earthing systems.",
       "image": "/icons/step3.png"
     },
     {
       "title": "Multimeter and Clamp Meters",
-      "description": "For measurement of voltage, current, and resistance.",
+      "desc": "For measurement of voltage, current, and resistance.",
       "image": "/icons/step4.png"
     },
     {
       "title": "Lux Meters",
-      "description": "For assessing lighting levels and ensuring adequate illumination.",
+      "desc": "For assessing lighting levels and ensuring adequate illumination.",
       "image": "/icons/step5.png"
     }
   ]
