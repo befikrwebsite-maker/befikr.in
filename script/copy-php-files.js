@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const sourceDir = path.join(__dirname, '..'); 
-const outDir = path.join(sourceDir, 'out/backend'); 
+const outDir = path.join(sourceDir, 'out'); 
 
 if (!fs.existsSync(outDir)) {
   fs.mkdirSync(outDir, { recursive: true });
