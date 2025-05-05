@@ -52,6 +52,7 @@ export default function Page() {
       questions: [
         "Are you available for immediate joining? (Preferable)",
         "Are you having an Electrical Engineering Degree (B.E. / B. Tech) or Diploma in Electrical Engineering?",
+        "How much experience do you have?"
       ],
       experience: ["Electrical engineering: 2 years (Required)"],
       travel: ["75% (Required)"],
@@ -192,7 +193,10 @@ export default function Page() {
       benefits: [],
       schedule: [],
       supplemental_pay: [],
-      questions: [],
+      questions: [
+        "Are you having an Electrical Engineering Degree (B.E. / B. Tech) or Diploma in Electrical Engineering?",
+        "How much experience do you have?"
+      ],
       experience: [],
       travel: [],
       work_location: "",
@@ -792,7 +796,7 @@ export default function Page() {
                       Apply Now <ChevronDown className="w-5 h-5" />
                     </button>
 
-                    {formVisible && <Form team={selectedJob.team} position={selectedJob.position} locations={selectedJob.location} />}
+                    {formVisible && <Form questions={selectedJob.questions} team={selectedJob.team} position={selectedJob.position} locations={selectedJob.location} />}
                   </div>
                 </div>
 

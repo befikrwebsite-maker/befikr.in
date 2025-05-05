@@ -2,12 +2,26 @@
 
 import { useState, useEffect } from "react";
 
-export default function Form({ team, position, locations, onClose }) {
+export default function Form({ questions, team, position, locations, onClose }) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
   });
+
+  const [questionAnswers, setQuestionAnswers] = useState(
+    questions.reduce((acc, question) => {
+      acc[question] = "";
+      return acc;
+    }, {})
+  );
+
+  const handleAnswerChange = (question, value) => {
+    setQuestionAnswers((prev) => ({
+      ...prev,
+      [question]: value,
+    }));
+  };
 
   const [resume, setResume] = useState(null);
   const [selectedLocation, setSelectedLocation] = useState([]);
@@ -39,6 +53,11 @@ export default function Form({ team, position, locations, onClose }) {
       setServerMessage("Please upload a resume.");
       return;
     }
+    if (selectedLocation.length === 0){
+      setSubmitStatus("failed");
+      setServerMessage("Please select a location.");
+      return;
+    }
 
     setSubmitStatus("ongoing");
 
@@ -49,6 +68,7 @@ export default function Form({ team, position, locations, onClose }) {
     form.append("team", team);
     form.append("position", position);
     form.append("location", selectedLocation.join(", "));
+    form.append("qa_pairs", JSON.stringify(questionAnswers));
     form.append("resume", resume);
 
     try {
@@ -123,23 +143,35 @@ export default function Form({ team, position, locations, onClose }) {
 
         <div>
           <label className="block text-gray-700 font-medium mb-1">Location</label>
-          <p className="text-xs text-gray-500 mb-2">Tap the locations you want to select</p>
+          <p className="text-xs text-gray-500 mb-2">Tap to select one or more locations</p>
           <div className="flex flex-wrap gap-2 border p-2 rounded-lg">
             {locations.map((item) => (
               <span
                 key={item}
                 onClick={() => handleLocationChange(item)}
-                className={`cursor-pointer px-2 py-1 rounded ${
-                  selectedLocation.includes(item)
+                className={`cursor-pointer px-2 py-1 rounded ${selectedLocation.includes(item)
                     ? "bg-companyBlue text-white"
                     : "border border-gray-300 hover:border-companyBlue"
-                }`}
+                  }`}
               >
                 {item}
               </span>
             ))}
           </div>
         </div>
+
+        {questions.map((question, idx) => (
+          <div key={idx}>
+            <label className="block text-gray-700 font-medium mb-1">{question}</label>
+            <input
+              type="text"
+              value={questionAnswers[question]}
+              onChange={(e) => handleAnswerChange(question, e.target.value)}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-companyBlue"
+              required
+            />
+          </div>
+        ))}
 
         <div>
           <label className="block text-gray-700 font-medium mb-1">Your Message</label>

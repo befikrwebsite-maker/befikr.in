@@ -1,14 +1,19 @@
 <?php
+
 // Enable CORS for local development
 header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: POST");
+header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-require 'vendor/autoload.php';
+// Correct PHPMailer Path
+require __DIR__ . '/vendor/phpmailer/phpmailer/src/PHPMailer.php';
+require __DIR__ . '/vendor/phpmailer/phpmailer/src/SMTP.php';
+require __DIR__ . '/vendor/phpmailer/phpmailer/src/Exception.php';
+
 
 ini_set('log_errors', 1);
 ini_set('error_log', __DIR__ . '/error_log.txt'); // Log errors to a file
@@ -20,7 +25,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $email = $_POST["email"] ?? "";
     $message = $_POST["message"] ?? "";
     $resume = $_FILES["resume"] ?? null;
-    
+    $team = $_POST["team"] ?? "";
+    $position = $_POST["position"] ?? "";
+    $location = $_POST["location"] ?? "";
+    $qa_pairs_json = $_POST["qa_pairs"] ?? "";
+
     if (empty($name) || empty($email) || empty($message) || empty($resume)) {
         echo json_encode(["status" => "error", "message" => "All fields are required"]);
         exit;
@@ -40,6 +49,25 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         echo json_encode(["status" => "error", "message" => "Failed to save file"]);
         exit;
     }
+
+    $qa_pairs = json_decode($qa_pairs_json, true); // true = return associative array
+
+    $questions = [];
+    $index = 1;
+
+    // Loop until no more question/answer pair is found
+    while (isset($_POST["question_$index"]) && isset($_POST["answer_$index"])) {
+        $question = $_POST["question_$index"];
+        $answer = $_POST["answer_$index"];
+        $questions[] = ["question" => $question, "answer" => $answer];
+        $index++;
+    }
+
+    $qa_html = "<h4>Additional Questions and Answers:</h4><ul>";
+    foreach ($questions as $pair) {
+        $qa_html .= "<li><strong>" . htmlspecialchars($pair['question']) . ":</strong> " . htmlspecialchars($pair['answer']) . "</li>";
+    }
+    $qa_html .= "</ul>";
 
     //Create a new PHPMailer instance
     $mail = new PHPMailer();
@@ -93,6 +121,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     //Set who the message is to be sent to
     $mail->addAddress('bebefikr@befikr.in', 'Befikr');
+    
+    //Set who the CC recipients are
+    $mail->addCC('maninder.singh@befikr.in');
+
 
     //Set the subject line
     $mail->Subject = 'Job Application';
@@ -102,44 +134,44 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     //$mail->msgHTML(file_get_contents('contents.html'), __DIR__);
     
     $mail->isHTML(true);
-    
-    //Replace the plain text body with one created manually
-    $mail->Body ="
-    Dear Hiring Manager,<br><br>
-    
-    I hope you are doing well.<br><br>
-    
-    My name is <strong>$name</strong>, and I am reaching out regarding my application for the position at <strong>befikr</strong>.<br><br>
-    
-    Below is my message:<br><br>
-    
-    $message<br><br>
-    
-    Please let me know if any additional information is required. I look forward to your response.<br><br>
-    
-    Best regards,<br>
-    <strong>$name</strong><br>
-    Email: <strong>$email</strong>
+    $mail->Subject = "New Job Application: $position - $team ($location)";
+    $mail->Body = "
+        <h3>New Application Received</h3>
+        <p><strong>Name:</strong> $name</p>
+        <p><strong>Email:</strong> $email</p>
+        <p><strong>Strategic Business Unit:</strong> $team</p>
+        <p><strong>Position Applied For:</strong> $position</p>
+        <p><strong>Preferred Location:</strong> $location</p>
+        <p><strong>Message:</strong><br>$message</p>
+        <p>Resume is attached with this email.</p>
+        $qa_html
     ";
-    
 
-    //Attach an pdf file
+
     $mail->addAttachment($filePath, $resume["name"]);
 
-    //send the message, check for errors
     if (!$mail->send()) {
-        echo json_encode(["status" => "error","message" => 'Mailer Error: ' . $mail->ErrorInfo]);
+        echo json_encode(["status" => "error", "message" => "Mailer Error: " . $mail->ErrorInfo]);
     } else {
-        echo json_encode(["status" => "success", "message" => "Email sent successfully!"]);
-        //Section 2: IMAP
-        //Uncomment these to save your message in the 'Sent Mail' folder.
-        #if (save_mail($mail)) {
-        #    echo "Message saved!";
-        #}
-    }
+        $conn = new mysqli("localhost", "u485173045_befikr_in", "Befikr@@@@####123123befikr", "u485173045_befikr");
 
+        if ($conn->connect_error) {
+            echo json_encode(["status" => "error", "message" => "DB Connection Failed: " . $conn->connect_error]);
+            exit;
+        }
+
+        $stmt = $conn->prepare("INSERT INTO job_applicants (name, email, message, team, position, location, resume_path) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssssss", $name, $email, $message, $team, $position, $location, $filePath);
+
+        if ($stmt->execute()) {
+            echo json_encode(["status" => "success", "message" => "Application submitted successfully!"]);
+        } else {
+            echo json_encode(["status" => "error", "message" => "DB Insert Error: " . $stmt->error]);
+        }
+
+        $stmt->close();
+        $conn->close();
+    }
 } else {
     echo json_encode(["status" => "error", "message" => "Invalid request method"]);
 }
-
-?>

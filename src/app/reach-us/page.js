@@ -36,7 +36,7 @@ export default function ContactForm() {
 
     try {
       setSubmitStatus("ongoing");
-      
+
       const response = await fetch("https://befikr.in/postal_service.php", {
         method: "POST",
         body: form,
@@ -83,12 +83,24 @@ export default function ContactForm() {
         <title>Contact Us - Befikr</title>
       </Head>
       <Navbar />
-      
+
       <div className="flex w-full pt-24 pb-16 px-4 md:px-8 lg:px-16 flex-col justify-start min-h-screen bg-gradient-to-b from-white to-blue-50 font-generalSansRegular">
         <div className="max-w-7xl mx-auto w-full">
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-8 text-center">Get in Touch</h1>
-          <p className="text-gray-600 text-center max-w-2xl mx-auto mb-12">We're here to help with your questions and needs. Fill out the form below and our team will get back to you promptly.</p>
-          
+          <div className="flex w-full justify-center ">
+            <div className="flex w-full justify-start items-center ">
+              <h1 className="text-3xl md:text-4xl font-bold text-gray-800 text-center">Get in Touch with us!</h1>
+              <p className=" w-full text-gray-600 text-center max-w-2xl mx-auto">We're here to help with your questions and needs.<br></br> Send us a message and our team will get back to you promptly.</p>
+            </div>
+
+            <div className="flex w-72 justify-end ">
+              <img
+                src="/extraLogos/logo-transparent-png.png"
+                className="w-40 h-auto"
+                alt="Befikr Logo"
+              />
+            </div>
+          </div>
+
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <div className="w-full">
               <div className="bg-white rounded-xl shadow-xl overflow-hidden">
@@ -115,7 +127,7 @@ export default function ContactForm() {
                         Name
                       </label>
                     </div>
-                    
+
                     <div className="relative">
                       <input
                         type="email"
@@ -135,7 +147,7 @@ export default function ContactForm() {
                       </label>
                     </div>
                   </div>
-                  
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                     <div className="relative">
                       <input
@@ -156,7 +168,7 @@ export default function ContactForm() {
                         Contact Number
                       </label>
                     </div>
-                    
+
                     <div className="relative">
                       <input
                         type="text"
@@ -176,7 +188,7 @@ export default function ContactForm() {
                       </label>
                     </div>
                   </div>
-                  
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                     <div className="relative">
                       <input
@@ -196,13 +208,13 @@ export default function ContactForm() {
                         Designation
                       </label>
                     </div>
-                    
+
                     <div className="relative">
                       <input
                         type="text"
                         name="company"
                         id="company"
-                        className="peer w-full border-b-s2 border-gray-300 bg-transparent pt-3 pb-2 px-0 text-gray-900 focus:outline-none focus:border-[#009DC8] transition-colors"
+                        className="peer w-full border-b-2 border-gray-300 bg-transparent pt-3 pb-2 px-0 text-gray-900 focus:outline-none focus:border-[#009DC8] transition-colors"
                         placeholder=" "
                         onChange={handleChange}
                         value={formData.company}
@@ -216,7 +228,7 @@ export default function ContactForm() {
                       </label>
                     </div>
                   </div>
-                  
+
                   <div className="relative mb-8">
                     <textarea
                       name="message"
@@ -237,9 +249,8 @@ export default function ContactForm() {
                   </div>
 
                   {status && (
-                    <div className={`mb-4 p-3 rounded-md text-sm ${
-                      submitStatus === "success" ? "bg-green-50 text-green-700" : "bg-red-50 text-red-700"
-                    }`}>
+                    <div className={`mb-4 p-3 rounded-md text-sm ${submitStatus === "success" ? "bg-green-50 text-green-700" : "bg-red-50 text-red-700"
+                      }`}>
                       {status}
                     </div>
                   )}
@@ -267,19 +278,15 @@ export default function ContactForm() {
                 </form>
               </div>
             </div>
-            
+
             <div className="w-full">
               <div className="bg-gradient-to-br from-[#ffe084] to-[#ffd458] rounded-xl shadow-xl h-full overflow-hidden relative">
                 <div className="p-6 h-full flex flex-col">
                   <div className="flex justify-between items-start mb-6">
                     <h3 className="text-xl font-semibold text-gray-800">Your Message Preview</h3>
-                    <img
-                      src="/extraLogos/logo-transparent-png.png"
-                      className="w-32 h-auto object-contain"
-                      alt="Befikr Logo"
-                    />
+
                   </div>
-                  
+
                   <div className="bg-white/70 backdrop-blur-sm rounded-lg p-6 flex-grow shadow-inner">
                     <div className="space-y-2 text-gray-800">
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2">
@@ -308,7 +315,7 @@ export default function ContactForm() {
                           <p>{formData.company || "Your Company"}</p>
                         </div>
                       </div>
-                      
+
                       <div className="mt-6">
                         <p className="text-sm font-medium text-gray-500">Message</p>
                         <div className="mt-2 p-3 bg-white/70 rounded border border-gray-200 min-h-[100px]">
@@ -317,21 +324,21 @@ export default function ContactForm() {
                       </div>
                     </div>
                   </div>
-                  
+
                   <div className="mt-6 text-center">
                     <p className="text-sm text-gray-600">Thank you for reaching out to us!</p>
                     <p className="text-xs text-gray-500 mt-1">We'll get back to you shortly</p>
                   </div>
                 </div>
-                
+
                 {/* Decorative elements */}
                 <div className="absolute -bottom-16 -right-16 w-32 h-32 bg-[#009DC8]/20 rounded-full"></div>
                 <div className="absolute -top-8 -left-8 w-24 h-24 bg-[#009DC8]/10 rounded-full"></div>
               </div>
             </div>
           </div>
-          
-         
+
+
         </div>
 
         <div className=" h-full pt-20">
