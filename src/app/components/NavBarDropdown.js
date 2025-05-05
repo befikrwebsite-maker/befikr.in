@@ -212,6 +212,7 @@ import ServicesBreakdown from "./Services";
 
 function NavBarDropdown2({ isVisible, onMouseLeave, dropdownRef }) {
   const [activeSection, setActiveSection] = useState("Services");
+  
 
   const menuData = {
     "Services": {

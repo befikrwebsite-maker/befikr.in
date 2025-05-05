@@ -119,7 +119,7 @@ export default function TabComponent() {
                   {service.SubServices && Array.isArray(service.SubServices) && service.SubServices.length > 0 ? (
                     service.SubServices.map((sub, subIndex) => (
                       <div
-                        onClick={() => (window.location.href = sub.depth)}
+                        onClick={() => (window.location.href = sub.link)}
                         key={subIndex}
                         className="mt-4 p-6 border-l-4 border-blue-400 pl-6 cursor-pointer hover:bg-gray-100 transition-all duration-300 rounded-lg shadow-md"
                       >
@@ -132,7 +132,12 @@ export default function TabComponent() {
                   ) : (
                     // If no subservices, show description
                     service.desc && (
+                      <a
+                      href={service.link}>
+                      <div className="mt-4 p-6 border-l-4 border-blue-400 pl-6 cursor-pointer hover:bg-gray-100 transition-all duration-300 rounded-lg shadow-md">
                       <p className="text-sm text-gray-600 mt-2">{service.desc}</p>
+                      </div>
+                      </a>
                     )
                   )}
                 </div>

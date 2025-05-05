@@ -133,6 +133,7 @@ export default function ServiceTemplate({
             {ArraySupp.map((item, index) => (
               <div key={index} className="flex flex-col p-6 border border-l-blue-600 border-t-blue-600 border-b-companyBlue border-r-companyBlue text-left bg-gray-100 rounded-lg shadow-md w-full">
                 <h2 className="text-4xl -translate-y-10 p-[-10] -translate-x-8 font-bold">{index + 1}</h2>
+                <h2 className="text-xl font-bold mb-2">{item.title}</h2>
                 <p className="text-gray-600">{item.desc}</p>
               </div>
             ))}

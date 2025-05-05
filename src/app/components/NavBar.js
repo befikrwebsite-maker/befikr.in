@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Menu, Router, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import NavbarDropdown from "./NavBarDropdown";
+import { useLenis } from "./hook/LenisContext";
 
 export default function Navbar() {
   const [link, setLink] = useState("Home");
@@ -100,6 +101,12 @@ export default function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const lenis = useLenis();
+  useEffect(() => {
+    if (!lenis) return;
+    dropdownOpen ? lenis.stop() : lenis.start();
+  }, [dropdownOpen]);
 
   return (
     <>

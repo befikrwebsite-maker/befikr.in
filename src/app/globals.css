@@ -199,6 +199,13 @@ body {
 
 }
 
+/* globals.css */
+.no-scroll {
+  overflow: hidden !important;
+  height: 100vh;     /* Prevent mobile bounce scroll */
+}
+
+
 #id {
   position: absolute;
   top: 0;

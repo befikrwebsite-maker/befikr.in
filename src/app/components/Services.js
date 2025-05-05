@@ -89,7 +89,7 @@ const ServicesBreakdown = [
                     tags: ["testing", "inspection", "installation", "environment"],
                     image: "../service_img/logo-svgDefective.svg",
                     depth: "testing-inspection-service",
-                    link: "/services",
+                    link: "/services/governance/testing-inspection-demo/installation-demo",
                 },
                 {
                     title: "Safety Mat Installation Service",
