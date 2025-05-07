@@ -267,6 +267,30 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-medium text-companyBlue">Services</h3>
             <ul className="mt-2 space-y-2">
+            <li>
+                  <a
+                    href="/services/environment/safety-audit/electrical-safety-audit"
+                    className=" text-gray-700 hover:text-companyBlue duration-200"
+                  >
+                    Electrical Safety Audit Services
+                  </a>
+                </li>
+            <li>
+                  <a
+                    href="/services/environment/safety-audit/energy-audit"
+                    className=" text-gray-700 hover:text-companyBlue duration-200"
+                  >
+                    Energy Audit Services
+                  </a>
+                </li>
+            <li>
+                  <a
+                    href="/services"
+                    className=" text-gray-700 hover:text-companyBlue duration-200"
+                  >
+                    Greenhouse Gas Emission Audit Services
+                  </a>
+                </li>
             {ServicesBreakdown?.map((category, index) =>
             category?.Services?.map((item, subIndex) =>
               Array.isArray(item?.SubServices) &&

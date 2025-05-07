@@ -9,6 +9,9 @@ const ServicesBreakdown = [
             Service: "Electrical Safety Audit Services",
             desc: "An electrical audit is a comprehensive assessment of electrical systems & infrastructure within a building, facility, or industrial setting to evaluate electrical safety, power efficiency, electrical safety compliance with regulations, and overall performance. Regular electrical safety audits are recommended, typically every year depending on the nature of business operations and respective regulatory requirements. An efficient electrical safety audit helps prevent electrical accidents, to identify potential hazards, energy inefficiencies, opportunities for improvement, fires, and compliance issues while ensuring the safety of employees and assets.",
             link: "/services/environment/safety-audit/electrical-safety-audit",
+            SubServices: [
+     
+            ]
         },
         {
             Service: "Energy Audit Services",
@@ -17,13 +20,14 @@ const ServicesBreakdown = [
         },
         {
             Service: "Greenhouse Gas Emission Audit Services",
-            desc: "An electrical audit is a comprehensive assessment of electrical systems & infrastructure within a building, facility, or industrial setting to evaluate electrical safety, power efficiency, electrical safety compliance with regulations, and overall performance. Regular electrical safety audits are recommended, typically every year depending on the nature of business operations and respective regulatory requirements. An efficient electrical safety audit helps prevent electrical accidents, to identify potential hazards, energy inefficiencies, opportunities for improvement, fires, and compliance issues while ensuring the safety of employees and assets.",
+            desc: "",
             link: "/services",
         },
             {
             Service: "Circular Economy Services",
             link: "/services/environment/circular-economy",
             SubServices: [
+                
                 {
                     title: "E-Waste Management",
                     desc: "E-Waste Management is a process to recycle & manage the e-waste generated from various sources including businesses, households, and industries. E-waste management is a process to recycle & manage the e-waste generated from various sources including businesses, households, and industries. E-waste management is a process to recycle & manage the e-waste generated from various sources including businesses, households, and industries.",
@@ -93,7 +97,7 @@ const ServicesBreakdown = [
                 },
                 {
                     title: "Safety Mat Installation Service",
-                    desc: "Testing, Inspection & Installation services are a set of services that ensure the quality, safety, and compliance of products, systems, and processes with relevant standards and regulations. These services play a crucial role in various industries, including manufacturing, construction, food and beverage, pharmaceuticals, and consumer goods. TIC services help businesses demonstrate their commitment to quality and safety while ensuring compliance with industry standards and regulations.",
+                    desc: "",
                     tags: ["testing", "inspection", "installation", "environment"],
                     image: "../service_img/logo-svgDefective.svg",
                     depth: "testing-inspection-service",

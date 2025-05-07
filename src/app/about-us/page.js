@@ -69,7 +69,6 @@ export default function Home() {
         </div>
         <div className=" p-8 ">
         <div
-        ref={textRef}
         className="container mx-auto px-6 py-1 bg-white rounded-3xl shadow-xl mb-10 items-center">
           <Testimonial />
         </div>

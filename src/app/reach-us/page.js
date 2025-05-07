@@ -86,22 +86,31 @@ export default function ContactForm() {
 
       <div className="flex w-full pt-24 pb-16 px-4 md:px-8 lg:px-16 flex-col justify-start min-h-screen bg-gradient-to-b from-white to-blue-50 font-generalSansRegular">
         <div className="max-w-7xl mx-auto w-full">
-          <div className="flex w-full justify-center ">
-            <div className="flex w-full justify-start items-center ">
-              <h1 className="text-3xl md:text-4xl font-bold text-gray-800 text-center">Get in Touch with us!</h1>
-              <p className=" w-full text-gray-600 text-center max-w-2xl mx-auto">We're here to help with your questions and needs.<br></br> Send us a message and our team will get back to you promptly.</p>
-            </div>
+        <div className="flex flex-col md:flex-row w-full justify-between items-center px-4 py-6">
+  {/* Text Section */}
+  <div className="flex flex-col w-full md:w-2/3 items-center md:items-start text-center md:text-left">
+    <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-2">
+      Get in Touch with us!
+    </h1>
+    <p className="text-gray-600 max-w-2xl">
+      We're here to help with your questions and needs.
+      <br />
+      Send us a message and our team will get back to you promptly.
+    </p>
+  </div>
 
-            <div className="flex w-72 justify-end ">
-              <img
-                src="/extraLogos/logo-transparent-png.png"
-                className="w-40 h-auto"
-                alt="Befikr Logo"
-              />
-            </div>
-          </div>
+  {/* Logo Section */}
+  <div className="w-full md:w-1/3 flex justify-center md:justify-end mt-4 md:mt-0">
+    <img
+      src="/extraLogos/logo-transparent-png.png"
+      className="w-32 sm:w-40 h-auto"
+      alt="Befikr Logo"
+    />
+  </div>
+</div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             <div className="w-full">
               <div className="bg-white rounded-xl shadow-xl overflow-hidden">
                 <div className="bg-[#009DC8] py-4 px-6">

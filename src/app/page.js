@@ -14,6 +14,7 @@ import Testimonial from "./components/Testimonial"
 import MediaCoverage from "./components/MediaCoverage";
 import CompanyLogoGrid from "./components/CompanyLogoGrid";
 import ClockArea from "./components/ClockArea";
+import Certificates from "./components/Certificate";
 
 export default function Home() {
 
@@ -70,6 +71,8 @@ export default function Home() {
         <Impact />
         <div className="bg-white pt-10 text-4xl md:text-left text-center font-generalSansSemibold md:pl-12 text-gray-900">Our Partners</div>
         <PartnerCarousel />
+        <Certificates />
+
         {/* <CompanyLogoGrid/> */}
 
         <div className="bg-white pt-10 text-4xl md:text-left text-center font-generalSansSemibold md:pl-12 text-gray-900">Interviews & Articles</div>
