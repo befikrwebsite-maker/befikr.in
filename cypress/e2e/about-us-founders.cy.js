@@ -1,4 +1,5 @@
 describe('About The Founders Page', () => {
+  
     beforeEach(() => {
       cy.visit('/'); // Update the path if the route is different
     });

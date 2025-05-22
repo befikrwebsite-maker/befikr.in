@@ -1,3 +1,5 @@
+import SimpleForm from "@/components/SimpleForm";
+
 export default function ServiceTemplate({
   placeholder = "Our Service",
   auditdesc = [],
@@ -150,6 +152,11 @@ export default function ServiceTemplate({
           <p className="text-gray-700">{scope}</p>
         </div>
       )}
+
+      {/* Form section */}
+      <div className="flex max-w-5xl py-16 px-4 justify-center mx-auto ">
+        <SimpleForm  />
+      </div>
     </div>
   );
 }

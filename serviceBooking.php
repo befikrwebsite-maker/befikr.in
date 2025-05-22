@@ -22,7 +22,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $name = $_POST["name"] ?? "";
     $email = $_POST["email"] ?? "";
     $message = $_POST["message"] ?? "";
-    $serviceTitle = $_POST["service"] ?? "";
+    //$serviceTitle = $_POST["service"] ?? "";
 
     if (empty($name) || empty($email) || empty($message)) {
         echo json_encode(["status" => "error", "message" => "All fields are required"]);
@@ -80,7 +80,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     //$mail->addReplyTo('replyto@example.com', 'First Last');
 
     //Set who the message is to be sent to
-    $mail->addAddress('bebefikr@befikr.in', 'John Doe');
+    $mail->addAddress('bebefikr@befikr.in', 'Befikr');
 
     //Set the subject line
     $mail->Subject = 'PHPMailer GMail SMTP test';
@@ -92,7 +92,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $mail->isHTML(false);
     
     //Replace the plain text body with one created manually
-    $mail->Body = "This is a message from $name with email $email with its message as $message for $serviceTitle";
+    $mail->Body = "This is a message from $name with email $email with its message as $message ";
 
     //Attach an pdf file
     //$mail->addAttachment('Output.pdf');

@@ -55,6 +55,7 @@ export default function Page() {
         "How much experience do you have?"
       ],
       experience: ["Electrical engineering: 2 years (Required)"],
+      preferred_qualifications: [],
       travel: ["75% (Required)"],
       work_location: "In person",
       expected_start_date: "18/01/2025",
@@ -89,6 +90,7 @@ export default function Page() {
       supplemental_pay: [],
       questions: [],
       experience: [],
+      preferred_qualifications: [],
       travel: [],
       work_location: "",
       expected_start_date: "",
@@ -117,6 +119,7 @@ export default function Page() {
       supplemental_pay: [],
       questions: [],
       experience: [],
+      preferred_qualifications: [],
       travel: [],
       work_location: "",
       expected_start_date: "",
@@ -137,6 +140,7 @@ export default function Page() {
       supplemental_pay: [],
       questions: [],
       experience: [],
+      preferred_qualifications: [],
       travel: [],
       work_location: "",
       expected_start_date: "",
@@ -165,16 +169,17 @@ export default function Page() {
       supplemental_pay: [],
       questions: [],
       experience: [],
+      preferred_qualifications: [],
       travel: [],
       work_location: "",
       expected_start_date: "",
     },
     {
       id: 6,
-      position: "Manager- Operations",
+      position: "Operations Manager – Electrical Engineering (Safety & Energy Audits)",
       team: "Electrical and Energy Audits",
       location: ["Delhi NCR"],
-      desc: "We are looking for an Operations Manager with expertise in Electrical Safety and Energy Audits to oversee nationwide audits across retail, commercial, and industrial sites. The role involves managing a team of 15-20 engineers, ensuring compliance with OISD standards, and driving post-audit interventions. Responsibilities include client visits, team training, and conducting surprise secondary audits.",
+      desc: "We are seeking a dynamic and experienced Operations Manager with a robust background in Electrical Safety and Energy Audits. The ideal candidate will have a proven track record of managing teams of 15-20 engineers and will be responsible for overseeing audits across various locations including retail / commercial outlets, and industrial sites nationwide. This role demands exceptional planning and execution skills, a thorough understanding of compliance standards (including OISD), and a proactive approach to post audit interventions. Travel to meet clients, train engineering team and perform surprise secondary audits is required. This role is ideal for a results-oriented professional who excels in planning, execution, and client engagement within the electrical engineering field. If you are driven to lead high-performing teams and deliver exceptional audit outcomes across diverse locations while ensuring stringent compliance and proactive post audit interventions, we invite you to apply.",
       tags: [
         "electrical",
         "energy",
@@ -186,10 +191,27 @@ export default function Page() {
         "delhi",
         "ncr",
       ],
-      pay: "",
+      pay: "₹6.6 – 7.5 Lacs per Annum",
       jobtype: "Fulltime",
-      responsibilities: [],
-      skills: [],
+      responsibilities: [
+        "Team Leadership & Management - Lead and mentor a team of 15-20 electrical engineers. Coordinate team schedules and delegate tasks effectively to meet project deadlines. Foster a collaborative environment that encourages professional growth and high performance.",
+        "Project Planning & Execution - Develop comprehensive project plans for conducting electrical safety and energy audits across multiple sites. Strategically plan travel routes and site visits to optimize audit efficiency. Ensure timely execution of audits while adhering to project timelines, budgets, and client requirements.",
+        "Client Engagement & Field Operations - Serve as the primary point of contact for clients; arrange and lead on-site meetings and presentations. Conduct audits at diverse locations (e.g., petrol pumps, bank branches) ensuring compliance with industry standards.",
+        "Technical Oversight & Compliance - Ensure all audits comply with established safety regulations and industry standards, including OISD standards, IE Rules, NBC, IEC, IEEE, and NFPA. Oversee the development, review, and approval of technical documents and risk assessments. Plan and manage post audit interventions, including corrective action implementations, follow-up assessments, and client advisory services. Stay updated on emerging trends and regulatory changes within the electrical safety and energy audit domain.",
+        "Operational Efficiency & Reporting - Monitor project progress, address operational challenges, and implement corrective actions when necessary. Maintain accurate records, track performance metrics, and provide regular updates to senior management. Identify opportunities for process improvements to enhance audit quality and operational efficiency.",
+      ],
+      skills: [
+        "Minimum of 10-12 years of experience in Electrical Safety & Energy Audits.",
+        "Demonstrated success in managing a team of 15-20 engineers.",
+        "Proven expertise in planning and executing multi-site audits.",
+        "Familiarity with OISD standards and compliance requirements.",
+        "Experience in planning and managing post audit interventions.",
+        "Willingness and ability to travel extensively for site visits and client meetings.",
+        "In-depth knowledge of electrical safety standards, compliance frameworks, and audit methodologies.",
+        "Strong organizational, leadership, and problem-solving skills.",
+        "Excellent communication and client relationship management abilities.",
+        "Proficiency in MS Office, AutoCAD, and energy audit tools."
+      ],
       benefits: [],
       schedule: [],
       supplemental_pay: [],
@@ -197,7 +219,11 @@ export default function Page() {
         "Are you having an Electrical Engineering Degree (B.E. / B. Tech) or Diploma in Electrical Engineering?",
         "How much experience do you have?"
       ],
-      experience: [],
+      experience: ["10+ years in Electrical Safety & Energy Audits"],
+      preferred_qualifications: [
+        "Certifications in Energy Auditing (e.g., BEE-Certified Energy Auditor/Manager) or Electrical Safety (e.g., NFPA, CEIG).",
+        "Experience working with clients in sectors such as Banking, Oil & Gas, Manufacturing, Pharma, or Chemicals."
+      ],
       travel: [],
       work_location: "",
       expected_start_date: "",
@@ -755,6 +781,20 @@ export default function Page() {
                       </h3>
                       <ul className="list-disc list-inside mt-2 space-y-1 text-gray-700">
                         {selectedJob.experience.map((item, index) => (
+                          <li key={index}>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {/* Preferred Qualifications */}
+                  {selectedJob.preferred_qualifications.length > 0 && (
+                    <div className="mt-8 border-t border-gray-300 pt-6">
+                      <h3 className="text-xl font-semibold text-companyBlue uppercase">
+                      Preferred Qualifications
+                      </h3>
+                      <ul className="list-disc list-inside mt-2 space-y-1 text-gray-700">
+                        {selectedJob.preferred_qualifications.map((item, index) => (
                           <li key={index}>{item}</li>
                         ))}
                       </ul>
