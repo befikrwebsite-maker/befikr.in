@@ -97,7 +97,7 @@ export default function ServicesShowcase() {
                               {serviceGroup.Service}
                             </h4>
                             </a>
-                            {!["Electrical Safety Audit Services","Energy Audit Services","Greenhouse Gas Emission Audit Services"].includes(serviceGroup.Service) &&
+                            {!["Energy Audit Services","Greenhouse Gas Emission Audit Services"].includes(serviceGroup.Service) &&
                             <svg
                               className={`w-4 h-4 md:w-5 md:h-5 text-gray-500 transition-transform ${hoveredServiceIndex === idx ? "rotate-90" : ""}`}
                               fill="none"
@@ -110,7 +110,7 @@ export default function ServicesShowcase() {
                           </div>
 
                           {/* SubServices */}
-                          {!["Electrical Safety Audit Services","Energy Audit Services","Greenhouse Gas Emission Audit Services"].includes(serviceGroup.Service) && hoveredServiceIndex === idx && (
+                          {!["Energy Audit Services","Greenhouse Gas Emission Audit Services"].includes(serviceGroup.Service) && hoveredServiceIndex === idx && (
                             <ul className="mt-2 pl-2 space-y-1 md:space-y-2">
                               {serviceGroup.SubServices.map((sub, i) => (
                                 <li

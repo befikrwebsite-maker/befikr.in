@@ -10,7 +10,14 @@ const ServicesBreakdown = [
             desc: "An electrical audit is a comprehensive assessment of electrical systems & infrastructure within a building, facility, or industrial setting to evaluate electrical safety, power efficiency, electrical safety compliance with regulations, and overall performance. Regular electrical safety audits are recommended, typically every year depending on the nature of business operations and respective regulatory requirements. An efficient electrical safety audit helps prevent electrical accidents, to identify potential hazards, energy inefficiencies, opportunities for improvement, fires, and compliance issues while ensuring the safety of employees and assets.",
             link: "/services/environment/safety-audit/electrical-safety-audit",
             SubServices: [
-     
+                {
+                    title: "Safety Mat Installation Service",
+                    desc: "",
+                    tags: ["testing", "inspection", "installation", "environment"],
+                    image: "../service_img/logo-svgDefective.svg",
+                    depth: "testing-inspection-service",
+                    link: "/services",
+                }
             ]
         },
         {
@@ -18,11 +25,11 @@ const ServicesBreakdown = [
             desc: "An energy audit is a comprehensive assessment of energy consuming mechanical & electrical infrastructure within a building, facility, or industrial setting to evaluate energy consumption patterns over a period of time. Periodical energy audits promote use of energy efficient process¬es, equipment, devices and systems, brings an effort to reduce energy intensity, ensure efficient use of energy and its conservation as per the guidelines & norms set by Bureau of energy efficiency in India. An efficient energy audit helps promote businesses take steps for energy savings & energy conservation techniques Including spreading awareness of energy savings within businesses & organisations.",
             link: "/services/environment/safety-audit/energy-audit",
         },
-        {
-            Service: "Greenhouse Gas Emission Audit Services",
-            desc: "",
-            link: "/services",
-        },
+        // {
+        //     Service: "Greenhouse Gas Emission Audit Services",
+        //     desc: "",
+        //     link: "/services",
+        // },
             {
             Service: "Circular Economy Services",
             link: "/services/environment/circular-economy",
@@ -95,14 +102,7 @@ const ServicesBreakdown = [
                     depth: "testing-inspection-service",
                     link: "/services/governance/testing-inspection-demo/installation-demo",
                 },
-                {
-                    title: "Safety Mat Installation Service",
-                    desc: "",
-                    tags: ["testing", "inspection", "installation", "environment"],
-                    image: "../service_img/logo-svgDefective.svg",
-                    depth: "testing-inspection-service",
-                    link: "/services",
-                }
+                
             ]
         }
         ]

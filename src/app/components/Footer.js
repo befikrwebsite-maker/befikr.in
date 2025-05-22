@@ -235,7 +235,7 @@ export default function Footer() {
   return (
     <footer className="bg-white text-gray-800 py-8 border-t-2  border-companyBlue">
       <div className="container mx-auto px-6 lg:px-20">
-        <div className="grid grid-cols-1 md:grid-cols-6 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-10">
           {/* Logo & Tagline */}
           <div>
             <a href="/">
@@ -319,7 +319,7 @@ export default function Footer() {
               {IndustryData?.Industries?.map((industry, index) => (
                 <li key={index}>
                   <a
-                    href="/"
+                    href=" "
                     className="text-gray-700 hover:text-companyBlue transition-colors duration-200"
                   >
                     {industry}
@@ -343,18 +343,21 @@ export default function Footer() {
           ))}
             </ul>
           </div>
-
           {/* Social Media / Logos */}
-          <div>
-            <h3 className="text-lg font-medium text-companyBlue"></h3>
-            <div className="grid grid-cols-2 gap-4 mt-2">
-              <img src="/extraLogos/logo-transparent-png_6.png" alt="Logo 6" className="w-32" />
-              <img src="/extraLogos/logo-transparent-png_2.png" alt="Logo 4" className="w-32" />
-              <img src="/extraLogos/image.png" alt="Logo 2" className="w-32" />
-              <img src="/extraLogos/logo-transparent-png_1.png" alt="Logo 1" className="w-32" />
-            </div>
-          </div>
         </div>
+
+       <div className="flex flex-col items-center justify-center mt-8">
+  <h3 className="text-lg font-medium text-companyBlue text-center">
+    {/* Optional heading text here */}
+  </h3>
+  <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-4 place-items-center">
+    <img src="/extraLogos/logo-transparent-png_6.png" alt="Logo 6" className="w-32" />
+    <img src="/extraLogos/logo-transparent-png_2.png" alt="Logo 4" className="w-32" />
+    <img src="/extraLogos/image.png" alt="Logo 2" className="w-32" />
+    <img src="/extraLogos/logo-transparent-png_1.png" alt="Logo 1" className="w-32" />
+  </div>
+</div>
+
 
 
         {/* Copyright */}

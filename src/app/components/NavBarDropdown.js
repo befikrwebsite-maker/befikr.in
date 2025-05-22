@@ -219,7 +219,7 @@ function NavBarDropdown2({ isVisible, onMouseLeave, dropdownRef }) {
       "Environment": [
         "Electrical Safety Audit Services",
         "Energy Audit Services",
-        "Greenhouse Gas Emission Audit Services",
+        // "Greenhouse Gas Emission Audit Services",
         "E-Waste Management",
         "Reverse Logistics Services"
       ],
@@ -229,7 +229,7 @@ function NavBarDropdown2({ isVisible, onMouseLeave, dropdownRef }) {
       "Governance": [
         "Testing, Inspection & Installation Services",
         "Defective Audit Services",
-        "Safety Mat Installation Service"
+        // "Safety Mat Installation Service"
       ]
     },
     "Industries": [
@@ -240,11 +240,6 @@ function NavBarDropdown2({ isVisible, onMouseLeave, dropdownRef }) {
       "Infotech",
       "Real Estate & Infrastructure",
       "Others"
-    ],
-    "Resources": [
-      "Blog",
-      "Case Studies",
-      "Whitepapers"
     ]
   };
 
@@ -269,7 +264,7 @@ function NavBarDropdown2({ isVisible, onMouseLeave, dropdownRef }) {
   return (
     <div
       ref={dropdownRef}
-      className="fixed left-0 w-full pt-10 text-white bg-companyBlue shadow-xl z-40 transition-all duration-300 ease-in-out"
+      className="fixed left-0 w-full pt-10 text-white bg-emerald-600 shadow-xl z-40 transition-all duration-300 ease-in-out"
       style={{
         top: "80px",
         minHeight: "calc(100vh - 200px)",
@@ -279,15 +274,15 @@ function NavBarDropdown2({ isVisible, onMouseLeave, dropdownRef }) {
     >
       {/* Close button for Mobile */}
       <div className="flex justify-end p-4 md:hidden">
-        <button onClick={onMouseLeave} className="text-white text-2xl font-bold">
+        <button onClick={onMouseLeave} className="text-white text-4xl font-bold">
           ✕
         </button>
       </div>
   
-      <div className="max-w-8xl mx-auto py-8 px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div className="max-w-6xl mx-auto py-8 px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
         {/* Explore Section */}
         <div className="space-y-6">
-          <h3 className="text-2xl font-bold text-teal-300 mb-4">Explore</h3>
+          <h3 className="text-2xl font-bold text-teal mb-4">Explore</h3>
           <div className="flex flex-col space-y-4">
             {Object.keys(menuData).map((section) => (
               <button
@@ -296,7 +291,7 @@ function NavBarDropdown2({ isVisible, onMouseLeave, dropdownRef }) {
                 onClick={() => setActiveSection(section)}
                 className={`w-full text-left text-xl font-bold py-3 px-4 rounded-md  transition-colors ${
                   activeSection === section
-                    ? " text-teal-300 border border-teal-300 font-semibold"
+                    ? " text-black border border-black font-semibold"
                     : "hover:bg-gray-100"
                 }`}
               >
@@ -314,17 +309,17 @@ function NavBarDropdown2({ isVisible, onMouseLeave, dropdownRef }) {
           {typeof menuData[activeSection] === "object" && !Array.isArray(menuData[activeSection]) ? (
             // Services with categories
             <div>
-              <h3 className="text-2xl font-bold text-white mb-4">
-                Organizing {activeSection} for a sustainable Future for all
+              <h3 className="text-3xl font-bold text-white mb-4">
+                Organizing ESG Services for a sustainable Future for all.
               </h3>
-              <p className="text-white mb-6 max-w-2xl">
+              <p className="text-white text-2xl mb-6 max-w-2xl">
                 We empower companies to comply with Environmental, Social & Governance business Goals around BRSR & ESG Framework.
               </p>
   
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
               {Object.entries(menuData[activeSection]).map(([category, serviceNames]) => (
   <div key={category} className="space-y-3">
-    <h4 className="text-lg font-semibold text-white border-b pb-2">{category}</h4>
+    <h4 className="text-xl   font-semibold text-white border-b pb-2">{category}</h4>
     <ul className="space-y-2">
       {Array.isArray(serviceNames) &&
         serviceNames.map((serviceName) => {
@@ -358,14 +353,28 @@ function NavBarDropdown2({ isVisible, onMouseLeave, dropdownRef }) {
           if (!matchedLink) return null; // Skip if no match
 
           return (
-            <li key={serviceName}>
-              <a
-                href={matchedLink}
-                className="block text-white hover:text-blue-600 transition-colors"
-              >
-                {serviceName}
-              </a>
-            </li>
+<li key={serviceName}>
+    <a
+      href={matchedLink}
+      className="block text-white text-lg hover:text-black transition-colors"
+    >
+      {serviceName}
+    </a>
+
+    {/* Hardcoded subservice for "Electrical Safety Audit Services" */}
+    {serviceName === "Electrical Safety Audit Services" && (
+      <ul className="ml-4 mt-2 space-y-1 border-l border-gray-400 pl-4">
+        <li>
+          <a
+            href="/services/"
+            className="block text-white text-sm hover:text-black transition-colors"
+          >
+            Safety Mat Installation Service
+          </a>
+        </li>
+      </ul>
+    )}
+  </li>
           );
         })}
     </ul>
@@ -384,7 +393,7 @@ function NavBarDropdown2({ isVisible, onMouseLeave, dropdownRef }) {
                   <a
                     key={index}
                     href="#"
-                    className="block p-4 border border-gray-200 rounded-md hover:bg-gray-50 hover:text-blue-600 transition-colors"
+                    className="block p-4 border border-gray-200 rounded-md  hover:text-black transition-colors"
                   >
                     {item}
                   </a>

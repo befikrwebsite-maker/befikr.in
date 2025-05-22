@@ -3,10 +3,10 @@
 import { motion } from 'framer-motion';
 
 const certificateImages = [
-  '/certificates/image-removebg-preview (6).png',
-  '/certificates/image-removebg-preview (7).png',
   '/certificates/image-removebg-preview (8).png',
-  '/certificates/image-removebg-preview (9).png'
+  '/certificates/image-removebg-preview (9).png',
+  '/certificates/image-removebg-preview (7).png',
+  '/certificates/image-removebg-preview (6).png',
 ];
 
 export default function Certificates() {

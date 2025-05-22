@@ -27,12 +27,12 @@ export default function ServiceTemplate({
       {Array.isArray(auditdesc) && auditdesc.length > 0 && (
         <div className="max-w-5xl py-16 px-4 mx-auto">
           <h1 className="text-4xl text-black mb-6">
-            What is an {audit || placeholder}?
+            {/* What is an {audit || placeholder}? */}
           </h1>
           <div className="space-y-4">
             {auditdesc.map((item, index) => (
               item && (
-                <p key={index} className="text-gray-700 leading-relaxed">
+                <p key={index} className="text-gray-700 text-xl leading-relaxed">
                   {typeof item === "string" ? item : JSON.stringify(item)}
                 </p>
               )

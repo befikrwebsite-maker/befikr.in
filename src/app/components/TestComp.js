@@ -132,7 +132,7 @@ export default function TabComponent() {
                     ))
                   ) : (
                     // If no subservices, show description
-                    service.desc && (
+                    !['Greenhouse Gas Emission Audit Services', 'Safety Mat Installation Service'].includes(service.desc) && service.desc && (
                       <a
                       href={service.link}>
                       <div className="mt-4 p-6 border-l-4 border-blue-400 pl-6 cursor-pointer hover:bg-gray-100 transition-all duration-300 rounded-lg shadow-md">

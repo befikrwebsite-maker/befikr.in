@@ -23,7 +23,7 @@ export default function Clock() {
         
         <div className="flex-1 text-center md:text-left">
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-generalSansSemibold leading-snug">
-            India’s Leading Force in Electrical Safety Auditing
+            India’s Leading Force in Electrical Safety Auditing.
           </h1>
         </div>
 

@@ -15,6 +15,7 @@ import MediaCoverage from "./components/MediaCoverage";
 import CompanyLogoGrid from "./components/CompanyLogoGrid";
 import ClockArea from "./components/ClockArea";
 import Certificates from "./components/Certificate";
+import HistorySection from "./components/TimelineComp";
 
 export default function Home() {
 
@@ -67,6 +68,7 @@ export default function Home() {
         <Service />
         <ClockArea/>
         {/* <ScreenSizeComponent/> */}
+        <HistorySection />
     
         <Impact />
         <div className="bg-white pt-10 text-4xl md:text-left text-center font-generalSansSemibold md:pl-12 text-gray-900">Our Partners</div>

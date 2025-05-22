@@ -54,7 +54,7 @@ export default function Hero() {
                     </h1>
 
                     <p className="inline-block p-3 font-generalSansLight text-lg md:text-2xl mb-8 max-w-3xl">
-                        An <span className="font-generalSansMedium">ESG</span> Services Company
+                        An <span className="font-generalSansMedium">ESG</span> Services Company.
                     </p>
 
                     {/* CTA (Optional) */}
