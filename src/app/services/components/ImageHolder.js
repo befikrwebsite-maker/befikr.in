@@ -155,7 +155,7 @@ export default function ServiceTemplate({
 
       {/* Form section */}
       <div className="flex max-w-5xl py-16 px-4 justify-center mx-auto ">
-        <SimpleForm  />
+        <SimpleForm serviceTitle={placeholder} />
       </div>
     </div>
   );

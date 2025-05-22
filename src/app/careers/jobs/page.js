@@ -15,7 +15,7 @@ export default function Page() {
       id: 1,
       position: "Electrical Safety Auditor",
       team: "Electrical and Energy Audits",
-      location: ["Gujarat", "Delhi NCR", "Rajasthan"],
+      location: ["Gujarat", "Delhi NCR", "Rajasthan","Pan India"],
       desc: "The ES Auditor is responsible for conducting audits of banks, petrol pumps, and other facilities as per predefined plans. They will assess electrical and energy systems, identify inefficiencies or risks, and document their observations in a detailed report for the client/company. The role requires ensuring compliance with safety and efficiency standards while providing actionable recommendations for improvements.",
       tags: [
         "electrical",
@@ -37,7 +37,7 @@ export default function Page() {
         "Suggest Corrective measures necessary towards Electrical safety and providing budgetary estimate for rectification works required",
         "Provide comprehensive report consisting of Observations on account of electrical and fire safety. Report must highlight critical areas/concerns which need immediate attention/ rectification as per given Audit Format.",
       ],
-      skills: [
+      eligibility: [
         "Education: B. Tech / B.E. (Electrical) / Diploma (Electrical)",
         "Experience: Minimum 2 years / 3 years for Diploma",
         "Must Be Familiar With Basic Electrical Tools Like- Multimeter, IR Tester And Earth Tester",
@@ -54,103 +54,129 @@ export default function Page() {
         "Are you having an Electrical Engineering Degree (B.E. / B. Tech) or Diploma in Electrical Engineering?",
         "How much experience do you have?"
       ],
-      experience: ["Electrical engineering: 2 years (Required)"],
-      preferred_qualifications: [],
       travel: ["75% (Required)"],
       work_location: "In person",
       expected_start_date: "18/01/2025",
     },
     {
       id: 2,
-      position: "Defective Product Auditor",
-      team: "Circular Economy Services",
-      location: ["Gurgaon", "North Delhi", "Faridabad", "Nashik"],
-      desc: "The Auditor will visit dealer partners as per the predefined schedule and inspect all products, including defective bulbs, following the Standard Operating Procedure (SOP) to ensure quality compliance.",
+      position: "Electrical Safety",
+      team: "Manager Electrical And Energy Audits",
+      location: ["Delhi NCR","Pan India"],
+      desc: "We are seeking a dynamic and experienced Operations Manager with a robust background in Electrical Safety and Energy Audits. The ideal candidate will have a proven track record of managing teams of 15-20 engineers and will be responsible for overseeing audits across various locations including retail / commercial outlets, and industrial sites nationwide. This role demands exceptional planning and execution skills, a thorough understanding of compliance standards (including OISD), and a proactive approach to post audit interventions. Travel to meet clients, train engineering team and perform surprise secondary audits is required.",
       tags: [
-        "defective",
-        "product",
-        "auditor",
-        "economy",
-        "services",
-        "circular",
+        "electrical",
+        "electric",
+        "safety",
+        "manager",
+        "energy",
+        "audits",
         "audit",
-        "service",
-        "gurgaon",
         "delhi",
-        "faridabad",
-        "nashik",
+        "delhi ncr",
         "ncr",
       ],
-      pay: "",
+      pay: "₹55,000 – ₹62,500 per Month",
       jobtype: "Fulltime",
-      responsibilities: [],
-      skills: [],
+      responsibilities: [
+        "Team Leadership &amp; Management: Lead and mentor a team of 15-20 electrical engineers. Coordinate team schedules and delegate tasks effectively to meet project deadlines. Foster a collaborative environment that encourages professional growth and high performance.",
+        "Project Planning &amp; Execution: Develop comprehensive project plans for conducting electrical safety and energy audits across multiple sites. Strategically plan travel routes and site visits to optimize audit efficiency. Ensure timely execution of audits while adhering to project timelines, budgets, and client requirements.",
+        "Client Engagement &amp; Field Operations: Serve as the primary point of contact for clients; arrange and lead on-site meetings and presentations. Conduct audits at diverse locations (e.g., petrol pumps, bank branches) ensuring compliance with industry standards.",
+        "Technical Oversight &amp; Compliance: Ensure all audits comply with established safety regulations and industry standards, including OISD standards, IE Rules, NBC, IEC, IEEE, and NFPA. Oversee the development, review, and approval of technical documents and risk assessments. Plan and manage post audit interventions, including corrective action implementations, follow-up assessments, and client advisory services. Stay updated on emerging trends and regulatory changes within the electrical safety and energy audit domain.",
+        "Efficiency &amp; Reporting: Monitor project progress, address operational challenges, and implement corrective actions when necessary. Maintain accurate records, track performance metrics, and provide regular updates to senior management. Identify opportunities for process improvements to enhance audit quality and operational efficiency.",
+      ],
+      eligibility: [
+        "Minimum of 10-12 years of experience in Electrical Safety &amp; Energy Audits.",
+        "Demonstrated success in managing a team of 15-20 engineers.",
+        "Proven expertise in planning and executing multi-site audits.",
+        "Familiarity with OISD standards and compliance requirements.",
+        "Experience in planning and managing post audit interventions.",
+        "Willingness and ability to travel extensively for site visits and client meetings.",
+        "In-depth knowledge of electrical safety standards, compliance frameworks, and audit methodologies.",
+        "Strong organizational, leadership, and problem-solving skills.",
+        "Excellent communication and client relationship management abilities.",
+        "Proficiency in MS Office, AutoCAD, and energy audit tool Certifications in Energy Auditing (e.g., BEE-Certified Energy Auditor/Manager) or Electrical Safety (e.g., NFPA, CEIG).",
+        "Experience working with clients in sectors such as Banking, Oil &amp; Gas, Manufacturing, Pharma, or Chemicals.",
+
+      ],
       benefits: [],
       schedule: [],
       supplemental_pay: [],
       questions: [],
-      experience: [],
-      preferred_qualifications: [],
       travel: [],
       work_location: "",
       expected_start_date: "",
     },
     {
       id: 3,
-      position: "Area Supervisor",
-      team: "Circular Economy Services",
-      location: ["Sonipat"],
-      desc: "The Defective Lamp Supervisor is responsible for planning auditor schedules, coordinating with auditors and logistics teams, and ensuring smooth execution of inspection processes.",
+      position: "Electrical Engineer",
+      team: "Electrical and energy audits",
+      location: ["Delhi NCR","Pan India"],
+      desc: "We are looking for an Electrical Engineer to work from our office, responsible for managing and verifying audit files submitted by Electrical Auditors. The role includes ensuring compliance with safety standards, reviewing reports for accuracy, and coordinating with auditors for necessary corrections. Additionally, the candidate will be responsible for client interactions related to billing and documentation.",
       tags: [
-        "area",
-        "supervisor",
-        "economy",
-        "services",
-        "circular",
-        "service",
-        "sonipat",
+        "electrical",
+        "engineer",
+        "energy",
+        "audit",
+        "audits",
+        "delhi",
+        "ncr",
       ],
-      pay: "",
+      pay: "₹15,000 – ₹20,000 per Month",
       jobtype: "Fulltime",
-      responsibilities: [],
-      skills: [],
+      responsibilities: [
+        "Review and verify Electrical Safety Audit reports for accuracy and compliance.",
+        "Coordinate with field auditors to rectify discrepancies in reports.",
+        "Maintain proper documentation and ensure timely submission of audit files.",
+        "Communicate with clients regarding billing, clarifications, and required documentation.",
+        "Assist in preparing invoices based on completed audit reports.",
+        "Ensure all reports and billing processes follow company policies and standards."
+      ],
+      eligibility: [
+        "Bachelor&#39;s degree in Electrical Engineering or a related field.",
+        "Strong understanding of electrical safety standards and audit procedures.",
+        "Good communication skills for client interaction and coordination.",
+        "Proficiency in MS Office and report management.",
+        "Ability to work independently and manage multiple tasks efficiently."
+      ],
       benefits: [],
       schedule: [],
       supplemental_pay: [],
       questions: [],
-      experience: [],
-      preferred_qualifications: [],
       travel: [],
       work_location: "",
       expected_start_date: "",
     },
     {
       id: 4,
-      position: "Field Officer",
-      team: "CSR Services",
-      location: ["Delhi NCR"],
-      pay: "",
+      position: "Technical Electrical",
+      team: "Circular economy services",
+      location: ["Delhi NCR","Pan India"],
+      pay: "₹12,000 – ₹16,000 per Month",
       tags: ["field", "officer", "csr", "services", "service", "delhi", "ncr"],
-      desc: "The Field Officer will visit various slum areas to identify and recruit entrepreneurial women who can effectively sell Proya Shakti (protein powder) door-to-door. This role requires strong community engagement and networking skills to onboard suitable candidates.",
+      desc: "Responsible for visit and conduct inspection of LED Products at various Channel Partners&#39; Premises. Inspection of LED Products as per defined SOP. Prepare Inspection Report as per defined format of the Company. Pack inspected LED products properly in given packaging items like Gunny Bags, Cartons etc. Travel to multiple districts and cities as per the location of Channel Partners and conduct LED Inspection. Report any major issues during inspection to Senior Management of the Company",
       jobtype: "Fulltime",
-      responsibilities: [],
-      skills: [],
+      responsibilities: [
+        "Responsible for visit and conduct inspection of LED Products at various Channel Partners&#39; Premises.",
+        "Inspection of LED Products as per defined SOP"
+      ],
+      eligibility: [
+        "12 TH PASS / ITI"
+      ],
       benefits: [],
       schedule: [],
       supplemental_pay: [],
       questions: [],
-      experience: [],
-      preferred_qualifications: [],
       travel: [],
       work_location: "",
       expected_start_date: "",
     },
     {
       id: 5,
-      position: "Technician",
+      position: "Technician home appliance",
       team: "Master Service Partnerships",
-      location: ["Noida"],
-      desc: "The Technician will visit customers&#39; homes for appliance installation and demonstration. Additionally, they can promote and sell compatible stands to enhance the customer’s setup and experience.",
+      location: ["Delhi NCR","Pan India"],
+      desc: "Technician will be responsible for doing installation and demo for the given products like - Washing machine, Fridge, Dishwasher.",
       tags: [
         "master",
         "service",
@@ -158,28 +184,31 @@ export default function Page() {
         "spartnership",
         "technician",
         "services",
-        "noida",
+        "delhi ncr",
+        "delhi",
+        "ncr"
       ],
-      pay: "",
+      pay: "₹17,000 – ₹20,000 per Month",
       jobtype: "Fulltime",
-      responsibilities: [],
-      skills: [],
+      responsibilities: ["Installation and demo."],
+      eligibility: [
+        "ITI",
+        "Polytechnic or basic education in relevant field."
+      ],
       benefits: [],
       schedule: [],
       supplemental_pay: [],
       questions: [],
-      experience: [],
-      preferred_qualifications: [],
       travel: [],
       work_location: "",
       expected_start_date: "",
     },
     {
       id: 6,
-      position: "Operations Manager – Electrical Engineering (Safety & Energy Audits)",
-      team: "Electrical and Energy Audits",
-      location: ["Delhi NCR"],
-      desc: "We are seeking a dynamic and experienced Operations Manager with a robust background in Electrical Safety and Energy Audits. The ideal candidate will have a proven track record of managing teams of 15-20 engineers and will be responsible for overseeing audits across various locations including retail / commercial outlets, and industrial sites nationwide. This role demands exceptional planning and execution skills, a thorough understanding of compliance standards (including OISD), and a proactive approach to post audit interventions. Travel to meet clients, train engineering team and perform surprise secondary audits is required. This role is ideal for a results-oriented professional who excels in planning, execution, and client engagement within the electrical engineering field. If you are driven to lead high-performing teams and deliver exceptional audit outcomes across diverse locations while ensuring stringent compliance and proactive post audit interventions, we invite you to apply.",
+      position: "Field Officer",
+      team: "CSR Services",
+      location: ["Delhi NCR","Pan India"],
+      desc: "We are looking out to hire a profile with a couple of years of experience as &quot;Field Sales Officer&quot; preferably FMCG space. Identifying &amp; recruiting women entrepreneurs in small towns &amp; villages for door-to-door selling of a nutritional product. Giving sales training (on nutritional products) to the identified women entrepreneurs &amp; kick start sales operations with the team. Creating sales plans, executing marketing plans, &amp; monitoring the sales team of women entrepreneurs to ensure compliance with protocols &amp; attainment of sales. Supervising the group of women entrepreneurs on day-to-day working, roadblocks being faced &amp; sales achievements. Ensure regular screening of prospects as women entrepreneurs within the identified geography of operations/state/in and around city/towns.",
       tags: [
         "electrical",
         "energy",
@@ -191,7 +220,7 @@ export default function Page() {
         "delhi",
         "ncr",
       ],
-      pay: "₹6.6 – 7.5 Lacs per Annum",
+      pay: "₹18,000 – ₹22,000 per Month",
       jobtype: "Fulltime",
       responsibilities: [
         "Team Leadership & Management - Lead and mentor a team of 15-20 electrical engineers. Coordinate team schedules and delegate tasks effectively to meet project deadlines. Foster a collaborative environment that encourages professional growth and high performance.",
@@ -200,8 +229,8 @@ export default function Page() {
         "Technical Oversight & Compliance - Ensure all audits comply with established safety regulations and industry standards, including OISD standards, IE Rules, NBC, IEC, IEEE, and NFPA. Oversee the development, review, and approval of technical documents and risk assessments. Plan and manage post audit interventions, including corrective action implementations, follow-up assessments, and client advisory services. Stay updated on emerging trends and regulatory changes within the electrical safety and energy audit domain.",
         "Operational Efficiency & Reporting - Monitor project progress, address operational challenges, and implement corrective actions when necessary. Maintain accurate records, track performance metrics, and provide regular updates to senior management. Identify opportunities for process improvements to enhance audit quality and operational efficiency.",
       ],
-      skills: [
-        "Minimum of 10-12 years of experience in Electrical Safety & Energy Audits.",
+      eligibility: [
+        "10+ years in Electrical Safety & Energy Audits",
         "Demonstrated success in managing a team of 15-20 engineers.",
         "Proven expertise in planning and executing multi-site audits.",
         "Familiarity with OISD standards and compliance requirements.",
@@ -210,7 +239,9 @@ export default function Page() {
         "In-depth knowledge of electrical safety standards, compliance frameworks, and audit methodologies.",
         "Strong organizational, leadership, and problem-solving skills.",
         "Excellent communication and client relationship management abilities.",
-        "Proficiency in MS Office, AutoCAD, and energy audit tools."
+        "Proficiency in MS Office, AutoCAD, and energy audit tools.",
+        "Certifications in Energy Auditing (e.g., BEE-Certified Energy Auditor/Manager) or Electrical Safety (e.g., NFPA, CEIG).",
+        "Experience working with clients in sectors such as Banking, Oil & Gas, Manufacturing, Pharma, or Chemicals."
       ],
       benefits: [],
       schedule: [],
@@ -218,11 +249,6 @@ export default function Page() {
       questions: [
         "Are you having an Electrical Engineering Degree (B.E. / B. Tech) or Diploma in Electrical Engineering?",
         "How much experience do you have?"
-      ],
-      experience: ["10+ years in Electrical Safety & Energy Audits"],
-      preferred_qualifications: [
-        "Certifications in Energy Auditing (e.g., BEE-Certified Energy Auditor/Manager) or Electrical Safety (e.g., NFPA, CEIG).",
-        "Experience working with clients in sectors such as Banking, Oil & Gas, Manufacturing, Pharma, or Chemicals."
       ],
       travel: [],
       work_location: "",
@@ -723,14 +749,14 @@ export default function Page() {
                   )}
 
 
-                  {/* Skills */}
-                  {selectedJob.skills.length > 0 && (
+                  {/* Eligibility */}
+                  {selectedJob.eligibility.length > 0 && (
                     <div className="mt-8 border-t border-gray-300 pt-6">
                       <h3 className="text-xl font-semibold text-companyBlue uppercase">
-                        Skills
+                        Eligibility
                       </h3>
                       <ul className="flex flex-wrap gap-2 mt-2">
-                        {selectedJob.skills.map((skill, index) => (
+                        {selectedJob.eligibility.map((skill, index) => (
                           <li
                             key={index}
                             className="bg-gray-200 text-gray-700 px-3 py-1 rounded-md text-sm"
@@ -766,35 +792,6 @@ export default function Page() {
                       </h3>
                       <ul className="list-disc list-inside mt-2 space-y-1 text-gray-700">
                         {selectedJob.schedule.map((item, index) => (
-                          <li key={index}>{item}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-
-
-                  {/* Experience */}
-                  {selectedJob.experience.length > 0 && (
-                    <div className="mt-8 border-t border-gray-300 pt-6">
-                      <h3 className="text-xl font-semibold text-companyBlue uppercase">
-                        Experience
-                      </h3>
-                      <ul className="list-disc list-inside mt-2 space-y-1 text-gray-700">
-                        {selectedJob.experience.map((item, index) => (
-                          <li key={index}>{item}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-
-                  {/* Preferred Qualifications */}
-                  {selectedJob.preferred_qualifications.length > 0 && (
-                    <div className="mt-8 border-t border-gray-300 pt-6">
-                      <h3 className="text-xl font-semibold text-companyBlue uppercase">
-                      Preferred Qualifications
-                      </h3>
-                      <ul className="list-disc list-inside mt-2 space-y-1 text-gray-700">
-                        {selectedJob.preferred_qualifications.map((item, index) => (
                           <li key={index}>{item}</li>
                         ))}
                       </ul>

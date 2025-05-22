@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 
 
-export default function SimpleForm({onClose}) {
+export default function SimpleForm({ serviceTitle, onClose }) {
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -28,15 +28,14 @@ export default function SimpleForm({onClose}) {
         setSubmitStatus("ongoing");
 
         const form = new FormData();
-
+        
         form.append("name", formData.name);
         form.append("email", formData.email);
-        //form.append("service", serviceTitle);
+        form.append("service", serviceTitle);
         form.append("message", formData.message);
 
         try {
-            //const response = await fetch("https://befikr.in/serviceBooking.php", {
-            const response = await fetch("http://localhost/Befikr/serviceBooking.php", {
+            const response = await fetch("https://befikr.in/serviceBooking.php", {
                 method: "POST",
                 body: form,
             });
@@ -80,10 +79,17 @@ export default function SimpleForm({onClose}) {
         <div className="flex justify-center flex-auto">
 
             <div className="p-4 bg-gray-100 rounded-md shadow-md w-full ">
-                <h2 className="text-xl font-semibold text-companyBlue mb-2">
-                    Book a Meeting
-                    {/* Book a Meeting for {serviceTitle} */}
-                </h2>
+                <div className=" flex justify-between">
+                    <h2 className="text-xl font-semibold text-companyBlue mb-2">
+                        Happy to connect!
+                        {/* Book a Meeting for {serviceTitle} */}
+                    </h2>
+                    <h2 className="text-sm font-semibold text-companyBlue mb-2">
+                        {serviceTitle}
+                        {/* Book a Meeting for {serviceTitle} */}
+                    </h2>
+                </div>
+
                 <form onSubmit={handleSubmit} className="space-y-3">
                     <div>
                         <label className="block text-gray-700 text-sm font-medium mb-1">Your Name</label>
@@ -136,10 +142,10 @@ export default function SimpleForm({onClose}) {
                                         d="M4 12a8 8 0 018-8v8H4z"
                                     />
                                 </svg>
-                                Submitting...
+                                Sending...
                             </span>
                         ) : (
-                            "Apply Now"
+                            "Send"
                         )}
                     </button>
                 </form>
@@ -156,8 +162,9 @@ export default function SimpleForm({onClose}) {
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                                 </svg>
                             </div>
-                            <h2 className="text-lg font-semibold text-companyBlue">Query Recieved!</h2>
-                            <p className="text-sm text-gray-700 mt-2">We’ve received your query.</p>
+                            <h2 className="text-lg font-semibold text-companyBlue">Meeting Request Recieved!</h2>
+                            <p className="text-sm text-gray-700 mt-2">We will be in touch with you soon.</p>
+                            <p className="text-sm text-gray-700 mt-2">Thank You!</p>
                             <p className="text-xs text-gray-500 mt-2">Closing in {countdown} second{countdown !== 1 && "s"}...</p>
                         </div>
                     </div>

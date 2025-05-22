@@ -73,8 +73,7 @@ export default function Form({ questions, team, position, locations, onClose }) 
     form.append("resume", resume);
 
     try {
-      //const response = await fetch("https://befikr.in/mailmailer.php", {
-      const response = await fetch("http://localhost/Befikr/mailPHPMailer.php", {
+      const response = await fetch("https://befikr.in/mailmailer.php", {
         method: "POST",
         body: form,
       });
