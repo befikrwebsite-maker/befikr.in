@@ -128,7 +128,7 @@ export default function Timeline() {
               key={index}
               initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 1.5, delay: index * 0.2 }}
               viewport={{ once: true }}
               className="min-w-8xl max-w-8xl h-56 bg-zinc-900 rounded-xl p-5 border border-zinc-700 shadow-md"
             >

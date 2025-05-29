@@ -288,7 +288,6 @@ export default function Footer() {
                     href="/services"
                     className=" text-gray-700 hover:text-companyBlue duration-200"
                   >
-                    Greenhouse Gas Emission Audit Services
                   </a>
                 </li>
             {ServicesBreakdown?.map((category, index) =>
