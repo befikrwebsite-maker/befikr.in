@@ -12,6 +12,7 @@ export default function Navbar() {
   const pageNames = {
     "/about-us": "About Us",
     "/about-us/founders/": "Founders",
+    "/about-us/our-journey/": "Our Journey"
   };
 
   const normalizePath = (path) => path.replace(/\/$/, ""); // Remove trailing slash for consistency

@@ -60,8 +60,8 @@ export default function Page() {
     },
     {
       id: 2,
-      position: "Electrical Safety",
-      team: "Manager Electrical And Energy Audits",
+      position: "Electrical Safety Manager",
+      team: "Electrical And Energy Audits",
       location: ["Delhi NCR","Pan India"],
       desc: "We are seeking a dynamic and experienced Operations Manager with a robust background in Electrical Safety and Energy Audits. The ideal candidate will have a proven track record of managing teams of 15-20 engineers and will be responsible for overseeing audits across various locations including retail / commercial outlets, and industrial sites nationwide. This role demands exceptional planning and execution skills, a thorough understanding of compliance standards (including OISD), and a proactive approach to post audit interventions. Travel to meet clients, train engineering team and perform surprise secondary audits is required.",
       tags: [
