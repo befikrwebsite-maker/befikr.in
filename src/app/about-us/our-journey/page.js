@@ -10,7 +10,7 @@ export default function OurJourney() {
                 <Navbar />
                 <main className="w-[100%] pt-20 md:w-full justify-self-center no-scrollbar bg-[#f5f5f5] flex flex-col">
                     <NavbarSub />
-                   
+                    <div className="m-2"></div>
                     <Timeline />
                 </main>
                 <Footer />

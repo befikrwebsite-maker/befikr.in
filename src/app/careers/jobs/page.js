@@ -14,7 +14,7 @@ export default function Page() {
     {
       id: 1,
       position: "Electrical Safety Auditor",
-      team: "Electrical and Energy Audits",
+      team: "Electrical And Energy Audits",
       location: ["Gujarat", "Delhi NCR", "Rajasthan","Pan India"],
       desc: "The ES Auditor is responsible for conducting audits of banks, petrol pumps, and other facilities as per predefined plans. They will assess electrical and energy systems, identify inefficiencies or risks, and document their observations in a detailed report for the client/company. The role requires ensuring compliance with safety and efficiency standards while providing actionable recommendations for improvements.",
       tags: [
@@ -110,7 +110,7 @@ export default function Page() {
     {
       id: 3,
       position: "Electrical Engineer",
-      team: "Electrical and energy audits",
+      team: "Electrical And Energy Audits",
       location: ["Delhi NCR","Pan India"],
       desc: "We are looking for an Electrical Engineer to work from our office, responsible for managing and verifying audit files submitted by Electrical Auditors. The role includes ensuring compliance with safety standards, reviewing reports for accuracy, and coordinating with auditors for necessary corrections. Additionally, the candidate will be responsible for client interactions related to billing and documentation.",
       tags: [
@@ -150,7 +150,7 @@ export default function Page() {
     {
       id: 4,
       position: "Technical Electrical",
-      team: "Circular economy services",
+      team: "Circular Economy Services",
       location: ["Delhi NCR","Pan India"],
       pay: "₹12,000 – ₹16,000 per Month",
       tags: ["field", "officer", "csr", "services", "service", "delhi", "ncr"],
