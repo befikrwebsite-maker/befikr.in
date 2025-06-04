@@ -7,6 +7,7 @@ import { Button } from '@/components/Button';
 import { Card, CardContent } from '@/components/Card';
 import { FiEdit2, FiTrash2, FiEye, FiRefreshCw, FiPlus } from 'react-icons/fi';
 import JobCard from './comp/Card';
+import JobFormModal from './comp/JobFormModal';
 
 const COLORS = ['#04B2D9', '#ef4444']; // company blue and red
 
@@ -16,8 +17,10 @@ const AdminDashboard = () => {
   const [jobCount, setJobCount] = useState(0);
   const [applicants, setApplicants] = useState({});
   const [selectedApplicants, setSelectedApplicants] = useState([]);
+  const [editingJob, setEditingJob] = useState(null);
+  const [modalOpen, setModalOpen] = useState(false);
 
-    useEffect(() => {
+  const fetchJobs = () => {
     fetch('http://befikr.in/get_jobs.php') // Update path accordingly
       .then((res) => {
         if (!res.ok) {
@@ -26,10 +29,17 @@ const AdminDashboard = () => {
         return res.json();
       })
       .then((data) => {
-          setJobs(data.jobs || []);
-          setJobCount(data.jobs_count);
-          setApplicants(data.applicants || {});
+        setJobs(data.jobs || []);
+        setJobCount(data.jobs_count);
+        setApplicants(data.applicants || {});
       })
+      .catch((error) => {
+        console.error('Error fetching jobs:', error);
+      });
+  }
+
+    useEffect(() => {
+    fetchJobs();
   }, []);
 
   useEffect(() => {
@@ -80,7 +90,7 @@ const AdminDashboard = () => {
 
     return (
       <text
-        x={x + 100}
+        x={x}
         y={y}
         fill="white"
         textAnchor={x > cx ? 'start' : 'end'}
@@ -205,6 +215,7 @@ const AdminDashboard = () => {
                         size="sm"
                         variant="outline"
                         className="flex items-center gap-1 px-3 py-1 hover:bg-blue-100 text-blue-700 border-blue-700 transition"
+                        onClick={() => { setEditingJob(job); setModalOpen(true); }}
                       >
                         <FiEdit2 />
                         Edit
@@ -235,6 +246,13 @@ const AdminDashboard = () => {
           </div>
         </CardContent>
       </Card>
+
+      <JobFormModal
+        isOpen={modalOpen}
+        onClose={() => setModalOpen(false)}
+        editingJob={editingJob}
+        onSaved={fetchJobs}
+      />
 
       {/* Applicants View */}
       {selectedApplicants.length > 0 && (
