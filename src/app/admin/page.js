@@ -6,25 +6,37 @@ import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from 'recha
 import { Button } from '@/components/Button';
 import { Card, CardContent } from '@/components/Card';
 import { FiEdit2, FiTrash2, FiEye, FiRefreshCw, FiPlus } from 'react-icons/fi';
+import JobCard from './comp/Card';
 
 const COLORS = ['#04B2D9', '#ef4444']; // company blue and red
 
 const AdminDashboard = () => {
   const router = useRouter();
   const [jobs, setJobs] = useState([]);
+  const [jobCount, setJobCount] = useState(0);
   const [applicants, setApplicants] = useState({});
   const [selectedApplicants, setSelectedApplicants] = useState([]);
 
+    useEffect(() => {
+    fetch('http://befikr.in/get_jobs.php') // Update path accordingly
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        return res.json();
+      })
+      .then((data) => {
+          setJobs(data.jobs || []);
+          setJobCount(data.count);
+          setApplicants(data.applicants || {});
+      })
+  }, []);
+
   useEffect(() => {
-    const dummyJobs = [
-      { id: 1, title: 'Frontend Developer', status: 'active', description: 'React/Next.js', location: 'Remote', type: 'Full-time' },
-      { id: 2, title: 'Backend Developer', status: 'closed', description: 'Node.js', location: 'Bangalore', type: 'Part-time' },
-    ];
     const dummyApplicants = {
       1: [{ name: 'Alice' }, { name: 'Bob' }],
       2: [{ name: 'Charlie' }],
     };
-    setJobs(dummyJobs);
     setApplicants(dummyApplicants);
   }, []);
 
@@ -89,7 +101,7 @@ const AdminDashboard = () => {
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
-        {[{ label: 'Total Jobs', value: jobs.length },
+        {[{ label: 'Total Jobs', value: jobCount },
         { label: 'Total Applicants', value: Object.values(applicants).flat().length },
         { label: 'Active Jobs', value: activeCount }].map(({ label, value }) => (
           <Card key={label} className="shadow-md rounded-xl border border-gray-200 hover:shadow-lg transition">
@@ -147,6 +159,10 @@ const AdminDashboard = () => {
             Jobs Management
           </h2>
           <div className="overflow-x-auto rounded-lg border border-gray-300">
+            <div style={{ padding: '40px' }}>
+              <h1>Available Jobs</h1>
+              {jobs.map(job => <JobCard key={job.id} job={job} />)}
+            </div>
             <table className="w-full border-collapse">
               <thead className="bg-gray-100">
                 <tr>
