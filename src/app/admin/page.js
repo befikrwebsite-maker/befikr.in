@@ -6,6 +6,7 @@ import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from 'recha
 import { Button } from '@/components/Button';
 import { Card, CardContent } from '@/components/Card';
 import { FiEdit2, FiTrash2, FiEye, FiRefreshCw, FiPlus } from 'react-icons/fi';
+import { toast } from 'react-toastify';
 import JobCard from './comp/Card';
 import JobFormModal from './comp/JobFormModal';
 
@@ -60,7 +61,23 @@ const AdminDashboard = () => {
   };
 
   const deleteJob = (id) => {
-    setJobs(jobs.filter(job => job.id !== id));
+    const confirmed = window.confirm('Are you sure you want to delete this job posting?');
+    if (!confirmed) return;
+    fetch('https://befikr.in/delete_job.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id })
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          toast.success('Job deleted successfully!');
+          setJobs(jobs.filter(job => job.id !== id));
+        } else {
+          toast.error('Error: ' + data.error);
+        }
+      })
+      .catch(err => console.error(err));
   };
 
   const viewApplicants = (id) => {
@@ -92,7 +109,7 @@ const AdminDashboard = () => {
       <text
         x={x}
         y={y}
-        fill="white"
+        fill="black"
         textAnchor={x > cx ? 'start' : 'end'}
         dominantBaseline="central"
         fontWeight="bold"
