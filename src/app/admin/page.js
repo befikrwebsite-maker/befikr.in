@@ -27,7 +27,7 @@ const AdminDashboard = () => {
       })
       .then((data) => {
           setJobs(data.jobs || []);
-          setJobCount(data.count);
+          setJobCount(data.jobs_count);
           setApplicants(data.applicants || {});
       })
   }, []);
@@ -199,7 +199,6 @@ const AdminDashboard = () => {
                         size="sm"
                         variant="outline"
                         className="flex items-center gap-1 px-3 py-1 hover:bg-blue-100 text-blue-700 border-blue-700 transition"
-                        onClick={() => router.push(`/admin/edit?id=${job.id}`)}
                       >
                         <FiEdit2 />
                         Edit
