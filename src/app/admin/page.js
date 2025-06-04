@@ -62,6 +62,16 @@ const AdminDashboard = () => {
     { name: 'Closed', value: closedCount, color: COLORS[1] },
   ];
 
+  const parse = (str) => {
+    try {
+      return JSON.parse(str);
+    } catch {
+      return [];
+    }
+  };
+
+
+
   const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent }) => {
     const RADIAN = Math.PI / 180;
     const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
@@ -70,7 +80,7 @@ const AdminDashboard = () => {
 
     return (
       <text
-        x={x}
+        x={x + 100}
         y={y}
         fill="white"
         textAnchor={x > cx ? 'start' : 'end'}
@@ -159,10 +169,6 @@ const AdminDashboard = () => {
             Jobs Management
           </h2>
           <div className="overflow-x-auto rounded-lg border border-gray-300">
-            <div style={{ padding: '40px' }}>
-              <h1>Available Jobs</h1>
-              {jobs.map(job => <JobCard key={job.id} job={job} />)}
-            </div>
             <table className="w-full border-collapse">
               <thead className="bg-gray-100">
                 <tr>
@@ -177,9 +183,9 @@ const AdminDashboard = () => {
                     key={job.id}
                     className="bg-white border-t border-gray-200 hover:bg-[#04B2D9]/10 transition cursor-default"
                   >
-                    <td className="p-4">{job.title}</td>
-                    <td className="p-4">{job.location}</td>
-                    <td className="p-4">{job.type}</td>
+                    <td className="p-4">{job.position}</td>
+                    <td className="p-4">{parse(job.location)}</td>
+                    <td className="p-4">{job.job_type}</td>
                     <td
                       className={`p-4 capitalize font-semibold ${job.status === 'active' ? 'text-green-600' : 'text-red-600'}`}
                     >
