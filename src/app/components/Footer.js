@@ -207,30 +207,6 @@ export default function Footer() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const fetchJobs = async () => {
-      try {
-        const response = await fetch('http://befikr.in/getJobs.php');
-        
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        
-        const data = await response.json();
-        
-        if (data.success) {
-          setJobNames(data.data.map(job => job.title));
-        }
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchJobs();
-  }, []);
-
 
   return (
     <footer className="bg-white text-gray-800 py-8 border-t-2  border-companyBlue">

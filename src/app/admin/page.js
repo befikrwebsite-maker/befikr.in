@@ -52,7 +52,7 @@ const AdminDashboard = () => {
 
   // Derived values for filtering, pagination etc.
   const filteredJobs = jobs.filter((job) =>
-    job.title.toLowerCase().includes(filterInput.toLowerCase())
+    job.position.toLowerCase().includes(filterInput.toLowerCase())
   );
 
   const totalApplications = Object.values(applicants).flat().length;
@@ -80,7 +80,7 @@ const AdminDashboard = () => {
   ];
 
   const barData = jobs.map((job) => ({
-    title: job.title,
+    title: job.position,
     applicants: applicants[job.id]?.length || 0,
   }));
 
@@ -217,7 +217,7 @@ const AdminDashboard = () => {
           <ul className="list-disc list-inside text-red-700 text-lg font-medium space-y-1">
             {expiringJobs.map((job) => (
               <li key={job.id}>
-                {job.title} - Expires on <strong>{job.expiresAt}</strong>
+                {job.position} - Expires on <strong>{job.expiresAt}</strong>
               </li>
             ))}
           </ul>
@@ -248,7 +248,7 @@ const AdminDashboard = () => {
                     idx % 2 === 0 ? "bg-white" : "bg-gray-50"
                   }`}
                 >
-                  <td className="py-3 px-4">{job.title}</td>
+                  <td className="py-3 px-4">{job.position}</td>
                   <td className="py-3 px-4">{job.location}</td>
                   <td className="py-3 px-4">{job.type}</td>
                   <td className="py-3 px-4">{job.postedAt}</td>

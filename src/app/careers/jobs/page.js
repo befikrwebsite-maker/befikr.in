@@ -258,6 +258,7 @@ export default function Page() {
 
   // show form ///////////////////////////////////////////////////////////////////////////////////////////////////////////
   const [formVisible, setFormVisible] = useState(false);
+  const [jobs, setJobs] = useState([])
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   // search filter ///////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -318,6 +319,36 @@ export default function Page() {
       setSelectedLocations((prev) => prev.filter((item) => item !== value));
     };
   }
+
+  const fetchJobs = () => {
+      fetch('http://befikr.in/get_jobs.php') // Update path accordingly
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error(`HTTP error! status: ${res.status}`);
+          }
+          return res.json();
+        })
+        .then((data) => {
+          setJobs(data.jobs || []);
+          setJobCount(data.jobs_count);
+          setApplicants(data.applicants || {});
+        })
+        .catch((error) => {
+          console.error('Error fetching jobs:', error);
+        });
+    }
+  
+      useEffect(() => {
+      fetchJobs();
+    }, []);
+
+    const parse = (str) => {
+    try {
+      return JSON.parse(str);
+    } catch {
+      return [];
+    }
+  };
 
   const [mobileFilterVisible, setMobileFilterVisible] = useState(false);
 
@@ -586,7 +617,7 @@ export default function Page() {
 
 
         <div className="py-10 px- grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 justify-items-center w-full max-w-7xl">
-          {filteredJobs.map((items, index) => (
+          {jobs.map((items, index) => (
             <motion.div
               key={items.id}
               layoutId={`job-card-${items.id}`}
