@@ -1,28 +1,35 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import { Button } from '@/components/Button';
-import { Card, CardContent } from '@/components/Card';
-import { FiEdit2, FiTrash2, FiEye, FiRefreshCw, FiPlus } from 'react-icons/fi';
-import { toast } from 'react-toastify';
-import JobCard from './comp/Card';
-import JobFormModal from './comp/JobFormModal';
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import {
+  PieChart,
+  Pie,
+  Cell,
+  Tooltip,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  ResponsiveContainer,
+} from "recharts";
+import { FiEdit2, FiTrash2, FiEye, FiRefreshCw, FiPlus, FiSearch } from "react-icons/fi";
+import { toast } from "react-toastify"; // if you want toast notifications
 
-const COLORS = ['#04B2D9', '#ef4444']; // company blue and red
+const ITEMS_PER_PAGE = 5;
+const COLORS = ["#04B2D9", "#ef4444", "#10B981", "#FBBF24"];
 
 const AdminDashboard = () => {
   const router = useRouter();
   const [jobs, setJobs] = useState([]);
-  const [jobCount, setJobCount] = useState(0);
   const [applicants, setApplicants] = useState({});
   const [selectedApplicants, setSelectedApplicants] = useState([]);
-  const [editingJob, setEditingJob] = useState(null);
-  const [modalOpen, setModalOpen] = useState(false);
+  const [filterInput, setFilterInput] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
 
+  // Fetch jobs from API
   const fetchJobs = () => {
-    fetch('http://befikr.in/get_jobs.php') // Update path accordingly
+    fetch("http://befikr.in/get_jobs.php")
       .then((res) => {
         if (!res.ok) {
           throw new Error(`HTTP error! status: ${res.status}`);
@@ -31,283 +38,291 @@ const AdminDashboard = () => {
       })
       .then((data) => {
         setJobs(data.jobs || []);
-        setJobCount(data.jobs_count);
         setApplicants(data.applicants || {});
       })
       .catch((error) => {
-        console.error('Error fetching jobs:', error);
+        console.error("Error fetching jobs:", error);
+        toast.error("Failed to fetch jobs. Please try again later.");
       });
-  }
+  };
 
-    useEffect(() => {
+  useEffect(() => {
     fetchJobs();
   }, []);
 
-  useEffect(() => {
-    const dummyApplicants = {
-      1: [{ name: 'Alice' }, { name: 'Bob' }],
-      2: [{ name: 'Charlie' }],
-    };
-    setApplicants(dummyApplicants);
-  }, []);
+  // Derived values for filtering, pagination etc.
+  const filteredJobs = jobs.filter((job) =>
+    job.title.toLowerCase().includes(filterInput.toLowerCase())
+  );
 
-  const activeCount = jobs.filter(j => j.status === 'active').length;
-  const closedCount = jobs.filter(j => j.status === 'closed').length;
+  const totalApplications = Object.values(applicants).flat().length;
+  const newApplications = 5; // mock or get from API if available
+  const activeCount = jobs.filter((j) => j.status === "active").length;
+  const closedCount = jobs.filter((j) => j.status === "closed").length;
+  const expiringJobs = jobs.filter(
+    (j) => new Date(j.expiresAt) - new Date() < 7 * 24 * 60 * 60 * 1000
+  );
 
-  const toggleStatus = (id) => {
-    setJobs(jobs.map(job =>
-      job.id === id ? { ...job, status: job.status === 'active' ? 'closed' : 'active' } : job
-    ));
-  };
+  const mostActiveJob = Object.entries(applicants).reduce(
+    (max, [jobId, apps]) =>
+      apps.length > max.count ? { id: jobId, count: apps.length } : max,
+    { id: null, count: 0 }
+  );
+
+  const paginatedJobs = filteredJobs.slice(
+    (currentPage - 1) * ITEMS_PER_PAGE,
+    currentPage * ITEMS_PER_PAGE
+  );
+
+  const pieData = [
+    { name: "Active", value: activeCount },
+    { name: "Closed", value: closedCount },
+  ];
+
+  const barData = jobs.map((job) => ({
+    title: job.title,
+    applicants: applicants[job.id]?.length || 0,
+  }));
+
+  // Handlers
+  const toggleStatus = (id) =>
+    setJobs((prev) =>
+      prev.map((job) =>
+        job.id === id
+          ? {
+              ...job,
+              status: job.status === "active" ? "closed" : "active",
+            }
+          : job
+      )
+    );
 
   const deleteJob = (id) => {
-    const confirmed = window.confirm('Are you sure you want to delete this job posting?');
+    const confirmed = window.confirm("Are you sure you want to delete this job posting?");
     if (!confirmed) return;
-    fetch('https://befikr.in/delete_job.php', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ id })
+    fetch("https://befikr.in/delete_job.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id }),
     })
-      .then(res => res.json())
-      .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         if (data.success) {
-          toast.success('Job deleted successfully!');
-          setJobs(jobs.filter(job => job.id !== id));
+          toast.success("Job deleted successfully!");
+          setJobs((prev) => prev.filter((job) => job.id !== id));
         } else {
-          toast.error('Error: ' + data.error);
+          toast.error("Error: " + data.error);
         }
       })
-      .catch(err => console.error(err));
+      .catch((err) => {
+        console.error(err);
+        toast.error("Failed to delete job. Please try again.");
+      });
   };
 
   const viewApplicants = (id) => {
     setSelectedApplicants(applicants[id] || []);
   };
 
-  const data = [
-    { name: 'Active', value: activeCount, color: COLORS[0] },
-    { name: 'Closed', value: closedCount, color: COLORS[1] },
-  ];
-
-  const parse = (str) => {
-    try {
-      return JSON.parse(str);
-    } catch {
-      return [];
-    }
+  const handleSearch = (e) => {
+    setFilterInput(e.target.value);
+    setCurrentPage(1);
   };
 
-
-
-  const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent }) => {
-    const RADIAN = Math.PI / 180;
-    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-    const x = cx + radius * Math.cos(-midAngle * RADIAN);
-    const y = cy + radius * Math.sin(-midAngle * RADIAN);
-
-    return (
-      <text
-        x={x}
-        y={y}
-        fill="black"
-        textAnchor={x > cx ? 'start' : 'end'}
-        dominantBaseline="central"
-        fontWeight="bold"
-        fontSize={14}
-        style={{ userSelect: 'none' }}
-      >
-        {`${(percent * 100).toFixed(0)}%`}
-      </text>
-    );
-  };
+  const goToPage = (pageNum) => setCurrentPage(pageNum);
 
   return (
-    <div className="p-8 min-h-screen bg-gradient-to-tr from-gray-50 to-gray-100 font-sans text-gray-900 select-none animate-fadeIn">
-      <header className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-10">
-        <h1 className="text-4xl font-extrabold tracking-tight mb-4 sm:mb-0 text-[#04B2D9]">
-          Admin Dashboard
-        </h1>
-        <Button
-          onClick={() => router.push('/admin/add')}
-          className="inline-flex items-center gap-2 px-5 py-2 text-white bg-[#04B2D9] hover:bg-[#039fc5] shadow-lg transition rounded-md font-semibold"
-        >
-          <FiPlus size={18} />
-          Add Job
-        </Button>
+    <div className="min-h-screen bg-gray-50 p-8 font-sans">
+      {/* Header */}
+      <header className="flex flex-wrap justify-between items-center mb-10 gap-4">
+        <h1 className="text-4xl font-extrabold text-[#04B2D9]">Admin Dashboard</h1>
+        <div className="flex items-center gap-3 w-full max-w-md">
+          <div className="relative flex-grow">
+            <FiSearch
+              className="absolute top-1/2 left-3 -translate-y-1/2 text-gray-400"
+              size={18}
+            />
+            <input
+              type="search"
+              value={filterInput}
+              onChange={handleSearch}
+              placeholder="Search job title..."
+              className="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#04B2D9] focus:border-transparent transition"
+            />
+          </div>
+          <button
+            onClick={() => router.push("/admin/add")}
+            className="inline-flex items-center gap-2 bg-[#04B2D9] text-white px-5 py-3 rounded-lg font-semibold shadow hover:bg-[#038ab7] transition"
+          >
+            <FiPlus size={20} /> Add Job
+          </button>
+        </div>
       </header>
 
-      {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
-        {[{ label: 'Total Jobs', value: jobCount },
-        { label: 'Total Applicants', value: Object.values(applicants).flat().length },
-        { label: 'Active Jobs', value: activeCount }].map(({ label, value }) => (
-          <Card key={label} className="shadow-md rounded-xl border border-gray-200 hover:shadow-lg transition">
-            <CardContent className="p-8 text-center">
-              <p className="text-sm text-gray-500 uppercase font-semibold">{label}</p>
-              <p className="mt-2 text-3xl font-bold">{value}</p>
-            </CardContent>
-          </Card>
+      {/* Stats */}
+      <section className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
+        {[
+          { label: "Total Open Positions", value: jobs.length },
+          { label: "Total Applications", value: totalApplications },
+          { label: "New This Week", value: newApplications },
+          {
+            label: "Most Active Job",
+            value: jobs.find((j) => j.id == mostActiveJob.id)?.title || "N/A",
+          },
+        ].map(({ label, value }) => (
+          <div
+            key={label}
+            className="bg-white rounded-xl shadow p-6 flex flex-col justify-center items-center text-center"
+          >
+            <p className="text-gray-600 font-medium mb-2">{label}</p>
+            <p className="text-3xl font-bold text-[#04B2D9]">{value}</p>
+          </div>
         ))}
-      </div>
+      </section>
 
-      {/* Donut Chart */}
-      <Card className="shadow-md rounded-xl border border-gray-200 hover:shadow-lg transition mb-10">
-        <CardContent className="p-6">
-          <h2 className="text-2xl font-bold mb-6 text-center text-[#04B2D9]">
-            Active vs Closed Jobs
-          </h2>
-          <ResponsiveContainer width="100%" height={320}>
+      {/* Charts */}
+      <section className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+        <div className="bg-white rounded-xl shadow p-6">
+          <h2 className="font-semibold text-xl mb-4">Job Status</h2>
+          <ResponsiveContainer width="100%" height={280}>
             <PieChart>
-              <Pie
-                dataKey="value"
-                data={data}
-                cx="50%"
-                cy="50%"
-                innerRadius={80}
-                outerRadius={120}
-                paddingAngle={5}
-                label={renderCustomizedLabel}
-                isAnimationActive={true}
-                stroke="#fff"
-                strokeWidth={2}
-              >
-                {data.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={entry.color} />
+              <Pie data={pieData} dataKey="value" outerRadius={90} label>
+                {pieData.map((_, i) => (
+                  <Cell key={i} fill={COLORS[i]} />
                 ))}
               </Pie>
-              <Tooltip
-                formatter={(value) => `${value} job${value > 1 ? 's' : ''}`}
-                contentStyle={{ backgroundColor: '#f9fafb', borderRadius: '8px', borderColor: '#ddd' }}
-              />
-              <Legend
-                verticalAlign="bottom"
-                height={40}
-                formatter={(value, entry) => <span style={{ color: entry.color, fontWeight: '600' }}>{value}</span>}
-              />
+              <Tooltip />
             </PieChart>
           </ResponsiveContainer>
-        </CardContent>
-      </Card>
+        </div>
+        <div className="bg-white rounded-xl shadow p-6">
+          <h2 className="font-semibold text-xl mb-4">Applicants per Job</h2>
+          <ResponsiveContainer width="100%" height={280}>
+            <BarChart data={barData} margin={{ top: 5, right: 30, left: 0, bottom: 5 }}>
+              <XAxis dataKey="title" tick={{ fontSize: 14 }} />
+              <YAxis />
+              <Tooltip />
+              <Bar dataKey="applicants" fill="#04B2D9" radius={[4, 4, 0, 0]} />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+      </section>
 
-      {/* Jobs Table */}
-      <Card className="shadow-md rounded-xl border border-gray-200 hover:shadow-lg transition">
-        <CardContent className="p-6">
-          <h2 className="text-2xl font-bold mb-8 text-[#04B2D9]">
-            Jobs Management
+      {/* Expiring Jobs */}
+      {expiringJobs.length > 0 && (
+        <section className="bg-red-50 border border-red-300 rounded-xl p-6 mb-10">
+          <h2 className="text-red-600 font-bold text-lg mb-3">
+            ⚠️ Job Postings Near Expiration
           </h2>
-          <div className="overflow-x-auto rounded-lg border border-gray-300">
-            <table className="w-full border-collapse">
-              <thead className="bg-gray-100">
-                <tr>
-                  {['Title', 'Location', 'Type', 'Status', 'Actions'].map((head) => (
-                    <th key={head} className="p-4 text-left font-semibold text-gray-700 select-none">{head}</th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {jobs.map(job => (
-                  <tr
-                    key={job.id}
-                    className="bg-white border-t border-gray-200 hover:bg-[#04B2D9]/10 transition cursor-default"
-                  >
-                    <td className="p-4">{job.position}</td>
-                    <td className="p-4">{parse(job.location)}</td>
-                    <td className="p-4">{job.job_type}</td>
-                    <td
-                      className={`p-4 capitalize font-semibold ${job.status === 'active' ? 'text-green-600' : 'text-red-600'}`}
-                    >
-                      {job.status}
-                    </td>
-                    <td className="p-4 space-x-2 whitespace-nowrap">
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        className="flex items-center gap-1 px-3 py-1 hover:bg-green-100 text-green-700 border-green-700 transition"
-                        onClick={() => toggleStatus(job.id)}
-                      >
-                        <FiRefreshCw />
-                        {job.status === 'active' ? 'Close' : 'Activate'}
-                      </Button>
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        className="flex items-center gap-1 px-3 py-1 hover:bg-blue-100 text-blue-700 border-blue-700 transition"
-                        onClick={() => { setEditingJob(job); setModalOpen(true); }}
-                      >
-                        <FiEdit2 />
-                        Edit
-                      </Button>
-                      <Button
-                        size="sm"
-                        variant="destructive"
-                        className="flex items-center gap-1 px-3 py-1 hover:bg-red-100 text-red-700 border-red-700 transition"
-                        onClick={() => deleteJob(job.id)}
-                      >
-                        <FiTrash2 />
-                        Delete
-                      </Button>
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        className="flex items-center gap-1 px-3 py-1 hover:bg-gray-100 text-gray-700 border-gray-700 transition"
-                        onClick={() => viewApplicants(job.id)}
-                      >
-                        <FiEye />
-                        View
-                      </Button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </CardContent>
-      </Card>
-
-      <JobFormModal
-        isOpen={modalOpen}
-        onClose={() => setModalOpen(false)}
-        editingJob={editingJob}
-        onSaved={fetchJobs}
-      />
-
-      {/* Applicants View */}
-      {selectedApplicants.length > 0 && (
-        <Card className="fixed bottom-10 right-10 max-w-xs w-full shadow-lg rounded-xl border border-gray-300 bg-white z-50 animate-slideIn">
-          <CardContent className="p-6">
-            <h3 className="text-xl font-semibold mb-4 text-[#04B2D9]">Applicants</h3>
-            <ul className="list-disc list-inside text-gray-800 max-h-60 overflow-y-auto">
-              {selectedApplicants.map((app, idx) => (
-                <li key={idx} className="mb-1">{app.name}</li>
-              ))}
-            </ul>
-            <Button
-              className="mt-6 w-full"
-              onClick={() => setSelectedApplicants([])}
-              variant="outline"
-            >
-              Close
-            </Button>
-          </CardContent>
-        </Card>
+          <ul className="list-disc list-inside text-red-700 text-lg font-medium space-y-1">
+            {expiringJobs.map((job) => (
+              <li key={job.id}>
+                {job.title} - Expires on <strong>{job.expiresAt}</strong>
+              </li>
+            ))}
+          </ul>
+        </section>
       )}
 
-      <style jsx>{`
-        .animate-fadeIn {
-          animation: fadeIn 0.6s ease forwards;
-        }
-        .animate-slideIn {
-          animation: slideIn 0.4s ease forwards;
-        }
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(15px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes slideIn {
-          from { opacity: 0; transform: translateX(50px); }
-          to { opacity: 1; transform: translateX(0); }
-        }
-      `}</style>
+      {/* Jobs Table */}
+      <section className="bg-white rounded-xl shadow p-6">
+        <h2 className="text-2xl font-semibold mb-6">Jobs Management</h2>
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse text-left text-gray-700">
+            <thead className="bg-gray-100 border-b border-gray-300">
+              <tr>
+                {["Title", "Location", "Type", "Posted", "Expires", "Status", "Actions"].map(
+                  (header) => (
+                    <th key={header} className="py-3 px-4 font-semibold">
+                      {header}
+                    </th>
+                  )
+                )}
+              </tr>
+            </thead>
+            <tbody>
+              {paginatedJobs.map((job, idx) => (
+                <tr
+                  key={job.id}
+                  className={`border-b border-gray-200 hover:bg-gray-50 ${
+                    idx % 2 === 0 ? "bg-white" : "bg-gray-50"
+                  }`}
+                >
+                  <td className="py-3 px-4">{job.title}</td>
+                  <td className="py-3 px-4">{job.location}</td>
+                  <td className="py-3 px-4">{job.type}</td>
+                  <td className="py-3 px-4">{job.postedAt}</td>
+                  <td className="py-3 px-4">{job.expiresAt}</td>
+                  <td
+                    className={`py-3 px-4 font-semibold ${
+                      job.status === "active" ? "text-green-600" : "text-red-600"
+                    }`}
+                  >
+                    {job.status.charAt(0).toUpperCase() + job.status.slice(1)}
+                  </td>
+                  <td className="py-3 px-4 flex items-center gap-2">
+                    <button
+                      title="Toggle Status"
+                      onClick={() => toggleStatus(job.id)}
+                      className="p-2 text-[#04B2D9] hover:bg-[#04B2D9] hover:text-white rounded transition"
+                    >
+                      <FiRefreshCw size={18} />
+                    </button>
+                    <button
+                      title="Edit"
+                      onClick={() => router.push(`/admin/edit?id=${job.id}`)}
+                      className="p-2 text-yellow-500 hover:bg-yellow-500 hover:text-white rounded transition"
+                    >
+                      <FiEdit2 size={18} />
+                    </button>
+                    <button
+                      title="Delete"
+                      onClick={() => deleteJob(job.id)}
+                      className="p-2 text-red-500 hover:bg-red-500 hover:text-white rounded transition"
+                    >
+                      <FiTrash2 size={18} />
+                    </button>
+                    <button
+                      title="View Applicants"
+                      onClick={() => viewApplicants(job.id)}
+                      className="p-2 text-gray-600 hover:bg-gray-600 hover:text-white rounded transition"
+                    >
+                      <FiEye size={18} />
+                    </button>
+                  </td>
+                </tr>
+              ))}
+              {paginatedJobs.length === 0 && (
+                <tr>
+                  <td colSpan={7} className="py-6 text-center text-gray-400 italic">
+                    No jobs found.
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
+
+        {/* Pagination Dots */}
+        <div className="flex justify-center mt-6 space-x-3">
+          {Array.from(
+            { length: Math.ceil(filteredJobs.length / ITEMS_PER_PAGE) },
+            (_, i) => i + 1
+          ).map((pageNum) => (
+            <button
+              key={pageNum}
+              onClick={() => goToPage(pageNum)}
+              className={`w-4 h-4 rounded-full transition-all ${
+                pageNum === currentPage
+                  ? "bg-[#04B2D9] scale-110 shadow-lg"
+                  : "bg-gray-300 hover:bg-gray-400"
+              }`}
+              aria-label={`Go to page ${pageNum}`}
+              title={`Page ${pageNum}`}
+            />
+          ))}
+        </div>
+      </section>
     </div>
   );
 };
