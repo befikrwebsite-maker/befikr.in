@@ -69,7 +69,9 @@ const AdminDashboard = () => {
     { id: null, count: 0 }
   );
 
-  const countMap = applicants.reduce((acc, a) => {
+  const allApplicants = Object.values(applicants || {}).flat();
+
+  const countMap = allApplicants.reduce((acc, a) => {
     acc[a.position] = (acc[a.position] || 0) + 1;
     return acc;
   }, {});
@@ -88,6 +90,8 @@ const AdminDashboard = () => {
     jobTitle: title,
     applicants: count
   }));
+
+  console.log(barData)
 
   // Handlers
   const toggleStatus = (id) =>
