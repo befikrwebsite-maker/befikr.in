@@ -176,7 +176,7 @@ export default function Timeline() {
             ))}
           </div>
           <div className="flex flex-col items-center mb-10">
-        <h2 className="text-4xl font-bold">Our Journey</h2>
+        <h2 className="text-4xl mt-5 font-bold">More to come...  </h2>
         </div>
         </div>
       </div>
