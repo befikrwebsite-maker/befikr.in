@@ -70,7 +70,7 @@ const AdminDashboard = () => {
   );
 
   const countMap = applicants.reduce((acc, a) => {
-    acc[a.jobTitle] = (acc[a.jobTitle] || 0) + 1;
+    acc[a.position] = (acc[a.position] || 0) + 1;
     return acc;
   }, {});
 
@@ -255,7 +255,7 @@ const AdminDashboard = () => {
                 >
                   <td className="py-3 px-4">{job.position}</td>
                   <td className="py-3 px-4">{job.location}</td>
-                  <td className="py-3 px-4">{job.type}</td>
+                  <td className="py-3 px-4">{job.job_type}</td>
                   <td className="py-3 px-4">{job.postedAt}</td>
                   <td className="py-3 px-4">{job.expiresAt}</td>
                   <td
