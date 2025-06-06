@@ -69,6 +69,11 @@ const AdminDashboard = () => {
     { id: null, count: 0 }
   );
 
+  const countMap = applicants.reduce((acc, a) => {
+    acc[a.jobTitle] = (acc[a.jobTitle] || 0) + 1;
+    return acc;
+  }, {});
+
   const paginatedJobs = filteredJobs.slice(
     (currentPage - 1) * ITEMS_PER_PAGE,
     currentPage * ITEMS_PER_PAGE
@@ -79,9 +84,9 @@ const AdminDashboard = () => {
     { name: "Closed", value: closedCount },
   ];
 
-  const barData = jobs.map((job) => ({
-    title: job.position,
-    applicants: applicants[job.id]?.length || 0,
+  const barData = Object.entries(countMap).map(([title, count]) => ({
+    jobTitle: title,
+    applicants: count
   }));
 
   // Handlers
