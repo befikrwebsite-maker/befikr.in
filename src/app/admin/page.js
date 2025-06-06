@@ -51,7 +51,9 @@ const AdminDashboard = () => {
   }, []);
 
   // Derived values for filtering, pagination etc.
-
+  const filteredJobs = jobs.filter((job) =>
+    job.position.toLowerCase().includes(filterInput.toLowerCase())
+  );
 
   const totalApplications = Object.values(applicants).flat().length;
   const newApplications = 5; // mock or get from API if available
