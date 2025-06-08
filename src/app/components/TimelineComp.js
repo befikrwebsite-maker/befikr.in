@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, DotIcon } from "lucide-react";
 
 
 const timelineData = [
@@ -137,7 +137,7 @@ export default function Timeline() {
           {/* Vertical line */}
           <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-blue-200 to-transparent hidden md:block"></div>
 
-          <div className="space-y-24 md:space-y-32">
+          <div className="space-y-8 md:space-y-20">
             {timelineData.map((step, index) => (
               <div key={step.title} className="relative">
                 <div className={`flex flex-col items-center gap-8 md:gap-8 `}>
@@ -176,8 +176,13 @@ export default function Timeline() {
             ))}
           </div>
           <div className="flex flex-col items-center mb-10">
-        <h2 className="text-4xl mt-5 font-bold">More to come...  </h2>
-        </div>
+            <DotIcon className="h-8 w-8 opacity-25 text-blue-500" />
+            <DotIcon className="h-8 w-8 opacity-50 text-blue-500" />
+            <DotIcon className="h-8 w-8 opacity-75 text-blue-500" />
+            <DotIcon className="h-8 w-8 opacity-100 text-blue-500" />
+            <h2 className="text-4xl mt-8 font-bold">More to come...  </h2>
+
+          </div>
         </div>
       </div>
     </section>

@@ -165,6 +165,12 @@ const AdminDashboard = () => {
           >
             <FiPlus size={20} /> Add Job
           </button>
+          <button
+            onClick={() => router.push("/admin/testimonials")}
+            className="inline-flex items-center gap-2 bg-[#04B2D9] text-white px-5 py-3 rounded-lg font-semibold shadow hover:bg-[#038ab7] transition"
+          >
+            Testimonial
+          </button>
         </div>
       </header>
 
