@@ -733,7 +733,7 @@ export default function Page() {
                     <div>
                       <div className="mb-6">
                         <p className="text-cyan-400 font-bold">Location:</p>
-                        {selectedJob.location.map((item, index) => (
+                        {Array.isArray(selectedJob.location) && selectedJob.location.map((item, index) => (
                           <p key={index} className="text-gray-800">
                             • {item}
                           </p>
