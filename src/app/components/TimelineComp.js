@@ -18,7 +18,7 @@ const timelineData = [
     category: "Environment",
     principle: "Product Responsibility",
     desc: "As a market leader in the Defective Audit business, befikr successfully launched its ESG/Environment/Circular Economy services in 2020. Today, befikr offers comprehensive reverse logistics and e-waste management services, helping companies demonstrate product responsibility by providing goods and services in a manner that is sustainable and safe.",
-    service: "Circular economy services (EPR & E-Waste Management services)",
+    service: "3PL (Third-Party Logistics) Services, Circular economy services (Reverse Logistics, EPR & E-Waste Management services)",
   },
   {
     year: "2020",
