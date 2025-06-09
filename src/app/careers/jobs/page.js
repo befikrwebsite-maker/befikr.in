@@ -9,291 +9,78 @@ import Footer from "@/components/Footer";
 import { ChevronDown } from "lucide-react";
 
 export default function Page() {
-  // data
-  const cards = [
-    {
-      id: 1,
-      position: "Electrical Safety Auditor",
-      team: "Electrical And Energy Audits",
-      location: ["Gujarat", "Delhi NCR", "Rajasthan","Pan India"],
-      desc: "The ES Auditor is responsible for conducting audits of banks, petrol pumps, and other facilities as per predefined plans. They will assess electrical and energy systems, identify inefficiencies or risks, and document their observations in a detailed report for the client/company. The role requires ensuring compliance with safety and efficiency standards while providing actionable recommendations for improvements.",
-      tags: [
-        "electrical",
-        "safety",
-        "auditor",
-        "energy",
-        "audits",
-        "audit",
-        "gujarat",
-        "delhi",
-        "ncr",
-        "rajasthan",
-      ],
-      pay: "₹18,000.00 - ₹28,000.00 per month",
-      jobtype: "Fulltime",
-      responsibilities: [
-        "Visit Commercial Buildings, Offices, Bank Branches/Offices/ATMs, Petrol Pumps to study and verify the installation across various cities in different states of India",
-        "To conduct comprehensive Electrical Safety Audit of the complete Electrical installation of Commercial Buildings, Offices, Bank Branches/Offices/ATMs, Petrol Pumps",
-        "Suggest Corrective measures necessary towards Electrical safety and providing budgetary estimate for rectification works required",
-        "Provide comprehensive report consisting of Observations on account of electrical and fire safety. Report must highlight critical areas/concerns which need immediate attention/ rectification as per given Audit Format.",
-      ],
-      eligibility: [
-        "Education: B. Tech / B.E. (Electrical) / Diploma (Electrical)",
-        "Experience: Minimum 2 years / 3 years for Diploma",
-        "Must Be Familiar With Basic Electrical Tools Like- Multimeter, IR Tester And Earth Tester",
-        "Must Be Familiar With Electrical Equipment Like- Diesel Generator, ServoStabilizer, UPS.",
-        "Should Have Working Experience In 440 Volts Supply Lines.",
-        "Must Be Aware About Commercial Building Electrical Installations.",
-        "Must Be Skilled In Electrical Fault Identification And Rectification.",
-      ],
-      benefits: ["Health insurance"],
-      schedule: ["Day shift"],
-      supplemental_pay: ["Performance bonus"],
-      questions: [
-        "Are you available for immediate joining? (Preferable)",
-        "Are you having an Electrical Engineering Degree (B.E. / B. Tech) or Diploma in Electrical Engineering?",
-        "How much experience do you have?"
-      ],
-      travel: ["75% (Required)"],
-      work_location: "In person",
-      expected_start_date: "18/01/2025",
-    },
-    {
-      id: 2,
-      position: "Electrical Safety Manager",
-      team: "Electrical And Energy Audits",
-      location: ["Delhi NCR","Pan India"],
-      desc: "We are seeking a dynamic and experienced Operations Manager with a robust background in Electrical Safety and Energy Audits. The ideal candidate will have a proven track record of managing teams of 15-20 engineers and will be responsible for overseeing audits across various locations including retail / commercial outlets, and industrial sites nationwide. This role demands exceptional planning and execution skills, a thorough understanding of compliance standards (including OISD), and a proactive approach to post audit interventions. Travel to meet clients, train engineering team and perform surprise secondary audits is required.",
-      tags: [
-        "electrical",
-        "electric",
-        "safety",
-        "manager",
-        "energy",
-        "audits",
-        "audit",
-        "delhi",
-        "delhi ncr",
-        "ncr",
-      ],
-      pay: "₹55,000 – ₹62,500 per Month",
-      jobtype: "Fulltime",
-      responsibilities: [
-        "Team Leadership &amp; Management: Lead and mentor a team of 15-20 electrical engineers. Coordinate team schedules and delegate tasks effectively to meet project deadlines. Foster a collaborative environment that encourages professional growth and high performance.",
-        "Project Planning &amp; Execution: Develop comprehensive project plans for conducting electrical safety and energy audits across multiple sites. Strategically plan travel routes and site visits to optimize audit efficiency. Ensure timely execution of audits while adhering to project timelines, budgets, and client requirements.",
-        "Client Engagement &amp; Field Operations: Serve as the primary point of contact for clients; arrange and lead on-site meetings and presentations. Conduct audits at diverse locations (e.g., petrol pumps, bank branches) ensuring compliance with industry standards.",
-        "Technical Oversight &amp; Compliance: Ensure all audits comply with established safety regulations and industry standards, including OISD standards, IE Rules, NBC, IEC, IEEE, and NFPA. Oversee the development, review, and approval of technical documents and risk assessments. Plan and manage post audit interventions, including corrective action implementations, follow-up assessments, and client advisory services. Stay updated on emerging trends and regulatory changes within the electrical safety and energy audit domain.",
-        "Efficiency &amp; Reporting: Monitor project progress, address operational challenges, and implement corrective actions when necessary. Maintain accurate records, track performance metrics, and provide regular updates to senior management. Identify opportunities for process improvements to enhance audit quality and operational efficiency.",
-      ],
-      eligibility: [
-        "Minimum of 10-12 years of experience in Electrical Safety &amp; Energy Audits.",
-        "Demonstrated success in managing a team of 15-20 engineers.",
-        "Proven expertise in planning and executing multi-site audits.",
-        "Familiarity with OISD standards and compliance requirements.",
-        "Experience in planning and managing post audit interventions.",
-        "Willingness and ability to travel extensively for site visits and client meetings.",
-        "In-depth knowledge of electrical safety standards, compliance frameworks, and audit methodologies.",
-        "Strong organizational, leadership, and problem-solving skills.",
-        "Excellent communication and client relationship management abilities.",
-        "Proficiency in MS Office, AutoCAD, and energy audit tool Certifications in Energy Auditing (e.g., BEE-Certified Energy Auditor/Manager) or Electrical Safety (e.g., NFPA, CEIG).",
-        "Experience working with clients in sectors such as Banking, Oil &amp; Gas, Manufacturing, Pharma, or Chemicals.",
-
-      ],
-      benefits: [],
-      schedule: [],
-      supplemental_pay: [],
-      questions: [],
-      travel: [],
-      work_location: "",
-      expected_start_date: "",
-    },
-    {
-      id: 3,
-      position: "Electrical Engineer",
-      team: "Electrical And Energy Audits",
-      location: ["Delhi NCR","Pan India"],
-      desc: "We are looking for an Electrical Engineer to work from our office, responsible for managing and verifying audit files submitted by Electrical Auditors. The role includes ensuring compliance with safety standards, reviewing reports for accuracy, and coordinating with auditors for necessary corrections. Additionally, the candidate will be responsible for client interactions related to billing and documentation.",
-      tags: [
-        "electrical",
-        "engineer",
-        "energy",
-        "audit",
-        "audits",
-        "delhi",
-        "ncr",
-      ],
-      pay: "₹15,000 – ₹20,000 per Month",
-      jobtype: "Fulltime",
-      responsibilities: [
-        "Review and verify Electrical Safety Audit reports for accuracy and compliance.",
-        "Coordinate with field auditors to rectify discrepancies in reports.",
-        "Maintain proper documentation and ensure timely submission of audit files.",
-        "Communicate with clients regarding billing, clarifications, and required documentation.",
-        "Assist in preparing invoices based on completed audit reports.",
-        "Ensure all reports and billing processes follow company policies and standards."
-      ],
-      eligibility: [
-        "Bachelor&#39;s degree in Electrical Engineering or a related field.",
-        "Strong understanding of electrical safety standards and audit procedures.",
-        "Good communication skills for client interaction and coordination.",
-        "Proficiency in MS Office and report management.",
-        "Ability to work independently and manage multiple tasks efficiently."
-      ],
-      benefits: [],
-      schedule: [],
-      supplemental_pay: [],
-      questions: [],
-      travel: [],
-      work_location: "",
-      expected_start_date: "",
-    },
-    {
-      id: 4,
-      position: "Technical Electrical",
-      team: "Circular Economy Services",
-      location: ["Delhi NCR","Pan India"],
-      pay: "₹12,000 – ₹16,000 per Month",
-      tags: ["field", "officer", "csr", "services", "service", "delhi", "ncr"],
-      desc: "Responsible for visit and conduct inspection of LED Products at various Channel Partners&#39; Premises. Inspection of LED Products as per defined SOP. Prepare Inspection Report as per defined format of the Company. Pack inspected LED products properly in given packaging items like Gunny Bags, Cartons etc. Travel to multiple districts and cities as per the location of Channel Partners and conduct LED Inspection. Report any major issues during inspection to Senior Management of the Company",
-      jobtype: "Fulltime",
-      responsibilities: [
-        "Responsible for visit and conduct inspection of LED Products at various Channel Partners&#39; Premises.",
-        "Inspection of LED Products as per defined SOP"
-      ],
-      eligibility: [
-        "12 TH PASS / ITI"
-      ],
-      benefits: [],
-      schedule: [],
-      supplemental_pay: [],
-      questions: [],
-      travel: [],
-      work_location: "",
-      expected_start_date: "",
-    },
-    {
-      id: 5,
-      position: "Technician home appliance",
-      team: "Master Service Partnerships",
-      location: ["Delhi NCR","Pan India"],
-      desc: "Technician will be responsible for doing installation and demo for the given products like - Washing machine, Fridge, Dishwasher.",
-      tags: [
-        "master",
-        "service",
-        "partnerships",
-        "spartnership",
-        "technician",
-        "services",
-        "delhi ncr",
-        "delhi",
-        "ncr"
-      ],
-      pay: "₹17,000 – ₹20,000 per Month",
-      jobtype: "Fulltime",
-      responsibilities: ["Installation and demo."],
-      eligibility: [
-        "ITI",
-        "Polytechnic or basic education in relevant field."
-      ],
-      benefits: [],
-      schedule: [],
-      supplemental_pay: [],
-      questions: [],
-      travel: [],
-      work_location: "",
-      expected_start_date: "",
-    },
-    {
-      id: 6,
-      position: "Field Officer",
-      team: "CSR Services",
-      location: ["Delhi NCR","Pan India"],
-      desc: "We are looking out to hire a profile with a couple of years of experience as &quot;Field Sales Officer&quot; preferably FMCG space. Identifying &amp; recruiting women entrepreneurs in small towns &amp; villages for door-to-door selling of a nutritional product. Giving sales training (on nutritional products) to the identified women entrepreneurs &amp; kick start sales operations with the team. Creating sales plans, executing marketing plans, &amp; monitoring the sales team of women entrepreneurs to ensure compliance with protocols &amp; attainment of sales. Supervising the group of women entrepreneurs on day-to-day working, roadblocks being faced &amp; sales achievements. Ensure regular screening of prospects as women entrepreneurs within the identified geography of operations/state/in and around city/towns.",
-      tags: [
-        "electrical",
-        "energy",
-        "audit",
-        "audits",
-        "manager",
-        "operations",
-        "operation",
-        "delhi",
-        "ncr",
-      ],
-      pay: "₹18,000 – ₹22,000 per Month",
-      jobtype: "Fulltime",
-      responsibilities: [
-        "Team Leadership & Management - Lead and mentor a team of 15-20 electrical engineers. Coordinate team schedules and delegate tasks effectively to meet project deadlines. Foster a collaborative environment that encourages professional growth and high performance.",
-        "Project Planning & Execution - Develop comprehensive project plans for conducting electrical safety and energy audits across multiple sites. Strategically plan travel routes and site visits to optimize audit efficiency. Ensure timely execution of audits while adhering to project timelines, budgets, and client requirements.",
-        "Client Engagement & Field Operations - Serve as the primary point of contact for clients; arrange and lead on-site meetings and presentations. Conduct audits at diverse locations (e.g., petrol pumps, bank branches) ensuring compliance with industry standards.",
-        "Technical Oversight & Compliance - Ensure all audits comply with established safety regulations and industry standards, including OISD standards, IE Rules, NBC, IEC, IEEE, and NFPA. Oversee the development, review, and approval of technical documents and risk assessments. Plan and manage post audit interventions, including corrective action implementations, follow-up assessments, and client advisory services. Stay updated on emerging trends and regulatory changes within the electrical safety and energy audit domain.",
-        "Operational Efficiency & Reporting - Monitor project progress, address operational challenges, and implement corrective actions when necessary. Maintain accurate records, track performance metrics, and provide regular updates to senior management. Identify opportunities for process improvements to enhance audit quality and operational efficiency.",
-      ],
-      eligibility: [
-        "10+ years in Electrical Safety & Energy Audits",
-        "Demonstrated success in managing a team of 15-20 engineers.",
-        "Proven expertise in planning and executing multi-site audits.",
-        "Familiarity with OISD standards and compliance requirements.",
-        "Experience in planning and managing post audit interventions.",
-        "Willingness and ability to travel extensively for site visits and client meetings.",
-        "In-depth knowledge of electrical safety standards, compliance frameworks, and audit methodologies.",
-        "Strong organizational, leadership, and problem-solving skills.",
-        "Excellent communication and client relationship management abilities.",
-        "Proficiency in MS Office, AutoCAD, and energy audit tools.",
-        "Certifications in Energy Auditing (e.g., BEE-Certified Energy Auditor/Manager) or Electrical Safety (e.g., NFPA, CEIG).",
-        "Experience working with clients in sectors such as Banking, Oil & Gas, Manufacturing, Pharma, or Chemicals."
-      ],
-      benefits: [],
-      schedule: [],
-      supplemental_pay: [],
-      questions: [
-        "Are you having an Electrical Engineering Degree (B.E. / B. Tech) or Diploma in Electrical Engineering?",
-        "How much experience do you have?"
-      ],
-      travel: [],
-      work_location: "",
-      expected_start_date: "",
-    },
-  ];
+  // State for jobs data from API
+  const [jobs, setJobs] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   // show form ///////////////////////////////////////////////////////////////////////////////////////////////////////////
   const [formVisible, setFormVisible] = useState(false);
-  const [jobs, setJobs] = useState([])
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   // search filter ///////////////////////////////////////////////////////////////////////////////////////////////////////
   function searchFilter(query) {
     if (!query.length || query[0] === "") {
-      return cards;
+      return jobs;
     }
-    return cards.filter((em) =>
-      query.every((qe) => em.tags.map((el) => el.toLowerCase()).includes(qe))
+    return jobs.filter((job) =>
+      query.every((qe) => {
+        const searchableText = [
+          job.position,
+          job.team,
+          job.desc,
+          ...(Array.isArray(job.location) ? job.location : [job.location]),
+          ...(Array.isArray(job.tags) ? job.tags : []),
+        ].join(" ").toLowerCase();
+        return searchableText.includes(qe);
+      })
     );
   }
+  
   // setting the user input from the search
   const [query, setQuery] = useState([""]);
   const filtered = searchFilter(query);
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-  // extracting unique teams positoins and locations /////////////////////////////////////////////////////////////////////
-  const uniqueTeams = [...new Set(cards.map((el) => el.team))].sort();
-  const uniquePositions = [...new Set(cards.map((el) => el.position))].sort();
+  // Helper function to parse JSON strings safely
+  const parseJSONField = (field) => {
+    if (Array.isArray(field)) return field;
+    if (typeof field === 'string') {
+      try {
+        const parsed = JSON.parse(field);
+        return Array.isArray(parsed) ? parsed : [parsed];
+      } catch {
+        // If parsing fails, split by comma or return as single item array
+        return field.includes(',') ? field.split(',').map(s => s.trim()) : [field];
+      }
+    }
+    return [];
+  };
+
+  // extracting unique teams positions and locations /////////////////////////////////////////////////////////////////////
+  const uniqueTeams = jobs.length > 0 ? [...new Set(jobs.map((el) => el.team))].sort() : [];
+  const uniquePositions = jobs.length > 0 ? [...new Set(jobs.map((el) => el.position))].sort() : [];
+  
   const locations = new Set();
-  cards.map((el) => el.location.map((em) => locations.add(em)));
+  jobs.forEach((job) => {
+    const jobLocations = parseJSONField(job.location);
+    jobLocations.forEach(loc => locations.add(loc));
+  });
   const uniqueLocations = [...locations].sort();
 
   // State for selected filters
   const [selectedTeams, setSelectedTeams] = useState([]);
   const [selectedPositions, setSelectedPositions] = useState([]);
   const [selectedLocations, setSelectedLocations] = useState([]);
-  const [jobs_count, setJobCount] = useState(0);
 
-  const checkboxFilter = (job) =>
-    (selectedTeams.length === 0 || selectedTeams.includes(job.team)) &&
-    (selectedPositions.length === 0 ||
-      selectedPositions.includes(job.position)) &&
-    (selectedLocations.length === 0 ||
-      job.location.some((loc) => selectedLocations.includes(loc)));
+  const checkboxFilter = (job) => {
+    const jobLocations = parseJSONField(job.location);
+    return (
+      (selectedTeams.length === 0 || selectedTeams.includes(job.team)) &&
+      (selectedPositions.length === 0 || selectedPositions.includes(job.position)) &&
+      (selectedLocations.length === 0 || jobLocations.some((loc) => selectedLocations.includes(loc)))
+    );
+  };
 
   // Apply both filters
   const filteredJobs = filtered.filter((job) => checkboxFilter(job));
@@ -303,7 +90,10 @@ export default function Page() {
     return filteredJobs.filter((job) => {
       if (filterType === "team") return job.team === value;
       if (filterType === "position") return job.position === value;
-      if (filterType === "location") return job.location.includes(value);
+      if (filterType === "location") {
+        const jobLocations = parseJSONField(job.location);
+        return jobLocations.includes(value);
+      }
       return false;
     }).length;
   };
@@ -312,42 +102,56 @@ export default function Page() {
   const handleCheckboxFilterRemoval = (type, value) => {
     if (type === "team") {
       setSelectedTeams((prev) => prev.filter((item) => item !== value));
-    };
+    }
     if (type === "position") {
       setSelectedPositions((prev) => prev.filter((item) => item !== value));
-    };
+    }
     if (type === "location") {
       setSelectedLocations((prev) => prev.filter((item) => item !== value));
-    };
-  }
-
-  const fetchJobs = () => {
-      fetch('http://befikr.in/get_jobs.php') // Update path accordingly
-        .then((res) => {
-          if (!res.ok) {
-            throw new Error(`HTTP error! status: ${res.status}`);
-          }
-          return res.json();
-        })
-        .then((data) => {
-          setJobs(data.jobs || []);
-        })
-        .catch((error) => {
-          console.error('Error fetching jobs:', error);
-        });
-    }
-  
-      useEffect(() => {
-      fetchJobs();
-    }, []);
-
-    const parse = (str) => {
-    try {
-      return JSON.parse(str);
-    } catch {
-      return [];
     }
   };
+
+  // Fetch jobs from API
+  const fetchJobs = async () => {
+    try {
+      setLoading(true);
+      const response = await fetch('http://befikr.in/get_jobs.php');
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      const data = await response.json();
+      
+      // Process the jobs data to ensure proper format
+      const processedJobs = (data.jobs || []).map(job => ({
+        ...job,
+        id: parseInt(job.id) || job.id,
+        location: parseJSONField(job.location),
+        responsibilities: parseJSONField(job.responsibilities),
+        eligibility: parseJSONField(job.eligibility),
+        benefits: parseJSONField(job.benefits),
+        schedule: parseJSONField(job.schedule),
+        supplemental_pay: parseJSONField(job.supplemental_pay),
+        questions: parseJSONField(job.questions),
+        travel: parseJSONField(job.travel),
+        tags: parseJSONField(job.tags)
+      }));
+      
+      setJobs(processedJobs);
+      setError(null);
+    } catch (error) {
+      console.error('Error fetching jobs:', error);
+      setError('Failed to load jobs. Please try again later.');
+      setJobs([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchJobs();
+  }, []);
 
   const [mobileFilterVisible, setMobileFilterVisible] = useState(false);
 
@@ -372,13 +176,14 @@ export default function Page() {
     const param = new URLSearchParams(window.location.search);
     const jobId = param.get("jobId");
 
-    if (jobId) {
-      const job = cards.find((j) => j.id.toString() === jobId);
+    if (jobId && jobs.length > 0) {
+      const job = jobs.find((j) => j.id.toString() === jobId);
       setSelectedJob(job || null);
     } else {
       setSelectedJob(null);
     }
-  }, []);
+  }, [jobs]);
+
   useEffect(() => {
     if (selectedJob) {
       document.body.style.overflow = "hidden";
@@ -403,6 +208,49 @@ export default function Page() {
     setFormVisible(false);
   };
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  if (loading) {
+    return (
+      <>
+        <Navbar />
+        <div className="min-h-screen pt-20 bg-[#f5f5f5] px-10 py-5 flex flex-col items-center">
+          <div className="bg-white px-10 py-5 w-full max-w-7xl rounded-lg shadow-lg mt-8">
+            <div className="text-center text-xl py-5 text-[#038DAF] font-generalSansSemibold">
+              Loading Jobs...
+            </div>
+            <div className="flex justify-center items-center h-40">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#038DAF]"></div>
+            </div>
+          </div>
+        </div>
+        <Footer />
+      </>
+    );
+  }
+
+  if (error) {
+    return (
+      <>
+        <Navbar />
+        <div className="min-h-screen pt-20 bg-[#f5f5f5] px-10 py-5 flex flex-col items-center">
+          <div className="bg-white px-10 py-5 w-full max-w-7xl rounded-lg shadow-lg mt-8">
+            <div className="text-center text-xl py-5 text-red-600 font-generalSansSemibold">
+              {error}
+            </div>
+            <div className="flex justify-center">
+              <button
+                onClick={fetchJobs}
+                className="bg-[#038DAF] text-white px-6 py-2 rounded-lg hover:bg-[#027A9B] transition duration-300"
+              >
+                Retry
+              </button>
+            </div>
+          </div>
+        </div>
+        <Footer />
+      </>
+    );
+  }
 
   return (
     <>
@@ -434,29 +282,29 @@ export default function Page() {
           </div>
 
           {/* Dropdown filters for mobile view */}
-            <div className="flex pt-5">
-              <div onClick={() => setMobileFilterVisible(true)} className="md:hidden flex justify-center items-center rounded-xl bg-[#ffa552] ">
-                <img
-                  src="\jobSectionImage\filter-svgrepo-com (1).svg"
-                  className="w-6 h-6 m-2">
-                </img>
-                <p className="mr-2 text-white font-semibold">FILTERS</p>
-              </div>
+          <div className="flex pt-5">
+            <div onClick={() => setMobileFilterVisible(true)} className="md:hidden flex justify-center items-center rounded-xl bg-[#ffa552] ">
+              <img
+                src="\jobSectionImage\filter-svgrepo-com (1).svg"
+                className="w-6 h-6 m-2">
+              </img>
+              <p className="mr-2 text-white font-semibold">FILTERS</p>
             </div>
+          </div>
 
-            {/* Mobile Navigation Menu with Animation (Slide in from Left) */}
-            <AnimatePresence>
-              {mobileFilterVisible && (
-                <>
+          {/* Mobile Navigation Menu with Animation (Slide in from Left) */}
+          <AnimatePresence>
+            {mobileFilterVisible && (
+              <>
                 <motion.div
-        key="overlay"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.4 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.3 }}
-        className="fixed top-0 left-0 w-full h-full bg-black z-30"
-        onClick={() => setMobileFilterVisible(false)}
-      />
+                  key="overlay"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 0.4 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="fixed top-0 left-0 w-full h-full bg-black z-30"
+                  onClick={() => setMobileFilterVisible(false)}
+                />
                 <motion.div
                   initial={{ opacity: 0, x: -200 }}
                   animate={{ opacity: 1, x: 0 }}
@@ -525,12 +373,11 @@ export default function Page() {
                     </div>
                   </div>
                 </motion.div>
-                </>
-              )}
-            </AnimatePresence>
+              </>
+            )}
+          </AnimatePresence>
 
-
-          {/* Dropdown Filters for destop */}
+          {/* Dropdown Filters for desktop */}
           <div className="hidden w-full max-w-6xl md:flex flex-wrap justify-center gap-3 px-6 mt-6 xl:gap-[3.5rem] lg:gap-[0.5rem] md:gap-[1.5rem] sm:gap-[1.5rem]">
             <Dropdown
               label="Team"
@@ -564,8 +411,6 @@ export default function Page() {
               svgPath="\jobSectionImage\location-svgrepo-com.svg"
               mobileFilterVisible={false}
             />
-
-
           </div>
 
           {/* Job Count */}
@@ -579,7 +424,6 @@ export default function Page() {
             (
               <div onClick={() => handleCheckboxFilterRemoval("team", items)} key={index} className=" flex justify-center text-xs text-companyBlue hover:border-companyBlue hover:border rounded m-2 ">
                 <div className="m-1 select-none">{items}</div>
-                {/* <div className="text-black text-sm mb-1 select-none">×</div> */}
               </div>
             ))}
             {selectedPositions.map((items, index) =>
@@ -613,62 +457,66 @@ export default function Page() {
           </div>
         </div>
 
-
-
         <div className="py-10 px- grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 justify-items-center w-full max-w-7xl">
-          {jobs.map((items, index) => (
-            <motion.div
-              key={items.id}
-              layoutId={`job-card-${items.id}`}
-              onClick={() => openJob(items)}
-              className="w-full max-w-[450px] h-auto sm:h-[240px] md:h-[230px] lg:h-[220px] rounded-lg bg-white shadow-md p-4 sm:p-5 flex flex-col justify-between transition duration-100 border transform hover:border-companyBlue hover:shadow-2xl cursor-pointer"
-            >
-              <div className="flex flex-col ">
-                <p className="text-gray-900 text-base sm:text-lg font-generalSansSemibold ">
-                  {items.position}
-                </p>
-                <p className="text-gray-700 font-generalSansMedium text-sm sm:text-base ">
-                  {items.team}
-                </p>
-                <div className="flex flex-wrap gap-1 text-gray-700 text-xs sm:text-sm mt-2">
-                  {Array.isArray(items.location)
-                    ? items.location.map((loc, i) => (
+          {filteredJobs.map((job, index) => {
+            const jobLocations = parseJSONField(job.location);
+            return (
+              <motion.div
+                key={job.id}
+                layoutId={`job-card-${job.id}`}
+                onClick={() => openJob(job)}
+                className="w-full max-w-[450px] h-auto sm:h-[240px] md:h-[230px] lg:h-[220px] rounded-lg bg-white shadow-md p-4 sm:p-5 flex flex-col justify-between transition duration-100 border transform hover:border-companyBlue hover:shadow-2xl cursor-pointer"
+              >
+                <div className="flex flex-col ">
+                  <p className="text-gray-900 text-base sm:text-lg font-generalSansSemibold ">
+                    {job.position}
+                  </p>
+                  <p className="text-gray-700 font-generalSansMedium text-sm sm:text-base ">
+                    {job.team}
+                  </p>
+                  <div className="flex flex-wrap gap-1 text-gray-700 text-xs sm:text-sm mt-2">
+                    {jobLocations.map((loc, i) => (
                       <span key={i} className="bg-white-200  py-1 rounded-md">
                         {loc} |{" "}
                       </span>
-                    ))
-                    : null}
+                    ))}
+                  </div>
+                  <div className="flex gap-2 mt-2">
+                    <button className="bg-sky-100 text-companyBlue font-generalSansRegular px-2 py-1 rounded-md text-xs sm:text-sm cursor-default">
+                      {job.job_type || 'Full-time'}
+                    </button>
+                  </div>
                 </div>
-                <div className="flex gap-2 mt-2">
-                  {/* <button className="bg-sky-100 text-companyBlue font-generalSansRegular px-2 py-1 rounded-md text-xs sm:text-sm cursor-default">{items.pay}</button> */}
-                  {/* <button className="bg-sky-100 text-companyBlue font-generalSansRegular px-2 py-1 rounded-md text-xs sm:text-sm cursor-default">{items.pay}</button> */}
-                  <button className="bg-sky-100 text-companyBlue font-generalSansRegular px-2 py-1 rounded-md text-xs sm:text-sm cursor-default">
-                    {items.job_type}
+                <div className="flex ">
+                  <button
+                    onClick={() => setFormVisible(false)}
+                    className="text-white font-generalSansSemibold tracking-wide  text-l bg-companyBlue px-3 py-2 sm:px-4 sm:py-2 rounded-md mt-2 sm:mt-3 hover:bg-cyan-50 hover:text-companyBlue hover:shadow-lg transition duration-300 mr-4"
+                  >
+                    More Details
+                  </button>
+                  <button
+                    onClick={() => {
+                      setFormVisible(true);
+                      setTimeout(() => {
+                        document.getElementById("apply")?.scrollIntoView({ behavior: "smooth" });
+                      }, 100);
+                    }}
+                    className="text-white font-generalSansSemibold tracking-wide  text-l bg-companyBlue px-3 py-2 sm:px-4 sm:py-2 rounded-md mt-2 sm:mt-3 hover:bg-cyan-50 hover:text-companyBlue hover:shadow-lg transition duration-300"
+                  >
+                    Apply Now
                   </button>
                 </div>
-              </div>
-              <div className="flex ">
-                <button
-                  onClick={() => setFormVisible(false)}
-                  className="text-white font-generalSansSemibold tracking-wide  text-l bg-companyBlue px-3 py-2 sm:px-4 sm:py-2 rounded-md mt-2 sm:mt-3 hover:bg-cyan-50 hover:text-companyBlue hover:shadow-lg transition duration-300 mr-4"
-                >
-                  More Details
-                </button>
-                <button
-                  onClick={() => {
-                    setFormVisible(true);
-                    setTimeout(() => {
-                      document.getElementById("apply")?.scrollIntoView({ behavior: "smooth" });
-                    }, 100);
-                  }}
-                  className="text-white font-generalSansSemibold tracking-wide  text-l bg-companyBlue px-3 py-2 sm:px-4 sm:py-2 rounded-md mt-2 sm:mt-3 hover:bg-cyan-50 hover:text-companyBlue hover:shadow-lg transition duration-300"
-                >
-                  Apply Now
-                </button>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            );
+          })}
         </div>
+
+        {filteredJobs.length === 0 && !loading && (
+          <div className="text-center text-gray-500 mt-10">
+            <p className="text-xl">No jobs found matching your criteria.</p>
+            <p className="text-sm mt-2">Try adjusting your filters or search terms.</p>
+          </div>
+        )}
 
         {/* Full-Screen Animated Modal */}
         <AnimatePresence>
@@ -688,7 +536,6 @@ export default function Page() {
                   <div>
                     <h2 className="text-3xl font-bold text-gray-800">{selectedJob.position}</h2>
                     <p className="text-gray-600 text-xl">{selectedJob.team}</p>
-
                   </div>
                   <button
                     onClick={closeJob}
@@ -733,7 +580,7 @@ export default function Page() {
                     <div>
                       <div className="mb-6">
                         <p className="text-cyan-400 font-bold">Location:</p>
-                        {Array.isArray(selectedJob.location) && selectedJob.location.map((item, index) => (
+                        {parseJSONField(selectedJob.location).map((item, index) => (
                           <p key={index} className="text-gray-800">
                             • {item}
                           </p>
@@ -752,7 +599,6 @@ export default function Page() {
                     </div>
                   </div>
 
-
                   {/* Description */}
                   <div className="mt-8 border-t border-gray-300 pt-6">
                     <h3 className="text-xl font-semibold text-companyBlue uppercase">
@@ -763,30 +609,28 @@ export default function Page() {
                     </p>
                   </div>
 
-
                   {/* Responsibilities */}
-                  {selectedJob.responsibilities.length > 0 && (
+                  {parseJSONField(selectedJob.responsibilities).length > 0 && (
                     <div className="mt-8 border-t border-gray-300 pt-6">
                       <h3 className="text-xl font-semibold text-companyBlue uppercase">
                         Responsibilities
                       </h3>
                       <ul className="list-disc list-inside mt-2 space-y-1 text-gray-700">
-                        {selectedJob.responsibilities.map((item, index) => (
+                        {parseJSONField(selectedJob.responsibilities).map((item, index) => (
                           <li key={index}>{item}</li>
                         ))}
                       </ul>
                     </div>
                   )}
 
-
                   {/* Eligibility */}
-                  {selectedJob.eligibility.length > 0 && (
+                  {parseJSONField(selectedJob.eligibility).length > 0 && (
                     <div className="mt-8 border-t border-gray-300 pt-6">
                       <h3 className="text-xl font-semibold text-companyBlue uppercase">
                         Eligibility
                       </h3>
                       <ul className="flex flex-wrap gap-2 mt-2">
-                        {selectedJob.eligibility.map((skill, index) => (
+                        {parseJSONField(selectedJob.eligibility).map((skill, index) => (
                           <li
                             key={index}
                             className="bg-gray-200 text-gray-700 px-3 py-1 rounded-md text-sm"
@@ -798,24 +642,22 @@ export default function Page() {
                     </div>
                   )}
 
-
                   {/* Benefits */}
-                  {selectedJob.benefits.length > 0 && (
+                  {parseJSONField(selectedJob.benefits).length > 0 && (
                     <div className="mt-8 border-t border-gray-300 pt-6">
                       <h3 className="text-xl font-semibold text-companyBlue uppercase">
                         Benefits
                       </h3>
                       <ul className="list-disc list-inside mt-2 space-y-1 text-gray-700">
-                        {selectedJob.benefits.map((item, index) => (
+                        {parseJSONField(selectedJob.benefits).map((item, index) => (
                           <li key={index}>{item}</li>
                         ))}
                       </ul>
                     </div>
                   )}
 
-
                   {/* Schedule */}
-                  {selectedJob.schedule.length > 0 && (
+                  {parseJSONField(selectedJob.schedule).length > 0 && (
                     <div className="mt-8 border-t border-gray-300 pt-6">
                       <h3 className="text-xl font-semibold text-companyBlue uppercase">
                         Schedule
@@ -830,13 +672,13 @@ export default function Page() {
 
 
                   {/* Supplemental Pay */}
-                  {selectedJob.supplemental_pay.length > 0 && (
+                  {parseJSONField(selectedJob.supplemental_pay).length > 0 && (
                     <div className="mt-8 border-t border-gray-300 pt-6">
                       <h3 className="text-xl font-semibold text-companyBlue uppercase">
                         Supplemental Pay
                       </h3>
                       <ul className="list-disc list-inside mt-2 space-y-1 text-gray-700">
-                        {selectedJob.supplemental_pay.map((item, index) => (
+                        {parseJSONField(selectedJob.supplemental_pay).map((item, index) => (
                           <li key={index}>{item}</li>
                         ))}
                       </ul>
@@ -845,7 +687,7 @@ export default function Page() {
 
 
                   {/* Questions */}
-                  {selectedJob.questions.length > 0 && (
+                  {parseJSONField(selectedJob.questions).length > 0 && (
                     <div className="mt-8 border-t border-gray-300 pt-6">
                       <h3 className="text-xl font-semibold text-companyBlue uppercase">
                         Questions
