@@ -11,6 +11,14 @@ const ServicesBreakdown = [
             link: "/services/environment/safety-audit/electrical-safety-audit",
             SubServices: [
                 {
+                    title: "Electrical Safety Audit Services",
+                    desc: "",
+                    tags: ["testing", "inspection", "installation", "environment"],
+                    image: "../service_img/logo-svgDefective.svg",
+                    depth: "electrical-safety-audit",
+                    link: "/services/environment/safety-audit/electrical-safety-audit",
+                },
+                {
                     title: "Safety Mat Installation Service",
                     desc: "",
                     tags: ["testing", "inspection", "installation", "environment"],

@@ -114,9 +114,10 @@ export default function TabComponent() {
               {card.Services.map((service, index) => (
                 <div key={index} className="mb-8">
                   <h3 className="text-2xl font-semibold text-blue-700 mb-2">{service.Service}</h3>
+                  
           
                   {/* If subservices exist */}
-                  {  service.SubServices && Array.isArray(service.SubServices) && service.SubServices.length > 0 ? (
+                  {service.SubServices && Array.isArray(service.SubServices) && service.SubServices.length > 0 ? (
                     
                     service.SubServices.map((sub, subIndex) => (
                       <div
