@@ -144,21 +144,24 @@ export default function Timeline() {
                   {/* Content */}
                   <div className={`flex-1 `}>
                     <div className="bg-zinc-900 max-w-4xl p-6 m-4 text-wrap break-words rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300">
-                        {/* <div className="flex items-center justify-center w-10 h-10 rounded-full bg-blue-100 text-companyBlue font-bold mr-4">
+                      {/* <div className="flex items-center justify-center w-10 h-10 rounded-full bg-blue-100 text-companyBlue font-bold mr-4">
                           {index + 1}
                         </div> */}
-                        <div className="flex justify-between items-center mb-4">
-                          <span className="text-xl font-bold">{step.year}</span>
-                          <span
-                            className={`text-sm px-3 py-1 rounded-full ${getBadgeColor(
-                              step.category
-                            )}`}
-                          >
-                            ESG-{step.category}-{step.principle}
-                          </span>
-                        </div>
+                      <div className="flex justify-between items-center mb-4">
+                        <span className="text-xl font-bold">{step.year}</span>
+                        <span
+                          className={`text-sm px-3 py-1 rounded-full ${getBadgeColor(
+                            step.category
+                          )}`}
+                        >
+                          ESG-{step.category}-{step.principle}
+                        </span>
+                      </div>
                       <p className="text-gray-300 leading-relaxed pl-1">
                         {step.desc}
+                      </p>
+                      <p className="text-base text-indigo-300 font-medium">
+                        <strong>Service:</strong> {step.service}
                       </p>
                     </div>
                   </div>
