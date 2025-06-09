@@ -151,7 +151,7 @@ const [data, setData] = useState([]);
               <div className="flex-1 text-left space-y-4">
                 <h2 className="text-4xl font-bold text-gray-900">{data[hoveredIndex]?.name}</h2>
                 <p className="text-xl text-black">{data[hoveredIndex]?.position}</p>
-                <p className="text-lg text-black leading-relaxed">{data[hoveredIndex]?.desc}</p>
+                <p className="text-lg text-black leading-relaxed">{data[hoveredIndex]?.description}</p>
               </div>
             </motion.div>
           </motion.div>

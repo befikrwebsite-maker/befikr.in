@@ -286,6 +286,7 @@ export default function Page() {
   const [selectedTeams, setSelectedTeams] = useState([]);
   const [selectedPositions, setSelectedPositions] = useState([]);
   const [selectedLocations, setSelectedLocations] = useState([]);
+  const [jobs_count, setJobCount] = useState(0);
 
   const checkboxFilter = (job) =>
     (selectedTeams.length === 0 || selectedTeams.includes(job.team)) &&
@@ -330,8 +331,6 @@ export default function Page() {
         })
         .then((data) => {
           setJobs(data.jobs || []);
-          setJobCount(data.jobs_count);
-          setApplicants(data.applicants || {});
         })
         .catch((error) => {
           console.error('Error fetching jobs:', error);
@@ -644,7 +643,7 @@ export default function Page() {
                   {/* <button className="bg-sky-100 text-companyBlue font-generalSansRegular px-2 py-1 rounded-md text-xs sm:text-sm cursor-default">{items.pay}</button> */}
                   {/* <button className="bg-sky-100 text-companyBlue font-generalSansRegular px-2 py-1 rounded-md text-xs sm:text-sm cursor-default">{items.pay}</button> */}
                   <button className="bg-sky-100 text-companyBlue font-generalSansRegular px-2 py-1 rounded-md text-xs sm:text-sm cursor-default">
-                    {items.jobtype}
+                    {items.job_type}
                   </button>
                 </div>
               </div>
@@ -711,7 +710,7 @@ export default function Page() {
                       <div className="mb-6">
                         <p className="text-cyan-400 font-bold">Job Type:</p>
                         <p className="text-gray-800">
-                          {selectedJob.jobtype || "Not specified"}
+                          {selectedJob.job_type || "Not specified"}
                         </p>
                       </div>
                       <div className="mb-6">

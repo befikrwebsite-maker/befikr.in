@@ -141,204 +141,199 @@ const AdminDashboard = () => {
   const goToPage = (pageNum) => setCurrentPage(pageNum);
 
   return (
-    <div className="min-h-screen bg-gray-50 p-8 font-sans">
-      {/* Header */}
-      <header className="flex flex-wrap justify-between items-center mb-10 gap-4">
-        <h1 className="text-4xl font-extrabold text-[#04B2D9]">Admin Dashboard</h1>
-        <div className="flex items-center gap-3 w-full max-w-md">
-          <div className="relative flex-grow">
-            <FiSearch
-              className="absolute top-1/2 left-3 -translate-y-1/2 text-gray-400"
-              size={18}
-            />
-            <input
-              type="search"
-              value={filterInput}
-              onChange={handleSearch}
-              placeholder="Search job title..."
-              className="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#04B2D9] focus:border-transparent transition"
-            />
-          </div>
-          <button
-            onClick={() => router.push("/admin/add")}
-            className="inline-flex items-center gap-2 bg-[#04B2D9] text-white px-5 py-3 rounded-lg font-semibold shadow hover:bg-[#038ab7] transition"
-          >
-            <FiPlus size={20} /> Add Job
-          </button>
-          <button
-            onClick={() => router.push("/admin/testimonials")}
-            className="inline-flex items-center gap-2 bg-[#04B2D9] text-white px-5 py-3 rounded-lg font-semibold shadow hover:bg-[#038ab7] transition"
-          >
-            Testimonial
-          </button>
-        </div>
-      </header>
-
-      {/* Stats */}
-      <section className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
-        {[
-          { label: "Total Open Positions", value: jobs.length },
-          { label: "Total Applications", value: totalApplications },
-          { label: "New This Week", value: newApplications },
-          {
-            label: "Most Active Job",
-            value: jobs.find((j) => j.id == mostActiveJob.id)?.title || "N/A",
-          },
-        ].map(({ label, value }) => (
-          <div
-            key={label}
-            className="bg-white rounded-xl shadow p-6 flex flex-col justify-center items-center text-center"
-          >
-            <p className="text-gray-600 font-medium mb-2">{label}</p>
-            <p className="text-3xl font-bold text-[#04B2D9]">{value}</p>
-          </div>
-        ))}
-      </section>
-
-      {/* Charts */}
-      <section className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
-        <div className="bg-white rounded-xl shadow p-6">
-          <h2 className="font-semibold text-xl mb-4">Job Status</h2>
-          <ResponsiveContainer width="100%" height={280}>
-            <PieChart>
-              <Pie data={pieData} dataKey="value" outerRadius={90} label>
-                {pieData.map((_, i) => (
-                  <Cell key={i} fill={COLORS[i]} />
-                ))}
-              </Pie>
-              <Tooltip />
-            </PieChart>
-          </ResponsiveContainer>
-        </div>
-        <div className="bg-white rounded-xl shadow p-6">
-          <h2 className="font-semibold text-xl mb-4">Applicants per Job</h2>
-          <ResponsiveContainer width="100%" height={280}>
-            <BarChart data={barData} margin={{ top: 5, right: 30, left: 0, bottom: 5 }}>
-              <XAxis dataKey="title" tick={{ fontSize: 14 }} />
-              <YAxis />
-              <Tooltip />
-              <Bar dataKey="applicants" fill="#04B2D9" radius={[4, 4, 0, 0]} />
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
-      </section>
-
-      {/* Expiring Jobs */}
-      {expiringJobs.length > 0 && (
-        <section className="bg-red-50 border border-red-300 rounded-xl p-6 mb-10">
-          <h2 className="text-red-600 font-bold text-lg mb-3">
-            ⚠️ Job Postings Near Expiration
-          </h2>
-          <ul className="list-disc list-inside text-red-700 text-lg font-medium space-y-1">
-            {expiringJobs.map((job) => (
-              <li key={job.id}>
-                {job.position} - Expires on <strong>{job.expiresAt}</strong>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
-
-      {/* Jobs Table */}
-      <section className="bg-white rounded-xl shadow p-6">
-        <h2 className="text-2xl font-semibold mb-6">Jobs Management</h2>
-        <div className="overflow-x-auto">
-          <table className="w-full border-collapse text-left text-gray-700">
-            <thead className="bg-gray-100 border-b border-gray-300">
-              <tr>
-                {["Title", "Location", "Type", "Posted", "Expires", "Status", "Actions"].map(
-                  (header) => (
-                    <th key={header} className="py-3 px-4 font-semibold">
-                      {header}
-                    </th>
-                  )
-                )}
-              </tr>
-            </thead>
-            <tbody>
-              {paginatedJobs.map((job, idx) => (
-                <tr
-                  key={job.id}
-                  className={`border-b border-gray-200 hover:bg-gray-50 ${
-                    idx % 2 === 0 ? "bg-white" : "bg-gray-50"
-                  }`}
-                >
-                  <td className="py-3 px-4">{job.position}</td>
-                  <td className="py-3 px-4">{job.location}</td>
-                  <td className="py-3 px-4">{job.job_type}</td>
-                  <td className="py-3 px-4">{job.postedAt}</td>
-                  <td className="py-3 px-4">{job.expiresAt}</td>
-                  <td
-                    className={`py-3 px-4 font-semibold ${
-                      job.status === "active" ? "text-green-600" : "text-red-600"
-                    }`}
-                  >
-                    {job.status.charAt(0).toUpperCase() + job.status.slice(1)}
-                  </td>
-                  <td className="py-3 px-4 flex items-center gap-2">
-                    <button
-                      title="Toggle Status"
-                      onClick={() => toggleStatus(job.id)}
-                      className="p-2 text-[#04B2D9] hover:bg-[#04B2D9] hover:text-white rounded transition"
-                    >
-                      <FiRefreshCw size={18} />
-                    </button>
-                    <button
-                      title="Edit"
-                      onClick={() => router.push(`/admin/edit?id=${job.id}`)}
-                      className="p-2 text-yellow-500 hover:bg-yellow-500 hover:text-white rounded transition"
-                    >
-                      <FiEdit2 size={18} />
-                    </button>
-                    <button
-                      title="Delete"
-                      onClick={() => deleteJob(job.id)}
-                      className="p-2 text-red-500 hover:bg-red-500 hover:text-white rounded transition"
-                    >
-                      <FiTrash2 size={18} />
-                    </button>
-                    <button
-                      title="View Applicants"
-                      onClick={() => viewApplicants(job.id)}
-                      className="p-2 text-gray-600 hover:bg-gray-600 hover:text-white rounded transition"
-                    >
-                      <FiEye size={18} />
-                    </button>
-                  </td>
-                </tr>
-              ))}
-              {paginatedJobs.length === 0 && (
-                <tr>
-                  <td colSpan={7} className="py-6 text-center text-gray-400 italic">
-                    No jobs found.
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          </table>
-        </div>
-
-        {/* Pagination Dots */}
-        <div className="flex justify-center mt-6 space-x-3">
-          {Array.from(
-            { length: Math.ceil(filteredJobs.length / ITEMS_PER_PAGE) },
-            (_, i) => i + 1
-          ).map((pageNum) => (
-            <button
-              key={pageNum}
-              onClick={() => goToPage(pageNum)}
-              className={`w-4 h-4 rounded-full transition-all ${
-                pageNum === currentPage
-                  ? "bg-[#04B2D9] scale-110 shadow-lg"
-                  : "bg-gray-300 hover:bg-gray-400"
-              }`}
-              aria-label={`Go to page ${pageNum}`}
-              title={`Page ${pageNum}`}
-            />
-          ))}
-        </div>
-      </section>
+<div className="min-h-screen bg-gray-50 p-8 font-sans">
+  {/* Header */}
+  <header className="flex flex-wrap justify-between items-center mb-10 gap-4">
+    <h1 className="text-4xl font-extrabold text-[#04B2D9]">Admin Dashboard</h1>
+    <div className="flex flex-wrap gap-3 w-full md:w-auto">
+      <div className="relative flex-grow md:flex-grow-0 md:w-64">
+        <FiSearch className="absolute top-1/2 left-3 -translate-y-1/2 text-gray-400" size={18} />
+        <input
+          type="search"
+          value={filterInput}
+          onChange={handleSearch}
+          placeholder="Search job title..."
+          className="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#04B2D9] transition"
+        />
+      </div>
+      <button
+        onClick={() => router.push("/admin/add")}
+        className="inline-flex items-center gap-2 bg-[#04B2D9] text-white px-5 py-3 rounded-lg font-semibold shadow hover:bg-[#038ab7] transition"
+      >
+        <FiPlus size={20} /> Add Job
+      </button>
+      <button
+        onClick={() => router.push("/admin/testimonials")}
+        className="inline-flex items-center gap-2 bg-[#04B2D9] text-white px-5 py-3 rounded-lg font-semibold shadow hover:bg-[#038ab7] transition"
+      >
+        Testimonial
+      </button>
     </div>
+  </header>
+
+  {/* Stats */}
+  <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-10">
+    {[
+      { label: "Total Open Positions", value: jobs.length },
+      { label: "Total Applications", value: totalApplications },
+      { label: "New This Week", value: newApplications },
+      {
+        label: "Most Active Job",
+        value: jobs.find((j) => j.id == mostActiveJob.id)?.title || "N/A",
+      },
+    ].map(({ label, value }) => (
+      <div
+        key={label}
+        className="bg-white rounded-2xl shadow-lg p-6 text-center border border-gray-100 hover:shadow-xl transition"
+      >
+        <p className="text-gray-500 font-medium mb-2">{label}</p>
+        <p className="text-4xl font-bold text-[#04B2D9]">{value}</p>
+      </div>
+    ))}
+  </section>
+
+  {/* Charts */}
+  <section className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+    <div className="bg-white rounded-2xl shadow-lg p-6">
+      <h2 className="font-semibold text-xl text-gray-800 mb-4">Job Status</h2>
+      <ResponsiveContainer width="100%" height={280}>
+        <PieChart>
+          <Pie data={pieData} dataKey="value" outerRadius={90} label>
+            {pieData.map((_, i) => <Cell key={i} fill={COLORS[i]} />)}
+          </Pie>
+          <Tooltip />
+        </PieChart>
+      </ResponsiveContainer>
+    </div>
+    <div className="bg-white rounded-2xl shadow-lg p-6">
+      <h2 className="font-semibold text-xl text-gray-800 mb-4">Applicants per Job</h2>
+      <ResponsiveContainer width="100%" height={280}>
+        <BarChart data={barData} margin={{ top: 5, right: 30, left: 0, bottom: 5 }}>
+          <XAxis dataKey="title" tick={{ fontSize: 13 }} />
+          <YAxis />
+          <Tooltip />
+          <Bar dataKey="applicants" fill="#04B2D9" radius={[4, 4, 0, 0]} />
+        </BarChart>
+      </ResponsiveContainer>
+    </div>
+  </section>
+
+  {/* Expiring Jobs */}
+  {expiringJobs.length > 0 && (
+    <section className="bg-red-50 border border-red-200 rounded-xl p-6 mb-10 shadow-sm">
+      <h2 className="text-red-600 font-semibold text-lg mb-3">
+        ⚠️ Job Postings Near Expiration
+      </h2>
+      <ul className="list-disc list-inside text-red-700 text-base font-medium space-y-1">
+        {expiringJobs.map((job) => (
+          <li key={job.id}>
+            {job.position} - Expires on <strong>{job.expiresAt}</strong>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+
+  {/* Jobs Table */}
+  <section className="bg-white rounded-2xl shadow-lg p-6">
+    <h2 className="text-2xl font-semibold text-gray-800 mb-6">Jobs Management</h2>
+    <div className="overflow-x-auto">
+      <table className="w-full border-collapse text-left text-gray-700 text-sm md:text-base">
+        <thead className="bg-gray-100 border-b border-gray-300">
+          <tr>
+            {["Title", "Location", "Type", "Posted", "Expires", "Status", "Actions"].map(
+              (header) => (
+                <th key={header} className="py-3 px-4 font-semibold text-gray-600">
+                  {header}
+                </th>
+              )
+            )}
+          </tr>
+        </thead>
+        <tbody>
+          {paginatedJobs.map((job, idx) => (
+            <tr
+              key={job.id}
+              className={`border-b border-gray-200 hover:bg-gray-50 ${
+                idx % 2 === 0 ? "bg-white" : "bg-gray-50"
+              }`}
+            >
+              <td className="py-3 px-4">{job.position}</td>
+              <td className="py-3 px-4">{job.location}</td>
+              <td className="py-3 px-4">{job.job_type}</td>
+              <td className="py-3 px-4">{job.postedAt}</td>
+              <td className="py-3 px-4">{job.expiresAt}</td>
+              <td
+                className={`py-3 px-4 font-semibold ${
+                  job.status === "active" ? "text-green-600" : "text-red-600"
+                }`}
+              >
+                {job.status.charAt(0).toUpperCase() + job.status.slice(1)}
+              </td>
+              <td className="py-3 px-4 flex items-center gap-2">
+                <button
+                  title="Toggle Status"
+                  onClick={() => toggleStatus(job.id)}
+                  className="p-2 text-[#04B2D9] hover:bg-[#04B2D9] hover:text-white rounded transition"
+                >
+                  <FiRefreshCw size={18} />
+                </button>
+                <button
+                  title="Edit"
+                  onClick={() => router.push(`/admin/edit?id=${job.id}`)}
+                  className="p-2 text-yellow-500 hover:bg-yellow-500 hover:text-white rounded transition"
+                >
+                  <FiEdit2 size={18} />
+                </button>
+                <button
+                  title="Delete"
+                  onClick={() => deleteJob(job.id)}
+                  className="p-2 text-red-500 hover:bg-red-500 hover:text-white rounded transition"
+                >
+                  <FiTrash2 size={18} />
+                </button>
+                <button
+                  title="View Applicants"
+                  onClick={() => viewApplicants(job.id)}
+                  className="p-2 text-gray-600 hover:bg-gray-600 hover:text-white rounded transition"
+                >
+                  <FiEye size={18} />
+                </button>
+              </td>
+            </tr>
+          ))}
+          {paginatedJobs.length === 0 && (
+            <tr>
+              <td colSpan={7} className="py-6 text-center text-gray-400 italic">
+                No jobs found.
+              </td>
+            </tr>
+          )}
+        </tbody>
+      </table>
+    </div>
+
+    {/* Pagination Dots */}
+    <div className="flex justify-center mt-6 space-x-3">
+      {Array.from({ length: Math.ceil(filteredJobs.length / ITEMS_PER_PAGE) }, (_, i) => i + 1).map(
+        (pageNum) => (
+          <button
+            key={pageNum}
+            onClick={() => goToPage(pageNum)}
+            className={`w-4 h-4 rounded-full transition-all ${
+              pageNum === currentPage
+                ? "bg-[#04B2D9] scale-110 shadow-lg"
+                : "bg-gray-300 hover:bg-gray-400"
+            }`}
+            aria-label={`Go to page ${pageNum}`}
+            title={`Page ${pageNum}`}
+          />
+        )
+      )}
+    </div>
+  </section>
+</div>
+
   );
 };
 
