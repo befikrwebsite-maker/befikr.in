@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 
 const API_URL = 'https://befikr.in/testimonial_api.php';
 const UPLOAD_URL = 'https://befikr.in/upload_testimonial_image.php';
+const REMOVE_URL = 'https://befikr.in/remove_testimonial.php';
 
 export default function TestimonialsAdmin() {
   const [testimonials, setTestimonials] = useState([]);
@@ -35,6 +36,29 @@ export default function TestimonialsAdmin() {
   const handleImageChange = (e) => {
     setImageFile(e.target.files[0]);
   };
+
+  const deleteTestimonial = (id) => {
+      const confirmed = window.confirm("Are you sure you want to delete this testimonial?");
+      if (!confirmed) return;
+      fetch(REMOVE_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.success) {
+            toast.success("Testimonial deleted successfully!");
+            setTestimonials((prev) => prev.filter((testimonial) => testimonial.id !== id));
+          } else {
+            toast.error("Error: " + data.error);
+          }
+        })
+        .catch((err) => {
+          console.error(err);
+          toast.error("Failed to delete testimonial. Please try again.");
+        });
+    };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -208,6 +232,12 @@ export default function TestimonialsAdmin() {
           className="mt-3 text-blue-600 hover:underline text-sm font-medium"
         >
           ✏️ Edit
+        </button>
+        <button
+          onClick={() => deleteTestimonial(t.id)}
+          className="mt-3 text-blue-600 hover:underline text-sm font-medium"
+        >
+          🗑️ Delete
         </button>
       </div>
     ))}
