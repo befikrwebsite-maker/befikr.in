@@ -223,6 +223,12 @@ const AdminDashboard = () => {
       >
         Testimonial
       </button>
+      <button
+        onClick={() => router.push("/admin/createuser")}
+        className="inline-flex items-center gap-2 bg-[#04B2D9] text-white px-5 py-3 rounded-lg font-semibold shadow hover:bg-[#038ab7] transition"
+      >
+        Create User
+      </button>
     </div>
   </header>
 
