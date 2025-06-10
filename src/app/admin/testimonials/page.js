@@ -89,6 +89,7 @@ export default function TestimonialsAdmin() {
   };
 
   const handleEdit = (item) => {
+    scrollTo(0,0);
     setForm(item);
     setImageFile(null);
     setIsEditing(true);

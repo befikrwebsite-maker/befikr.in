@@ -124,7 +124,8 @@ export default function Page() {
       const data = await response.json();
       
       // Process the jobs data to ensure proper format
-      const processedJobs = (data.jobs || []).map(job => ({
+      const processedJobs = (data.jobs || [])
+      .map(job => ({
         ...job,
         id: parseInt(job.id) || job.id,
         location: parseJSONField(job.location),
@@ -135,9 +136,12 @@ export default function Page() {
         supplemental_pay: parseJSONField(job.supplemental_pay),
         questions: parseJSONField(job.questions),
         travel: parseJSONField(job.travel),
-        tags: parseJSONField(job.tags)
-      }));
+        tags: parseJSONField(job.tags),
+        status: job.status,
+      }))
+      .filter(job => job.status !== 'closed');
       
+
       setJobs(processedJobs);
       setError(null);
     } catch (error) {

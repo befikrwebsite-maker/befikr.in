@@ -161,6 +161,31 @@ const AdminDashboard = () => {
       });
   }
 
+  const editJob = (id) => {
+    fetch('https://befikr.in/update_job.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          toast.success("Job updated successfully!");
+          setJobs((prev) =>
+            prev.map((job) =>
+              job.id === id ? { ...job, ...data.job } : job
+            )
+          );
+        } else {
+          toast.error("Error: " + data.error);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        toast.error("Failed to update job. Please try again.");
+      });
+  };
+
   const deleteJob = (id) => {
     const confirmed = window.confirm("Are you sure you want to delete this job posting?");
     if (!confirmed) return;
