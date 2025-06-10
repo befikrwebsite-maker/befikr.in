@@ -56,7 +56,7 @@ const AdminDashboard = () => {
   useEffect(() => {
     const token = localStorage.getItem("jwt");
     if (!token) {
-      router.push("/login");
+      router.push("/admin/login");
       return;
     }
 
