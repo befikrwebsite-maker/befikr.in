@@ -26,6 +26,8 @@ const AdminDashboard = () => {
   const [selectedApplicants, setSelectedApplicants] = useState([]);
   const [filterInput, setFilterInput] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(true);
+  const [auth, setAuth] = useState(null);
 
   // Fetch jobs from API
   const fetchJobs = () => {
@@ -49,6 +51,34 @@ const AdminDashboard = () => {
   useEffect(() => {
     fetchJobs();
   }, []);
+
+  // Check authentication
+  useEffect(() => {
+    const token = localStorage.getItem("jwt");
+    if (!token) {
+      router.push("/login");
+      return;
+    }
+
+    fetch("http://befikr.in/verify_token.php", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.user?.role !== "admin") {
+          router.push("/admin/login");
+        } else {
+          setAuth(data.user);
+          setLoading(false);
+        }
+      })
+      .catch(() => router.push("/admin/login"));
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+
 
   // Derived values for filtering, pagination etc.
   const filteredJobs = jobs.filter((job) =>
@@ -105,6 +135,31 @@ const AdminDashboard = () => {
           : job
       )
     );
+
+  const updateJobStatus = (id, status) => {
+    fetch("https://befikr.in/job_status.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id, status }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          toast.success("Job status updated successfully!");
+          setJobs((prev) =>
+            prev.map((job) =>
+              job.id === id ? { ...job, status } : job
+            )
+          );
+        } else {
+          toast.error("Error: " + data.error);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        toast.error("Failed to update job status. Please try again.");
+      });
+  }
 
   const deleteJob = (id) => {
     const confirmed = window.confirm("Are you sure you want to delete this job posting?");
@@ -273,7 +328,7 @@ const AdminDashboard = () => {
               <td className="py-3 px-4 flex items-center gap-2">
                 <button
                   title="Toggle Status"
-                  onClick={() => toggleStatus(job.id)}
+                  onClick={() => updateJobStatus(job.id, job.status === "active" ? "closed" : "active")}
                   className="p-2 text-[#04B2D9] hover:bg-[#04B2D9] hover:text-white rounded transition"
                 >
                   <FiRefreshCw size={18} />

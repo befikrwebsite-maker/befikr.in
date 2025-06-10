@@ -55,111 +55,151 @@ const CreateJobForm = () => {
     }
   };
 
-  const formFields = [
-    ['Position', 'position'],
-    ['Team', 'team'],
-    ['Location (comma separated)', 'location'],
-    ['Description', 'description'],
-    ['Tags (comma separated)', 'tags'],
-    ['Pay', 'pay'],
-    ['Job Type', 'job_type'],
-    ['Responsibilities (comma separated)', 'responsibilities'],
-    ['Skills (comma separated)', 'skills'],
-    ['Benefits (comma separated)', 'benefits'],
-    ['Schedule (comma separated)', 'schedule'],
-    ['Supplemental Pay (comma separated)', 'supplemental_pay'],
-    ['Questions (comma separated)', 'questions'],
-    ['Experience (comma separated)', 'experience'],
-    ['Travel (comma separated)', 'travel'],
-    ['Work Location', 'work_location'],
-    ['Expected Start Date (dd/mm/yyyy)', 'expected_start_date']
-  ];
+  const sectionHeaders = {
+  Basic: ['position', 'team', 'location', 'description', 'job_type'],
+  Compensation: ['pay', 'benefits', 'supplemental_pay'],
+  Requirements: ['skills', 'experience', 'travel', 'schedule'],
+  Additional: ['responsibilities', 'questions', 'work_location', 'expected_start_date', 'tags'],
+};
 
-  return (
-    <form onSubmit={handleSubmit} style={styles.form}>
-      <h2 style={styles.heading}>📝 Create Job Posting</h2>
+const formFields = [
+  ['Position', 'position'],
+  ['Team', 'team'],
+  ['Location (comma separated)', 'location'],
+  ['Description', 'description'],
+  ['Tags (comma separated)', 'tags'],
+  ['Pay (monthly/yearly)', 'pay'],
+  ['Job Type (e.g., Full-time, Part-time)', 'job_type'],
+  ['Responsibilities (comma separated)', 'responsibilities'],
+  ['Skills (comma separated)', 'skills'],
+  ['Benefits (comma separated)', 'benefits'],
+  ['Schedule (comma separated)', 'schedule'],
+  ['Supplemental Pay (comma separated)', 'supplemental_pay'],
+  ['Questions (comma separated)', 'questions'],
+  ['Experience (comma separated)', 'experience'],
+  ['Travel (comma separated)', 'travel'],
+  ['Work Location', 'work_location'],
+  ['Expected Start Date', 'expected_start_date'],
+];
 
-      {formFields.map(([label, name]) => (
-        <div key={name} style={styles.fieldGroup}>
-          <label style={styles.label}>{label}</label>
-          {name === 'description' ? (
-            <textarea
-              name={name}
-              value={form[name]}
-              onChange={handleChange}
-              required={['position', 'team', 'location', 'description', 'job_type'].includes(name)}
-              style={styles.textarea}
-              rows={4}
-            />
-          ) : (
-            <input
-              name={name}
-              value={Array.isArray(form[name]) ? form[name].join(', ') : form[name]}
-              onChange={handleChange}
-              required={['position', 'team', 'location', 'description', 'job_type'].includes(name)}
-              style={styles.input}
-            />
-          )}
-        </div>
-      ))}
+const requiredFields = ['position', 'team', 'location', 'description', 'job_type'];
 
-      <button type="submit" style={styles.button}>➕ Post Job</button>
-    </form>
-  );
+return (
+  <form onSubmit={handleSubmit} style={styles.form}>
+    <h2 style={styles.heading}>📝 Create a Job Posting</h2>
+
+    {Object.entries(sectionHeaders).map(([sectionTitle, sectionFields]) => (
+      <div key={sectionTitle} style={styles.section}>
+        <h3 style={styles.sectionHeading}>{sectionTitle}</h3>
+        {formFields
+          .filter(([, name]) => sectionFields.includes(name))
+          .map(([label, name]) => (
+            <div key={name} style={styles.fieldGroup}>
+              <label htmlFor={name} style={styles.label}>{label}</label>
+              {name === 'description' ? (
+                <textarea
+                  id={name}
+                  name={name}
+                  placeholder="Enter job description here..."
+                  value={form[name]}
+                  onChange={handleChange}
+                  required={requiredFields.includes(name)}
+                  style={styles.textarea}
+                />
+              ) : (
+                <input
+                  id={name}
+                  name={name}
+                  type={name === 'expected_start_date' ? 'date' : 'text'}
+                  placeholder={
+                    label.includes('comma') ? 'e.g. Item 1, Item 2, Item 3' : ''
+                  }
+                  value={Array.isArray(form[name]) ? form[name].join(', ') : form[name]}
+                  onChange={handleChange}
+                  required={requiredFields.includes(name)}
+                  style={styles.input}
+                />
+              )}
+            </div>
+          ))}
+      </div>
+    ))}
+
+    <button type="submit" style={styles.button}>➕ Post Job</button>
+  </form>
+);
+
 };
 
 const styles = {
   form: {
-    maxWidth: '700px',
+    maxWidth: '750px',
     margin: '40px auto',
-    padding: '30px',
-    borderRadius: '12px',
-    boxShadow: '0 0 15px rgba(0,0,0,0.08)',
-    backgroundColor: '#fefefe',
-    fontFamily: 'Arial, sans-serif'
+    padding: '35px',
+    borderRadius: '16px',
+    boxShadow: '0 10px 40px rgba(0, 0, 0, 0.08)',
+    backgroundColor: '#ffffff',
+    fontFamily: 'Segoe UI, sans-serif',
   },
   heading: {
     textAlign: 'center',
-    marginBottom: '24px',
-    fontSize: '24px',
-    color: '#333'
+    marginBottom: '32px',
+    fontSize: '28px',
+    color: '#222',
+  },
+  section: {
+    marginBottom: '30px',
+    paddingBottom: '10px',
+    borderBottom: '1px solid #eee',
+  },
+  sectionHeading: {
+    fontSize: '20px',
+    marginBottom: '18px',
+    color: '#04B2D9',
+    borderLeft: '4px solid #04B2D9',
+    paddingLeft: '10px',
   },
   fieldGroup: {
-    marginBottom: '18px'
+    marginBottom: '20px',
   },
   label: {
     display: 'block',
     marginBottom: '6px',
-    fontWeight: 'bold',
-    color: '#444'
+    fontWeight: '600',
+    color: '#333',
   },
   input: {
     width: '100%',
-    padding: '10px',
+    padding: '10px 12px',
     border: '1px solid #ccc',
-    borderRadius: '6px',
-    fontSize: '14px'
+    borderRadius: '8px',
+    fontSize: '14px',
+    outline: 'none',
+    transition: 'border-color 0.2s',
   },
   textarea: {
     width: '100%',
-    padding: '10px',
+    padding: '12px',
     border: '1px solid #ccc',
-    borderRadius: '6px',
+    borderRadius: '8px',
     fontSize: '14px',
-    resize: 'vertical'
+    resize: 'vertical',
+    minHeight: '100px',
+    outline: 'none',
+    transition: 'border-color 0.2s',
   },
   button: {
-    marginTop: '24px',
+    marginTop: '28px',
     width: '100%',
-    padding: '12px',
+    padding: '14px',
     fontSize: '16px',
     fontWeight: 'bold',
     backgroundColor: '#04B2D9',
     color: '#fff',
     border: 'none',
-    borderRadius: '6px',
+    borderRadius: '8px',
     cursor: 'pointer',
-    transition: 'background-color 0.2s ease-in-out'
+    transition: 'background-color 0.3s ease',
   }
 };
 

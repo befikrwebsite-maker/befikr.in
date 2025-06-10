@@ -109,44 +109,109 @@ export default function TestimonialsAdmin() {
 
   return (
     <div className="p-8 max-w-4xl mx-auto">
-      <h1 className="text-2xl font-bold mb-6">Testimonials Admin</h1>
+  <h1 className="text-3xl font-bold mb-8 text-gray-800">Testimonials Admin Panel</h1>
 
-      <form onSubmit={handleSubmit} className="space-y-4 border p-6 rounded shadow">
-        <input name="name" value={form.name} onChange={handleChange} placeholder="Name" className="w-full p-2 border rounded" required />
-        <input name="text" value={form.text} onChange={handleChange} placeholder="Short Text" className="w-full p-2 border rounded" required />
-        <input name="position" value={form.position} onChange={handleChange} placeholder="Position" className="w-full p-2 border rounded" required />
-        <textarea name="description" value={form.description} onChange={handleChange} placeholder="Description" className="w-full p-2 border rounded" required />
-        
-        <input type="file" onChange={handleImageChange} className="w-full p-2 border rounded" accept="image/*" />
-        {form.image && (
-          <div className="text-sm text-gray-600">Current Image: {form.image.split('/').pop()}</div>
-        )}
-
-        <div className="flex gap-4">
-          <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-            {isEditing ? 'Update Testimonial' : 'Add Testimonial'}
-          </button>
-          {isEditing && (
-            <button type="button" onClick={handleCancel} className="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400">
-              Cancel
-            </button>
-          )}
-        </div>
-      </form>
-
-      <h2 className="text-xl font-semibold mt-10 mb-4">Existing Testimonials</h2>
-      <div className="space-y-4">
-        {testimonials.map((t) => (
-          <div key={t.id} className="border p-4 rounded shadow-sm">
-            <h3 className="font-bold">{t.name}</h3>
-            <p className="text-sm italic">{t.position}</p>
-            <p className="text-sm">{t.description}</p>
-            <button onClick={() => handleEdit(t)} className="mt-2 text-blue-600 hover:underline">
-              Edit
-            </button>
-          </div>
-        ))}
-      </div>
+  <form onSubmit={handleSubmit} className="space-y-5 border border-gray-200 p-6 rounded-xl shadow-md bg-white">
+    <div className="space-y-2">
+      <label className="block text-sm font-semibold text-gray-700">Name</label>
+      <input
+        name="name"
+        value={form.name}
+        onChange={handleChange}
+        placeholder="Enter full name"
+        className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        required
+      />
     </div>
+
+    <div className="space-y-2">
+      <label className="block text-sm font-semibold text-gray-700">Short Text</label>
+      <input
+        name="text"
+        value={form.text}
+        onChange={handleChange}
+        placeholder="Short one-liner or title"
+        className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        required
+      />
+    </div>
+
+    <div className="space-y-2">
+      <label className="block text-sm font-semibold text-gray-700">Position</label>
+      <input
+        name="position"
+        value={form.position}
+        onChange={handleChange}
+        placeholder="e.g., Marketing Manager"
+        className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        required
+      />
+    </div>
+
+    <div className="space-y-2">
+      <label className="block text-sm font-semibold text-gray-700">Description</label>
+      <textarea
+        name="description"
+        value={form.description}
+        onChange={handleChange}
+        placeholder="Full testimonial here..."
+        className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        rows={4}
+        required
+      />
+    </div>
+
+    <div className="space-y-2">
+      <label className="block text-sm font-semibold text-gray-700">Upload Image</label>
+      <input
+        type="file"
+        onChange={handleImageChange}
+        className="w-full p-2 border border-gray-300 rounded-md"
+        accept="image/*"
+      />
+      {form.image && (
+        <div className="text-sm text-gray-600 mt-1">
+          Current Image: <span className="font-medium">{form.image.split('/').pop()}</span>
+        </div>
+      )}
+    </div>
+
+    <div className="flex gap-4 pt-2">
+      <button
+        type="submit"
+        className="bg-blue-600 text-white px-5 py-2 rounded-md hover:bg-blue-700 transition"
+      >
+        {isEditing ? 'Update Testimonial' : 'Add Testimonial'}
+      </button>
+      {isEditing && (
+        <button
+          type="button"
+          onClick={handleCancel}
+          className="bg-gray-300 text-gray-800 px-5 py-2 rounded-md hover:bg-gray-400 transition"
+        >
+          Cancel
+        </button>
+      )}
+    </div>
+  </form>
+
+  <h2 className="text-2xl font-semibold mt-12 mb-6 text-gray-800">📋 Existing Testimonials</h2>
+  <div className="grid gap-6">
+    {testimonials.map((t) => (
+      <div key={t.id} className="p-5 border border-gray-200 rounded-xl shadow-sm bg-white">
+        <h3 className="text-lg font-bold text-gray-800">{t.name}</h3>
+        <p className="text-sm italic text-gray-600">{t.position}</p>
+        <p className="text-gray-700 mt-2">{t.description}</p>
+        <button
+          onClick={() => handleEdit(t)}
+          className="mt-3 text-blue-600 hover:underline text-sm font-medium"
+        >
+          ✏️ Edit
+        </button>
+      </div>
+    ))}
+  </div>
+</div>
+
   );
 }
