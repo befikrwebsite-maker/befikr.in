@@ -1,8 +1,44 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useRouter } from "next/navigation";
 
 const CreateJobForm = () => {
+  const router = useRouter();
+  const [auth, setAuth] = useState(null);
+
+  useEffect(() => {
+    const token = localStorage.getItem("jwt");
+    if (!token) return router.push("/admin/login");
+
+    fetch("http://befikr.in/verify_token.php", {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then(async (res) => {
+        if (!res.ok) throw new Error();
+        const data = await res.json();
+        if (data.user.role !== "admin") throw new Error();
+        setAuth(data.user);
+      })
+      .catch(() => router.push("/admin/login"));
+  }, []);
+
+  const handleCreate = async (e) => {
+    e.preventDefault();
+    const token = localStorage.getItem("jwt");
+    await fetch("http://befikr.in/create_user.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(form),
+    });
+    alert("User Created");
+  };
+
+  if (!auth) return <div>Loading...</div>;
+
   const [form, setForm] = useState({
     position: '',
     team: '',
@@ -56,78 +92,105 @@ const CreateJobForm = () => {
   };
 
   const sectionHeaders = {
-  Basic: ['position', 'team', 'location', 'description', 'job_type'],
-  Compensation: ['pay', 'benefits', 'supplemental_pay'],
-  Requirements: ['skills', 'experience', 'travel', 'schedule'],
-  Additional: ['responsibilities', 'questions', 'work_location', 'expected_start_date', 'tags'],
-};
+    Basic: ['position', 'team', 'location', 'description', 'job_type'],
+    Compensation: ['pay', 'benefits', 'supplemental_pay'],
+    Requirements: ['skills', 'experience', 'travel', 'schedule'],
+    Additional: ['responsibilities', 'questions', 'work_location', 'expected_start_date', 'tags'],
+  };
 
-const formFields = [
-  ['Position', 'position'],
-  ['Team', 'team'],
-  ['Location (comma separated)', 'location'],
-  ['Description', 'description'],
-  ['Tags (comma separated)', 'tags'],
-  ['Pay (monthly/yearly)', 'pay'],
-  ['Job Type (e.g., Full-time, Part-time)', 'job_type'],
-  ['Responsibilities (comma separated)', 'responsibilities'],
-  ['Skills (comma separated)', 'skills'],
-  ['Benefits (comma separated)', 'benefits'],
-  ['Schedule (comma separated)', 'schedule'],
-  ['Supplemental Pay (comma separated)', 'supplemental_pay'],
-  ['Questions (comma separated)', 'questions'],
-  ['Experience (comma separated)', 'experience'],
-  ['Travel (comma separated)', 'travel'],
-  ['Work Location', 'work_location'],
-  ['Expected Start Date', 'expected_start_date'],
-];
+  const formFields = [
+    ['Position', 'position'],
+    ['Team', 'team'],
+    ['Location (comma separated)', 'location'],
+    ['Description', 'description'],
+    ['Tags (comma separated)', 'tags'],
+    ['Pay (monthly/yearly)', 'pay'],
+    ['Job Type (e.g., Full-time, Part-time)', 'job_type'],
+    ['Responsibilities (comma separated)', 'responsibilities'],
+    ['Skills (comma separated)', 'skills'],
+    ['Benefits (comma separated)', 'benefits'],
+    ['Schedule (comma separated)', 'schedule'],
+    ['Supplemental Pay (comma separated)', 'supplemental_pay'],
+    ['Questions (comma separated)', 'questions'],
+    ['Experience (comma separated)', 'experience'],
+    ['Travel (comma separated)', 'travel'],
+    ['Work Location', 'work_location'],
+    ['Expected Start Date', 'expected_start_date'],
+  ];
 
-const requiredFields = ['position', 'team', 'location', 'description', 'job_type'];
+  const requiredFields = ['position', 'team', 'location', 'description', 'job_type'];
 
-return (
-  <form onSubmit={handleSubmit} style={styles.form}>
-    <h2 style={styles.heading}>📝 Create a Job Posting</h2>
+  const closePage = () => {
+    window.history.back();
+  }
 
-    {Object.entries(sectionHeaders).map(([sectionTitle, sectionFields]) => (
-      <div key={sectionTitle} style={styles.section}>
-        <h3 style={styles.sectionHeading}>{sectionTitle}</h3>
-        {formFields
-          .filter(([, name]) => sectionFields.includes(name))
-          .map(([label, name]) => (
-            <div key={name} style={styles.fieldGroup}>
-              <label htmlFor={name} style={styles.label}>{label}</label>
-              {name === 'description' ? (
-                <textarea
-                  id={name}
-                  name={name}
-                  placeholder="Enter job description here..."
-                  value={form[name]}
-                  onChange={handleChange}
-                  required={requiredFields.includes(name)}
-                  style={styles.textarea}
-                />
-              ) : (
-                <input
-                  id={name}
-                  name={name}
-                  type={name === 'expected_start_date' ? 'date' : 'text'}
-                  placeholder={
-                    label.includes('comma') ? 'e.g. Item 1, Item 2, Item 3' : ''
-                  }
-                  value={Array.isArray(form[name]) ? form[name].join(', ') : form[name]}
-                  onChange={handleChange}
-                  required={requiredFields.includes(name)}
-                  style={styles.input}
-                />
-              )}
-            </div>
-          ))}
+  return (
+    <form onSubmit={handleSubmit} style={styles.form}>
+      <div className="flex justify-between">
+        <h2 style={styles.heading}>📝 Create a Job Posting</h2>
+        <button
+          onClick={() => { closePage() }}
+          type="button"
+          className="text-gray-500 mb-8 rounded-full hover:text-gray-700 hover:bg-gray-100 p-2 transition duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-companyBlue"
+          aria-label="Close Section"
+        >
+          <svg
+            aria-hidden="true"
+            className="w-6 h-6"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fillRule="evenodd"
+              d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+              clipRule="evenodd"
+            />
+          </svg>
+        </button>
       </div>
-    ))}
 
-    <button type="submit" style={styles.button}>➕ Post Job</button>
-  </form>
-);
+
+      {Object.entries(sectionHeaders).map(([sectionTitle, sectionFields]) => (
+        <div key={sectionTitle} style={styles.section}>
+          <h3 style={styles.sectionHeading}>{sectionTitle}</h3>
+          {formFields
+            .filter(([, name]) => sectionFields.includes(name))
+            .map(([label, name]) => (
+              <div key={name} style={styles.fieldGroup}>
+                <label htmlFor={name} style={styles.label}>{label}</label>
+                {name === 'description' ? (
+                  <textarea
+                    id={name}
+                    name={name}
+                    placeholder="Enter job description here..."
+                    value={form[name]}
+                    onChange={handleChange}
+                    required={requiredFields.includes(name)}
+                    style={styles.textarea}
+                  />
+                ) : (
+                  <input
+                    id={name}
+                    name={name}
+                    type={name === 'expected_start_date' ? 'date' : 'text'}
+                    placeholder={
+                      label.includes('comma') ? 'e.g. Item 1, Item 2, Item 3' : ''
+                    }
+                    value={Array.isArray(form[name]) ? form[name].join(', ') : form[name]}
+                    onChange={handleChange}
+                    required={requiredFields.includes(name)}
+                    style={styles.input}
+                  />
+                )}
+              </div>
+            ))}
+        </div>
+      ))}
+
+      <button type="submit" style={styles.button}>➕ Post Job</button>
+    </form>
+  );
 
 };
 
