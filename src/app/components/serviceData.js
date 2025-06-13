@@ -42,7 +42,7 @@ const servicesData = {
         ArraySupp: [
             { desc: "Preservation of Life and Health by averting accidents & Injuries originating from fire." },
             { desc: "Following electrical safety guidelines helps reduce the risk of electrical shocks, burns, and injuries to personnel, thus preserving human lives." },
-            { desc: "Following electrical safety guidelines helps reduce the risk of electrical shocks, burns, and injuries to personnel, thus preserving human lives." },
+            // { desc: "Following electrical safety guidelines helps reduce the risk of electrical shocks, burns, and injuries to personnel, thus preserving human lives." },
             { desc: "Identifying potential electrical hazards through regular audits, proactive repairs & improvement activities, manages the risk of damages to equipment & real estate infrastructure, thus preserving the business economy." },
             { desc: "Compliance with Regulations through compliance verification, documentation, record keeping, employee training & awareness. " },
             { desc: "Following electrical safety regulations and standards ensures legal compliance & setting up self-governing mechanisms for smooth & safe business operations." }
