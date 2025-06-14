@@ -2,59 +2,54 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import toast, { Toaster } from 'react-hot-toast';
 
 const API_URL = 'https://befikr.in/testimonial_api.php';
 const UPLOAD_URL = 'https://befikr.in/upload_testimonial_image.php';
 const REMOVE_URL = 'https://befikr.in/remove_testimonial.php';
 
 export default function TestimonialsAdmin() {
+   // useEffect(() => {
+  //   const token = localStorage.getItem("jwt");
+  //   if (!token) return router.push("/admin/login");
 
+  //   fetch("http://befikr.in/verify_token.php", {
+  //     headers: { Authorization: `Bearer ${token}` },
+  //   })
+  //     .then(async (res) => {
+  //       if (!res.ok) throw new Error();
+  //       const data = await res.json();
+  //       if (data.user.role !== "admin") throw new Error();
+  //       setAuth(data.user);
+  //     })
+  //     .catch(() => router.push("/admin/login"));
+  // }, []);
+
+  // const handleCreate = async (e) => {
+  //   e.preventDefault();
+  //   const token = localStorage.getItem("jwt");
+  //   await fetch("http://befikr.in/create_user.php", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Authorization: `Bearer ${token}`,
+  //     },
+  //     body: JSON.stringify(form),
+  //   });
+  //   alert("User Created");
+  // };
   const router = useRouter();
-  const [auth, setAuth] = useState(null);
-
-  useEffect(() => {
-    const token = localStorage.getItem("jwt");
-    if (!token) return router.push("/admin/login");
-
-    fetch("http://befikr.in/verify_token.php", {
-      headers: { Authorization: `Bearer ${token}` },
-    })
-      .then(async (res) => {
-        if (!res.ok) throw new Error();
-        const data = await res.json();
-        if (data.user.role !== "admin") throw new Error();
-        setAuth(data.user);
-      })
-      .catch(() => router.push("/admin/login"));
-  }, []);
-
-  const handleCreate = async (e) => {
-    e.preventDefault();
-    const token = localStorage.getItem("jwt");
-    await fetch("http://befikr.in/create_user.php", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(form),
-    });
-    alert("User Created");
-  };
-
-  if (!auth) return <div>Loading...</div>;
 
   const [testimonials, setTestimonials] = useState([]);
-  const [form, setForm] = useState({
-    id: null,
-    name: '',
-    text: '',
-    position: '',
-    description: '',
-    image: ''
-  });
+  const [form, setForm] = useState({ id: null, name: '', text: '', position: '', description: '', image: '' });
   const [imageFile, setImageFile] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    fetchTestimonials();
+  }, []);
 
   const fetchTestimonials = async () => {
     const res = await fetch(API_URL);
@@ -62,62 +57,26 @@ export default function TestimonialsAdmin() {
     setTestimonials(data);
   };
 
-  useEffect(() => {
-    fetchTestimonials();
-  }, []);
-
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const handleImageChange = (e) => {
-    setImageFile(e.target.files[0]);
-  };
-
-  const deleteTestimonial = (id) => {
-    const confirmed = window.confirm("Are you sure you want to delete this testimonial?");
-    if (!confirmed) return;
-    fetch(REMOVE_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.success) {
-          toast.success("Testimonial deleted successfully!");
-          setTestimonials((prev) => prev.filter((testimonial) => testimonial.id !== id));
-        } else {
-          toast.error("Error: " + data.error);
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-        toast.error("Failed to delete testimonial. Please try again.");
-      });
-  };
+  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+  const handleImageChange = (e) => setImageFile(e.target.files[0]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setLoading(true);
     let imagePath = form.image;
 
     if (imageFile) {
       const formData = new FormData();
       formData.append('image', imageFile);
-
-      const uploadRes = await fetch(UPLOAD_URL, {
-        method: 'POST',
-        body: formData
-      });
-
+      const uploadRes = await fetch(UPLOAD_URL, { method: 'POST', body: formData });
       const uploadData = await uploadRes.json();
-      if (uploadData.success) {
-        imagePath = `/home/u485173045/domains/befikr.in/public_html${uploadData.imagePath}`;
-      } else {
-        alert('Image upload failed: ' + uploadData.error);
+
+      if (!uploadData.success) {
+        toast.error('Image upload failed: ' + uploadData.error);
+        setLoading(false);
         return;
       }
+      imagePath = `/home/u485173045/domains/befikr.in/public_html${uploadData.imagePath}`;
     }
 
     const payload = { ...form, image: imagePath };
@@ -130,183 +89,108 @@ export default function TestimonialsAdmin() {
     });
 
     const result = await res.json();
-
     if (result.success) {
-      alert(isEditing ? 'Updated successfully!' : 'Added successfully!');
-      setForm({
-        id: null,
-        name: '',
-        text: '',
-        position: '',
-        description: '',
-        image: ''
-      });
+      toast.success(isEditing ? 'Updated successfully!' : 'Added successfully!');
+      setForm({ id: null, name: '', text: '', position: '', description: '', image: '' });
       setImageFile(null);
       setIsEditing(false);
+      setShowModal(false);
       fetchTestimonials();
     } else {
-      alert(result.error || 'Something went wrong.');
+      toast.error(result.error || 'Something went wrong.');
     }
+    setLoading(false);
   };
 
   const handleEdit = (item) => {
-    scrollTo(0, 0);
     setForm(item);
     setImageFile(null);
     setIsEditing(true);
+    setShowModal(true);
   };
 
   const handleCancel = () => {
-    setForm({
-      id: null,
-      name: '',
-      text: '',
-      position: '',
-      description: '',
-      image: ''
-    });
+    setForm({ id: null, name: '', text: '', position: '', description: '', image: '' });
     setImageFile(null);
     setIsEditing(false);
+    setShowModal(false);
   };
 
-  const closePage = () => {
-    window.history.back();
-  }
+  const deleteTestimonial = (id) => {
+    if (!confirm('Are you sure you want to delete this testimonial?')) return;
+    fetch(REMOVE_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          toast.success('Testimonial deleted successfully!');
+          setTestimonials((prev) => prev.filter((t) => t.id !== id));
+        } else {
+          toast.error('Error: ' + data.error);
+        }
+      })
+      .catch(() => toast.error('Failed to delete testimonial.'));
+  };
 
   return (
-    <div className="p-8 max-w-4xl mx-auto">
-      <div className="flex justify-between">
-        <h1 className="text-3xl font-bold mb-8 text-gray-800">Testimonials Admin Panel</h1>
-        <button
-          onClick={() => { closePage() }}
-          type="button"
-          className="text-gray-500 hover:text-gray-700 hover:bg-gray-100 p-2 mb-8 rounded-full transition duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-companyBlue"
-          aria-label="Close Filters"
-        >
-          <svg
-            aria-hidden="true"
-            className="w-6 h-6"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fillRule="evenodd"
-              d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-              clipRule="evenodd"
-            />
-          </svg>
-        </button>
-      </div>
-
-
-      <form onSubmit={handleSubmit} className="space-y-5 border border-gray-200 p-6 rounded-xl shadow-md bg-white">
-        <div className="space-y-2">
-          <label className="block text-sm font-semibold text-gray-700">Name</label>
-          <input
-            name="name"
-            value={form.name}
-            onChange={handleChange}
-            placeholder="Enter full name"
-            className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            required
-          />
+    <div className="min-h-screen bg-gray-50 p-6">
+      <Toaster position="top-right" />
+      <div className="max-w-6xl mx-auto">
+        <div className="flex items-center justify-between mb-6">
+          <h1 className="text-3xl font-bold text-gray-800">Testimonials Admin</h1>
+          <button onClick={() => router.back()} className="text-gray-500 hover:text-gray-700">❌</button>
         </div>
 
-        <div className="space-y-2">
-          <label className="block text-sm font-semibold text-gray-700">Short Text</label>
-          <input
-            name="text"
-            value={form.text}
-            onChange={handleChange}
-            placeholder="Short one-liner or title"
-            className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            required
-          />
-        </div>
-
-        <div className="space-y-2">
-          <label className="block text-sm font-semibold text-gray-700">Position</label>
-          <input
-            name="position"
-            value={form.position}
-            onChange={handleChange}
-            placeholder="e.g., Marketing Manager"
-            className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            required
-          />
-        </div>
-
-        <div className="space-y-2">
-          <label className="block text-sm font-semibold text-gray-700">Description</label>
-          <textarea
-            name="description"
-            value={form.description}
-            onChange={handleChange}
-            placeholder="Full testimonial here..."
-            className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            rows={4}
-            required
-          />
-        </div>
-
-        <div className="space-y-2">
-          <label className="block text-sm font-semibold text-gray-700">Upload Image</label>
-          <input
-            type="file"
-            onChange={handleImageChange}
-            className="w-full p-2 border border-gray-300 rounded-md"
-            accept="image/*"
-          />
-          {form.image && (
-            <div className="text-sm text-gray-600 mt-1">
-              Current Image: <span className="font-medium">{form.image.split('/').pop()}</span>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {testimonials.map((t) => (
+            <div key={t.id} className="bg-white rounded-lg shadow-md p-5 relative">
+              <img src={t.image} alt={t.name} className="w-12 h-12 rounded-full object-cover mb-2" />
+              <h3 className="text-lg font-semibold">{t.name}</h3>
+              <p className="text-sm text-gray-500">{t.position}</p>
+              <p className="text-sm mt-2 text-gray-700">{t.description}</p>
+              <div className="absolute top-2 right-2 flex gap-2">
+                <button onClick={() => handleEdit(t)} className="text-blue-500 text-sm">Edit</button>
+                <button onClick={() => deleteTestimonial(t.id)} className="text-red-500 text-sm">Delete</button>
+              </div>
             </div>
-          )}
+          ))}
         </div>
 
-        <div className="flex gap-4 pt-2">
-          <button
-            type="submit"
-            className="bg-blue-600 text-white px-5 py-2 rounded-md hover:bg-blue-700 transition"
-          >
-            {isEditing ? 'Update Testimonial' : 'Add Testimonial'}
-          </button>
-          {isEditing && (
-            <button
-              type="button"
-              onClick={handleCancel}
-              className="bg-gray-300 text-gray-800 px-5 py-2 rounded-md hover:bg-gray-400 transition"
-            >
-              Cancel
-            </button>
-          )}
-        </div>
-      </form>
+        <button
+          onClick={() => setShowModal(true)}
+          className="fixed bottom-6 right-6 bg-blue-600 text-white p-4 rounded-full shadow-lg hover:bg-blue-700"
+        >
+          ➕
+        </button>
 
-      <h2 className="text-2xl font-semibold mt-12 mb-6 text-gray-800">📋 Existing Testimonials</h2>
-      <div className="grid gap-6">
-        {testimonials.map((t) => (
-          <div key={t.id} className="p-5 border border-gray-200 rounded-xl shadow-sm bg-white">
-            <h3 className="text-lg font-bold text-gray-800">{t.name}</h3>
-            <p className="text-sm italic text-gray-600">{t.position}</p>
-            <p className="text-gray-700 mt-2">{t.description}</p>
-            <button
-              onClick={() => handleEdit(t)}
-              className="mt-3 text-blue-600 hover:underline text-sm font-medium"
+        {showModal && (
+          <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
+            <form
+              onSubmit={handleSubmit}
+              className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md space-y-4"
             >
-              ✏️ Edit
-            </button>
-            <button
-              onClick={() => deleteTestimonial(t.id)}
-              className="mt-3 text-blue-600 hover:underline text-sm font-medium"
-            >
-              🗑️ Delete
-            </button>
+              <h2 className="text-xl font-bold text-gray-800">
+                {isEditing ? 'Edit Testimonial' : 'Add Testimonial'}
+              </h2>
+              <input type="text" name="name" value={form.name} onChange={handleChange} placeholder="Full Name" className="w-full border px-3 py-2 rounded-md" required />
+              <input type="text" name="text" value={form.text} onChange={handleChange} placeholder="Short Text" className="w-full border px-3 py-2 rounded-md" required />
+              <input type="text" name="position" value={form.position} onChange={handleChange} placeholder="Position" className="w-full border px-3 py-2 rounded-md" required />
+              <textarea name="description" value={form.description} onChange={handleChange} placeholder="Description" className="w-full border px-3 py-2 rounded-md" rows={3} required />
+              <input type="file" onChange={handleImageChange} className="w-full border px-3 py-2 rounded-md" accept="image/*" />
+              {form.image && <p className="text-sm text-gray-500">Current: {form.image.split('/').pop()}</p>}
+              <div className="flex justify-between pt-4">
+                <button type="submit" disabled={loading} className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+                  {loading ? 'Saving...' : isEditing ? 'Update' : 'Add'}
+                </button>
+                <button type="button" onClick={handleCancel} className="text-gray-600 hover:underline">Cancel</button>
+              </div>
+            </form>
           </div>
-        ))}
+        )}
       </div>
     </div>
-
   );
 }

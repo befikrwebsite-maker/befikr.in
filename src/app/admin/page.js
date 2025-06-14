@@ -53,31 +53,31 @@ const AdminDashboard = () => {
   }, []);
 
   // Check authentication
-  useEffect(() => {
-    const token = localStorage.getItem("jwt");
-    if (!token) {
-      router.push("/admin/login");
-      return;
-    }
+  // useEffect(() => {
+  //   const token = localStorage.getItem("jwt");
+  //   if (!token) {
+  //     router.push("/admin/login");
+  //     return;
+  //   }
 
-    fetch("http://befikr.in/verify_token.php", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.user?.role !== "admin") {
-          router.push("/admin/login");
-        } else {
-          setAuth(data.user);
-          setLoading(false);
-        }
-      })
-      .catch(() => router.push("/admin/login"));
-  }, []);
+  //   fetch("http://befikr.in/verify_token.php", {
+  //     headers: {
+  //       Authorization: `Bearer ${token}`,
+  //     },
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       if (data.user?.role !== "admin") {
+  //         router.push("/admin/login");
+  //       } else {
+  //         setAuth(data.user);
+  //         setLoading(false);
+  //       }
+  //     })
+  //     .catch(() => router.push("/admin/login"));
+  // }, []);
 
-  if (loading) return <div>Loading...</div>;
+  // if (loading) return <div>Loading...</div>;
 
 
   // Derived values for filtering, pagination etc.
