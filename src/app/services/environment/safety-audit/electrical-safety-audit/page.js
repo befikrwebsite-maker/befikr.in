@@ -45,9 +45,9 @@ export default function Page() {
     {
       "desc": "Following electrical safety guidelines helps reduce the risk of electrical shocks, burns, and injuries to personnel, thus preserving human lives."
     },
-    {
-      "desc": "Following electrical safety guidelines helps reduce the risk of electrical shocks, burns, and injuries to personnel, thus preserving human lives."
-    },
+    // {
+    //   "desc": "Following electrical safety guidelines helps reduce the risk of electrical shocks, burns, and injuries to personnel, thus preserving human lives."
+    // },
     {
       "desc": "Identifying potential electrical hazards through regular audits, proactive repairs & improvement activities, manages the risk of damages to equipment & real estate infrastructure, thus preserving the business economy."
     },
