@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
-import toast, { Toaster } from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
 
 const API_URL = 'https://befikr.in/testimonial_api.php';
 const UPLOAD_URL = 'https://befikr.in/upload_testimonial_image.php';
