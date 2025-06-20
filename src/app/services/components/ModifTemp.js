@@ -124,7 +124,7 @@ export default function ServiceTemplate({
   };
 
   return (
-    <div className="relative overflow-hidden pt-20 bg-gray-50">
+    <div className="relative overflow-hidden pt-20">
       {placeholder && (
         <div className="flex w-full h-48 bg-companyBlue items-center justify-center">
           <h1 className="text-5xl text-black font-bold text-center px-4">

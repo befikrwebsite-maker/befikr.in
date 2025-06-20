@@ -11,7 +11,7 @@ const ServiceTemplateEditor = () => {
     const [moved] = updated.splice(fromIndex, 1);
     updated.splice(toIndex, 0, moved);
     setServiceData({ ...serviceData, sections: updated });
-    };
+  };
   const [serviceData, setServiceData] = useState({
     title: "Our Service",
     sections: [
@@ -38,7 +38,7 @@ const ServiceTemplateEditor = () => {
       },
       {
         id: 'keyaspects',
-        type: 'keyaspects', 
+        type: 'keyaspects',
         title: 'Key Aspects',
         data: { ArrayKeyAspects: [{ title: "", desc: "" }] },
         isVisible: true
@@ -85,6 +85,47 @@ const ServiceTemplateEditor = () => {
       ...serviceData,
       sections: newSections
     });
+  };
+
+  const [sectionTitle, setSectionTitle] = useState("");
+  const [type, setType] = useState("");
+
+  const addSection = (type, name) => {
+    const newSection = {
+      id: `${type}-${Date.now()}`,  // unique ID
+      type,
+      title: sectionTitle,
+      data: getDefaultDataForType(type),
+      isVisible: true
+    };
+
+    setServiceData(prev => ({
+      ...prev,
+      sections: [...prev.sections, newSection]
+    }));
+  };
+
+  const getDefaultDataForType = (type) => {
+    switch (type) {
+      case 'hero':
+        return { placeholder: "Our Service" };
+      case 'description':
+        return { auditdesc: [""] };
+      case 'approach':
+        return { ArrayAppr: [{ title: "", desc: "" }] };
+      case 'keyaspects':
+        return { ArrayKeyAspects: [{ title: "", desc: "" }] };
+      case 'examples':
+        return { ArrayExamples: [{ title: "", desc: "" }] };
+      case 'benefits':
+        return { ArrayBenifits: [{ title: "", desc: "" }] };
+      case 'importance':
+        return { ArraySupp: [{ title: "", desc: "" }] };
+      case 'scope':
+        return { scope: "" };
+      default:
+        return {};
+    }
   };
 
   const updateSectionData = (sectionId, newData) => {
@@ -144,7 +185,7 @@ const ServiceTemplateEditor = () => {
         view_format: getViewFormat(section.type)
       }))
     };
-    
+
     console.log('Saving to database:', payload);
     // await fetch('/api/services', { method: 'POST', body: JSON.stringify(payload) });
     alert('Service template saved!');
@@ -156,7 +197,7 @@ const ServiceTemplateEditor = () => {
       description: 'paragraph',
       approach: 'card-grid',
       keyaspects: 'card-grid',
-      examples: 'card-grid', 
+      examples: 'card-grid',
       benefits: 'card-grid',
       importance: 'numbered-list',
       scope: 'paragraph'
@@ -233,7 +274,7 @@ const ServiceTemplateEditor = () => {
         // Handle array-based sections (approach, keyaspects, examples, benefits, importance)
         const arrayKey = {
           approach: 'ArrayAppr',
-          keyaspects: 'ArrayKeyAspects', 
+          keyaspects: 'ArrayKeyAspects',
           examples: 'ArrayExamples',
           benefits: 'ArrayBenifits',
           importance: 'ArraySupp'
@@ -349,7 +390,7 @@ const ServiceTemplateEditor = () => {
         const arrayKey = {
           approach: 'ArrayAppr',
           keyaspects: 'ArrayKeyAspects',
-          examples: 'ArrayExamples', 
+          examples: 'ArrayExamples',
           benefits: 'ArrayBenifits'
         }[section.type];
 
@@ -442,6 +483,19 @@ const ServiceTemplateEditor = () => {
             >
               <Save size={16} /> Save
             </button>
+            <input className='border border-black' placeholder='Section Title ?' value={sectionTitle} onChange={(e) => setSectionTitle(e.target.value)} />
+            <select onChange={(e) => setType(e.target.value)}>
+              <option value="">Select Section Type</option>
+              <option value="hero">Hero</option>
+              <option value="description">Description</option>
+              <option value="approach">Approach</option>
+              <option value="keyaspects">Key Aspects</option>
+              <option value="examples">Examples</option>
+              <option value="benefits">Benefits</option>
+              <option value="importance">Importance</option>
+              <option value="scope">Scope</option>
+            </select>
+            <button onClick={() => addSection(type, sectionTitle)}>Add Section</button>
           </div>
         </div>
       </div>
@@ -463,39 +517,67 @@ const ServiceTemplateEditor = () => {
 
         {/* Draggable Sections */}
         <div className="space-y-4">
-        {serviceData.sections.map((section, index) => (
+          {serviceData.sections.map((section, index) => (
             <DraggableSection
-            key={section.id}
-            index={index}
-            section={section}
-            moveSection={moveSection}
+              key={section.id}
+              index={index}
+              section={section}
+              moveSection={moveSection}
             >
-            <div className="flex items-center justify-between p-4 border-b">
+              <div className="flex items-center justify-between p-4 border-b">
                 <div className="flex items-center gap-3">
-                <span className="cursor-move text-gray-400">
+                  <span className="cursor-move text-gray-400">
                     <GripVertical size={20} />
-                </span>
-                <h3 className="text-lg font-semibold">{section.title}</h3>
-                <span className="text-xs bg-gray-100 px-2 py-1 rounded">{section.type}</span>
+                  </span>
+                  <h3 className="text-lg font-semibold">{section.title}</h3>
+                  <span className="text-xs bg-gray-100 px-2 py-1 rounded">{section.type}</span>
                 </div>
                 <div className="flex items-center gap-2">
-                <label className="flex items-center gap-2 cursor-pointer">
+                  <label className="flex items-center gap-2 cursor-pointer">
                     <input
-                    type="checkbox"
-                    checked={section.isVisible}
-                    onChange={() => toggleSectionVisibility(section.id)}
-                    className="rounded"
+                      type="checkbox"
+                      checked={section.isVisible}
+                      onChange={() => toggleSectionVisibility(section.id)}
+                      className="rounded"
                     />
                     <span className="text-sm">Visible</span>
-                </label>
+                  </label>
                 </div>
-            </div>
-            {section.isVisible && (
+              </div>
+              {section.isVisible && (
                 <div className="p-4">{renderSectionEditor(section)}</div>
-            )}
+              )}
+              <button
+                onClick={() => {
+                  if (confirm("Are you sure you want to delete this section?")) {
+                    setServiceData({
+                      ...serviceData,
+                      sections: serviceData.sections.filter(s => s.id !== section.id)
+                    });
+                  }
+                }}
+                className="flex mb-4 ml-4 items-center gap-1 rounded-lg border border-red-500 px-3 py-1.5 text-sm font-medium text-red-500 transition-all duration-200 hover:bg-red-500 hover:text-white active:scale-95"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-4 w-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+                Delete
+              </button>
+
             </DraggableSection>
-        ))}
-    </div>
+          ))}
+        </div>
       </div>
     </div>
   );
