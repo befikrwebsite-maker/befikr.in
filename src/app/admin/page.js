@@ -15,7 +15,7 @@ import {
 } from "recharts";
 import { FiEdit2, FiTrash2, FiEye, FiRefreshCw, FiPlus, FiSearch } from "react-icons/fi";
 import { toast } from "react-toastify"; // if you want toast notifications
-
+import AdminNavbar from "./comp/AdminNavbar";
 const ITEMS_PER_PAGE = 5;
 const COLORS = ["#04B2D9", "#ef4444", "#10B981", "#FBBF24"];
 
@@ -221,7 +221,9 @@ const AdminDashboard = () => {
   const goToPage = (pageNum) => setCurrentPage(pageNum);
 
   return (
-<div className="min-h-screen bg-gray-50 p-8 font-sans">
+    <>
+    <AdminNavbar />
+    <div className="min-h-screen bg-gray-50 p-8 font-sans">
   {/* Header */}
   <header className="flex flex-wrap justify-between items-center mb-10 gap-4">
     <h1 className="text-4xl font-extrabold text-[#04B2D9]">Admin Dashboard</h1>
@@ -419,6 +421,8 @@ const AdminDashboard = () => {
     </div>
   </section>
 </div>
+
+  </>
 
   );
 };

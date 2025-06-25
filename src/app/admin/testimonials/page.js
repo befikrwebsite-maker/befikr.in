@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 import { Toaster } from 'react-hot-toast';
+import AdminNavbar from '../comp/AdminNavbar';
 
 const API_URL = 'https://befikr.in/testimonial_api.php';
 const UPLOAD_URL = 'https://befikr.in/upload_testimonial_image.php';
@@ -137,6 +138,8 @@ export default function TestimonialsAdmin() {
   };
 
   return (
+    <>
+    <AdminNavbar/>
     <div className="min-h-screen bg-gray-50 p-6">
       <Toaster position="top-right" />
       <div className="max-w-6xl mx-auto">
@@ -193,5 +196,7 @@ export default function TestimonialsAdmin() {
         )}
       </div>
     </div>
+    </>
+    
   );
 }

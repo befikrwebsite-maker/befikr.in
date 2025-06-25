@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-
+import AdminNavbar from "../comp/AdminNavbar";
 const CreateJobForm = () => {
    // useEffect(() => {
   //   const token = localStorage.getItem("jwt");
@@ -136,80 +136,84 @@ const CreateJobForm = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto p-8 bg-white rounded-2xl shadow-xl my-12">
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold text-gray-800">📝 Post a New Job</h1>
-        <button
-          onClick={() => router.back()}
-          className="p-2 hover:bg-gray-100 rounded-full transition"
-          aria-label="Go Back"
-        >
-          <svg
-            className="w-6 h-6 text-gray-500 hover:text-gray-700"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
+    <>
+      <AdminNavbar />
+      <div className="max-w-7xl mx-auto p-8 bg-white rounded-2xl shadow-xl my-12">
+        <div className="flex justify-between items-center mb-6">
+          <h1 className="text-3xl font-bold text-gray-800">📝 Post a New Job</h1>
+          <button
+            onClick={() => router.back()}
+            className="p-2 hover:bg-gray-100 rounded-full transition"
+            aria-label="Go Back"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M15 19l-7-7 7-7"
-            />
-          </svg>
-        </button>
-      </div>
+            <svg
+              className="w-6 h-6 text-gray-500 hover:text-gray-700"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15 19l-7-7 7-7"
+              />
+            </svg>
+          </button>
+        </div>
 
-      <form onSubmit={handleSubmit} className="space-y-12">
-        {Object.entries(formGroups).map(([section, fields]) => (
-          <div key={section}>
-            <h2 className="text-xl font-semibold text-companyBlue border-l-4 border-companyBlue pl-3 mb-4">
-              {section}
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {fields.map(([label, name]) => (
-                <div key={name} className="flex flex-col">
-                  <label className="mb-1 font-medium text-gray-700">
-                    {label}
-                  </label>
-                  {name === "description" ? (
-                    <textarea
-                      name={name}
-                      rows={5}
-                      className="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-companyBlue focus:outline-none"
-                      placeholder="Enter detailed job description..."
-                      value={form[name]}
-                      onChange={handleChange}
-                      required
-                    />
-                  ) : (
-                    <input
-                      type={name === "expected_start_date" ? "date" : "text"}
-                      name={name}
-                      value={Array.isArray(form[name]) ? form[name].join(", ") : form[name]}
-                      onChange={handleChange}
-                      required={["position", "team", "location", "description", "job_type"].includes(name)}
-                      className="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-companyBlue focus:outline-none"
-                      placeholder={
-                        label.includes("comma") ? 'e.g. Item 1, Item 2, Item 3' : ""
-                      }
-                    />
-                  )}
-                </div>
-              ))}
+        <form onSubmit={handleSubmit} className="space-y-12">
+          {Object.entries(formGroups).map(([section, fields]) => (
+            <div key={section}>
+              <h2 className="text-xl font-semibold text-companyBlue border-l-4 border-companyBlue pl-3 mb-4">
+                {section}
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {fields.map(([label, name]) => (
+                  <div key={name} className="flex flex-col">
+                    <label className="mb-1 font-medium text-gray-700">
+                      {label}
+                    </label>
+                    {name === "description" ? (
+                      <textarea
+                        name={name}
+                        rows={5}
+                        className="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-companyBlue focus:outline-none"
+                        placeholder="Enter detailed job description..."
+                        value={form[name]}
+                        onChange={handleChange}
+                        required
+                      />
+                    ) : (
+                      <input
+                        type={name === "expected_start_date" ? "date" : "text"}
+                        name={name}
+                        value={Array.isArray(form[name]) ? form[name].join(", ") : form[name]}
+                        onChange={handleChange}
+                        required={["position", "team", "location", "description", "job_type"].includes(name)}
+                        className="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-companyBlue focus:outline-none"
+                        placeholder={
+                          label.includes("comma") ? 'e.g. Item 1, Item 2, Item 3' : ""
+                        }
+                      />
+                    )}
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
 
-        <button
-          type="submit"
-          className="w-full py-3 text-white bg-companyBlue hover:bg-opacity-90 rounded-xl font-semibold text-lg transition"
-        >
-          ➕ Post Job
-        </button>
-      </form>
-    </div>
+          <button
+            type="submit"
+            className="w-full py-3 text-white bg-companyBlue hover:bg-opacity-90 rounded-xl font-semibold text-lg transition"
+          >
+            ➕ Post Job
+          </button>
+        </form>
+      </div>
+    </>
   );
 };
+
 
 export default CreateJobForm;
