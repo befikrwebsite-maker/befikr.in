@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState, useRef } from 'react';
-import { GripVertical, Plus, Trash2, Eye, Save, Edit3 } from 'lucide-react';
+import React, { useState, useRef, useEffect } from 'react';
+import { GripVertical, Plus, Trash2, Eye, Save, Edit3, SquarePen } from 'lucide-react';
 import DraggableSection from './DraggableSection';
 
 const ServiceTemplateEditor = () => {
@@ -33,35 +33,35 @@ const ServiceTemplateEditor = () => {
         id: 'approach',
         type: 'approach',
         title: 'Audit Approach',
-        data: { ArrayAppr: [{ title: "", desc: "" }] },
+        data: { ArrayAppr: [["", ""]] },  // Changed to 2D array
         isVisible: true
       },
       {
         id: 'keyaspects',
         type: 'keyaspects',
         title: 'Key Aspects',
-        data: { ArrayKeyAspects: [{ title: "", desc: "" }] },
+        data: { ArrayKeyAspects: [["", ""]] },
         isVisible: true
       },
       {
         id: 'examples',
         type: 'examples',
         title: 'Examples',
-        data: { ArrayExamples: [{ title: "", desc: "" }] },
+        data: { ArrayExamples: [["", ""]] },
         isVisible: true
       },
       {
         id: 'benefits',
         type: 'benefits',
         title: 'Benefits',
-        data: { ArrayBenifits: [{ title: "", desc: "" }] },
+        data: { ArrayBenifits: [["", ""]] },
         isVisible: true
       },
       {
         id: 'importance',
         type: 'importance',
         title: 'Why Important',
-        data: { ArraySupp: [{ title: "", desc: "" }] },
+        data: { ArraySupp: [["", ""]] },
         isVisible: true
       },
       {
@@ -92,7 +92,7 @@ const ServiceTemplateEditor = () => {
 
   const addSection = (type, name) => {
     const newSection = {
-      id: `${type}-${Date.now()}`,  // unique ID
+      section_id: serviceData.sections.length,  // unique ID
       type,
       title: sectionTitle,
       data: getDefaultDataForType(type),
@@ -173,33 +173,65 @@ const ServiceTemplateEditor = () => {
   };
 
   const saveToDatabase = async () => {
-    // This would be your API call to save to database
     const payload = {
+      category: parentCat,
+      parent_service: parentService,
       title: serviceData.title,
       key: serviceData.title.toLowerCase().replace(/\s+/g, '-'),
-      sections: serviceData.sections.filter(s => s.isVisible).map((section, index) => ({
-        section_title: section.title,
-        section_type: section.type,
-        section_data: JSON.stringify(section.data),
-        section_order: index,
-        view_format: getViewFormat(section.type)
-      }))
+      section_name: serviceData.sections.filter(s => s.isVisible).map((section, index) => {
+        // Extract only the inner array for saving
+        const content = section.data?.ArrayItems || [];
+
+        return {
+          section_title: section.title,
+          design_format: section.type,
+          section_data: JSON.stringify(content),  // Store just the 2D array
+          display_order: index + 1,
+          view_format: getViewFormat(section.type)
+        };
+      })
     };
 
     console.log('Saving to database:', payload);
-    // await fetch('/api/services', { method: 'POST', body: JSON.stringify(payload) });
+    await fetch('http://befikr.in/services_api.php', {
+      method: 'POST',
+      body: JSON.stringify(payload)
+    });
     alert('Service template saved!');
   };
+
+  const [serviceNames, setServiceNames] = useState([]);
+
+  const fetchAllServiceNames = async () => {
+    try {
+      const response = await fetch('http://befikr.in/get_services.php');
+      if (!response.ok) throw new Error('Network response was not ok');
+      const data = await response.json();
+      setServiceNames(data.map(service => service.service_name));
+      console.log('Fetched service names:', data);
+      return data;
+    } catch (error) {
+      console.error('Error fetching service names:', error);
+      return [];
+    }
+  }
+
+  useEffect(() => {
+    fetchAllServiceNames();
+  }, []);
+
+  const [parentCat, setParentCat] = useState("")
+  const [parentService, setParentService] = useState("")
 
   const getViewFormat = (type) => {
     const formats = {
       hero: 'hero',
       description: 'paragraph',
-      approach: 'card-grid',
-      keyaspects: 'card-grid',
-      examples: 'card-grid',
-      benefits: 'card-grid',
-      importance: 'numbered-list',
+      approach: 'grid',
+      keyaspects: 'grid',
+      examples: 'grid',
+      benefits: 'grid',
+      importance: 'list',
       scope: 'paragraph'
     };
     return formats[type] || 'default';
@@ -483,19 +515,35 @@ const ServiceTemplateEditor = () => {
             >
               <Save size={16} /> Save
             </button>
-            <input className='border border-black' placeholder='Section Title ?' value={sectionTitle} onChange={(e) => setSectionTitle(e.target.value)} />
-            <select onChange={(e) => setType(e.target.value)}>
+            <input className='border border-black rounded-md' required placeholder=' Section Title ?' value={sectionTitle} onChange={(e) => setSectionTitle(e.target.value)} />
+            <select className='border border-black rounded-md' onChange={(e) => setType(e.target.value)}>
               <option value="">Select Section Type</option>
-              <option value="hero">Hero</option>
-              <option value="description">Description</option>
-              <option value="approach">Approach</option>
-              <option value="keyaspects">Key Aspects</option>
-              <option value="examples">Examples</option>
-              <option value="benefits">Benefits</option>
-              <option value="importance">Importance</option>
-              <option value="scope">Scope</option>
+              <option value="description">Paragraph</option>
+              <option value="benefits">Grid</option>
+              <option value="importance">List</option>
             </select>
-            <button onClick={() => addSection(type, sectionTitle)}>Add Section</button>
+            <button className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700" onClick={() => addSection(type, sectionTitle)}><SquarePen size={16} /> Add Section</button>
+          </div>
+        </div>
+      </div>
+
+      {/* Editor Header */}
+      <div className="sticky top-0 bg-white shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+          <div className="mx-auto flex h-10 gap-2">
+            <select className='border border-black rounded-md' onChange={(e) => setParentCat(e.target.value)}>
+              <option value="">Choose Parent Cateogory</option>
+              <option value="Environment">Environment</option>
+              <option value="Social">Social</option>
+              <option value="Governance">Governance</option>
+            </select>
+            <select className='border border-black rounded-md' onChange={(e) => setParentService(e.target.value)}>
+              <option value="">Choose Parent Service</option>
+              <option value="Null">None</option>
+              {serviceNames.map((name, idx) => (
+                <option key={idx} value={name}>{name}</option>
+              ))}
+            </select>
           </div>
         </div>
       </div>
