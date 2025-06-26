@@ -499,7 +499,7 @@ const ServiceTemplateEditor = () => {
       <div className="sticky top-0 bg-white border-b shadow-sm z-10">
         <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
           <div>
-            <h1 className="text-2xl font-bold">Service Template Editor</h1>
+            <h1 className="text-2xl font-bold">Add A New Service</h1>
             <p className="text-gray-600">Drag sections to reorder, toggle visibility, and edit content</p>
           </div>
           <div className="flex gap-2">
@@ -530,14 +530,14 @@ const ServiceTemplateEditor = () => {
       {/* Editor Header */}
       <div className="sticky top-0 bg-white shadow-sm">
         <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-          <div className="mx-auto flex h-10 gap-2">
-            <select className='border border-black rounded-md' onChange={(e) => setParentCat(e.target.value)}>
+          <div className="w-full flex h-10 gap-2">
+            <select className='border border-black rounded-md w-full' onChange={(e) => setParentCat(e.target.value)}>
               <option value="">Choose Parent Cateogory</option>
               <option value="Environment">Environment</option>
               <option value="Social">Social</option>
               <option value="Governance">Governance</option>
             </select>
-            <select className='border border-black rounded-md' onChange={(e) => setParentService(e.target.value)}>
+            <select className='border border-black rounded-md w-full' onChange={(e) => setParentService(e.target.value)}>
               <option value="">Choose Parent Service</option>
               <option value="Null">None</option>
               {serviceNames.map((name, idx) => (

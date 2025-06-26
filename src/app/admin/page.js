@@ -226,9 +226,8 @@ const AdminDashboard = () => {
     <div className="min-h-screen bg-gray-50 p-8 font-sans">
   {/* Header */}
   <header className="flex flex-wrap justify-between items-center mb-10 gap-4">
-    <h1 className="text-4xl font-extrabold text-[#04B2D9]">Admin Dashboard</h1>
-    <div className="flex flex-wrap gap-3 w-full md:w-auto">
-      <div className="relative flex-grow md:flex-grow-0 md:w-64">
+    <div className="flex flex-wrap gap-3 w-full md:w-full">
+      <div className="relative flex-grow w-full md:flex-grow-0 md:w-full">
         <FiSearch className="absolute top-1/2 left-3 -translate-y-1/2 text-gray-400" size={18} />
         <input
           type="search"
@@ -238,24 +237,6 @@ const AdminDashboard = () => {
           className="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#04B2D9] transition"
         />
       </div>
-      <button
-        onClick={() => router.push("/admin/add")}
-        className="inline-flex items-center gap-2 bg-[#04B2D9] text-white px-5 py-3 rounded-lg font-semibold shadow hover:bg-[#038ab7] transition"
-      >
-        <FiPlus size={20} /> Add Job
-      </button>
-      <button
-        onClick={() => router.push("/admin/testimonials")}
-        className="inline-flex items-center gap-2 bg-[#04B2D9] text-white px-5 py-3 rounded-lg font-semibold shadow hover:bg-[#038ab7] transition"
-      >
-        Testimonial
-      </button>
-      <button
-        onClick={() => router.push("/admin/createuser")}
-        className="inline-flex items-center gap-2 bg-[#04B2D9] text-white px-5 py-3 rounded-lg font-semibold shadow hover:bg-[#038ab7] transition"
-      >
-        Create User
-      </button>
     </div>
   </header>
 

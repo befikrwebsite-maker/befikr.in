@@ -9,6 +9,7 @@ import {
   FiMessageSquare,
   FiMenu,
   FiX,
+  FiFilePlus,
 } from "react-icons/fi";
 
 const navItems = [
@@ -16,6 +17,7 @@ const navItems = [
   { label: "Add Job", path: "/admin/add", icon: <FiPlus size={18} /> },
   { label: "Testimonials", path: "/admin/testimonials", icon: <FiMessageSquare size={18} /> },
   { label: "Create User", path: "/admin/createuser", icon: <FiUserPlus size={18} /> },
+  { label: "Services", path: "/admin/services", icon: <FiFilePlus size={18} /> },
 ];
 
 const AdminNavbar = () => {
@@ -32,7 +34,7 @@ const AdminNavbar = () => {
     <>
       {/* Navbar */}
       <nav className="bg-white shadow-md sticky top-0 z-50 border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+        <div className="max-w-7xl mx-auto py-4 flex justify-between items-center">
           <h2 className="text-2xl font-bold text-[#04B2D9] tracking-wide">
              Admin Panel
           </h2>
