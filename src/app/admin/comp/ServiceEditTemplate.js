@@ -191,12 +191,26 @@ const ServiceTemplateEditor = () => {
         };
       })
     };
-
     console.log('Saving to database:', payload);
-    await fetch('http://befikr.in/services_api.php', {
-      method: 'POST',
-      body: JSON.stringify(payload)
-    });
+    try {
+      const response = await fetch('http://befikr.in/services_api.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        alert('Service template saved!');
+      } else {
+        alert(`Failed to save: ${result.error || 'Unknown error'}`);
+        console.error('Server error:', result);
+      }
+    } catch (error) {
+      alert('Network error while saving service.');
+      console.error('Fetch error:', error);
+    }
     alert('Service template saved!');
   };
 
@@ -207,14 +221,17 @@ const ServiceTemplateEditor = () => {
       const response = await fetch('http://befikr.in/get_services.php');
       if (!response.ok) throw new Error('Network response was not ok');
       const data = await response.json();
-      setServiceNames(data.map(service => service.service_name));
-      console.log('Fetched service names:', data);
-      return data;
+
+      const uniqueServiceNames = [...new Set(data.map(service => service.service_name))];
+
+      setServiceNames(uniqueServiceNames);
+      console.log('Fetched unique service names:', uniqueServiceNames);
+      return uniqueServiceNames;
     } catch (error) {
       console.error('Error fetching service names:', error);
       return [];
     }
-  }
+  };
 
   useEffect(() => {
     fetchAllServiceNames();
@@ -537,13 +554,18 @@ const ServiceTemplateEditor = () => {
               <option value="Social">Social</option>
               <option value="Governance">Governance</option>
             </select>
-            <select className='border border-black rounded-md w-full' onChange={(e) => setParentService(e.target.value)}>
+            <select
+              className="border border-black rounded-md w-full p-2"
+              onChange={(e) => setParentService(e.target.value)}
+              value={parentService} // Optional: controlled component
+            >
               <option value="">Choose Parent Service</option>
               <option value="Null">None</option>
               {serviceNames.map((name, idx) => (
                 <option key={idx} value={name}>{name}</option>
               ))}
             </select>
+
           </div>
         </div>
       </div>

@@ -1,6 +1,8 @@
 'use client'
 
 import React, { useEffect, useState } from "react";
+import AdminNavbar from "../comp/AdminNavbar";
+import FloatingButton from "../comp/FloatingButton";
 
 const ServiceCategories = () => {
   const [data, setData] = useState({});
@@ -34,6 +36,10 @@ const ServiceCategories = () => {
   }
 
   return (
+    <>
+    <header>
+      <AdminNavbar/>
+    </header>
     <div className="p-6 space-y-12 max-w-7xl mx-auto bg-gray-50 dark:bg-gray-950 min-h-screen">
       {Object.entries(data).map(([categoryName, services]) => (
         <div key={categoryName}>
@@ -91,6 +97,8 @@ const ServiceCategories = () => {
         </div>
       ))}
     </div>
+    <FloatingButton onClick={() => window.location.href = "/admin/editor"} />
+    </>
   );
 };
 
