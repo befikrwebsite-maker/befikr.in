@@ -5,10 +5,10 @@ import { useRouter } from "next/navigation";
 import AdminNavbar from "../comp/AdminNavbar";
 
 const CreateJobForm = () => {
-
+  const router = useRouter();
   const [auth, setAuth] = useState(null);
 
-   useEffect(() => {
+  useEffect(() => {
     const token = localStorage.getItem("jwt");
     if (!token) return router.push("/admin/login");
 
@@ -23,24 +23,6 @@ const CreateJobForm = () => {
       })
       .catch(() => router.push("/admin/login"));
   }, []);
-
-  const handleCreate = async (e) => {
-    e.preventDefault();
-    const token = localStorage.getItem("jwt");
-    await fetch("http://befikr.in/create_user.php", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(form),
-    });
-    alert("User Created");
-  };
-
-  if (!auth) return <div>Loading...</div>;
-
-  const router = useRouter();
 
   const [form, setForm] = useState({
     position: "",
@@ -78,36 +60,36 @@ const CreateJobForm = () => {
       "travel",
     ];
 
-    setForm({
-      ...form,
+    setForm((prev) => ({
+      ...prev,
       [name]: arrayFields.includes(name)
         ? value.split(",").map((v) => v.trim())
         : value,
-    });
+    }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleCreate = async (e) => {
     e.preventDefault();
+    const token = localStorage.getItem("jwt");
     try {
-      const res = await fetch("http://befikr.in/create_job.php", {
+      const response = await fetch("http://befikr.in/create_user.php", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
         body: JSON.stringify(form),
       });
 
-      const data = await res.json();
-      if (data.success) {
-        alert("✅ Job posted successfully!");
-        setForm((prev) =>
-          Object.fromEntries(
-            Object.entries(prev).map(([k, v]) => [k, Array.isArray(v) ? [] : ""])
-          )
-        );
+      const data = await response.json();
+      if (data.error) {
+        alert("Error: " + data.error);
       } else {
-        alert("❌ Failed: " + data.error);
+        alert("✅ Job Posted Successfully");
+        router.push("/admin/jobs");
       }
     } catch (err) {
-      alert("❌ Network error.");
+      alert("Something went wrong. Please try again.");
     }
   };
 
@@ -139,6 +121,8 @@ const CreateJobForm = () => {
     ],
   };
 
+  if (!auth) return <div className="p-6 text-center">🔐 Authenticating...</div>;
+
   return (
     <>
       <AdminNavbar />
@@ -166,7 +150,7 @@ const CreateJobForm = () => {
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-12">
+        <form onSubmit={handleCreate} className="space-y-12">
           {Object.entries(formGroups).map(([section, fields]) => (
             <div key={section}>
               <h2 className="text-xl font-semibold text-companyBlue border-l-4 border-companyBlue pl-3 mb-4">
@@ -197,7 +181,7 @@ const CreateJobForm = () => {
                         required={["position", "team", "location", "description", "job_type"].includes(name)}
                         className="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-companyBlue focus:outline-none"
                         placeholder={
-                          label.includes("comma") ? 'e.g. Item 1, Item 2, Item 3' : ""
+                          label.includes("comma") ? "e.g. Item 1, Item 2" : ""
                         }
                       />
                     )}
@@ -218,6 +202,5 @@ const CreateJobForm = () => {
     </>
   );
 };
-
 
 export default CreateJobForm;
