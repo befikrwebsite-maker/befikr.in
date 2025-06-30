@@ -597,7 +597,7 @@ const ServiceTemplateEditor = () => {
             <p className="text-gray-600">Drag sections to reorder, toggle visibility, and edit content</p>
           </div>
           <div className="flex gap-2">
-            <input className='border border-black rounded-md' type="number" required placeholder=' Section ID ?' value={sectionID} onChange={(e) => setSectionID(e.target.value)} />
+            <input className='border border-black rounded-md' type="number" required placeholder=' Section Title ?' onChange={(e) => setServiceID(e.target.value)} />
             <button
               onClick={() => loadServiceById(serviceID)}
               className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
