@@ -196,7 +196,7 @@ const ServiceTemplateEditor = () => {
     }
   };
   const [serviceID, setServiceID] = useState();
-  
+
   const loadServiceById = async (id) => {
     try {
       const response = await fetch(`http://befikr.in/get_service_by_id.php?service_id=${id}`);
@@ -216,7 +216,7 @@ const ServiceTemplateEditor = () => {
       setServiceData({
         title: data.title,
         sections: fixedSections.map((s, idx) => ({
-          id: s.type + "-" + idx,
+          id: s.id || idx,  // Use index as fallback ID
           type: s.type,
           title: s.title,
           data: s.section_content,
