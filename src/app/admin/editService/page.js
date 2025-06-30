@@ -2,7 +2,7 @@
 
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-import ServiceTemplateEditor from '../comp/ServiceEditTemplate';
+import ServiceTemplateEditor from '../comp/ServiceEditor';
 import AdminNavbar from '../comp/AdminNavbar';
 import { useEffect, useState } from 'react';
 
