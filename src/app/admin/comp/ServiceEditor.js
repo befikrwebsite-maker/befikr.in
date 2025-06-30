@@ -56,7 +56,67 @@ const ServiceTemplateEditor = () => {
     updated.splice(toIndex, 0, moved);
     setServiceData({ ...serviceData, sections: updated });
   };
-  const [serviceData, setServiceData] = useState({});
+  const [serviceData, setServiceData] = useState({
+    title: "Our Service",
+    sections: [
+      {
+        id: 'hero',
+        type: 'hero',
+        title: 'Hero Section',
+        data: { placeholder: "Our Service" },
+        isVisible: true
+      },
+      {
+        id: 'description',
+        type: 'description',
+        title: 'Service Description',
+        data: { auditdesc: [""] },
+        isVisible: true
+      },
+      {
+        id: 'approach',
+        type: 'approach',
+        title: 'Audit Approach',
+        data: { ArrayAppr: [["", ""]] },  // Changed to 2D array
+        isVisible: true
+      },
+      {
+        id: 'keyaspects',
+        type: 'keyaspects',
+        title: 'Key Aspects',
+        data: { ArrayKeyAspects: [["", ""]] },
+        isVisible: true
+      },
+      {
+        id: 'examples',
+        type: 'examples',
+        title: 'Examples',
+        data: { ArrayExamples: [["", ""]] },
+        isVisible: true
+      },
+      {
+        id: 'benefits',
+        type: 'benefits',
+        title: 'Benefits',
+        data: { ArrayBenifits: [["", ""]] },
+        isVisible: true
+      },
+      {
+        id: 'importance',
+        type: 'importance',
+        title: 'Why Important',
+        data: { ArraySupp: [["", ""]] },
+        isVisible: true
+      },
+      {
+        id: 'scope',
+        type: 'scope',
+        title: 'Scope',
+        data: { scope: "" },
+        isVisible: true
+      }
+    ]
+  });
 
   const handleDragEnd = (result) => {
     if (!result.destination) return;

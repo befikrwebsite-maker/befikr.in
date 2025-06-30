@@ -5,10 +5,12 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import ServiceTemplateEditor from '../comp/ServiceEditor';
 import AdminNavbar from '../comp/AdminNavbar';
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function EditorPage() {
   const [auth, setAuth] = useState(null);
   const [loading, setLoading] = useState(true);
+  const router = useRouter();
 
   useEffect(() => {
     const token = localStorage.getItem("jwt");
