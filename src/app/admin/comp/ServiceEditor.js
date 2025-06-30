@@ -5,6 +5,50 @@ import { GripVertical, Plus, Trash2, Eye, Save, Edit3, SquarePen } from 'lucide-
 import DraggableSection from './DraggableSection';
 
 const ServiceTemplateEditor = () => {
+
+  function fixNestedSectionContent(sections) {
+    return sections.map((section) => {
+      if (typeof section.section_content === "string") {
+        try {
+          let content = section.section_content;
+
+          if (content.startsWith('"') && content.endsWith('"')) {
+            content = content.slice(1, -1);
+          }
+
+          content = content.replace(/\\"/g, '"');
+
+          let parsed = JSON.parse(content);
+
+          // Normalize for grid: if it's a flat array with even length, group into pairs
+          if (
+            section.design_format === "grid" &&
+            Array.isArray(parsed) &&
+            typeof parsed[0] === "string"
+          ) {
+            const grouped = [];
+            for (let i = 0; i < parsed.length; i += 2) {
+              grouped.push([parsed[i], parsed[i + 1] || ""]);
+            }
+            parsed = grouped;
+          }
+
+          return {
+            ...section,
+            section_content: parsed,
+          };
+        } catch (e) {
+          console.error(`Failed to parse section_content in section ${section.section_id}`, e);
+          return {
+            ...section,
+            section_content: [],
+          };
+        }
+      }
+      return section;
+    });
+  }
+
   const [isPreviewMode, setIsPreviewMode] = useState(false);
   const moveSection = (fromIndex, toIndex) => {
     const updated = [...serviceData.sections];
@@ -12,67 +56,7 @@ const ServiceTemplateEditor = () => {
     updated.splice(toIndex, 0, moved);
     setServiceData({ ...serviceData, sections: updated });
   };
-  const [serviceData, setServiceData] = useState({
-    title: "Our Service",
-    sections: [
-      {
-        id: 'hero',
-        type: 'hero',
-        title: 'Hero Section',
-        data: { placeholder: "Our Service" },
-        isVisible: true
-      },
-      {
-        id: 'description',
-        type: 'description',
-        title: 'Service Description',
-        data: { auditdesc: [""] },
-        isVisible: true
-      },
-      {
-        id: 'approach',
-        type: 'approach',
-        title: 'Audit Approach',
-        data: { ArrayAppr: [["", ""]] },  // Changed to 2D array
-        isVisible: true
-      },
-      {
-        id: 'keyaspects',
-        type: 'keyaspects',
-        title: 'Key Aspects',
-        data: { ArrayKeyAspects: [["", ""]] },
-        isVisible: true
-      },
-      {
-        id: 'examples',
-        type: 'examples',
-        title: 'Examples',
-        data: { ArrayExamples: [["", ""]] },
-        isVisible: true
-      },
-      {
-        id: 'benefits',
-        type: 'benefits',
-        title: 'Benefits',
-        data: { ArrayBenifits: [["", ""]] },
-        isVisible: true
-      },
-      {
-        id: 'importance',
-        type: 'importance',
-        title: 'Why Important',
-        data: { ArraySupp: [["", ""]] },
-        isVisible: true
-      },
-      {
-        id: 'scope',
-        type: 'scope',
-        title: 'Scope',
-        data: { scope: "" },
-        isVisible: true
-      }
-    ]
-  });
+  const [serviceData, setServiceData] = useState({});
 
   const handleDragEnd = (result) => {
     if (!result.destination) return;
@@ -211,6 +195,40 @@ const ServiceTemplateEditor = () => {
       console.error('Fetch error:', error);
     }
   };
+  const [serviceID, setServiceID] = useState();
+  
+  const loadServiceById = async (id) => {
+    try {
+      const response = await fetch(`http://befikr.in/get_service_by_id.php?service_id=${id}`);
+      const data = await response.json();
+
+      if (data.error) {
+        alert("Error: " + data.error);
+        return;
+      }
+
+      setParentCat(data.category);
+      setParentService(data.parent_id);
+
+      // Fix section_content in all sections
+      const fixedSections = fixNestedSectionContent(data.sections);
+
+      setServiceData({
+        title: data.title,
+        sections: fixedSections.map((s, idx) => ({
+          id: s.type + "-" + idx,
+          type: s.type,
+          title: s.title,
+          data: s.section_content,
+          isVisible: s.isVisible ?? true
+        }))
+      });
+    } catch (err) {
+      console.error("Failed to load service", err);
+      alert("Something went wrong.");
+    }
+  };
+
 
 
   const [serviceNames, setServiceNames] = useState([]);
@@ -221,7 +239,7 @@ const ServiceTemplateEditor = () => {
       if (!response.ok) throw new Error('Network response was not ok');
       const data = await response.json();
 
-      const uniqueServiceNames = [...new Set(data.map(service => service.service_name))];
+      const uniqueServiceNames = data;
 
       setServiceNames(uniqueServiceNames);
       console.log('Fetched unique service names:', uniqueServiceNames);
@@ -519,11 +537,12 @@ const ServiceTemplateEditor = () => {
             <p className="text-gray-600">Drag sections to reorder, toggle visibility, and edit content</p>
           </div>
           <div className="flex gap-2">
+            <input className='border border-black rounded-md' required placeholder=' Section Title ?' value={sectionTitle} onChange={(e) => setServiceID(e.target.value)} />
             <button
-              onClick={() => setIsPreviewMode(true)}
+              onClick={() => LoadServiceById(serviceID)}
               className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
             >
-              <Eye size={16} /> Preview
+              <Eye size={16} /> Load
             </button>
             <button
               onClick={saveToDatabase}

@@ -11,35 +11,25 @@ const UPLOAD_URL = 'https://befikr.in/upload_testimonial_image.php';
 const REMOVE_URL = 'https://befikr.in/remove_testimonial.php';
 
 export default function TestimonialsAdmin() {
-   // useEffect(() => {
-  //   const token = localStorage.getItem("jwt");
-  //   if (!token) return router.push("/admin/login");
 
-  //   fetch("http://befikr.in/verify_token.php", {
-  //     headers: { Authorization: `Bearer ${token}` },
-  //   })
-  //     .then(async (res) => {
-  //       if (!res.ok) throw new Error();
-  //       const data = await res.json();
-  //       if (data.user.role !== "admin") throw new Error();
-  //       setAuth(data.user);
-  //     })
-  //     .catch(() => router.push("/admin/login"));
-  // }, []);
+   const[auth, setAuth] = useState(null);
 
-  // const handleCreate = async (e) => {
-  //   e.preventDefault();
-  //   const token = localStorage.getItem("jwt");
-  //   await fetch("http://befikr.in/create_user.php", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       Authorization: `Bearer ${token}`,
-  //     },
-  //     body: JSON.stringify(form),
-  //   });
-  //   alert("User Created");
-  // };
+   useEffect(() => {
+    const token = localStorage.getItem("jwt");
+    if (!token) return router.push("/admin/login");
+
+    fetch("http://befikr.in/verify_token.php", {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then(async (res) => {
+        if (!res.ok) throw new Error();
+        const data = await res.json();
+        if (data.user.role !== "admin") throw new Error();
+        setAuth(data.user);
+      })
+      .catch(() => router.push("/admin/login"));
+  }, []);
+  
   const router = useRouter();
 
   const [testimonials, setTestimonials] = useState([]);

@@ -112,10 +112,10 @@ export default function Navbar() {
     <>
       <header
         ref={textRef}
-        className="fixed w-full navbar mb-20 h-[80px] bg-white backdrop-blur-md z-50 shadow-md"
+        className="fixed w-full navbar mb-20 h-[80px] bg-white backdrop-blur-md z-[100] shadow-md"
         style={{ top: 0, left: 0 }}
       >
-        <div className="fixed top-0 right-0 left-0 z-[9999] w-full bg-transparent h-1">
+        <div className="absolute top-0 right-0 left-0 z-10 w-full bg-transparent h-1 pointer-events-none">
           <span
             className="bg-companyBlue h-full block transition-all duration-200"
             style={{ width: `${scrollPercentage}%` }}

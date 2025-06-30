@@ -1,40 +1,44 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import AdminNavbar from "../comp/AdminNavbar";
+
 const CreateJobForm = () => {
-   // useEffect(() => {
-  //   const token = localStorage.getItem("jwt");
-  //   if (!token) return router.push("/admin/login");
 
-  //   fetch("http://befikr.in/verify_token.php", {
-  //     headers: { Authorization: `Bearer ${token}` },
-  //   })
-  //     .then(async (res) => {
-  //       if (!res.ok) throw new Error();
-  //       const data = await res.json();
-  //       if (data.user.role !== "admin") throw new Error();
-  //       setAuth(data.user);
-  //     })
-  //     .catch(() => router.push("/admin/login"));
-  // }, []);
+  const [auth, setAuth] = useState(null);
 
-  // const handleCreate = async (e) => {
-  //   e.preventDefault();
-  //   const token = localStorage.getItem("jwt");
-  //   await fetch("http://befikr.in/create_user.php", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       Authorization: `Bearer ${token}`,
-  //     },
-  //     body: JSON.stringify(form),
-  //   });
-  //   alert("User Created");
-  // };
+   useEffect(() => {
+    const token = localStorage.getItem("jwt");
+    if (!token) return router.push("/admin/login");
 
-  // if (!auth) return <div>Loading...</div>;
+    fetch("http://befikr.in/verify_token.php", {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then(async (res) => {
+        if (!res.ok) throw new Error();
+        const data = await res.json();
+        if (data.user.role !== "admin") throw new Error();
+        setAuth(data.user);
+      })
+      .catch(() => router.push("/admin/login"));
+  }, []);
+
+  const handleCreate = async (e) => {
+    e.preventDefault();
+    const token = localStorage.getItem("jwt");
+    await fetch("http://befikr.in/create_user.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(form),
+    });
+    alert("User Created");
+  };
+
+  if (!auth) return <div>Loading...</div>;
 
   const router = useRouter();
 
