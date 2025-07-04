@@ -182,7 +182,7 @@ const ServiceTemplateEditor = () => {
         return {
           section_title: section.title,
           design_format: section.type,
-          section_data: JSON.stringify(section.data),  // <-- Full section data
+          section_data: JSON.stringify(section.data?.ArrayItems || []),  // <-- Full section data
           display_order: index + 1,
           view_format: getViewFormat(section.type)
         };
