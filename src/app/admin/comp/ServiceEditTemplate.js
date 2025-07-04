@@ -221,7 +221,7 @@ const ServiceTemplateEditor = () => {
       if (!response.ok) throw new Error('Network response was not ok');
       const data = await response.json();
 
-      const uniqueServiceNames = [...new Set(data.map(service => service.service_name))];
+      const uniqueServiceNames = data;
 
       setServiceNames(uniqueServiceNames);
       console.log('Fetched unique service names:', uniqueServiceNames);
