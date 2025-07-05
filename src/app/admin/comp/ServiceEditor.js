@@ -271,7 +271,7 @@ const ServiceTemplateEditor = () => {
 
       setParentCat(data.category);
       setParentIDDigit(data.parent_id);
-      setParentService(uniqueServiceNames.find(name => name.id === data.parent_id)?.name || "");
+      setParentService(serviceNames.find(name => name.id === data.parent_id)?.name || "");
 
       // Fix section_content in all sections
       const fixedSections = fixNestedSectionContent(data.sections);
