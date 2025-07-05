@@ -275,6 +275,7 @@ const ServiceTemplateEditor = () => {
 
       // Fix section_content in all sections
       const fixedSections = fixNestedSectionContent(data.sections);
+      console.log('Fixed sections:', fixedSections);
 
       setServiceData({
         title: data.title,
