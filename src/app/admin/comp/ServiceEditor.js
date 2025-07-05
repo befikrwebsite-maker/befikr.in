@@ -216,6 +216,8 @@ const ServiceTemplateEditor = () => {
     updateSectionData(sectionId, { [arrayKey]: currentArray });
   };
 
+  const [parentIDDigit, setParentIDDigit] = useState(0);
+
   const saveToDatabase = async () => {
     const payload = {
       category: parentCat,
@@ -268,7 +270,8 @@ const ServiceTemplateEditor = () => {
       }
 
       setParentCat(data.category);
-      setParentService(data.parent_id);
+      setParentIDDigit(data.parent_id);
+      setParentService(uniqueServiceNames.find(name => name.id === data.parent_id)?.name || "");
 
       // Fix section_content in all sections
       const fixedSections = fixNestedSectionContent(data.sections);
@@ -279,7 +282,7 @@ const ServiceTemplateEditor = () => {
           id: s.id || idx,  // Use index as fallback ID
           type: s.type,
           title: s.title,
-          data: s.section_content,
+          data: s.data,
           isVisible: s.isVisible ?? true
         }))
       });
