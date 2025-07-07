@@ -18,6 +18,29 @@ const ServiceCategories = () => {
     }
   };
 
+const handleDeleteService = (serviceId) => {
+  if (!confirm("Are you sure you want to delete this service? This action cannot be undone.")) return;
+  fetch("https://befikr.in/deleteservice.php", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+    },
+    body: JSON.stringify({ service_id: serviceId }),
+  })
+    .then((res) => {
+      if (!res.ok) throw new Error("Failed to delete service");
+      return res.json();
+    })
+    .then((data) => {
+      console.log("Service deleted successfully:", data);
+      // Optionally, refresh the service list or update the UI
+    })
+    .catch((err) => {
+      console.error("Error deleting service:", err);
+    });
+};
+
   useEffect(() => {
     const token = localStorage.getItem("jwt");
     if (!token) return router.push("/admin/login");
@@ -70,7 +93,7 @@ const ServiceCategories = () => {
                     {service.service_description || "No description provided."}
                   </p>
                   <a href={service.link} className="text-blue-500 text-sm mt-2 inline-block">View More</a>
-
+                  <div className="pl-5 cursor-pointer" onClick={() => handleDeleteService(service.service_id)}> Delete </div>
                   {service.subservices?.length > 0 && (
                     <div className="mt-4 space-y-4">
                       {service.subservices.map((sub) => (
