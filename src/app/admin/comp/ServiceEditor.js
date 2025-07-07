@@ -283,7 +283,7 @@ const ServiceTemplateEditor = () => {
           id: s.id || idx,  // Use index as fallback ID
           type: s.type,
           title: s.title,
-          data: s.data,
+          data: s.section_content,
           isVisible: s.isVisible ?? true
         }))
       });
