@@ -8,19 +8,26 @@ const ServiceTemplateEditor = () => {
 
   function fixNestedSectionContent(sections) {
     return sections.map((section) => {
-      if (typeof section.section_content === "string") {
+      if (typeof section.data === "string") {
         try {
-          let content = section.section_content;
+          let content = section.data.trim();
 
+          // Remove outer quotes if double-wrapped
           if (content.startsWith('"') && content.endsWith('"')) {
             content = content.slice(1, -1);
           }
 
+          // Unescape inner quotes
           content = content.replace(/\\"/g, '"');
 
           let parsed = JSON.parse(content);
 
-          // Normalize for grid: if it's a flat array with even length, group into pairs
+          // If still a string after first parse, try again
+          if (typeof parsed === "string") {
+            parsed = JSON.parse(parsed);
+          }
+
+          // Optional grid normalization (if needed later)
           if (
             section.design_format === "grid" &&
             Array.isArray(parsed) &&
@@ -35,19 +42,20 @@ const ServiceTemplateEditor = () => {
 
           return {
             ...section,
-            section_content: parsed,
+            data: parsed, // ✅ Replace the original string with parsed array
           };
         } catch (e) {
-          console.error(`Failed to parse section_content in section ${section.section_id}`, e);
+          console.error(`Failed to parse section data:`, e);
           return {
             ...section,
-            section_content: [],
+            data: [], // fallback
           };
         }
       }
       return section;
     });
   }
+
 
   const [isPreviewMode, setIsPreviewMode] = useState(false);
   const moveSection = (fromIndex, toIndex) => {
@@ -275,16 +283,17 @@ const ServiceTemplateEditor = () => {
 
       // Fix section_content in all sections
       const fixedSections = fixNestedSectionContent(data.sections);
-      console.log('Fixed sections:', fixedSections);
+      console.log('Loaded service sections:', fixedSections);
 
       setServiceData({
         title: data.title,
         sections: fixedSections.map((s, idx) => ({
-          id: s.id || idx,  // Use index as fallback ID
+          id: s.id || idx,
           type: s.type,
           title: s.title,
-          data: s.section_content,
-          isVisible: s.isVisible ?? true
+          data: s.data, // ✅ Now already parsed
+          design_format: s.design_format,
+          isVisible: s.isVisible ?? true,
         }))
       });
     } catch (err) {
@@ -630,7 +639,7 @@ const ServiceTemplateEditor = () => {
       <div className="sticky top-0 bg-white shadow-sm">
         <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
           <div className="w-full flex h-10 gap-2">
-            <select className='border border-black rounded-md w-full' onChange={(e) => setParentCat(e.target.value)}>
+            <select className='border border-black rounded-md w-full' value={parentCat} onChange={(e) => setParentCat(e.target.value)}>
               <option value="">Choose Parent Cateogory</option>
               <option value="Environment">Environment</option>
               <option value="Social">Social</option>
