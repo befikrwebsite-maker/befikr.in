@@ -1,69 +1,10 @@
 'use client';
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { GripVertical, Plus, Trash2, Eye, Save, Edit3, SquarePen } from 'lucide-react';
-import DraggableSection from './DraggableSection';
 
 const ServiceTemplateEditor = () => {
-
-  function fixNestedSectionContent(sections) {
-    return sections.map((section) => {
-      if (typeof section.data === "string") {
-        try {
-          let content = section.data.trim();
-
-          // Remove outer quotes if double-wrapped
-          if (content.startsWith('"') && content.endsWith('"')) {
-            content = content.slice(1, -1);
-          }
-
-          // Unescape inner quotes
-          content = content.replace(/\\"/g, '"');
-
-          let parsed = JSON.parse(content);
-
-          // If still a string after first parse, try again
-          if (typeof parsed === "string") {
-            parsed = JSON.parse(parsed);
-          }
-
-          // Optional grid normalization (if needed later)
-          if (
-            section.design_format === "grid" &&
-            Array.isArray(parsed) &&
-            typeof parsed[0] === "string"
-          ) {
-            const grouped = [];
-            for (let i = 0; i < parsed.length; i += 2) {
-              grouped.push([parsed[i], parsed[i + 1] || ""]);
-            }
-            parsed = grouped;
-          }
-
-          return {
-            ...section,
-            data: parsed, // ✅ Replace the original string with parsed array
-          };
-        } catch (e) {
-          console.error(`Failed to parse section data:`, e);
-          return {
-            ...section,
-            data: [], // fallback
-          };
-        }
-      }
-      return section;
-    });
-  }
-
-
   const [isPreviewMode, setIsPreviewMode] = useState(false);
-  const moveSection = (fromIndex, toIndex) => {
-    const updated = [...serviceData.sections];
-    const [moved] = updated.splice(fromIndex, 1);
-    updated.splice(toIndex, 0, moved);
-    setServiceData({ ...serviceData, sections: updated });
-  };
   const [serviceData, setServiceData] = useState({
     title: "Our Service",
     sections: [
@@ -78,42 +19,42 @@ const ServiceTemplateEditor = () => {
         id: 'description',
         type: 'description',
         title: 'Service Description',
-        data: [""] ,
+        data: { auditdesc: [""] },
         isVisible: true
       },
       {
         id: 'approach',
         type: 'approach',
         title: 'Audit Approach',
-        data: { ArrayAppr: [["", ""]] },  // Changed to 2D array
+        data: { ArrayAppr: [{ title: "", desc: "" }] },
         isVisible: true
       },
       {
         id: 'keyaspects',
         type: 'keyaspects',
         title: 'Key Aspects',
-        data: { ArrayKeyAspects: [["", ""]] },
+        data: { ArrayKeyAspects: [{ title: "", desc: "" }] },
         isVisible: true
       },
       {
         id: 'examples',
         type: 'examples',
         title: 'Examples',
-        data: { ArrayExamples: [["", ""]] },
+        data: { ArrayExamples: [{ title: "", desc: "" }] },
         isVisible: true
       },
       {
         id: 'benefits',
         type: 'benefits',
         title: 'Benefits',
-        data: { ArrayBenifits: [["", ""]] },
+        data: { ArrayBenifits: [{ title: "", desc: "" }] },
         isVisible: true
       },
       {
         id: 'importance',
         type: 'importance',
         title: 'Why Important',
-        data: { ArraySupp: [["", ""]] },
+        data: { ArraySupp: [{ title: "", desc: "" }] },
         isVisible: true
       },
       {
@@ -126,37 +67,167 @@ const ServiceTemplateEditor = () => {
     ]
   });
 
-  const handleDragEnd = (result) => {
-    if (!result.destination) return;
-
-    const newSections = Array.from(serviceData.sections);
-    const [reorderedItem] = newSections.splice(result.source.index, 1);
-    newSections.splice(result.destination.index, 0, reorderedItem);
-
-    setServiceData({
-      ...serviceData,
-      sections: newSections
-    });
-  };
-
   const [sectionTitle, setSectionTitle] = useState("");
   const [type, setType] = useState("");
+  const [serviceID, setServiceID] = useState("");
+  const [serviceNames, setServiceNames] = useState([]);
+  const [parentCat, setParentCat] = useState("");
+  const [parentService, setParentService] = useState("");
 
-  const addSection = (type, name) => {
-    const newSection = {
-      section_id: serviceData.sections.length,  // unique ID
-      type,
-      title: sectionTitle,
-      data: getDefaultDataForType(type),
-      isVisible: true
+  // Helper function to map API section types to component types
+  const mapApiTypeToComponentType = (apiType, sectionTitle) => {
+    const typeMap = {
+      'paragraph': 'description',
+      'list': getListTypeFromTitle(sectionTitle),
+      'grid': getGridTypeFromTitle(sectionTitle),
+      'hero': 'hero',
+      'scope': 'scope'
     };
-
-    setServiceData(prev => ({
-      ...prev,
-      sections: [...prev.sections, newSection]
-    }));
+    return typeMap[apiType] || 'description';
   };
 
+  // Helper to determine specific list type from title
+  const getListTypeFromTitle = (title) => {
+    const titleLower = title.toLowerCase();
+    if (titleLower.includes('approach')) return 'approach';
+    if (titleLower.includes('aspect')) return 'keyaspects';
+    if (titleLower.includes('example')) return 'examples';
+    if (titleLower.includes('benefit')) return 'benefits';
+    if (titleLower.includes('important') || titleLower.includes('why')) return 'importance';
+    return 'importance';
+  };
+
+  // Helper to determine specific grid type from title
+  const getGridTypeFromTitle = (title) => {
+    const titleLower = title.toLowerCase();
+    if (titleLower.includes('approach')) return 'approach';
+    if (titleLower.includes('aspect')) return 'keyaspects';
+    if (titleLower.includes('example')) return 'examples';
+    if (titleLower.includes('benefit')) return 'benefits';
+    return 'approach';
+  };
+
+  // Helper to get array key for section type
+  const getArrayKeyForSection = (sectionType) => {
+    const keyMap = {
+      'approach': 'ArrayAppr',
+      'keyaspects': 'ArrayKeyAspects',
+      'examples': 'ArrayExamples',
+      'benefits': 'ArrayBenifits',
+      'importance': 'ArraySupp'
+    };
+    return keyMap[sectionType] || 'ArrayAppr';
+  };
+
+  // Transform API data to component format
+  const transformSectionData = (apiData, sectionType) => {
+    if (Array.isArray(apiData)) {
+      // Handle array of strings (description paragraphs)
+      if (apiData.every(item => typeof item === 'string')) {
+        return { auditdesc: apiData };
+      }
+      
+      // Handle array of arrays [["title", "desc"], ...]
+      if (apiData.every(item => Array.isArray(item) && item.length === 2)) {
+        const transformedArray = apiData.map(([title, desc]) => ({ title, desc }));
+        const arrayKey = getArrayKeyForSection(sectionType);
+        return { [arrayKey]: transformedArray };
+      }
+      
+      // Handle array of objects
+      if (apiData.every(item => typeof item === 'object' && item.title !== undefined)) {
+        const arrayKey = getArrayKeyForSection(sectionType);
+        return { [arrayKey]: apiData };
+      }
+    }
+    
+    // Handle single string
+    if (typeof apiData === 'string') {
+      if (sectionType === 'description') {
+        return { auditdesc: [apiData] };
+      }
+      return { scope: apiData };
+    }
+    
+    // Handle object data
+    if (typeof apiData === 'object' && !Array.isArray(apiData)) {
+      return apiData;
+    }
+    
+    return apiData;
+  };
+
+  // Load service by ID
+  const loadServiceById = async (id) => {
+    try {
+      const response = await fetch(`http://befikr.in/get_service_by_id.php?service_id=${id}`);
+      const data = await response.json();
+
+      if (data.error) {
+        alert("Error: " + data.error);
+        return;
+      }
+
+      setParentCat(data.category);
+      setParentService(serviceNames.find(name => name.id === data.parent_id)?.name || "");
+
+      // Process sections
+      const processedSections = data.sections.map((section, index) => {
+        let processedData;
+        
+        try {
+          let parsedData = JSON.parse(section.data);
+          
+          // Handle double-encoded JSON
+          if (typeof parsedData === 'string') {
+            parsedData = JSON.parse(parsedData);
+          }
+          
+          const componentType = mapApiTypeToComponentType(section.design_format, section.title);
+          processedData = transformSectionData(parsedData, componentType);
+          
+        } catch (e) {
+          console.error(`Failed to parse section data for ${section.title}:`, e);
+          processedData = getDefaultDataForType(mapApiTypeToComponentType(section.design_format, section.title));
+        }
+
+        return {
+          id: `section_${index}`,
+          type: mapApiTypeToComponentType(section.design_format, section.title),
+          title: section.title,
+          data: processedData,
+          isVisible: true
+        };
+      });
+
+      setServiceData({
+        title: data.title,
+        sections: processedSections
+      });
+
+    } catch (err) {
+      console.error("Failed to load service", err);
+      alert("Something went wrong while loading the service.");
+    }
+  };
+
+  // Fetch all service names
+  const fetchAllServiceNames = async () => {
+    try {
+      const response = await fetch('http://befikr.in/get_services.php');
+      if (!response.ok) throw new Error('Network response was not ok');
+      const data = await response.json();
+      setServiceNames(data);
+    } catch (error) {
+      console.error('Error fetching service names:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchAllServiceNames();
+  }, []);
+
+  // Get default data for section type
   const getDefaultDataForType = (type) => {
     switch (type) {
       case 'hero':
@@ -180,6 +251,31 @@ const ServiceTemplateEditor = () => {
     }
   };
 
+  // Add new section
+  const addSection = (type, title) => {
+    if (!type || !title) {
+      alert("Please select a section type and enter a title");
+      return;
+    }
+
+    const newSection = {
+      id: `section_${Date.now()}`,
+      type,
+      title,
+      data: getDefaultDataForType(type),
+      isVisible: true
+    };
+
+    setServiceData(prev => ({
+      ...prev,
+      sections: [...prev.sections, newSection]
+    }));
+
+    setSectionTitle("");
+    setType("");
+  };
+
+  // Update section data
   const updateSectionData = (sectionId, newData) => {
     setServiceData({
       ...serviceData,
@@ -191,6 +287,7 @@ const ServiceTemplateEditor = () => {
     });
   };
 
+  // Toggle section visibility
   const toggleSectionVisibility = (sectionId) => {
     setServiceData({
       ...serviceData,
@@ -202,6 +299,7 @@ const ServiceTemplateEditor = () => {
     });
   };
 
+  // Array operations
   const addArrayItem = (sectionId, arrayKey) => {
     const section = serviceData.sections.find(s => s.id === sectionId);
     const currentArray = section.data[arrayKey] || [];
@@ -224,113 +322,7 @@ const ServiceTemplateEditor = () => {
     updateSectionData(sectionId, { [arrayKey]: currentArray });
   };
 
-  const [parentIDDigit, setParentIDDigit] = useState(0);
-
-  const saveToDatabase = async () => {
-    const payload = {
-      category: parentCat,
-      parent_service: parentService,
-      title: serviceData.title,
-      key: serviceData.title.toLowerCase().replace(/\s+/g, '-'),
-      section_name: serviceData.sections.filter(s => s.isVisible).map((section, index) => {
-        return {
-          section_title: section.title,
-          design_format: section.type,
-          section_data: JSON.stringify(section.data),  // <-- Full section data
-          display_order: index + 1,
-          view_format: getViewFormat(section.type)
-        };
-      })
-    };
-
-    console.log('Saving to database:', payload);
-
-    try {
-      const response = await fetch('http://befikr.in/services_api.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-
-      const result = await response.json();
-
-      if (response.ok) {
-        alert('Service template saved!');
-      } else {
-        alert(`Failed to save: ${result.error || 'Unknown error'}`);
-        console.error('Server error:', result);
-      }
-    } catch (error) {
-      alert('Network error while saving service.');
-      console.error('Fetch error:', error);
-    }
-  };
-  const [serviceID, setServiceID] = useState();
-
-  const loadServiceById = async (id) => {
-    try {
-      const response = await fetch(`http://befikr.in/get_service_by_id.php?service_id=${id}`);
-      const data = await response.json();
-
-      if (data.error) {
-        alert("Error: " + data.error);
-        return;
-      }
-
-      setParentCat(data.category);
-      setParentIDDigit(data.parent_id);
-      setParentService(serviceNames.find(name => name.id === data.parent_id)?.name || "");
-
-      // Fix section_content in all sections
-      const fixedSections = fixNestedSectionContent(data.sections);
-      console.log('Loaded service sections:', fixedSections);
-
-      setServiceData({
-        title: data.title,
-        sections: fixedSections.map((s, idx) => ({
-          id: s.id || idx,
-          type: s.type,
-          title: s.title,
-          data: s.data, // ✅ Now already parsed
-          design_format: s.design_format,
-          isVisible: s.isVisible ?? true,
-        }))
-      });
-      console.log('Service data loaded:', serviceData);
-    } catch (err) {
-      console.error("Failed to load service", err);
-      alert("Something went wrong.");
-    }
-  };
-
-
-
-  const [serviceNames, setServiceNames] = useState([]);
-
-  const fetchAllServiceNames = async () => {
-    try {
-      const response = await fetch('http://befikr.in/get_services.php');
-      if (!response.ok) throw new Error('Network response was not ok');
-      const data = await response.json();
-
-      const uniqueServiceNames = data;
-
-      setServiceNames(uniqueServiceNames);
-      console.log('Fetched unique service names:', uniqueServiceNames);
-      return uniqueServiceNames;
-    } catch (error) {
-      console.error('Error fetching service names:', error);
-      return [];
-    }
-  };
-
-  useEffect(() => {
-    fetchAllServiceNames();
-  }, []);
-
-  const [parentCat, setParentCat] = useState("")
-  const [parentService, setParentService] = useState("")
-
+  // Get view format for section type
   const getViewFormat = (type) => {
     const formats = {
       hero: 'hero',
@@ -345,6 +337,51 @@ const ServiceTemplateEditor = () => {
     return formats[type] || 'default';
   };
 
+  // Save to database
+  const saveToDatabase = async () => {
+    const payload = {
+      category: parentCat,
+      parent_service: parentService,
+      title: serviceData.title,
+      key: serviceData.title.toLowerCase().replace(/\s+/g, '-'),
+      section_name: serviceData.sections.filter(s => s.isVisible).map((section, index) => ({
+        section_title: section.title,
+        design_format: section.type,
+        section_data: JSON.stringify(section.data),
+        display_order: index + 1,
+        view_format: getViewFormat(section.type)
+      }))
+    };
+
+    try {
+      const response = await fetch('http://befikr.in/services_api.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        alert('Service template saved!');
+      } else {
+        alert(`Failed to save: ${result.error || 'Unknown error'}`);
+      }
+    } catch (error) {
+      alert('Network error while saving service.');
+      console.error('Fetch error:', error);
+    }
+  };
+
+  // Move section (drag and drop)
+  const moveSection = (fromIndex, toIndex) => {
+    const updated = [...serviceData.sections];
+    const [moved] = updated.splice(fromIndex, 1);
+    updated.splice(toIndex, 0, moved);
+    setServiceData({ ...serviceData, sections: updated });
+  };
+
+  // Render section editor
   const renderSectionEditor = (section) => {
     switch (section.type) {
       case 'hero':
@@ -411,17 +448,7 @@ const ServiceTemplateEditor = () => {
         );
 
       default:
-        // Handle array-based sections (approach, keyaspects, examples, benefits, importance)
-        const arrayKey = {
-          approach: 'ArrayAppr',
-          keyaspects: 'ArrayKeyAspects',
-          examples: 'ArrayExamples',
-          benefits: 'ArrayBenifits',
-          importance: 'ArraySupp'
-        }[section.type];
-
-        if (!arrayKey) return null;
-
+        const arrayKey = getArrayKeyForSection(section.type);
         const items = section.data[arrayKey] || [{ title: "", desc: "" }];
 
         return (
@@ -468,13 +495,14 @@ const ServiceTemplateEditor = () => {
     }
   };
 
+  // Render section preview
   const renderSectionPreview = (section) => {
     if (!section.isVisible) return null;
 
     switch (section.type) {
       case 'hero':
         return (
-          <div className="flex w-full h-48 bg-companyBlue items-center justify-center">
+          <div className="flex w-full h-48 bg-blue-600 items-center justify-center">
             <h1 className="text-5xl text-white font-bold text-center px-4">
               {section.data.placeholder || 'Our Service'}
             </h1>
@@ -483,11 +511,12 @@ const ServiceTemplateEditor = () => {
 
       case 'description':
         return (
-          <div className="max-w-5xl px-4 mx-auto">
+          <div className="max-w-5xl px-4 mx-auto py-8">
+            <h2 className="text-3xl font-bold mb-6">{section.title}</h2>
             <div className="space-y-4">
               {(section.data.auditdesc || []).map((desc, index) => (
                 desc && (
-                  <p key={index} className="text-gray-700 text-xl leading-relaxed">
+                  <p key={index} className="text-gray-700 text-lg leading-relaxed">
                     {desc}
                   </p>
                 )
@@ -498,26 +527,28 @@ const ServiceTemplateEditor = () => {
 
       case 'scope':
         return (
-          <div className="max-w-5xl flex flex-col items-start justify-center py-16 px-4 mx-auto gap-10">
-            <h1 className="text-4xl text-black mb-6">
-              Scope of {serviceData.title}
-            </h1>
-            <p className="text-gray-700">{section.data.scope}</p>
+          <div className="max-w-5xl px-4 mx-auto py-8">
+            <h2 className="text-3xl font-bold mb-6">Scope of {serviceData.title}</h2>
+            <p className="text-gray-700 text-lg">{section.data.scope}</p>
           </div>
         );
 
       case 'importance':
         const suppItems = section.data.ArraySupp || [];
         return (
-          <div className="max-w-5xl items-center justify-center py-16 px-4 mx-auto">
-            <h1 className="text-4xl text-black mb-10">Why is {serviceData.title} Important?</h1>
-            <div className="flex flex-col md:flex-row flex-wrap text-left gap-10">
+          <div className="max-w-5xl px-4 mx-auto py-8">
+            <h2 className="text-3xl font-bold mb-6">Why is {serviceData.title} Important?</h2>
+            <div className="space-y-6">
               {suppItems.map((item, index) => (
                 item.title && (
-                  <div key={index} className="flex flex-col p-6 border border-l-blue-600 border-t-blue-600 border-b-blue-600 border-r-blue-600 text-left bg-gray-100 rounded-lg shadow-md w-full">
-                    <h2 className="text-4xl -translate-y-10 p-[-10] -translate-x-8 font-bold">{index + 1}</h2>
-                    <h2 className="text-xl font-bold mb-2">{item.title}</h2>
-                    <p className="text-gray-600">{item.desc}</p>
+                  <div key={index} className="flex items-start gap-4 p-6 bg-gray-100 rounded-lg">
+                    <div className="text-2xl font-bold text-blue-600 bg-white rounded-full w-10 h-10 flex items-center justify-center">
+                      {index + 1}
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold mb-2">{item.title}</h3>
+                      <p className="text-gray-600">{item.desc}</p>
+                    </div>
                   </div>
                 )
               ))}
@@ -526,35 +557,17 @@ const ServiceTemplateEditor = () => {
         );
 
       default:
-        // Handle other array-based sections with card grid layout
-        const arrayKey = {
-          approach: 'ArrayAppr',
-          keyaspects: 'ArrayKeyAspects',
-          examples: 'ArrayExamples',
-          benefits: 'ArrayBenifits'
-        }[section.type];
-
-        if (!arrayKey) return null;
-
+        const arrayKey = getArrayKeyForSection(section.type);
         const items = section.data[arrayKey] || [];
-        const sectionTitles = {
-          approach: `Audit Approach of ${serviceData.title} at Befikr`,
-          keyaspects: `Key Aspects of ${serviceData.title}`,
-          examples: `Examples of ${serviceData.title}`,
-          benefits: `Benefits of ${serviceData.title}`
-        };
 
         return (
-          <div className="max-w-5xl py-16 px-4 mx-auto">
-            <h1 className="text-4xl text-black mb-10">{sectionTitles[section.type]}</h1>
-            <div className="flex flex-wrap justify-center gap-10">
+          <div className="max-w-5xl px-4 mx-auto py-8">
+            <h2 className="text-3xl font-bold mb-6">{section.title}</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {items.map((item, index) => (
                 item.title && (
-                  <div
-                    key={index}
-                    className="flex flex-col items-start p-6 bg-gray-100 rounded-lg shadow-md w-full md:w-1/3"
-                  >
-                    <h2 className="text-xl font-bold mb-2">{item.title}</h2>
+                  <div key={index} className="p-6 bg-white rounded-lg shadow-md border">
+                    <h3 className="text-xl font-bold mb-3">{item.title}</h3>
                     <p className="text-gray-600">{item.desc}</p>
                   </div>
                 )
@@ -567,8 +580,7 @@ const ServiceTemplateEditor = () => {
 
   if (isPreviewMode) {
     return (
-      <div className="min-h-screen bg-white">
-        {/* Preview Header */}
+      <div className="min-h-screen bg-gray-50">
         <div className="sticky top-0 bg-white border-b shadow-sm z-10">
           <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
             <h2 className="text-xl font-semibold">Preview Mode</h2>
@@ -589,8 +601,7 @@ const ServiceTemplateEditor = () => {
           </div>
         </div>
 
-        {/* Preview Content */}
-        <div className="relative overflow-hidden bg-gray-50">
+        <div className="bg-white">
           {serviceData.sections.map((section) => (
             <div key={section.id}>
               {renderSectionPreview(section)}
@@ -603,61 +614,98 @@ const ServiceTemplateEditor = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Editor Header */}
+      {/* Header */}
       <div className="sticky top-0 bg-white border-b shadow-sm z-10">
-        <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-          <div>
-            <h1 className="text-2xl font-bold">Add A New Service</h1>
-            <p className="text-gray-600">Drag sections to reorder, toggle visibility, and edit content</p>
+        <div className="max-w-7xl mx-auto px-4 py-3">
+          <div className="flex justify-between items-center mb-4">
+            <div>
+              <h1 className="text-2xl font-bold">Service Template Editor</h1>
+              <p className="text-gray-600">Create and edit service templates</p>
+            </div>
+            <div className="flex gap-2">
+              <input
+                className="border border-gray-300 rounded-md px-3 py-2"
+                type="number"
+                placeholder="Service ID"
+                value={serviceID}
+                onChange={(e) => setServiceID(e.target.value)}
+              />
+              <button
+                onClick={() => loadServiceById(serviceID)}
+                className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+              >
+                <Eye size={16} /> Load
+              </button>
+              <button
+                onClick={() => setIsPreviewMode(true)}
+                className="flex items-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700"
+              >
+                <Eye size={16} /> Preview
+              </button>
+              <button
+                onClick={saveToDatabase}
+                className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
+              >
+                <Save size={16} /> Save
+              </button>
+            </div>
           </div>
-          <div className="flex gap-2">
-            <input className='border border-black rounded-md' type="number" required placeholder=' Section Title ?' onChange={(e) => setServiceID(e.target.value)} />
-            <button
-              onClick={() => loadServiceById(serviceID)}
-              className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-            >
-              <Eye size={16} /> Load
-            </button>
-            <button
-              onClick={saveToDatabase}
-              className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
-            >
-              <Save size={16} /> Save
-            </button>
-            <input className='border border-black rounded-md' required placeholder=' Section Title ?' value={sectionTitle} onChange={(e) => setSectionTitle(e.target.value)} />
-            <select className='border border-black rounded-md' onChange={(e) => setType(e.target.value)}>
-              <option value="">Select Section Type</option>
-              <option value="description">Paragraph</option>
-              <option value="benefits">Grid</option>
-              <option value="importance">List</option>
-            </select>
-            <button className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700" onClick={() => addSection(type, sectionTitle)}><SquarePen size={16} /> Add Section</button>
-          </div>
-        </div>
-      </div>
 
-      {/* Editor Header */}
-      <div className="sticky top-0 bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-          <div className="w-full flex h-10 gap-2">
-            <select className='border border-black rounded-md w-full' value={parentCat} onChange={(e) => setParentCat(e.target.value)}>
-              <option value="">Choose Parent Cateogory</option>
+          {/* Controls */}
+          <div className="flex gap-4 items-center">
+            <select
+              className="border border-gray-300 rounded-md px-3 py-2"
+              value={parentCat}
+              onChange={(e) => setParentCat(e.target.value)}
+            >
+              <option value="">Choose Category</option>
               <option value="Environment">Environment</option>
               <option value="Social">Social</option>
               <option value="Governance">Governance</option>
             </select>
+
             <select
-              className="border border-black rounded-md w-full p-2"
+              className="border border-gray-300 rounded-md px-3 py-2"
+              value={parentService}
               onChange={(e) => setParentService(e.target.value)}
-              value={parentService} // Optional: controlled component
             >
               <option value="">Choose Parent Service</option>
               <option value="Null">None</option>
-              {serviceNames.map((name, idx) => (
-                <option key={idx} value={name}>{name}</option>
+              {serviceNames.map((service, idx) => (
+                <option key={idx} value={service.name || service}>
+                  {service.name || service}
+                </option>
               ))}
             </select>
 
+            <input
+              className="border border-gray-300 rounded-md px-3 py-2"
+              placeholder="Section Title"
+              value={sectionTitle}
+              onChange={(e) => setSectionTitle(e.target.value)}
+            />
+
+            <select
+              className="border border-gray-300 rounded-md px-3 py-2"
+              value={type}
+              onChange={(e) => setType(e.target.value)}
+            >
+              <option value="">Select Type</option>
+              <option value="description">Description</option>
+              <option value="approach">Approach</option>
+              <option value="keyaspects">Key Aspects</option>
+              <option value="examples">Examples</option>
+              <option value="benefits">Benefits</option>
+              <option value="importance">Importance</option>
+              <option value="scope">Scope</option>
+            </select>
+
+            <button
+              onClick={() => addSection(type, sectionTitle)}
+              className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
+            >
+              <SquarePen size={16} /> Add Section
+            </button>
           </div>
         </div>
       </div>
@@ -677,15 +725,10 @@ const ServiceTemplateEditor = () => {
           />
         </div>
 
-        {/* Draggable Sections */}
+        {/* Sections */}
         <div className="space-y-4">
           {serviceData.sections.map((section, index) => (
-            <DraggableSection
-              key={section.id}
-              index={index}
-              section={section}
-              moveSection={moveSection}
-            >
+            <div key={section.id} className="bg-white rounded-lg shadow-sm border">
               <div className="flex items-center justify-between p-4 border-b">
                 <div className="flex items-center gap-3">
                   <span className="cursor-move text-gray-400">
@@ -704,40 +747,25 @@ const ServiceTemplateEditor = () => {
                     />
                     <span className="text-sm">Visible</span>
                   </label>
+                  <button
+                    onClick={() => {
+                      if (confirm("Are you sure you want to delete this section?")) {
+                        setServiceData({
+                          ...serviceData,
+                          sections: serviceData.sections.filter(s => s.id !== section.id)
+                        });
+                      }
+                    }}
+                    className="p-2 text-red-500 hover:bg-red-50 rounded"
+                  >
+                    <Trash2 size={16} />
+                  </button>
                 </div>
               </div>
               {section.isVisible && (
                 <div className="p-4">{renderSectionEditor(section)}</div>
               )}
-              <button
-                onClick={() => {
-                  if (confirm("Are you sure you want to delete this section?")) {
-                    setServiceData({
-                      ...serviceData,
-                      sections: serviceData.sections.filter(s => s.id !== section.id)
-                    });
-                  }
-                }}
-                className="flex mb-4 ml-4 items-center gap-1 rounded-lg border border-red-500 px-3 py-1.5 text-sm font-medium text-red-500 transition-all duration-200 hover:bg-red-500 hover:text-white active:scale-95"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-4 w-4"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-                Delete
-              </button>
-
-            </DraggableSection>
+            </div>
           ))}
         </div>
       </div>
