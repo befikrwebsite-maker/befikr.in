@@ -78,7 +78,7 @@ const ServiceTemplateEditor = () => {
         id: 'description',
         type: 'description',
         title: 'Service Description',
-        data: { auditdesc: [""] },
+        data: [""] ,
         isVisible: true
       },
       {
@@ -296,6 +296,7 @@ const ServiceTemplateEditor = () => {
           isVisible: s.isVisible ?? true,
         }))
       });
+      console.log('Service data loaded:', serviceData);
     } catch (err) {
       console.error("Failed to load service", err);
       alert("Something went wrong.");
