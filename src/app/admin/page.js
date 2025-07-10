@@ -16,6 +16,7 @@ import {
 import { FiEdit2, FiTrash2, FiEye, FiRefreshCw, FiPlus, FiSearch } from "react-icons/fi";
 import { toast } from "react-toastify"; // if you want toast notifications
 import AdminNavbar from "./comp/AdminNavbar";
+import JobFormModal from "./comp/JobFormModal"; 
 const ITEMS_PER_PAGE = 5;
 const COLORS = ["#04B2D9", "#ef4444", "#10B981", "#FBBF24"];
 
@@ -117,6 +118,10 @@ const AdminDashboard = () => {
     { name: "Active", value: activeCount },
     { name: "Closed", value: closedCount },
   ];
+  
+  const [jobForm, setJobForm] = useState({
+    isOpen: false,
+  });
 
   const barData = Object.entries(countMap).map(([title, count]) => ({
     jobTitle: title,
@@ -347,7 +352,7 @@ const AdminDashboard = () => {
                       </button>
                       <button
                         title="Edit"
-                        onClick={() => router.push(`/admin/edit?id=${job.id}`)}
+                        onClick={() => setJobForm({ isOpen: true, editingJob: job })}
                         className="p-2 text-yellow-500 hover:bg-yellow-500 hover:text-white rounded transition"
                       >
                         <FiEdit2 size={18} />
@@ -399,6 +404,13 @@ const AdminDashboard = () => {
           </div>
         </section>
       </div>
+
+      {jobForm.isOpen && (
+        <JobFormModal
+          job={jobForm.editingJob}
+          onClose={() => setJobForm({ isOpen: false, editingJob: null })}
+        />
+      )}
 
     </>
 
