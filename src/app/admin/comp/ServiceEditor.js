@@ -6,7 +6,6 @@ import DraggableSection from './DraggableSection';
 import { useRouter } from 'next/navigation';
 
 const ServiceTemplateEditor = () => {
-  const router = useRouter();
   const [isPreviewMode, setIsPreviewMode] = useState(false);
   const [serviceID, setServiceID] = useState();
   const [sectionTitle, setSectionTitle] = useState("");
@@ -14,7 +13,6 @@ const ServiceTemplateEditor = () => {
   const [parentCat, setParentCat] = useState("");
   const [parentService, setParentService] = useState("");
   const [serviceNames, setServiceNames] = useState([]);
-  const [parentIDDigit, setParentIDDigit] = useState(0);
 
   const [serviceData, setServiceData] = useState({
     title: "Our Service",
@@ -102,13 +100,13 @@ const ServiceTemplateEditor = () => {
           
           return {
             ...section,
-            data: parsed,
+            data: parsed, // ✅ Replace the original string with parsed array
           };
         } catch (e) {
-          console.error(`Failed to parse section data:`, e);
+          console.error(`Failed to parse section data:`, section.data, e);
           return {
             ...section,
-            data: [],
+            data: [], // fallback
           };
         }
       }
@@ -116,7 +114,7 @@ const ServiceTemplateEditor = () => {
     });
   }
 
-  // Map API data to editor format
+  // Fixed function to map API data to editor format
   function mapApiDataToEditorFormat(apiData) {
     const fixedSections = fixNestedSectionContent(apiData.sections);
     
@@ -140,7 +138,7 @@ const ServiceTemplateEditor = () => {
             };
             
           case 'list':
-            // Handle different list types based on title
+            // Handle different list types
             if (section.title.toLowerCase().includes('approach')) {
               return {
                 ...baseSection,
@@ -161,22 +159,12 @@ const ServiceTemplateEditor = () => {
                     : section.data.map(item => ({ title: item, desc: "" }))
                 }
               };
-            } else if (section.title.toLowerCase().includes('instrument') || section.title.toLowerCase().includes('technology')) {
+            } else if (section.title.toLowerCase().includes('instrument')) {
               return {
                 ...baseSection,
                 type: 'examples',
                 data: { 
                   ArrayExamples: Array.isArray(section.data) && Array.isArray(section.data[0]) 
-                    ? section.data.map(item => ({ title: item[0], desc: item[1] }))
-                    : section.data.map(item => ({ title: item, desc: "" }))
-                }
-              };
-            } else if (section.title.toLowerCase().includes('benefit')) {
-              return {
-                ...baseSection,
-                type: 'benefits',
-                data: { 
-                  ArrayBenifits: Array.isArray(section.data) && Array.isArray(section.data[0]) 
                     ? section.data.map(item => ({ title: item[0], desc: item[1] }))
                     : section.data.map(item => ({ title: item, desc: "" }))
                 }
@@ -188,17 +176,6 @@ const ServiceTemplateEditor = () => {
               type: 'keyaspects',
               data: { 
                 ArrayKeyAspects: Array.isArray(section.data) && Array.isArray(section.data[0]) 
-                  ? section.data.map(item => ({ title: item[0], desc: item[1] }))
-                  : section.data.map(item => ({ title: item, desc: "" }))
-              }
-            };
-            
-          case 'grid':
-            return {
-              ...baseSection,
-              type: 'approach',
-              data: { 
-                ArrayAppr: Array.isArray(section.data) && Array.isArray(section.data[0]) 
                   ? section.data.map(item => ({ title: item[0], desc: item[1] }))
                   : section.data.map(item => ({ title: item, desc: "" }))
               }
@@ -223,7 +200,6 @@ const ServiceTemplateEditor = () => {
     };
     return mapping[designFormat] || 'description';
   }
-
   const loadServiceById = async (id) => {
     if (!id) {
       alert("Please enter a service ID");
@@ -233,20 +209,20 @@ const ServiceTemplateEditor = () => {
     try {
       const response = await fetch(`http://befikr.in/get_service_by_id.php?service_id=${id}`);
       const data = await response.json();
-      
+
       if (data.error) {
         alert("Error: " + data.error);
         return;
       }
-      
+
       setParentCat(data.category);
       setParentIDDigit(data.parent_id);
       setParentService(serviceNames.find(name => name.id === data.parent_id)?.name || "");
-      
+
       // Map the API data to editor format
       const mappedData = mapApiDataToEditorFormat(data);
       setServiceData(mappedData);
-      
+
     } catch (err) {
       console.error("Failed to load service", err);
       alert("Something went wrong while loading the service.");
@@ -435,7 +411,7 @@ const ServiceTemplateEditor = () => {
     }
   };
 
-  const renderSectionEditor = (section) => {
+   const renderSectionEditor = (section) => {
     switch (section.type) {
       case 'hero':
         return (
@@ -701,12 +677,12 @@ const ServiceTemplateEditor = () => {
             <p className="text-gray-600">Drag sections to reorder, toggle visibility, and edit content</p>
           </div>
           <div className="flex gap-2">
-            <input 
-              className='border border-gray-300 rounded-md px-3 py-2' 
-              type="number" 
-              value={serviceID || ''} 
-              placeholder='Service ID' 
-              onChange={(e) => setServiceID(e.target.value)} 
+            <input
+              className='border border-gray-300 rounded-md px-3 py-2'
+              type="number"
+              value={serviceID || ''}
+              placeholder='Service ID'
+              onChange={(e) => setServiceID(e.target.value)}
             />
             <button
               onClick={() => loadServiceById(serviceID)}
@@ -735,9 +711,9 @@ const ServiceTemplateEditor = () => {
         <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
           <div className="w-full flex gap-4">
             <div className="flex-1">
-              <select 
-                className='border border-gray-300 rounded-md w-full px-3 py-2' 
-                value={parentCat} 
+              <select
+                className='border border-gray-300 rounded-md w-full px-3 py-2'
+                value={parentCat}
                 onChange={(e) => setParentCat(e.target.value)}
               >
                 <option value="">Choose Parent Category</option>
@@ -760,17 +736,17 @@ const ServiceTemplateEditor = () => {
               </select>
             </div>
             <div className="flex-1">
-              <input 
-                className='border border-gray-300 rounded-md w-full px-3 py-2' 
-                required 
-                placeholder='Section Title' 
-                value={sectionTitle} 
-                onChange={(e) => setSectionTitle(e.target.value)} 
+              <input
+                className='border border-gray-300 rounded-md w-full px-3 py-2'
+                required
+                placeholder='Section Title'
+                value={sectionTitle}
+                onChange={(e) => setSectionTitle(e.target.value)}
               />
             </div>
             <div className="flex-1">
-              <select 
-                className='border border-gray-300 rounded-md w-full px-3 py-2' 
+              <select
+                className='border border-gray-300 rounded-md w-full px-3 py-2'
                 value={type}
                 onChange={(e) => setType(e.target.value)}
               >
@@ -780,8 +756,8 @@ const ServiceTemplateEditor = () => {
                 <option value="importance">List</option>
               </select>
             </div>
-            <button 
-              className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700" 
+            <button
+              className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
               onClick={() => addSection(type, sectionTitle)}
             >
               <SquarePen size={16} /> Add Section
