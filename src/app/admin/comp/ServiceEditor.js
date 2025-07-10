@@ -825,7 +825,7 @@ const ServiceTemplateEditor = () => {
                   className="text-red-600 hover:text-red-800"
                   onClick={() => removeSection(section.id)}
                 >
-                  <Trash size={20} />
+                  <Trash2 size={20} />
                 </button>
               </div>
             </DraggableSection>
