@@ -82,22 +82,22 @@ const ServiceTemplateEditor = () => {
       if (typeof section.data === "string") {
         try {
           let content = section.data.trim();
-          
+
           // Remove outer quotes if double-wrapped
           if (content.startsWith('"') && content.endsWith('"')) {
             content = content.slice(1, -1);
           }
-          
+
           // Unescape inner quotes
           content = content.replace(/\\"/g, '"');
-          
+
           let parsed = JSON.parse(content);
-          
+
           // If still a string after first parse, try again
           if (typeof parsed === "string") {
             parsed = JSON.parse(parsed);
           }
-          
+
           return {
             ...section,
             data: parsed,
@@ -117,7 +117,7 @@ const ServiceTemplateEditor = () => {
   // Map API data to editor format
   function mapApiDataToEditorFormat(apiData) {
     const fixedSections = fixNestedSectionContent(apiData.sections);
-    
+
     return {
       title: apiData.title,
       sections: fixedSections.map((section, index) => {
@@ -136,15 +136,15 @@ const ServiceTemplateEditor = () => {
               type: 'description',
               data: { auditdesc: Array.isArray(section.data) ? section.data : [section.data] }
             };
-            
+
           case 'list':
             // Handle different list types based on title
             if (section.title.toLowerCase().includes('approach')) {
               return {
                 ...baseSection,
                 type: 'approach',
-                data: { 
-                  ArrayAppr: Array.isArray(section.data) && Array.isArray(section.data[0]) 
+                data: {
+                  ArrayAppr: Array.isArray(section.data) && Array.isArray(section.data[0])
                     ? section.data.map(item => ({ title: item[0], desc: item[1] }))
                     : section.data.map(item => ({ title: item, desc: "" }))
                 }
@@ -153,8 +153,8 @@ const ServiceTemplateEditor = () => {
               return {
                 ...baseSection,
                 type: 'importance',
-                data: { 
-                  ArraySupp: Array.isArray(section.data) && Array.isArray(section.data[0]) 
+                data: {
+                  ArraySupp: Array.isArray(section.data) && Array.isArray(section.data[0])
                     ? section.data.map(item => ({ title: item[0], desc: item[1] }))
                     : section.data.map(item => ({ title: item, desc: "" }))
                 }
@@ -163,8 +163,8 @@ const ServiceTemplateEditor = () => {
               return {
                 ...baseSection,
                 type: 'examples',
-                data: { 
-                  ArrayExamples: Array.isArray(section.data) && Array.isArray(section.data[0]) 
+                data: {
+                  ArrayExamples: Array.isArray(section.data) && Array.isArray(section.data[0])
                     ? section.data.map(item => ({ title: item[0], desc: item[1] }))
                     : section.data.map(item => ({ title: item, desc: "" }))
                 }
@@ -173,8 +173,8 @@ const ServiceTemplateEditor = () => {
               return {
                 ...baseSection,
                 type: 'benefits',
-                data: { 
-                  ArrayBenifits: Array.isArray(section.data) && Array.isArray(section.data[0]) 
+                data: {
+                  ArrayBenifits: Array.isArray(section.data) && Array.isArray(section.data[0])
                     ? section.data.map(item => ({ title: item[0], desc: item[1] }))
                     : section.data.map(item => ({ title: item, desc: "" }))
                 }
@@ -184,24 +184,24 @@ const ServiceTemplateEditor = () => {
             return {
               ...baseSection,
               type: 'keyaspects',
-              data: { 
-                ArrayKeyAspects: Array.isArray(section.data) && Array.isArray(section.data[0]) 
+              data: {
+                ArrayKeyAspects: Array.isArray(section.data) && Array.isArray(section.data[0])
                   ? section.data.map(item => ({ title: item[0], desc: item[1] }))
                   : section.data.map(item => ({ title: item, desc: "" }))
               }
             };
-            
+
           case 'grid':
             return {
               ...baseSection,
               type: 'approach',
-              data: { 
-                ArrayAppr: Array.isArray(section.data) && Array.isArray(section.data[0]) 
+              data: {
+                ArrayAppr: Array.isArray(section.data) && Array.isArray(section.data[0])
                   ? section.data.map(item => ({ title: item[0], desc: item[1] }))
                   : section.data.map(item => ({ title: item, desc: "" }))
               }
             };
-            
+
           default:
             return {
               ...baseSection,
@@ -231,20 +231,19 @@ const ServiceTemplateEditor = () => {
     try {
       const response = await fetch(`http://befikr.in/get_service_by_id.php?service_id=${id}`);
       const data = await response.json();
-      
+
       if (data.error) {
         alert("Error: " + data.error);
         return;
       }
-      
+
       setParentCat(data.category);
-      setParentIDDigit(data.parent_id);
       setParentService(serviceNames.find(name => name.id === data.parent_id)?.name || "");
-      
+
       // Map the API data to editor format
       const mappedData = mapApiDataToEditorFormat(data);
       setServiceData(mappedData);
-      
+
     } catch (err) {
       console.error("Failed to load service", err);
       alert("Something went wrong while loading the service.");
@@ -330,6 +329,13 @@ const ServiceTemplateEditor = () => {
 
     setSectionTitle("");
     setType("");
+  };
+
+  const removeSection = (sectionId) => {
+    setServiceData({
+      ...serviceData,
+      sections: serviceData.sections.filter(section => section.id !== sectionId)
+    });
   };
 
   const updateSectionData = (sectionId, newData) => {
@@ -699,12 +705,12 @@ const ServiceTemplateEditor = () => {
             <p className="text-gray-600">Drag sections to reorder, toggle visibility, and edit content</p>
           </div>
           <div className="flex gap-2">
-            <input 
-              className='border border-gray-300 rounded-md px-3 py-2' 
-              type="number" 
-              value={serviceID || ''} 
-              placeholder='Service ID' 
-              onChange={(e) => setServiceID(e.target.value)} 
+            <input
+              className='border border-gray-300 rounded-md px-3 py-2'
+              type="number"
+              value={serviceID || ''}
+              placeholder='Service ID'
+              onChange={(e) => setServiceID(e.target.value)}
             />
             <button
               onClick={() => loadServiceById(serviceID)}
@@ -733,9 +739,9 @@ const ServiceTemplateEditor = () => {
         <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
           <div className="w-full flex gap-4">
             <div className="flex-1">
-              <select 
-                className='border border-gray-300 rounded-md w-full px-3 py-2' 
-                value={parentCat} 
+              <select
+                className='border border-gray-300 rounded-md w-full px-3 py-2'
+                value={parentCat}
                 onChange={(e) => setParentCat(e.target.value)}
               >
                 <option value="">Choose Parent Category</option>
@@ -758,17 +764,17 @@ const ServiceTemplateEditor = () => {
               </select>
             </div>
             <div className="flex-1">
-              <input 
-                className='border border-gray-300 rounded-md w-full px-3 py-2' 
-                required 
-                placeholder='Section Title' 
-                value={sectionTitle} 
-                onChange={(e) => setSectionTitle(e.target.value)} 
+              <input
+                className='border border-gray-300 rounded-md w-full px-3 py-2'
+                required
+                placeholder='Section Title'
+                value={sectionTitle}
+                onChange={(e) => setSectionTitle(e.target.value)}
               />
             </div>
             <div className="flex-1">
-              <select 
-                className='border border-gray-300 rounded-md w-full px-3 py-2' 
+              <select
+                className='border border-gray-300 rounded-md w-full px-3 py-2'
                 value={type}
                 onChange={(e) => setType(e.target.value)}
               >
@@ -778,8 +784,8 @@ const ServiceTemplateEditor = () => {
                 <option value="importance">List</option>
               </select>
             </div>
-            <button 
-              className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700" 
+            <button
+              className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
               onClick={() => addSection(type, sectionTitle)}
             >
               <SquarePen size={16} /> Add Section
@@ -803,7 +809,7 @@ const ServiceTemplateEditor = () => {
           />
         </div>
 
-        {/* Draggable Sections */}
+        {/* Sections */}
         <div className="space-y-4">
           {serviceData.sections.map((section, index) => (
             <DraggableSection
@@ -818,14 +824,23 @@ const ServiceTemplateEditor = () => {
                     <GripVertical size={20} />
                   </span>
                   <h3 className="text-lg font-semibold">{section.title}</h3>
+                  <span className="text-xs bg-gray-100 px-2 py-1 rounded">{section.type}</span>
                 </div>
-                <button
-                  className="text-red-600 hover:text-red-800"
-                  onClick={() => removeSection(section.id)}
-                >
-                  <Trash2 size={20} />
-                </button>
+                <div className="flex items-center gap-2">
+                  <label className="flex items-center gap-2 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={section.isVisible}
+                      onChange={() => toggleSectionVisibility(section.id)}
+                      className="rounded"
+                    />
+                    <span className="text-sm">Visible</span>
+                  </label>
+                </div>
               </div>
+              {section.isVisible && (
+                <div className="p-4">{renderSectionEditor(section)}</div>
+              )}
             </DraggableSection>
           ))}
         </div>
