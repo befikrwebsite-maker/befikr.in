@@ -15,11 +15,14 @@ const tabs = [
 export default function TabComponent() {
   const pathname = usePathname();
   const [activeTab, setActiveTab] = useState('Environment');
+  const [data, setData] = useState({});
+  const [loading, setLoading] = useState(true);
+
 
   const imageRef = useRef(null); // Ref for the image
   const servicesContainerRef = useRef(null); // Ref for the services container
 
-  const filteredCards = ServicesBreakdown.filter((card) => card.Cateogery === activeTab);
+  const filteredCards = data[activeTab] || [];
 
   useEffect(() => {
     const currentTab = new URLSearchParams(window.location.search).get('service') || tabs[0].id;
@@ -58,6 +61,29 @@ export default function TabComponent() {
       );
     }
   }, [activeTab]);
+
+  const safeParse = (content) => {
+    try {
+      return JSON.parse(JSON.parse(content));
+    } catch (err) {
+      console.warn("Failed to parse section content:", content, err);
+      return [];
+    }
+  };
+
+  useEffect(() => {
+    fetch("https://befikr.in/getallservices.php")
+      .then((res) => res.json())
+      .then((json) => {
+        setData(json);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Error fetching services:", err);
+        setLoading(false);
+      });
+  }, []);
+
 
   return (
     <div className="px-6 py-8 mx-auto">
@@ -107,43 +133,39 @@ export default function TabComponent() {
           <p className="text-center text-gray-500 w-full">No services available under this category.</p>
         ) : (
           filteredCards.map((card, cardIndex) => (
-            <div
-              key={cardIndex}
-              className="bg-white shadow-md rounded-2xl p-6 hover:shadow-lg transition-shadow w-full"
-            >
-              {card.Services.map((service, index) => (
-                <div key={index} className="mb-8">
-                  <h3 className="text-2xl font-semibold text-blue-700 mb-2">{service.Service}</h3>
-                  
-          
-                  {/* If subservices exist */}
-                  {service.SubServices && Array.isArray(service.SubServices) && service.SubServices.length > 0 ? (
-                    
-                    service.SubServices.map((sub, subIndex) => (
+            <div key={cardIndex} className="bg-white shadow-md rounded-2xl p-6 hover:shadow-lg transition-shadow w-full mb-6">
+              <div className="mb-4">
+                <h3 className="text-2xl font-semibold text-blue-700 mb-4">{card.service_name}</h3>
+
+                {/* If subservices exist */}
+                {card.subservices && Array.isArray(card.subservices) && card.subservices.length > 0 ? (
+                  <div className="space-y-4">
+                    {card.subservices.map((sub, subIndex) => (
                       <div
                         onClick={() => (window.location.href = sub.link)}
                         key={subIndex}
-                        className="mt-4 p-6 border-l-4 border-blue-400 pl-6 cursor-pointer hover:bg-gray-100 transition-all duration-300 rounded-lg shadow-md"
+                        className="p-4 border-l-4 border-blue-400 pl-6 cursor-pointer hover:bg-gray-50 transition-all duration-300 rounded-lg"
                       >
-                        <h4 className="text-lg font-semibold text-gray-800 hover:text-blue-600 transition-colors duration-200">{sub.title}</h4>
-                        <p className="text-sm text-gray-500 mt-2">{sub.desc || service.desc}</p>
-                        {/* Optional image */}
-                        {/* <img src={sub.image} alt={sub.title} className="w-full max-w-xs h-auto object-cover rounded-md mt-4 shadow-lg" /> */}
+                        <h4 className="text-lg font-semibold text-gray-800 hover:text-blue-600 transition-colors duration-200">
+                          {sub.service_name}
+                        </h4>
+                        <p className="text-sm text-gray-500 mt-1">
+                          {sub.service_description || card.service_description}
+                        </p>
                       </div>
-                    ))
-                  ) : (
-                    // If no subservices, show description
-                    !['Greenhouse Gas Emission Audit Services', 'Safety Mat Installation Service'].includes(service.desc) && service.desc && (
-                      <a
-                      href={service.link}>
-                      <div className="mt-4 p-6 border-l-4 border-blue-400 pl-6 cursor-pointer hover:bg-gray-100 transition-all duration-300 rounded-lg shadow-md">
-                      <p className="text-sm text-gray-600 mt-2">{service.desc}</p>
+                    ))}
+                  </div>
+                ) : (
+                  // If no subservices, show description
+                  card.service_description && (
+                    <a href={card.link} className="block">
+                      <div className="p-4 border-l-4 border-blue-400 pl-6 cursor-pointer hover:bg-gray-50 transition-all duration-300 rounded-lg">
+                        <p className="text-sm text-gray-600">{card.service_description}</p>
                       </div>
-                      </a>
-                    )
-                  )}
-                </div>
-              ))}
+                    </a>
+                  )
+                )}
+              </div>
             </div>
           ))
         )}

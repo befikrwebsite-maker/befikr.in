@@ -1,0 +1,17 @@
+name: Rebuild Site
+
+on:
+  repository_dispatch:
+    types: [db-update]
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Rebuild Site
+        run: |
+          echo "Rebuilding site due to DB update..."
+          # Add your build commands here
