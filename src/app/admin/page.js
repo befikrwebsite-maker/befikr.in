@@ -27,6 +27,19 @@ import AdminNavbar from "./comp/AdminNavbar";
 const ITEMS_PER_PAGE = 5;
 const COLORS = ["#04B2D9", "#ef4444", "#10B981", "#FBBF24"];
 
+
+
+
+const AdminDashboard = () => {
+  const router = useRouter();
+  const [jobs, setJobs] = useState([]);
+  const [filterInput, setFilterInput] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [applicants, setApplicants] = useState({});
+  const [selectedApplicants, setSelectedApplicants] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [auth, setAuth] = useState(null);
+
   // Check authentication
   useEffect(() => {
     const token = localStorage.getItem("jwt");
@@ -52,17 +65,6 @@ const COLORS = ["#04B2D9", "#ef4444", "#10B981", "#FBBF24"];
       .catch(() => router.push("/admin/login"));
   }, []);
 
-
-const AdminDashboard = () => {
-  const router = useRouter();
-  const [jobs, setJobs] = useState([]);
-  const [filterInput, setFilterInput] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
-  const [applicants, setApplicants] = useState({});
-  const [selectedApplicants, setSelectedApplicants] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [auth, setAuth] = useState(null);
-
   const fetchJobs = () => {
     fetch("http://befikr.in/get_jobs.php")
       .then((res) => {
@@ -83,7 +85,7 @@ const AdminDashboard = () => {
     fetchJobs();
   }, []);
 
- 
+
 
   const filteredJobs = jobs.filter((job) =>
     job.position.toLowerCase().includes(filterInput.toLowerCase())
