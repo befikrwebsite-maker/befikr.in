@@ -128,7 +128,7 @@ export default function TabComponent() {
         ))}
       </div>
 
-      <div ref={servicesContainerRef} className="flex w-full gap-6 mt-6">
+      <div ref={servicesContainerRef} className="flex flex-col w-full gap-6 mt-6">
         {filteredCards.length === 0 ? (
           <p className="text-center text-gray-500 w-full">No services available under this category.</p>
         ) : (
