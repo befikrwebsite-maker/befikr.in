@@ -52,8 +52,6 @@ const COLORS = ["#04B2D9", "#ef4444", "#10B981", "#FBBF24"];
       .catch(() => router.push("/admin/login"));
   }, []);
 
-  if (loading) return <div>Loading...</div>;
-
 
 const AdminDashboard = () => {
   const router = useRouter();
