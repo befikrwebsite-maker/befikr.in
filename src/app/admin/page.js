@@ -27,6 +27,34 @@ import AdminNavbar from "./comp/AdminNavbar";
 const ITEMS_PER_PAGE = 5;
 const COLORS = ["#04B2D9", "#ef4444", "#10B981", "#FBBF24"];
 
+  // Check authentication
+  useEffect(() => {
+    const token = localStorage.getItem("jwt");
+    if (!token) {
+      router.push("/admin/login");
+      return;
+    }
+
+    fetch("http://befikr.in/verify_token.php", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.user?.role !== "admin") {
+          router.push("/admin/login");
+        } else {
+          setAuth(data.user);
+          setLoading(false);
+        }
+      })
+      .catch(() => router.push("/admin/login"));
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+
+
 const AdminDashboard = () => {
   const router = useRouter();
   const [jobs, setJobs] = useState([]);
