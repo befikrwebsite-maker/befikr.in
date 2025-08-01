@@ -18,6 +18,7 @@ const navItems = [
   { label: "Create User", path: "/admin/createuser", icon: <FiUserPlus size={18} /> },
   { label: "Testimonials", path: "/admin/testimonials", icon: <FiMessageSquare size={18} /> },
   { label: "Services", path: "/admin/service", icon: <FiFilePlus size={18} /> },
+  { label: "About us", path: "/admin/about-us", icon: <FiFilePlus size={18} /> },
 ];
 
 const AdminNavbar = () => {
