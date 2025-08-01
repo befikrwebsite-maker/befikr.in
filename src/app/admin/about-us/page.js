@@ -16,7 +16,7 @@ export default function EditAboutUs() {
         { type: "text", content: "We carry a credible track record of winning multiple years of service contracts from Banking, Oil & Gas & Consumer brands setting year on year new standards & controls through diligent Inspection-investigation-Auditing-Remidiation services." },
         { type: "text", content: "Established in 2016, today we take pride in serving market leaders like HDFC Bank, ICICI Bank, Axis Bank, Kotak Mahindra Bank, Bank of India, Indian Oil, Hindustan Petroleum, Jubilant Food-works (Dominos India), Crompton, Bosch & Siemens, American Embassy, Attero & many such prestigious organisations." },
         { type: "text", content: "Our unique propositions for businesses comprises offering a one stop end to end service through a well trained professional team of engineers with a pan-India execution network to help businesses get serviced as well scale sustainably." },
-        { type: "image", src: "/images/IMG-20250220-WA0004.jpg" },
+        { type: "image", content: "/images/IMG-20250220-WA0004.jpg" },
         { type: "text", content: "Today, befikr is successfully addressing businesses protecting their risks as well as helping them welcome growth opportunities." },
         { type: "text", content: "The brand “befikr” is owned and operated by Opera Gratia Pvt Ltd. The company has its headquarters in Delhi." }
     ]);
@@ -168,7 +168,7 @@ export default function EditAboutUs() {
                                                 return (
                                                     <img
                                                         key={index}
-                                                        src={item.src}
+                                                        src={item.content}
                                                         className="my-6 w-full max-w-4xl"
                                                         alt={`Inserted visual ${index}`}
                                                     />

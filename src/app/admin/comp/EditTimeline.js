@@ -4,7 +4,6 @@ import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { ChevronDown, DotIcon } from "lucide-react";
 
-
 const timelineData = [
   {
     year: "2017",
@@ -44,12 +43,12 @@ const timelineData = [
 ];
 
 const getBadgeColor = (category) => {
-  switch (category) {
-    case "Environment":
+  switch (category.toLowerCase()) {
+    case "environment":
       return "bg-green-800 text-green-300";
-    case "Social":
+    case "social":
       return "bg-blue-800 text-blue-300";
-    case "Governance":
+    case "governance":
       return "bg-yellow-700 text-yellow-200";
     default:
       return "bg-gray-600 text-white";
