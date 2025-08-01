@@ -10,24 +10,23 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   const pageNames = {
-    "/about-us": "About Us",
-    "/about-us/founders/": "Founders",
-    "/about-us/our-journey/": "Our Journey"
+    "/admin/about-us": "About Us",
+    "/admin/about-us/founders/": "Founders",
+    "/admin/about-us/our-journey/": "Our Journey"
   };
 
   const normalizePath = (path) => path.replace(/\/$/, ""); // Remove trailing slash for consistency
-
   return (
     <header className="sticky h-[60px] bg-[#f5f5f5] backdrop-blur-md z-40 shadow-md">
       <nav className="w-full mx-auto px-6 py-4 flex justify-between items-center rounded-xl">
         {/* Desktop Navigation Links */}
         <div className="hidden md:flex w-full justify-evenly font-WorkSans">
           {Object.entries(pageNames).map(([path, name]) => {
-            const isActive = normalizePath(pathname) === normalizePath(path);
+            const isActive = pathname.replace(/\/$/, "") === path.replace(/\/$/, "");
             return (
               <a
                 key={path}
-                href={`admin/${path}`}
+                href={path}
                 className={`transition-colors ${
                   isActive ? "text-companyBlue font-bold border-b-2 border-companyBlue" : "text-black hover:text-companyBlue"
                 }`}
@@ -59,7 +58,7 @@ export default function Navbar() {
               return (
                 <a
                   key={path}
-                  href={`admin/${path}`}
+                  href= {path}
                   className={`transition-colors ${
                     isActive ? "text-companyBlue font-bold border-b-2 border-companyBlue" : "text-black hover:text-companyBlue"
                   }`}
