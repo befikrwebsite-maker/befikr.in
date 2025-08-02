@@ -6,20 +6,36 @@ import Navbar from "../comp/AboutUsNavbar";
 
 export default function EditAboutUs() {
 
-    const [aboutUsContent, setAboutUsContent] = useState([
-        { type: "text", content: "befikr is a strategic & execution partner for environment, safety & social IMPACT services." },
-        { type: "text", content: "We work with businesses to exhibit Business Responsibility & Sustainability through direct impact ESG services." },
-        { type: "separator" },
-        { type: "text", content: "Our Environment (E) IMPACT services are Energy audit, Electrical safety audit, Circular economy (Defective inspection, e-waste collection & Reverse logistics management). Today, befikr has also become the last mile partner for brands looking to comply with the Extended Producer Responsibility by managing & embracing the complete circular economy chain efficiently." },
-        { type: "text", content: "Our Social (S) IMPACT services include CSR (Corporate Social Responsibility) touching lives & employability through training & development services for the under privileged & deserving to contribute towards a Developed India." },
-        { type: "separator" },
-        { type: "text", content: "We carry a credible track record of winning multiple years of service contracts from Banking, Oil & Gas & Consumer brands setting year on year new standards & controls through diligent Inspection-investigation-Auditing-Remidiation services." },
-        { type: "text", content: "Established in 2016, today we take pride in serving market leaders like HDFC Bank, ICICI Bank, Axis Bank, Kotak Mahindra Bank, Bank of India, Indian Oil, Hindustan Petroleum, Jubilant Food-works (Dominos India), Crompton, Bosch & Siemens, American Embassy, Attero & many such prestigious organisations." },
-        { type: "text", content: "Our unique propositions for businesses comprises offering a one stop end to end service through a well trained professional team of engineers with a pan-India execution network to help businesses get serviced as well scale sustainably." },
-        { type: "image", content: "/images/IMG-20250220-WA0004.jpg" },
-        { type: "text", content: "Today, befikr is successfully addressing businesses protecting their risks as well as helping them welcome growth opportunities." },
-        { type: "text", content: "The brand “befikr” is owned and operated by Opera Gratia Pvt Ltd. The company has its headquarters in Delhi." }
-    ]);
+    const [aboutUsContent, setAboutUsContent] = useState([]);
+
+        useEffect(() => {
+        fetch("https://befikr.in/get_about_us_content.php")
+          .then((res) => res["data"].json())
+          .then((json) => {
+            console.log(json);
+            setAboutUsContent(json);
+          })
+          .catch((err) => {
+            console.error("Error fetching services:", err);
+          });
+      }, []);
+
+
+
+    // const [aboutUsContent, setAboutUsContent] = useState([
+    //     { type: "text", content: "befikr is a strategic & execution partner for environment, safety & social IMPACT services." },
+    //     { type: "text", content: "We work with businesses to exhibit Business Responsibility & Sustainability through direct impact ESG services." },
+    //     { type: "separator" },
+    //     { type: "text", content: "Our Environment (E) IMPACT services are Energy audit, Electrical safety audit, Circular economy (Defective inspection, e-waste collection & Reverse logistics management). Today, befikr has also become the last mile partner for brands looking to comply with the Extended Producer Responsibility by managing & embracing the complete circular economy chain efficiently." },
+    //     { type: "text", content: "Our Social (S) IMPACT services include CSR (Corporate Social Responsibility) touching lives & employability through training & development services for the under privileged & deserving to contribute towards a Developed India." },
+    //     { type: "separator" },
+    //     { type: "text", content: "We carry a credible track record of winning multiple years of service contracts from Banking, Oil & Gas & Consumer brands setting year on year new standards & controls through diligent Inspection-investigation-Auditing-Remidiation services." },
+    //     { type: "text", content: "Established in 2016, today we take pride in serving market leaders like HDFC Bank, ICICI Bank, Axis Bank, Kotak Mahindra Bank, Bank of India, Indian Oil, Hindustan Petroleum, Jubilant Food-works (Dominos India), Crompton, Bosch & Siemens, American Embassy, Attero & many such prestigious organisations." },
+    //     { type: "text", content: "Our unique propositions for businesses comprises offering a one stop end to end service through a well trained professional team of engineers with a pan-India execution network to help businesses get serviced as well scale sustainably." },
+    //     { type: "image", content: "/images/IMG-20250220-WA0004.jpg" },
+    //     { type: "text", content: "Today, befikr is successfully addressing businesses protecting their risks as well as helping them welcome growth opportunities." },
+    //     { type: "text", content: "The brand “befikr” is owned and operated by Opera Gratia Pvt Ltd. The company has its headquarters in Delhi." }
+    // ]);
 
     const [newText, setNewText] = useState("");
     const [newImageSrc, setNewImageSrc] = useState("");
@@ -66,7 +82,7 @@ export default function EditAboutUs() {
                                                         setShowTextInput(false);
                                                     }
                                                 }}
-                                                className="bg-blue-600 text-white px-3 py-1 rounded"
+                                                className="bg-companyBlue text-white px-3 py-1 rounded "
                                             >
                                                 Add Paragraph
                                             </button>
@@ -84,7 +100,7 @@ export default function EditAboutUs() {
                                 ) : (
                                     <button
                                         onClick={() => setShowTextInput(true)}
-                                        className="bg-blue-500 text-white px-4 py-2 rounded w-full"
+                                        className="bg-companyBlue text-black px-4 py-2 rounded w-full hover:text-white"
                                     >
                                         + Add Paragraph
                                     </button>
@@ -136,7 +152,7 @@ export default function EditAboutUs() {
                                     onClick={() =>
                                         setAboutUsContent([...aboutUsContent, { type: "separator" }])
                                     }
-                                    className="bg-gray-700 text-white px-4 py-2 rounded w-full"
+                                    className="bg-black text-companyBlue px-4 py-2 rounded w-full hover:text-white"
                                 >
                                     + Add Separator
                                 </button>

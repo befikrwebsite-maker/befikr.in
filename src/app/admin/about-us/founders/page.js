@@ -78,7 +78,7 @@ export default function EditFounders() {
                             }
                           }
                         }}
-                        className="bg-blue-600 text-white px-3 py-1 rounded"
+                        className="bg-companyBlue text-white px-3 py-1 rounded"
                       >
                         Add Paragraph
                       </button>
@@ -96,7 +96,7 @@ export default function EditFounders() {
                 ) : (
                   <button
                     onClick={() => setShowTextInput(true)}
-                    className="bg-blue-500 text-white px-4 py-2 rounded w-full"
+                    className="bg-companyBlue text-black px-4 py-2 rounded w-full hover:text-white"
                   >
                     + Add Paragraph
                   </button>
@@ -146,7 +146,9 @@ export default function EditFounders() {
                 </form>
 
                 {foundersContentSumit.map((item, index) => {
-                  if (item.type === "text" && index === 0) {
+                  if (item.type === "text" && item.content === "") {
+                    return ("");
+                  } else if (item.type === "text" && index === 0) {
                     return (
                       <p className="md:text-4xl font-generalSansRegular"><strong className=" text-companyBlue">Sumit Srivastava</strong>{item.content.replace("Sumit Srivastava","")}</p>
                     );
@@ -159,7 +161,9 @@ export default function EditFounders() {
                 })}
                 <div className="items-center h-[0.5px] rounded-full mb-10 bg-companyBlue"></div>
                 {foundersContentChirajay.map((item, index) => {
-                  if (item.type === "text" && index === 0) {
+                  if (item.type === "text" && item.content === "") {
+                    return ("");
+                  } else if (item.type === "text" && index === 0) {
                     return (
                       <p className="md:text-4xl font-generalSansRegular"><strong className=" text-companyBlue">Chirajay Sharma</strong>{item.content.replace("Chirajay Sharma","")}</p>
                     );
